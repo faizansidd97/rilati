@@ -1,0 +1,150 @@
+.footer {
+  &__section {
+    background-color: #f3f3f3;
+    min-height: 410px;
+    &__logo{
+      margin-top: -45px;
+      p{
+        max-width: 280px;
+      }
+
+    }
+  }
+  &__navlinks {
+    ul {
+      li {
+        list-style: none;
+        padding: 8px 0;
+        font-size: 14px;
+        color: #252525;
+        cursor: pointer;
+        &.active{
+          color: #bb9875;
+        }
+        &:hover {
+          color: #bb9875;
+        }
+      }
+    }
+  }
+  &__quicklinks {
+    h2 {
+      color: #bb9875;
+      font-size: 20px;
+      font-weight: 700;
+    }
+  }
+  &__socailicons {
+    &--icons {
+      padding: 7px 10px;
+      border: 1px solid #2e303f;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-right: 20px;
+      &:hover {
+        background-color: #2e303f;
+        svg {
+          color: #fff;
+        }
+      }
+    }
+  }
+  &__newsletter {
+    padding-top: 20px;
+    h2 {
+      color: #2e303f;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    p{
+      padding: 15px 0 20px 0;
+    }
+    form {
+      background: #bb9875;
+      border-radius: 20px;
+      width: 100%;
+
+      input {
+        height: 48px;
+        background-color: #bb9875;
+        border: none;
+        border-radius: 20px 0 0 20px;
+        padding-left: 15px;
+        color: #fff !important;
+        &:focus {
+          outline: none;
+        }
+        &::placeholder {
+          color: #fff;
+        }
+      }
+      button {
+        height: 48px;
+        background-color: #101329;
+        border-radius: 0 0 0 25px;
+        color: #fff;
+        border: none;
+        transition: .3s all;
+        cursor: pointer !important;
+        &:hover{
+          background-color: #ffffff;
+          color: #333549;
+        }
+      }
+    }
+  }
+  &__iconlist {
+    &__wrapper {
+      cursor: pointer;
+      .icon {
+        padding: 6px 10px;
+        background: transparent;
+        border-radius: 50px;
+        border: 1px solid #2e303f;
+        margin: 10px;
+      }
+      a {
+        color: rgb(0, 0, 0) !important;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+    &__wrapper:hover {
+      .icon {
+        background: #2e303f;
+        color: #bb9875;
+      }
+      a {
+        color: #bb9875 !important;
+      }
+    }
+  }
+  &__copyrights {
+    height: 57px;
+    background-color: #101329;
+    &--text {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      span {
+        color: #bb9875;
+        a:hover{
+          color: #f3cda7;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width:600px){
+  .footer {
+    &__copyrights {
+      &--text {
+      font-size: 9px;
+
+      }
+    }
+  }
+}

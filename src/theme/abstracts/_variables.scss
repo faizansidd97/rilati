@@ -1,0 +1,56 @@
+//@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap");
+$primary: #ff4742;
+$primary-dark: #363b3f;
+$secondary: #ffffff;
+$secondary-dark: #1f3e51;
+$gray: #f7f7f7;
+$drak-gray: #6f6f6f;
+$text-color: #000;
+$text-muted: #6f6f6f;
+$text-dark-gray: #676666;
+$black: #000;
+$green: #18a027;
+$success-green: #27d02e;
+$light-green: #86db4f;
+$green-dark: #2d6509;
+$greyish-brown: #474747;
+$blue: #2a5699;
+$yellow: #eb8d22;
+$red: #ad1b02;
+$faded-red: #d93954;
+$copper: #d04d27;
+$border-table-color: #e6e6e6;
+$border-color: #dedede;
+
+$font-size: 14px;
+$header-height: 67px;
+$side-bar-width: 60px;
+$inner-side-bar-width: 250px;
+
+$primary-font-family: "Rubik", sans-serif;
+
+//$secondary-font-family:  'Mulish', sans-serif;
+
+$label-color: #474747;
+$input-placeholder-color: #7e7f7f;
+$required-sign-color: #d93954;
+$input-border-color: $border-color;
+$input-focus-color: #d85604;
+$select-icon-color: #838383;
+$select-sm-bg: #e8f7e6;
+$select-sm-border-color: #2e98221a;
+$btn-secondary-bg: #ebebeb;
+$btn-primary-bg: #d04d27;
+$btn-blue: #2a5699;
+$btn-dark-bg: #bfbfbf;
+
+// Pagination Colors
+$pagination-color: #000;
+$pagination-bg: #fff;
+$pagination-active-border-color: $primary;
+
+//Table Background Color
+$bg-dark-orange: #fee1a1;
+$bg-light-orange: #ffecbd;
+$bg-table-row-error: $red;

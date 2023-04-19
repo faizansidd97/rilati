@@ -1,0 +1,30 @@
+.otp-modal {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  div {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: "center";
+    width: 70%;
+  }
+  h2 {
+    font-size: 20px;
+    text-align: center;
+  }
+  p {
+    text-align: center;
+  }
+  input {
+    width: 40px !important;
+    height: 40px;
+    border: 2px solid #ff48428e;
+    box-shadow: 0 0 4px #ff484262;
+  }
+  button {
+    height: 80px !important;
+  }
+}

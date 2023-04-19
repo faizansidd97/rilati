@@ -1,0 +1,132 @@
+.content-card {
+  .custom {
+    font-size: 20px !important;
+  }
+  .search-input {
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    margin-left: 20px;
+    box-shadow: 0 5px 10px #00000023;
+  }
+  span.ant-input-affix-wrapper.search-input {
+    position: relative;
+  }
+  span.ant-input-prefix {
+    position: absolute;
+    right: 0;
+    z-index: 99;
+    top: 7px;
+  }
+  &__wrapper {
+    width: 100%;
+    // padding-top: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    min-height: 300px;
+    box-shadow: 0 0 5px #00000062;
+    // filter: brightness(0.9) saturate(1.3);
+    position: relative;
+    &::before {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 100%;
+      background-color: #00000036;
+      z-index: 1;
+    }
+    .number {
+      z-index: 2;
+      padding: 10px;
+      h2 {
+        border-bottom: 3px solid #fff;
+        width: max-content;
+        color: #fff;
+        text-shadow: 2px 0px 5px #0000003d;
+      }
+    }
+    &__info {
+      z-index: 2;
+      h3 {
+        color: #fff;
+        text-shadow: 1px 0px 2px #0000008e;
+        font-size: 30px;
+      }
+      p {
+        color: #fff;
+        text-shadow: 1px 0px 2px #0000008e;
+        font-size: 25px;
+      }
+    }
+    &__pricing {
+      z-index: 2;
+      &__temp {
+        h2 {
+          color: #fff;
+          text-shadow: 1px 0px 2px #0000008e;
+          font-size: 20px;
+        }
+      }
+      &__price {
+        h2 {
+          font-size: 20px;
+          color: #fff;
+          text-shadow: 1px 0px 2px #0000008e;
+        }
+      }
+    }
+    &__back {
+      position: relative;
+
+      &__progress {
+        margin-bottom: 15px;
+        h3 {
+          color: #fff;
+          flex: 1;
+          font-size: 16px;
+          text-shadow: 1px 0px 2px #0000008e;
+          margin: 0;
+        }
+        .progress {
+          background-color: #ffffffa6;
+          border-radius: 10px;
+          flex: 1;
+          height: 20px;
+        }
+      }
+      p {
+        font-size: 14px;
+        color: #fff;
+        font-weight: 500;
+        text-align: center;
+      }
+    }
+    &:hover {
+      .back {
+        z-index: 9999;
+        // display: block;
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+    .back {
+      cursor: grabbing;
+      position: absolute;
+      background-color: #000000c7;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      //   display: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.2s ease-in-out;
+    }
+    .back-header {
+      svg {
+        fill: #fff;
+      }
+    }
+  }
+}

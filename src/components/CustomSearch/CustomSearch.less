@@ -1,0 +1,51 @@
+@import url("../../styles/variables.less");
+.kl-custom-search-container {
+  .ant-input-affix-wrapper{
+    input.ant-input {
+      font-weight: normal !important;
+      font-size: 15px;
+      line-height: 36px;
+      text-align: left;
+      color: @text-color;
+      border: none !important;
+      padding: 5px 0px 5px 5px !important;
+      &::placeholder {
+        font-weight: normal;
+        font-size: 15px;
+        line-height: 36px;
+        text-align: left;
+        color: @black-color;
+      }
+    }
+  }
+      .ant-input-group{
+        width: 509px;
+        svg {
+            color: @text-color;
+            font-size: 13px;
+          }
+      }
+      .ant-input-affix-wrapper {
+        width: 100%;
+        min-height: 44px;
+        border: 1px solid @kl-icon-border-color;
+        border-radius: 6px !important;
+      }
+      span.ant-input-group-addon {
+        display: none;
+      }
+      @media screen and (max-width: 1199px) {
+        width: 100%;
+        .ant-input-group, .ant-input-affix-wrapper {
+          width: 100% !important;
+      }
+      }
+}
+
+@media screen and (max-width: 768px) {
+  .topHeader {
+    .kl-colalignRight {
+      margin: 0px !important;
+  }
+  }
+}
