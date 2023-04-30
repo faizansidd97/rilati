@@ -4,6 +4,8 @@ import { AiOutlineClose, AiOutlineHeart } from "react-icons/ai";
 import ProgressBar from "react-bootstrap/ProgressBar";
 
 import { IoShareOutline } from "react-icons/io5";
+import { Modal } from "antd";
+import ContentTabs from "../ContentTabs";
 
 interface IContentCards {
   item: any;
@@ -11,6 +13,7 @@ interface IContentCards {
   onArrayChange?: any;
 }
 const ContentInnerCards = ({ item, index, onArrayChange }: IContentCards) => {
+  const [isVisible, setIsVisible] = useState(false);
   const [progress, setProgress] = useState({
     over: 0,
     cost: 0,
@@ -72,7 +75,11 @@ const ContentInnerCards = ({ item, index, onArrayChange }: IContentCards) => {
           />
           {/* <AiTwotoneHeart size={28} className="heart-2" /> */}
         </div>
-        <div className="content-card__wrapper__back" key={index}>
+        <div
+          className="content-card__wrapper__back"
+          onClick={() => setIsVisible(true)}
+          key={index}
+        >
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
             <h3>⭐️ Over All</h3>
             <ProgressBar
@@ -119,6 +126,15 @@ const ContentInnerCards = ({ item, index, onArrayChange }: IContentCards) => {
           </div>
         </div>
       </div>
+      <Modal
+        open={isVisible}
+        footer={false}
+        onCancel={() => setIsVisible(false)}
+        width={"80%"}
+        zIndex={9999}
+      >
+        <ContentTabs item={item} index={index} progress={progress} />
+      </Modal>
     </div>
   );
 };

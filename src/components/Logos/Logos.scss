@@ -1,4 +1,15 @@
 .logos {
+  &-card {
+    border: 1px solid #6104041e;
+    padding: 8px;
+    border-radius: 6px;
+    box-shadow: 0 0 4px #ff000011;
+    margin-bottom: 9px;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      box-shadow: 0 0 10px #4e02024f;
+    }
+  }
   img {
     width: 100px;
     height: 100px;
