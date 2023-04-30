@@ -34,6 +34,7 @@
       content: "";
       width: 100%;
       height: 100%;
+      border-radius: 10px;
       background-color: #00000036;
       z-index: 1;
     }
@@ -128,5 +129,12 @@
         fill: #fff;
       }
     }
+  }
+  .ant-skeleton.ant-skeleton-element.ant-skeleton-active {
+    width: 100%;
+  }
+  .ant-skeleton-image {
+    width: 100% !important;
+    height: 280px !important;
   }
 }

@@ -1,2 +1,0 @@
-(this.webpackJsonpdashbord=this.webpackJsonpdashbord||[]).push([[5],{112:function(e,t,n){"use strict";n.r(t);n(0);var s=n(2);t.default=function(){return Object(s.jsx)("section",{style:{height:"100vh",width:"100vw",backgroundColor:"#2b2f3b"},children:Object(s.jsxs)("div",{className:"login d-flex justify-content-center align-items-center flex-column",style:{height:"100vh",width:"100vw"},children:[Object(s.jsx)("input",{placeholder:"Enter Username"}),Object(s.jsx)("button",{type:"button",children:"login "})]})})}}}]);
-//# sourceMappingURL=5.18a493d4.chunk.js.map
