@@ -7,7 +7,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   .title {
-    font-size: 45px;
+    font-size: 35px;
     text-shadow: 2px 0px 5px #0000003d;
     color: #fff;
   }
@@ -30,6 +30,8 @@
       background-color: rgb(255, 255, 255);
       padding: 20px;
       border-radius: 10px;
+      box-shadow: 0 5px 10px #00000021;
+      z-index: 9;
       img {
         border-radius: 10px;
       }
@@ -47,6 +49,41 @@
           outline: none;
         }
       }
+    }
+  }
+  .wave {
+    position: absolute;
+    bottom: -10px;
+    left: -10px;
+    z-index: 3;
+    width: 105vw;
+    fill: #f7f7f7;
+  }
+}
+
+@media (max-width: 786px) {
+  .home-banner {
+    padding-top: 100px;
+    height: auto;
+    background-position: top center;
+    .title {
+      font-size: 25px;
+      text-align: center;
+    }
+    .desc {
+      font-size: 20px;
+      text-align: center;
+    }
+  }
+  .user-avator {
+    text-align: center;
+    img {
+      margin: 20px 0;
+    }
+  }
+  .subcription {
+    &__form_wrapper {
+      width: 95% !important;
     }
   }
 }

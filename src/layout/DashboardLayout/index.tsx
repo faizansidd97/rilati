@@ -78,7 +78,7 @@ const AdminLayout = () => {
       </Sider>
       <Layout className="site-layout">
         <Header style={{ padding: 0, background: "#fff" }}>
-          <div className="d-flex justify-content-between align-items-center h-100">
+          <div className="d-flex justify-content-between align-items-center h-100 pe-4">
             {React.createElement(
               collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
               {
@@ -86,9 +86,12 @@ const AdminLayout = () => {
                 onClick: () => setCollapsed(!collapsed),
               }
             )}
-            <div className="d-flex align-items-center me-2 cursor-pointer">
+            <div
+              className="d-flex align-items-center me-2 cursor-pointer"
+              onClick={() => dispatch(logoutRequest())}
+            >
               <h6 className="mb-0 me-2">Logout</h6>
-              <MdLogout onClick={() => dispatch(logoutRequest())} />
+              <MdLogout />
             </div>
           </div>
         </Header>

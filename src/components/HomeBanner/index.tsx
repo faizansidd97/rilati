@@ -30,7 +30,10 @@ const HomeBanner = () => {
         <Row className="align-self-center">
           <Col sm={12} md={6} lg={6}>
             <div className="d-flex flex-column justify-content-center h-100">
-              <h1 className="title">🌍 Go Amad</h1>
+              <h1 className="title">
+                🌍 Your career is a journey, not a destination.
+                <br /> Let Rilati guide you
+              </h1>
               <p className="desc">
                 Join a global community of remote workers living and traveling
                 around the world
@@ -110,16 +113,21 @@ const HomeBanner = () => {
               </div>
             </div>
           </Col>
-          <Col sm={12} md={6} lg={6} className="d-flex justify-content-end">
-            <div className="subcription__form_wrapper d-flex flex-column align-items-center">
-              <img src={thumbnail} />
+          <Col
+            sm={12}
+            md={6}
+            lg={6}
+            className="d-flex justify-content-center justify-content-md-end mb-4 mb-md-0"
+          >
+            <div className="subcription__form_wrapper d-flex flex-column align-items-center mb-4">
+              <img src={thumbnail} className="w-100" />
               <Form>
                 <Form.Item className="my-3">
                   <Input placeholder="Type your email...." />
                 </Form.Item>
                 <Form.Item>
                   <Button className="btn btn-primary mb-3 w-100">
-                    Join Nomad List
+                    Join Us
                   </Button>
                 </Form.Item>
                 <span>
@@ -127,6 +135,9 @@ const HomeBanner = () => {
                 </span>
               </Form>
             </div>
+            <svg viewBox="0 0 1440 120" className="wave">
+              <path d="M1440,21.2101911 L1440,120 L0,120 L0,21.2101911 C120,35.0700637 240,42 360,42 C480,42 600,35.0700637 720,21.2101911 C808.32779,12.416393 874.573633,6.87702029 918.737528,4.59207306 C972.491685,1.8109458 1026.24584,0.420382166 1080,0.420382166 C1200,0.420382166 1320,7.35031847 1440,21.2101911 Z"></path>
+            </svg>
           </Col>
         </Row>
       </Container>

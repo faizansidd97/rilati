@@ -68,7 +68,7 @@ function Dashboard() {
   ];
 
   return (
-    <div>
+    <div className="overflow-auto">
       <GridView data={data} columns={columns} />
     </div>
   );

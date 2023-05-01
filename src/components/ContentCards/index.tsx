@@ -60,7 +60,7 @@ const ContentCards = () => {
       <Row>
         <Col
           md={12}
-          className="d-flex align-items-center justify-content-between my-3"
+          className="d-flex align-items-center flex-wrap justify-content-end justify-content-md-between my-3"
         >
           <div className="d-flex align-items-center">
             <Button className="btn btn-primary custom">Filters</Button>
@@ -70,7 +70,11 @@ const ContentCards = () => {
               className="search-input"
             />
           </div>
-          <Dropdown menu={{ items }} placement="bottomRight">
+          <Dropdown
+            menu={{ items }}
+            placement="bottomRight"
+            className="my-3 my-md-0"
+          >
             <Button className="btn-secondary">Sory By</Button>
           </Dropdown>
         </Col>
@@ -86,7 +90,7 @@ const ContentCards = () => {
           ))}
         {!active &&
           data.map((item, index) => (
-            <Col md={3} key={index} className="mb-4">
+            <Col md={4} lg={3} key={index} className="mb-4">
               <ContentInnerCards
                 item={item}
                 index={index}

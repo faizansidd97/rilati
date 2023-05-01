@@ -34,7 +34,7 @@ const ContentTabs = ({
       </div>
       <Row>
         <Col md={10} xs={24}>
-          <h4 className="my-3 text-center"> Details</h4>
+          <h4 className="my-2 my-md-3 text-center"> Details</h4>
 
           <div className="content-tabs__detail">
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">

@@ -47,3 +47,23 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .content-tabs {
+    &__header {
+      h3 {
+        font-size: 25px;
+      }
+      p {
+        font-size: 20px;
+      }
+    }
+    &__detail {
+      padding: 5px;
+
+      &__progress {
+        margin: 20px 0px;
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import "./Logos.scss";
 
-const Logos = ({ count = 8 }: any) => {
+const Logos = ({ count = 10 }: any) => {
   const myLogos = [];
   for (let index = 0; index < count; index++) {
     const logo = require(`../../assets/images/uni_logo (${
