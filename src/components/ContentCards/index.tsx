@@ -92,7 +92,7 @@ const ContentCards = () => {
           data.map((item, index) => (
             <Col
               key={index}
-              className="mb-4 card-col d-flex flex-wrap justify-content-start"
+              className="mb-4 card-col d-flex flex-wrap justify-content-lg-start justify-content-center justify-content-md-center"
             >
               <ContentInnerCards
                 item={item}
