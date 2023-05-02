@@ -79,7 +79,7 @@ const ContentCards = () => {
           </Dropdown>
         </Col>
       </Row>
-      <Row>
+      <Row className="justify-content-center">
         {active &&
           [1, 2, 3, 4, 5, 6, 7, 8].map((index) => (
             <Col md={3} key={index} className="mb-4">
