@@ -29,12 +29,13 @@ const HomeBanner = () => {
       <Container className="h-100 d-flex">
         <Row className="align-self-center">
           <Col sm={12} md={6} lg={6}>
-            <div className="d-flex flex-column justify-content-center h-100">
-              <h1 className="title">
-                🌍 Your career is a journey, not a destination.
+            <div className="d-flex flex-column justify-content-end h-100">
+              <h1 className="title">🌍 Rilati</h1>
+              <h1 className="desc">
+                Your career is a journey, not a destination.
                 <br /> Let Rilati guide you
               </h1>
-              <p className="desc">
+              {/* <p className="desc">
                 Join a global community of remote workers living and traveling
                 around the world
               </p>
@@ -110,7 +111,7 @@ const HomeBanner = () => {
                   height="40"
                   data-src="https://nomadlist.com/assets/img/users/a5c1f423ee4d878f57da8d71d7ef73bb.jpg?1666716359"
                 />
-              </div>
+              </div> */}
             </div>
           </Col>
           <Col
@@ -120,7 +121,7 @@ const HomeBanner = () => {
             className="d-flex justify-content-center justify-content-md-end mb-4 mb-md-0"
           >
             <div className="subcription__form_wrapper d-flex flex-column align-items-center mb-4">
-              <img src={thumbnail} className="w-100" />
+              {/* <img src={thumbnail} className="w-100" /> */}
               <Form>
                 <Form.Item className="my-3">
                   <Input placeholder="Type your email...." />

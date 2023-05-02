@@ -15,6 +15,7 @@ function App() {
         theme={{
           token: {
             colorPrimary: "#ff4742",
+            fontFamily: "'Nunito', sans-serif",
           },
         }}
       >

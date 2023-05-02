@@ -24,7 +24,7 @@ html {
 body {
   box-sizing: border-box;
   overflow-x: hidden;
-  font-family: $primary-font-family;
+  font-family: $primary-font-family !important;
   font-weight: normal;
   font-size: $font-size;
   color: $text-color;

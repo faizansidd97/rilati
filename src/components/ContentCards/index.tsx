@@ -90,7 +90,10 @@ const ContentCards = () => {
           ))}
         {!active &&
           data.map((item, index) => (
-            <Col md={4} lg={3} key={index} className="mb-4">
+            <Col
+              key={index}
+              className="mb-4 card-col d-flex flex-wrap justify-content-start"
+            >
               <ContentInnerCards
                 item={item}
                 index={index}
