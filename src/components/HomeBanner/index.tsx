@@ -27,7 +27,7 @@ const HomeBanner = () => {
         </video> */}
       </div>
       <Container className="h-100 d-flex">
-        <Row className="align-self-center">
+        <Row className="align-self-center w-100">
           <Col sm={12} md={6} lg={6}>
             <div className="d-flex flex-column justify-content-end h-100">
               <h1 className="title">🌍 Rilati</h1>
