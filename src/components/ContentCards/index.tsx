@@ -56,7 +56,7 @@ const ContentCards = () => {
     },
   ];
   return (
-    <Container className="content-card mb-3">
+    <Container className="content-card mb-3 px-3" fluid>
       <Row>
         <Col
           md={12}
@@ -75,11 +75,11 @@ const ContentCards = () => {
             placement="bottomRight"
             className="my-3 my-md-0"
           >
-            <Button className="btn-secondary">Sory By</Button>
+            <Button className="btn-secondary sort-by">Sory By</Button>
           </Dropdown>
         </Col>
       </Row>
-      <Row className="justify-content-center">
+      <Row>
         {active &&
           [1, 2, 3, 4, 5, 6, 7, 8].map((index) => (
             <Col md={3} key={index} className="mb-4">
@@ -92,6 +92,10 @@ const ContentCards = () => {
           data.map((item, index) => (
             <Col
               key={index}
+              // md={3}
+              // lg={3}
+              // xl={3}
+              // xxl={2}
               className="mb-4 card-col d-flex flex-wrap justify-content-lg-start justify-content-center justify-content-md-center"
             >
               <ContentInnerCards
