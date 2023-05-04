@@ -18,7 +18,9 @@
     box-shadow: 0 5px 10px #00000023;
   }
   span.ant-input-affix-wrapper.search-input {
+    width: 300px;
     position: relative;
+    border: 1px solid #00000023;
   }
   span.ant-input-prefix {
     position: absolute;

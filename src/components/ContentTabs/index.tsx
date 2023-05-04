@@ -84,7 +84,10 @@ const ContentTabs = ({
           </div>
         </Col>
         <Col md={14} xs={24}>
-          <h4 className="my-3 text-center"> Universities / Institutions</h4>
+          <h4 className="my-3 pb-5 text-center">
+            {" "}
+            Universities / Institutions
+          </h4>
           <Logos count={20} />
         </Col>
       </Row>
