@@ -1,6 +1,6 @@
 import { Button, Form, Input } from "antd";
 import thumbnail from "../../assets/images/thumbnail.jpg";
-import thumbnail1 from "../../assets/images/Homepage image 1.avif";
+import thumbnail1 from "../../assets/images/Homepage.jpg";
 
 import "./HomeBanner.scss";
 import { Col, Container, Row } from "react-bootstrap";

@@ -1,9 +1,9 @@
 .home-banner {
-  min-height: 500px;
-  height: 100vh;
+  min-height: 400px;
+  height: 450px;
   position: relative;
   background-color: #3d3c3c;
-  background-position: bottom;
+  background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
   .title {
@@ -58,9 +58,9 @@
     position: absolute;
     bottom: -10px;
     left: -10px;
-    z-index: 3;
+    z-index: 1;
     width: 105vw;
-    fill: #f7f7f7;
+    fill: #fbfaf8;
   }
 }
 
