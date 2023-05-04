@@ -10,7 +10,7 @@ const Logos = ({ count = 10 }: any) => {
     myLogos.push(logo);
   }
   return (
-    <div className="logos pb-2">
+    <div className="logos">
       <Container>
         <Row>
           <Col md={24} className="d-flex justify-content-around flex-wrap">
