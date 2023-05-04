@@ -1,10 +1,41 @@
 import { useNavigate } from "react-router-dom";
-import { LOGIN_SUCCESS, LOGIN_ERROR } from "../../constant/Types";
+import Environment from "src/network/baseUrl";
+import {
+  LOGIN_SUCCESS,
+  LOGIN_ERROR,
+  LOGIN_REQUEST,
+  LOGOUT_SUCCESS,
+} from "../../constant/Types";
+import { loginApi } from "src/network/network";
+import { message } from "antd";
+import {
+  saveToUserLocalStorage,
+  saveToLocalStorage,
+  login as setHeaders,
+} from "src/helper/helper";
 
 export const logoutRequest = () => (dispatch: any) => {
-  dispatch({ type: LOGIN_ERROR });
+  localStorage.removeItem(Environment.LOCAL_STORAGE_KEY);
+  localStorage.removeItem(Environment.LOCAL_STORAGE_USER_KEY);
+  dispatch({ type: LOGOUT_SUCCESS });
 };
 
 export const login = (body: any) => (dispatch: any) => {
-  dispatch({ type: LOGIN_SUCCESS, payload: body });
+  dispatch({ type: LOGIN_REQUEST, payload: body });
+  loginApi(body)
+    .then((res) => {
+      const {
+        data: { data },
+      }: any = res;
+      console.log(data, res);
+
+      dispatch({ type: LOGIN_SUCCESS, payload: data });
+      saveToLocalStorage(data);
+      saveToUserLocalStorage(data);
+      setHeaders(data);
+    })
+    .catch((err) => {
+      message.error("Login Failed Unauthorized");
+      dispatch({ type: LOGIN_ERROR });
+    });
 };

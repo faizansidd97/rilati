@@ -1,11 +1,10 @@
-import {
-    LOGIN_ENDPOINT,
-  } from "../constant/EndPoints";
+import { LOGIN_ENDPOINT } from "../constant/EndPoints";
+import { httpService } from "./axiosAgent";
 
-  export {}
+export {};
 
 //   import { privateAgent, publicAgent } from "../network/axiosAgent";
 
-//   export const loginApi = (body) => {
-//     return publicAgent.post(`${USER_URL}${LOGIN_ENDPOINT}`, { ...body });
-//   };
+export const loginApi = (body: any) => {
+  return httpService.post(`${LOGIN_ENDPOINT}`, { ...body });
+};

@@ -26,7 +26,7 @@ const HomeBanner = () => {
           Your browser does not support HTML video.
         </video> */}
       </div>
-      <Container className="h-100 d-flex justify-content-center">
+      <Container className="h-100 d-flex justify-content-center" fluid>
         <Row className="align-self-center w-100">
           <Col sm={12} md={6} lg={6}>
             <div className="d-flex flex-column justify-content-end h-100">

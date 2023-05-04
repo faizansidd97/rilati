@@ -3,7 +3,7 @@ import { Button, Checkbox, Form, Input } from "antd";
 import thumbnail1 from "../../../assets/images/thumbnail (1).jpg";
 import "./login.scss";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "src/redux/actions/authAction";
 
 const Login = () => {
@@ -13,6 +13,7 @@ const Login = () => {
     console.log("Received values of form: ", values);
   };
 
+  const { loginLoader } = useSelector((storeState: any) => storeState.auth);
   return (
     <section
       className="login-screen d-flex justify-content-center align-items-center"
@@ -49,14 +50,14 @@ const Login = () => {
             onFinish={onFinish}
           >
             <Form.Item
-              name="username"
+              name="email"
               rules={[
                 { required: true, message: "Please input your Username!" },
               ]}
             >
               <Input
                 prefix={<UserOutlined className="site-form-item-icon" />}
-                placeholder="Username"
+                placeholder="Email"
               />
             </Form.Item>
             <Form.Item
@@ -88,6 +89,7 @@ const Login = () => {
                 type="primary"
                 htmlType="submit"
                 className="login-form-button w-100"
+                loading={loginLoader}
               >
                 Log in
               </Button>

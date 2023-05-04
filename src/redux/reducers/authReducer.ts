@@ -2,6 +2,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
+  LOGOUT_SUCCESS,
 } from "../../constant/Types";
 import { AuthState } from "./Modules/auth";
 
@@ -23,6 +24,15 @@ const initialState: AuthState = {
 
 const authReducer = (state = initialState, action: any) => {
   switch (action.type) {
+    case LOGOUT_SUCCESS: {
+      return {
+        ...state,
+        isLogin: false,
+        user: null,
+        loginLoader: false,
+      };
+    }
+
     case LOGIN_REQUEST: {
       return Object.assign({}, state, {
         loginLoader: true,
