@@ -60,14 +60,14 @@ const ContentCards = () => {
       <Row>
         <Col
           md={12}
-          className="d-flex align-items-center flex-wrap justify-content-end justify-content-md-between my-3"
+          className="d-flex align-items-center  flex-wrap justify-content-end justify-content-md-between my-3"
         >
-          <div className="d-flex align-items-center">
+          <div className="button-wrapper d-flex align-items-center flex-wrap flex-column-reverse flex-md-row">
             <Button className="btn btn-primary custom">Filters</Button>
             <Input
               placeholder="Search or filter"
               prefix={<AiFillPlusCircle size={25} color="#ff4742" />}
-              className="search-input"
+              className="search-input "
             />
           </div>
           <Dropdown

@@ -63,6 +63,16 @@
     fill: #fbfaf8;
   }
 }
+@media (min-width: 1700px) {
+  .home-banner {
+    min-height: 50vh;
+  }
+}
+@media (min-width: 1920px) {
+  .home-banner {
+    min-height: 60vh;
+  }
+}
 
 @media (max-width: 786px) {
   .home-banner {

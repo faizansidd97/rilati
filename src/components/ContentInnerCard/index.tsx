@@ -24,7 +24,7 @@ const ContentInnerCards = ({ item, index, onArrayChange }: IContentCards) => {
 
   return (
     <div
-      className="content-card__wrapper d-flex flex-column justify-content-between position-relative"
+      className="content-card__wrapper d-flex flex-column flex-wrap gap-3 justify-content-between position-relative"
       style={{ backgroundImage: `url("${item.image}")` }}
       key={index}
       onMouseEnter={() => {

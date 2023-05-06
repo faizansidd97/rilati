@@ -3,3 +3,7 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_ERROR = "LOGIN_ERROR";
 
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+
+export const CAREER_REQUEST = "CAREER_REQUEST";
+export const CAREER_SUCCESS = "CAREER_SUCCESS";
+export const CAREER_ERROR = "CAREER_ERROR";
