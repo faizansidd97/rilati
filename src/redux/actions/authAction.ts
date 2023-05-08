@@ -21,7 +21,7 @@ export const logoutRequest = () => (dispatch: any) => {
 };
 
 export const login = (body: any) => (dispatch: any) => {
-  dispatch({ type: LOGIN_REQUEST, payload: body });
+  dispatch({ type: LOGIN_REQUEST });
   loginApi(body)
     .then((res) => {
       const {

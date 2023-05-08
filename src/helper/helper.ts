@@ -78,6 +78,13 @@ export const getFromLocalStorage = (key: any) => {
   return JSON.parse(getResult);
 };
 
+export const stringLimt = (text: string, limit = 10) => {
+  if (text && text?.length > limit) {
+    return `${text.substring(0, limit)} ...`;
+  }
+  return text;
+};
+
 export const login = (auth: any) => {
   httpService.defaults.headers = {
     ...httpService.defaults.headers,

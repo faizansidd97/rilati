@@ -1,25 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Modal, Space } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import GridView from "src/components/GridView/GridView";
+import { useDispatch, useSelector } from "react-redux";
+import { getCareer } from "src/redux/actions/careerAction";
+import { stringLimt } from "src/helper/helper";
+import { Link } from "react-router-dom";
 
-const data = [
-  { name: "Alpha University", location: "USA", study: "Computer Science" },
-  { name: "Alpha University", location: "USA", study: "Computer Science" },
-  { name: "Alpha University", location: "USA", study: "Computer Science" },
-  { name: "Alpha University", location: "USA", study: "Computer Science" },
-  { name: "Alpha University", location: "USA", study: "Computer Science" },
-  { name: "Alpha University", location: "USA", study: "Computer Science" },
-];
+interface DataType {
+  key: React.Key;
+  name: string;
+  age: number;
+  address: string;
+}
 
 function Dashboard() {
-  interface DataType {
-    key: React.Key;
-    name: string;
-    age: number;
-    address: string;
-  }
+  const disptch = useDispatch();
+  useEffect(() => {
+    disptch(getCareer());
+  }, []);
   const { confirm } = Modal;
   const showPromiseConfirm = () => {
     confirm({
@@ -40,16 +40,39 @@ function Dashboard() {
   const columns: ColumnsType<DataType> = [
     {
       title: "Name",
-      dataIndex: "name",
-      render: (text: string) => <a>{text}</a>,
+      // dataIndex: "name",
+      render: (res: any) => (
+        <span title={res?.attributes?.title}>
+          {stringLimt(res?.attributes?.title, 20)}
+        </span>
+      ),
     },
     {
-      title: "Location",
-      dataIndex: "location",
+      title: "Category",
+      // dataIndex: "name",
+      render: (res: any) => (
+        <span title={res?.attributes?.career_category}>
+          {stringLimt(JSON.parse(res?.attributes?.career_category || ""), 20)}
+        </span>
+      ),
     },
     {
-      title: "Study",
-      dataIndex: "study",
+      title: "Description",
+      // dataIndex: "location",
+      render: (res: any) => (
+        <span title={res?.attributes?.job_description}>
+          {stringLimt(res?.attributes?.job_description, 50)}
+        </span>
+      ),
+    },
+    {
+      title: "Average Salary",
+      // dataIndex: "study",
+      render: (res: any) => (
+        <span title={res?.attributes?.average_salary}>
+          {stringLimt(res?.attributes?.average_salary, 22)}
+        </span>
+      ),
     },
     {
       title: "Action",
@@ -57,7 +80,9 @@ function Dashboard() {
       render(value, record) {
         return (
           <Space className="">
-            <Button className="btn-next">Edit</Button>
+            <Link to={`career/${value?.id}`} className="btn-next">
+              Edit
+            </Link>
             <Button onClick={showPromiseConfirm} className="btn-danger">
               Delete
             </Button>
@@ -67,9 +92,14 @@ function Dashboard() {
     },
   ];
 
+  const { career = [], loader = false } = useSelector(
+    (store: any) => store.career
+  );
+  console.log(career);
+
   return (
     <div className="overflow-auto">
-      <GridView data={data} columns={columns} />
+      <GridView data={career} columns={columns} loading={loader} />
     </div>
   );
 }

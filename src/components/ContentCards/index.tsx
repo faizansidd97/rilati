@@ -7,15 +7,15 @@ import { Dropdown, Input, MenuProps, Skeleton } from "antd";
 import { IoShareOutline } from "react-icons/io5";
 import { contentData } from "./constant";
 import "./ContentCards.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { getCareer } from "src/redux/actions/careerAction";
 import ContentInnerCards from "../ContentInnerCard";
 
 const ContentCards = () => {
   const [data, setData] = useState([...contentData]);
-  const [active, setActive] = useState(true);
+  const disptach = useDispatch<any>();
   useEffect(() => {
-    setTimeout(() => {
-      setActive(false);
-    }, 5000);
+    disptach(getCareer());
   }, []);
   const arr = [];
   for (let index = 0; index < 100; index++) {
@@ -27,7 +27,11 @@ const ContentCards = () => {
     temp.push(item);
     setData(temp);
   };
-  console.log("data", data);
+
+  const { career = [], loader = false } = useSelector(
+    (store: any) => store.career
+  );
+  console.log("career", career, loader);
 
   const items: MenuProps["items"] = [
     {
@@ -80,22 +84,18 @@ const ContentCards = () => {
         </Col>
       </Row>
       <Row>
-        {active &&
+        {loader &&
           [1, 2, 3, 4, 5, 6, 7, 8].map((index) => (
             <Col md={3} key={index} className="mb-4">
-              <Skeleton.Node active={active}>
+              <Skeleton.Node active={loader}>
                 <DotChartOutlined style={{ fontSize: 100, color: "#bfbfbf" }} />
               </Skeleton.Node>
             </Col>
           ))}
-        {!active &&
-          data.map((item, index) => (
+        {!loader &&
+          career.map((item: any, index: any) => (
             <Col
               key={index}
-              // md={3}
-              // lg={3}
-              // xl={3}
-              // xxl={2}
               className="mb-4 card-col d-flex flex-wrap justify-content-lg-start justify-content-center justify-content-md-center"
             >
               <ContentInnerCards
