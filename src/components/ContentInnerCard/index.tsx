@@ -11,9 +11,15 @@ import { stringLimt } from "src/helper/helper";
 interface IContentCards {
   item: any;
   index: number;
+  image: any;
   onArrayChange?: any;
 }
-const ContentInnerCards = ({ item, index, onArrayChange }: IContentCards) => {
+const ContentInnerCards = ({
+  item,
+  index,
+  image,
+  onArrayChange,
+}: IContentCards) => {
   const [isVisible, setIsVisible] = useState(false);
   const [progress, setProgress] = useState({
     over: 0,
@@ -22,12 +28,12 @@ const ContentInnerCards = ({ item, index, onArrayChange }: IContentCards) => {
     fun: 0,
     saftey: 0,
   });
-  console.log(item);
+  console.log(image);
 
   return (
     <div
       className="content-card__wrapper d-flex flex-column flex-wrap gap-3 justify-content-between position-relative"
-      style={{ backgroundImage: `url("${item?.image}")` }}
+      style={{ backgroundImage: `url("${image?.image}")` }}
       key={index}
       onMouseEnter={() => {
         setProgress({
@@ -61,10 +67,10 @@ const ContentInnerCards = ({ item, index, onArrayChange }: IContentCards) => {
       </div>
       <div className="content-card__wrapper__pricing d-flex justify-content-between p-2">
         <div className="content-card__wrapper__pricing__temp">
-          <h2>72</h2>
+          <h2>{item?.attributes?.years_needed}</h2>
         </div>
         <div className="content-card__wrapper__pricing__price">
-          <h2>$1000/mo</h2>
+          <h2>{stringLimt(item?.attributes?.average_salary_aud, 20)}/year</h2>
         </div>
       </div>
       <div className="mb-4 px-3 back p-3">

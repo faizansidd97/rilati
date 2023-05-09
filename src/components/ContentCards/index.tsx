@@ -15,7 +15,7 @@ const ContentCards = () => {
   const [data, setData] = useState([...contentData]);
   const disptach = useDispatch<any>();
   useEffect(() => {
-    disptach(getCareer());
+    disptach(getCareer(1));
   }, []);
   const arr = [];
   for (let index = 0; index < 100; index++) {
@@ -31,7 +31,7 @@ const ContentCards = () => {
   const { career = [], loader = false } = useSelector(
     (store: any) => store.career
   );
-  console.log("career", career, loader);
+  // console.log("career", career, loader);
 
   const items: MenuProps["items"] = [
     {
@@ -83,7 +83,7 @@ const ContentCards = () => {
           </Dropdown>
         </Col>
       </Row>
-      <Row>
+      <Row className="gap-4 pb-5">
         {loader &&
           [1, 2, 3, 4, 5, 6, 7, 8].map((index) => (
             <Col md={3} key={index} className="mb-4">
@@ -94,16 +94,17 @@ const ContentCards = () => {
           ))}
         {!loader &&
           career.map((item: any, index: any) => (
-            <Col
-              key={index}
-              className="mb-4 card-col d-flex flex-wrap justify-content-lg-start justify-content-center justify-content-md-center"
-            >
-              <ContentInnerCards
-                item={item}
-                index={index}
-                onArrayChange={onArrayChange}
-              />
-            </Col>
+            // <Col
+            //   key={index}
+            //   className="mb-4 card-col d-flex flex-wrap justify-content-lg-start justify-content-center justify-content-md-center"
+            // >
+            <ContentInnerCards
+              item={item}
+              index={index}
+              image={contentData[index]}
+              onArrayChange={onArrayChange}
+            />
+            // </Col>
           ))}
       </Row>
     </Container>

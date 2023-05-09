@@ -7,6 +7,7 @@ import { IoShareOutline } from "react-icons/io5";
 import { Col, Modal, Row } from "antd";
 import "./ContentTabs.scss";
 import Logos from "../Logos";
+import { stringLimt } from "src/helper/helper";
 
 interface IContentTabs {
   item: any;
@@ -29,8 +30,10 @@ const ContentTabs = ({
         className="content-tabs__header d-flex flex-column align-items-center justify-content-center "
         style={{ backgroundImage: `url("${item.image}")` }}
       >
-        <h3>Buenos Aires</h3>
-        <p>Argentina</p>
+        <h3>{stringLimt(item?.attributes?.title, 20)}</h3>
+        <p>
+          {stringLimt(JSON.parse(item?.attributes?.career_category || ""), 20)}
+        </p>
       </div>
       <Row>
         <Col md={10} xs={24}>
@@ -38,43 +41,48 @@ const ContentTabs = ({
 
           <div className="content-tabs__detail">
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-              <h3>⭐️ Over All</h3>
+              <h3>🏆 Skills</h3>
               <ProgressBar
                 color="#ffffff36"
                 now={progress.over}
                 variant="success"
+                max={10}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-              <h3>💵 Cost </h3>
+              <h3>😞 Stress </h3>
               <ProgressBar
                 color="#ffffff36"
                 now={progress.cost}
                 variant="success"
+                max={10}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-              <h3>📡 Internet</h3>
+              <h3>🤝 Help</h3>
               <ProgressBar
                 color="#ffffff36"
                 now={progress.internet}
                 variant="success"
+                max={10}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-              <h3>😀 Fun</h3>
+              <h3>😀 Potential</h3>
               <ProgressBar
                 color="#ffffff36"
                 now={progress.fun}
                 variant="success"
+                max={10}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-              <h3>👮 Safety</h3>
+              <h3>👮 Satisfaction</h3>
               <ProgressBar
                 color="#ffffff36"
                 now={progress.saftey}
                 variant="success"
+                max={10}
               />
             </div>
             <p>Still an amazing island</p>

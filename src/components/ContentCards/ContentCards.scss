@@ -57,6 +57,8 @@
       border-radius: 10px;
       background-color: #00000036;
       z-index: 1;
+      left: 0;
+      top: 0;
     }
     .number {
       z-index: 2;
@@ -111,7 +113,7 @@
           margin: 0;
         }
         .progress {
-          background-color: #ffffffa6;
+          background-color: #ffffff6c;
           border-radius: 10px;
           flex: 1;
           height: 20px;
@@ -143,6 +145,8 @@
       opacity: 0;
       visibility: hidden;
       transition: 0.2s ease-in-out;
+      left: 0;
+      top: 0;
     }
     .back-header {
       svg {
