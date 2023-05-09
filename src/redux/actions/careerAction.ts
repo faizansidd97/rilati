@@ -58,9 +58,9 @@ export const postCareer = (body: any) => (dispatch: any) => {
       dispatch({ type: CAREER_ERROR });
     });
 };
-export const updateCareer = (body: any) => (dispatch: any) => {
+export const updateCareer = (id: string, body: any) => (dispatch: any) => {
   dispatch({ type: CAREER_REQUEST, payload: body });
-  updateCareerApi(body)
+  updateCareerApi(id, body)
     .then((res) => {
       const {
         data: { data },

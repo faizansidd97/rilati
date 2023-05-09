@@ -19,8 +19,8 @@ export const getCareerbyIdApi = (id: number, body: any) => {
 export const postCareerApi = (body: any) => {
   return httpService.post(`${CAREER_ENDPOINT}`, { ...body });
 };
-export const updateCareerApi = (body: any) => {
-  return httpService.patch(`${CAREER_ENDPOINT}`, { ...body });
+export const updateCareerApi = (id: string, body: any) => {
+  return httpService.patch(`${CAREER_ENDPOINT}/${id}`, { ...body });
 };
 export const deleteCareerApi = (body: any) => {
   return httpService.delete(`${CAREER_ENDPOINT}`, { ...body });

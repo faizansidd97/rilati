@@ -83,7 +83,7 @@ const ContentCards = () => {
           </Dropdown>
         </Col>
       </Row>
-      <Row className="gap-4 pb-5">
+      <Row className="gap-4 pb-5 justify-content-center">
         {loader &&
           [1, 2, 3, 4, 5, 6, 7, 8].map((index) => (
             <Col md={3} key={index} className="mb-4">
