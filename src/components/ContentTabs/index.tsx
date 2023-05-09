@@ -11,6 +11,7 @@ import { stringLimt } from "src/helper/helper";
 
 interface IContentTabs {
   item: any;
+  image?: any;
   index: number;
   onArrayChange?: any;
   progress?: any;
@@ -20,7 +21,10 @@ const ContentTabs = ({
   index,
   onArrayChange,
   progress,
+  image,
 }: IContentTabs) => {
+  console.log("item", item);
+
   return (
     <div
       className="content-tabs d-flex flex-column justify-content-between position-relative"
@@ -28,11 +32,11 @@ const ContentTabs = ({
     >
       <div
         className="content-tabs__header d-flex flex-column align-items-center justify-content-center "
-        style={{ backgroundImage: `url("${item.image}")` }}
+        style={{ backgroundImage: `url("${image?.image}")` }}
       >
-        <h3>{stringLimt(item?.attributes?.title, 20)}</h3>
+        <h3>{stringLimt(item?.attributes?.title, 50)}</h3>
         <p>
-          {stringLimt(JSON.parse(item?.attributes?.career_category || ""), 20)}
+          {stringLimt(JSON.parse(item?.attributes?.career_category || ""), 70)}
         </p>
       </div>
       <Row>
@@ -85,6 +89,69 @@ const ContentTabs = ({
                 max={10}
               />
             </div>
+            <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+              <h3>🏤 Company Status</h3>
+              <ProgressBar
+                color="#ffffff36"
+                now={progress.status}
+                variant="success"
+                max={10}
+              />
+            </div>
+            <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+              <h3>💪 Health</h3>
+              <ProgressBar
+                color="#ffffff36"
+                now={progress.health}
+                variant="success"
+                max={10}
+              />
+            </div>
+            <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+              <h3>👩‍👧‍👦 Team</h3>
+              <ProgressBar
+                color="#ffffff36"
+                now={progress.team}
+                variant="success"
+                max={10}
+              />
+            </div>
+            <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+              <h3>💼 Precision Work</h3>
+              <ProgressBar
+                color="#ffffff36"
+                now={progress.precision_work}
+                variant="success"
+                max={10}
+              />
+            </div>
+            <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+              <h3>🕦 Work hours</h3>
+              <ProgressBar
+                color="#ffffff36"
+                now={progress.work_hours}
+                variant="success"
+                max={10}
+              />
+            </div>
+            <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+              <h3>🏭 Job Enviroment</h3>
+              <ProgressBar
+                color="#ffffff36"
+                now={progress.job_enviroment}
+                variant="success"
+                max={10}
+              />
+            </div>
+            <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+              <h3>🐌 Repetitive Tedious</h3>
+              <ProgressBar
+                color="#ffffff36"
+                now={progress.repetitive_tedious}
+                variant="success"
+                max={10}
+              />
+            </div>
             <p>Still an amazing island</p>
             <div className="d-flex justify-content-end">
               <IoShareOutline color="#fff" size={20} />
@@ -92,11 +159,8 @@ const ContentTabs = ({
           </div>
         </Col>
         <Col md={14} xs={24}>
-          <h4 className="my-3 pb-5 text-center">
-            {" "}
-            Universities / Institutions
-          </h4>
-          <Logos count={20} />
+          <h4 className="my-3 pb-5 text-center">Universities / Institutions</h4>
+          <Logos count={20} customClass="details" />
         </Col>
       </Row>
     </div>

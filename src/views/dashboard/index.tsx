@@ -99,6 +99,9 @@ function Dashboard() {
 
   return (
     <div className="overflow-auto">
+      <div>
+        <Link to={"/dashboard/career/new"}>Add new</Link>
+      </div>
       <GridView data={career} columns={columns} loading={loader} />
     </div>
   );

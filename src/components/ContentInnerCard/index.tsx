@@ -27,8 +27,14 @@ const ContentInnerCards = ({
     internet: 0,
     fun: 0,
     saftey: 0,
+    status: 0,
+    team: 0,
+    health: 0,
+    precision_work: 0,
+    work_hours: 0,
+    job_enviroment: 0,
+    repetitive_tedious: 0,
   });
-  console.log(image);
 
   return (
     <div
@@ -43,16 +49,30 @@ const ContentInnerCards = ({
           over: item?.attributes?.scope_of_skill,
           fun: item?.attributes?.potential,
           saftey: item?.attributes?.job_satisfaction,
+          status: item?.attributes?.status_in_company,
+          team: item?.attributes?.team_reliance,
+          health: item?.attributes?.risk_to_health,
+          precision_work: item?.attributes?.precision_work,
+          work_hours: item?.attributes?.work_hours,
+          job_enviroment: item?.attributes?.job_help_environment,
+          repetitive_tedious: item?.attributes?.repetitive_tedious,
         });
       }}
       onMouseLeave={() =>
         setProgress({
           ...progress,
+          over: 0,
           cost: 0,
           internet: 0,
-          over: 0,
           fun: 0,
           saftey: 0,
+          status: 0,
+          team: 0,
+          health: 0,
+          precision_work: 0,
+          work_hours: 0,
+          job_enviroment: 0,
+          repetitive_tedious: 0,
         })
       }
     >
@@ -147,7 +167,12 @@ const ContentInnerCards = ({
         width={"80%"}
         zIndex={9999}
       >
-        <ContentTabs item={item} index={index} progress={progress} />
+        <ContentTabs
+          image={image}
+          item={item}
+          index={index}
+          progress={progress}
+        />
       </Modal>
     </div>
   );

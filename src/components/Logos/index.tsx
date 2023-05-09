@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUni } from "src/redux/actions/universityAction";
 import { Spin } from "antd";
 
-const Logos = ({ count = 10 }: any) => {
+const Logos = ({ count = 10, customClass }: any) => {
+  console.log(count, customClass);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUni(1, 9));
@@ -18,10 +20,10 @@ const Logos = ({ count = 10 }: any) => {
   }
   const { uni = [], loader = false } = useSelector((store: any) => store.uni);
   return (
-    <div className="logos">
+    <div className={`logos ${customClass && "details"}`}>
       <Container>
         <Spin spinning={loader}>
-          <Row>
+          <Row className={customClass ? "gap-4" : ""}>
             <Col md={24} className="d-flex justify-content-around flex-wrap">
               {uni?.map((item: any, index: any) => (
                 <div className="mx-1 logos-card">
