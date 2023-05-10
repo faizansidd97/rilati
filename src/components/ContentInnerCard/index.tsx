@@ -81,9 +81,7 @@ const ContentInnerCards = ({
       </div>
       <div className="content-card__wrapper__info d-flex justify-content-center align-items-center flex-column">
         <h3>{stringLimt(item?.attributes?.title, 20)}</h3>
-        <p>
-          {stringLimt(JSON.parse(item?.attributes?.career_category || ""), 20)}
-        </p>
+        <p>{stringLimt(item?.attributes?.career_category, 20)}</p>
       </div>
       <div className="content-card__wrapper__pricing d-flex justify-content-between p-2">
         <div className="content-card__wrapper__pricing__temp">
