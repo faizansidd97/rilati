@@ -35,9 +35,7 @@ const ContentTabs = ({
         style={{ backgroundImage: `url("${image?.image}")` }}
       >
         <h3>{stringLimt(item?.attributes?.title, 50)}</h3>
-        <p>
-          {stringLimt(JSON.parse(item?.attributes?.career_category || ""), 70)}
-        </p>
+        <p>{stringLimt(item?.attributes?.career_category, 70)}</p>
       </div>
       <Row>
         <Col md={10} xs={24}>

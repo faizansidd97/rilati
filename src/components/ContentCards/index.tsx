@@ -31,7 +31,6 @@ const ContentCards = () => {
   const { career = [], loader = false } = useSelector(
     (store: any) => store.career
   );
-  // console.log("career", career, loader);
 
   const items: MenuProps["items"] = [
     {
