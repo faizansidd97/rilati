@@ -17,12 +17,12 @@ const AdminLayout = () => {
   const sidebarItems = [
     {
       icon: <UserOutlined />,
-      label: <Link to={"#"}>University</Link>,
+      label: <Link to={"university"}>University</Link>,
       key: "Templates",
     },
     {
       icon: <UserOutlined />,
-      label: <Link to={"#"}>Career</Link>,
+      label: <Link to={"career"}>Career</Link>,
       key: "Envelopes",
     },
     {
@@ -90,7 +90,7 @@ const AdminLayout = () => {
               className="d-flex align-items-center me-2 cursor-pointer"
               onClick={() => dispatch(logoutRequest())}
             >
-              <h6 className="mb-0 me-2">Logout</h6>
+              <h6 className="mb-0 me-2 danger">Logout</h6>
               <MdLogout />
             </div>
           </div>

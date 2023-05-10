@@ -1,6 +1,7 @@
 import {
   deleteUniApi,
   getUniApi,
+  getUnibyIdApi,
   postUniApi,
   updateUniApi,
 } from "src/network/network";
@@ -29,20 +30,20 @@ export const getUni =
         dispatch({ type: UNI_ERROR });
       });
   };
-// export const getUniById = (id: any, param?: any) => (dispatch: any) => {
-//   dispatch({ type:UNI_REQUEST });
-//   getUnibyIdApi(id, param)
-//     .then((res) => {
-//       const {
-//         data: { data },
-//       }: any = res;
+export const getUniById = (id: any) => (dispatch: any) => {
+  dispatch({ type: UNI_REQUEST });
+  getUnibyIdApi(id)
+    .then((res) => {
+      const {
+        data: { data },
+      }: any = res;
 
-//       dispatch({ type:UNI_BYID_SUCCESS, payload: data });
-//     })
-//     .catch((err) => {
-//       dispatch({ type:UNI_ERROR });
-//     });
-// };
+      dispatch({ type: UNI_BYID_SUCCESS, payload: data });
+    })
+    .catch((err) => {
+      dispatch({ type: UNI_ERROR });
+    });
+};
 export const postUni = (body: any) => (dispatch: any) => {
   dispatch({ type: UNI_REQUEST, payload: body });
   postUniApi(body)
@@ -57,9 +58,9 @@ export const postUni = (body: any) => (dispatch: any) => {
       dispatch({ type: UNI_ERROR });
     });
 };
-export const updateUni = (body: any) => (dispatch: any) => {
+export const updateUni = (id: any, body: any) => (dispatch: any) => {
   dispatch({ type: UNI_REQUEST, payload: body });
-  updateUniApi(body)
+  updateUniApi(id, body)
     .then((res) => {
       const {
         data: { data },
@@ -71,17 +72,21 @@ export const updateUni = (body: any) => (dispatch: any) => {
       dispatch({ type: UNI_ERROR });
     });
 };
-export const deleteUni = (body: any) => (dispatch: any) => {
-  dispatch({ type: UNI_REQUEST, payload: body });
-  deleteUniApi(body)
-    .then((res) => {
-      const {
-        data: { data },
-      }: any = res;
+export const deleteUni = (id: any) => (dispatch: any) => {
+  return new Promise((resolve, reject) => {
+    dispatch({ type: UNI_REQUEST });
+    deleteUniApi(id)
+      .then((res) => {
+        const {
+          data: { data },
+        }: any = res;
+        resolve(data);
 
-      dispatch({ type: UNI_SUCCESS, payload: data });
-    })
-    .catch((err) => {
-      dispatch({ type: UNI_ERROR });
-    });
+        dispatch({ type: UNI_SUCCESS, payload: data });
+      })
+      .catch((err) => {
+        reject(err);
+        dispatch({ type: UNI_ERROR });
+      });
+  });
 };

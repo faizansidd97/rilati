@@ -22,19 +22,26 @@ export const postCareerApi = (body: any) => {
 export const updateCareerApi = (id: string, body: any) => {
   return httpService.patch(`${CAREER_ENDPOINT}/${id}`, { ...body });
 };
-export const deleteCareerApi = (body: any) => {
-  return httpService.delete(`${CAREER_ENDPOINT}`, { ...body });
+export const deleteCareerApi = (id: any) => {
+  return httpService.delete(`${CAREER_ENDPOINT}/${id}`);
 };
 
 export const getUniApi = (body: any) => {
   return httpService.get(`${UNI_ENDPOINT}`, { ...body });
 };
+export const getUnibyIdApi = (id: number) => {
+  return httpService.get(`${UNI_ENDPOINT}/${id}`);
+};
 export const postUniApi = (body: any) => {
   return httpService.post(`${UNI_ENDPOINT}`, { ...body });
 };
-export const updateUniApi = (body: any) => {
-  return httpService.patch(`${UNI_ENDPOINT}`, { ...body });
+export const updateUniApi = (id: string, body: any) => {
+  return httpService.patch(`${UNI_ENDPOINT}/${id}`, { ...body });
 };
-export const deleteUniApi = (body: any) => {
-  return httpService.delete(`${UNI_ENDPOINT}`, { ...body });
+export const deleteUniApi = (id: string) => {
+  return httpService.delete(`${UNI_ENDPOINT}/${id}`);
+};
+
+export const mediaUploadApi = (body: any) => {
+  return httpService.post(`/media/file`, body);
 };

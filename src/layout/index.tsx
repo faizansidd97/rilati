@@ -10,6 +10,8 @@ import ForgotEmail from "src/views/auth/ForgotEmail";
 import ResetPassword from "src/views/auth/ResetPassword";
 import { useSelector } from "react-redux";
 import AddEditCareer from "src/views/dashboard/AddEditCareer";
+import University from "src/views/dashboard/University";
+import AddEditUni from "src/views/dashboard/University/AddEditUni";
 
 const Layout = () => {
   const { isLogin = false } = useSelector((storeState: any) => storeState.auth);
@@ -23,6 +25,8 @@ const Layout = () => {
         <Route path="/dashboard" element={<AdminLayout />}>
           <Route path="" element={<Dashboard />} />
           <Route path="career/:id" element={<AddEditCareer />} />
+          <Route path="university/" element={<University />} />
+          <Route path="university/:id" element={<AddEditUni />} />
         </Route>
       ) : (
         <>

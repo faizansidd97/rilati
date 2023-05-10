@@ -1,0 +1,15 @@
+.btn-next {
+  border: 1px solid #dc3545;
+  border-radius: 8px;
+  padding: 5px 10px;
+  color: #dc3545;
+  &:hover {
+    color: aliceblue;
+    background-color: #dc3545;
+  }
+}
+.ant-upload-list-item-container,
+.ant-upload.ant-upload-select {
+  width: 202px !important;
+  height: 202px !important;
+}

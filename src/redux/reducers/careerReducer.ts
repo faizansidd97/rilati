@@ -5,6 +5,7 @@ import {
   CAREER_BYID_REQUEST,
   CAREER_BYID_SUCCESS,
   CAREER_BYID_ERROR,
+  DELETE_SUCCESS,
 } from "../../constant/Types";
 import { CareerState } from "./Modules/career";
 
@@ -43,6 +44,15 @@ const careerReducer = (state = initialState, action: any) => {
     case CAREER_BYID_SUCCESS: {
       return Object.assign({}, state, {
         careerById: action.payload,
+        loader: false,
+      });
+    }
+    case DELETE_SUCCESS: {
+      const temp = state?.career?.filter(
+        (item: any) => item?.id != action.payload
+      );
+      return Object.assign({}, state, {
+        careerById: temp,
         loader: false,
       });
     }

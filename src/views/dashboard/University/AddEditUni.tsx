@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Form, Input, InputNumber, Row, Spin } from "antd";
+import { Button, Col, Form, Input, InputNumber, Row, Select, Spin } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { getCareerById } from "src/redux/actions/careerAction";
 import { useParams } from "react-router-dom";
-import { postCareer } from "src/redux/actions/careerAction";
-import { updateCareer } from "src/redux/actions/careerAction";
 import ImageUpload from "src/components/ImageUpload/ImageUpload";
 import { uploadImage } from "src/redux/actions/mediaUpload";
+import {
+  getUniById,
+  postUni,
+  updateUni,
+} from "src/redux/actions/universityAction";
 
-function AddEditCareer() {
+function AddEditUni() {
   const [image, setImage]: any = useState();
   const disptch = useDispatch<any>();
   const params = useParams();
@@ -16,21 +18,24 @@ function AddEditCareer() {
   const { id } = params;
 
   useEffect(() => {
+    form.resetFields();
     if (id !== "new") {
-      disptch(getCareerById(id));
+      disptch(getUniById(id));
     }
   }, [disptch]);
 
-  const { careerById = {}, loader = false } = useSelector(
-    (store: any) => store.career
+  const { uniById = {}, loader = false } = useSelector(
+    (store: any) => store.uni
   );
   useEffect(() => {
-    form.setFieldsValue(careerById?.attributes);
-  }, [careerById]);
+    console.log(uniById);
+
+    form.setFieldsValue(uniById?.attributes);
+  }, [uniById]);
 
   const onFinish = (values: any) => {
     if (id !== "new") {
-      disptch(updateCareer(id, values));
+      disptch(updateUni(id, values));
     } else {
       let formData = new FormData();
       formData.append("file", image);
@@ -39,7 +44,7 @@ function AddEditCareer() {
         console.log(res);
 
         const payload = { ...values, image: res?.file_url };
-        disptch(postCareer(payload));
+        disptch(postUni(payload));
       });
     }
   };
@@ -49,11 +54,25 @@ function AddEditCareer() {
 
     setImage(value);
   };
+  const handleChange = (value: any) => {
+    console.log({ value });
+
+    // setImage(value);
+  };
+  const options = [
+    { value: "y", label: "Yes" },
+    { value: "n", label: "No" },
+  ];
 
   return (
     <div className="overflow-auto">
       <Spin spinning={loader}>
-        <Form name="career" form={form} layout="vertical" onFinish={onFinish}>
+        <Form
+          name="university"
+          form={form}
+          layout="vertical"
+          onFinish={onFinish}
+        >
           <Row className="">
             <Col md={8} sm={12} xs={24} className="px-2">
               <Form.Item name="image" label="Image">
@@ -67,8 +86,8 @@ function AddEditCareer() {
               className="px-2 d-flex justify-content-start align-items-end"
             >
               <Form.Item
-                name="title"
-                label="Title"
+                name="name"
+                label="Name"
                 className="w-100"
                 rules={[
                   {
@@ -81,8 +100,8 @@ function AddEditCareer() {
             </Col>
             <Col md={8} sm={12} xs={24} className="px-2">
               <Form.Item
-                name="average_salary"
-                label="Average Salary"
+                name="link"
+                label="Link"
                 rules={[
                   {
                     required: true,
@@ -94,8 +113,34 @@ function AddEditCareer() {
             </Col>
             <Col md={8} sm={12} xs={24} className="px-2">
               <Form.Item
-                name="average_salary_aud"
-                label="Average Salary Aud"
+                name="uni_number"
+                label="Uni Number"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <InputNumber />
+              </Form.Item>
+            </Col>
+            <Col md={8} sm={12} xs={24} className="px-2">
+              <Form.Item
+                name="state"
+                label="State"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col md={8} sm={12} xs={24} className="px-2">
+              <Form.Item
+                name="address"
+                label="Address"
                 rules={[
                   {
                     required: true,
@@ -108,11 +153,14 @@ function AddEditCareer() {
 
             <Col md={8} sm={12} xs={24} className="px-2">
               <Form.Item
-                name="categories"
-                label="Categories"
+                name="email"
+                label="Email"
                 rules={[
                   {
                     required: true,
+                  },
+                  {
+                    type: "email",
                   },
                 ]}
               >
@@ -121,8 +169,8 @@ function AddEditCareer() {
             </Col>
             <Col md={8} sm={12} xs={24} className="px-2">
               <Form.Item
-                name="career_category"
-                label="Career Category"
+                name="phone"
+                label="Phone"
                 rules={[
                   {
                     required: true,
@@ -132,59 +180,79 @@ function AddEditCareer() {
                 <Input />
               </Form.Item>
             </Col>
-            <Col md={8} sm={12} xs={24} className="px-2">
+            <Col md={4} sm={12} xs={24} className="px-2">
               <Form.Item
-                name="student_intrest"
-                label="Student Intrest"
+                name="agriculture_environment"
+                label="Agriculture Environment"
                 rules={[
                   {
                     required: true,
                   },
                 ]}
               >
-                <Input />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                  options={options}
+                />
               </Form.Item>
             </Col>
-            <Col md={8} sm={12} xs={24} className="px-2">
+            <Col md={4} sm={12} xs={24} className="px-2">
               <Form.Item
-                name="skills_transferable"
-                label="Skills Transferable"
+                name="architecture"
+                label="Architecture"
                 rules={[
                   {
                     required: true,
                   },
                 ]}
               >
-                <Input />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                  options={options}
+                />
               </Form.Item>
             </Col>
-            <Col md={8} sm={12} xs={24} className="px-2">
+            <Col md={4} sm={12} xs={24} className="px-2">
               <Form.Item
-                name="years_needed"
-                label="Years Needed"
+                name="creative_arts"
+                label="Creative Arts"
                 rules={[
                   {
                     required: true,
                   },
                 ]}
               >
-                <Input />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                  options={options}
+                />
               </Form.Item>
             </Col>
-            <Col md={8} sm={12} xs={24} className="px-2">
+            <Col md={4} sm={12} xs={24} className="px-2">
               <Form.Item
-                name="description_study"
-                label="Description Study"
+                name="education"
+                label="Education"
                 rules={[
                   {
                     required: true,
                   },
                 ]}
               >
-                <Input />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                  options={options}
+                />
               </Form.Item>
             </Col>
-            <Col md={8} sm={12} xs={24} className="px-2">
+            <Col md={4} sm={12} xs={24} className="px-2">
               <Form.Item
                 name="admission_rank"
                 label="Admission Rank"
@@ -194,303 +262,196 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col md={8} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="average_gpa"
-                label="Average GPA"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col md={8} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="internship_needed"
-                label="Internship Needed"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col md={8} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="cost_course"
-                label="Cost Course"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <Input />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                  options={options}
+                />
               </Form.Item>
             </Col>
             <Col md={4} sm={12} xs={24} className="px-2">
               <Form.Item
-                name="precision_work"
-                label="Precision Work"
+                name="engineering"
+                label="Engineering"
                 rules={[
                   {
                     required: true,
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                  options={options}
+                />
               </Form.Item>
             </Col>
             <Col md={4} sm={12} xs={24} className="px-2">
               <Form.Item
-                name="job_satisfaction"
-                label="Job Satisfaction"
+                name="health"
+                label="Health"
                 rules={[
                   {
                     required: true,
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
-              </Form.Item>
-            </Col>
-            <Col md={4} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="job_stress"
-                label="Job Stress"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber className="w-100" min={0} max={10} />
-              </Form.Item>
-            </Col>
-            <Col md={4} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="work_hours"
-                label="Work Hours"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber className="w-100" min={0} max={10} />
-              </Form.Item>
-            </Col>
-            <Col md={4} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="work_life_balance"
-                label="Work Life Balance"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber className="w-100" min={0} max={10} />
-              </Form.Item>
-            </Col>
-            <Col md={4} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="scope_of_skill"
-                label="Scope of Skill"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber className="w-100" min={0} max={10} />
-              </Form.Item>
-            </Col>
-            <Col md={4} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="autonomy"
-                label="Autonomy"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber className="w-100" min={0} max={10} />
-              </Form.Item>
-            </Col>
-            <Col md={4} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="repetitive_tedious"
-                label="Repetitive Tedious"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber className="w-100" min={0} max={10} />
-              </Form.Item>
-            </Col>
-            <Col md={4} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="physical_stress"
-                label="Physical Stress"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber className="w-100" min={0} max={10} />
-              </Form.Item>
-            </Col>
-            <Col md={4} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="mental_stress"
-                label="Mental Stress"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber className="w-100" min={0} max={10} />
-              </Form.Item>
-            </Col>
-            <Col md={4} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="team_reliance"
-                label="Team Reliance"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber className="w-100" min={0} max={10} />
-              </Form.Item>
-            </Col>
-            <Col md={4} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="status_in_company"
-                label="Status in Company"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber className="w-100" min={0} max={10} />
-              </Form.Item>
-            </Col>
-            <Col md={4} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="risk_to_health"
-                label="Risk to Health"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber className="w-100" min={0} max={10} />
-              </Form.Item>
-            </Col>
-            <Col md={4} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="risk_to_life"
-                label="Risk to Life"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber className="w-100" min={0} max={10} />
-              </Form.Item>
-            </Col>
-            <Col md={4} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="people_interaction"
-                label="People Interaction"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber className="w-100" min={0} max={10} />
-              </Form.Item>
-            </Col>
-            <Col md={4} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="job_help_people"
-                label=" Job Help People"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber className="w-100" min={0} max={10} />
-              </Form.Item>
-            </Col>
-            <Col md={4} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="job_help_environment"
-                label="Job Help Environment"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber className="w-100" min={0} max={10} />
-              </Form.Item>
-            </Col>
-            <Col md={4} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="potential"
-                label="Potential"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber className="w-100" min={0} max={10} />
-              </Form.Item>
-            </Col>
-            <Col md={8} sm={12} xs={24} className="px-2">
-              <Form.Item name="study_for_australia" label="Study for Australia">
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col md={8} sm={12} xs={24} className="px-2">
-              <Form.Item name="fastest_growing" label="Fastest Growing">
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col md={8} sm={12} xs={24} className="px-2">
-              <Form.Item name="tags" label="Tags">
-                <Input />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                  options={options}
+                />
               </Form.Item>
             </Col>
 
-            <Col md={24} sm={24} xs={24} className="px-2">
-              <Form.Item name="job_description" label="Job Ddescription">
-                <Input.TextArea rows={4} />
+            <Col md={4} sm={12} xs={24} className="px-2">
+              <Form.Item
+                name="information_technology"
+                label="Information Technology"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Select
+                  placeholder="Select option"
+                  style={{ width: 160 }}
+                  onChange={handleChange}
+                  options={options}
+                />
               </Form.Item>
             </Col>
+            <Col md={4} sm={12} xs={24} className="px-2">
+              <Form.Item
+                name="management"
+                label="Management"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Select
+                  placeholder="Select option"
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                  options={options}
+                />
+              </Form.Item>
+            </Col>
+            <Col md={4} sm={12} xs={24} className="px-2">
+              <Form.Item
+                name="natural"
+                label="Natural"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Select
+                  placeholder="Select option"
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                  options={options}
+                />
+              </Form.Item>
+            </Col>
+            <Col md={4} sm={12} xs={24} className="px-2">
+              <Form.Item
+                name="society"
+                label="Society"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Select
+                  placeholder="Select option"
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                  options={options}
+                />
+              </Form.Item>
+            </Col>
+            <Col md={4} sm={12} xs={24} className="px-2">
+              <Form.Item
+                name="tourism"
+                label="Ttourism"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Select
+                  placeholder="Select option"
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                  options={options}
+                />
+              </Form.Item>
+            </Col>
+            <Col md={4} sm={12} xs={24} className="px-2">
+              <Form.Item
+                name="rto_provider"
+                label="RTO Provider"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Select
+                  placeholder="Select option"
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                  options={options}
+                />
+              </Form.Item>
+            </Col>
+            <Col md={4} sm={12} xs={24} className="px-2">
+              <Form.Item
+                name="cricos"
+                label="Cricos"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Select
+                  placeholder="Select option"
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                  options={options}
+                />
+              </Form.Item>
+            </Col>
+            <Col md={4} sm={12} xs={24} className="px-2">
+              <Form.Item
+                name="teqsa"
+                label="Teqsa "
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Select
+                  placeholder="Select option"
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                  options={options}
+                />
+              </Form.Item>
+            </Col>
+
             <Col md={24} sm={24} xs={24} className="px-2">
               <Form.Item className="d-flex justify-content-end">
                 <Button className="btn btn-primary" htmlType="submit">
@@ -505,4 +466,4 @@ function AddEditCareer() {
   );
 }
 
-export default AddEditCareer;
+export default AddEditUni;

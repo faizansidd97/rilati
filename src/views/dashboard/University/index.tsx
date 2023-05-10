@@ -4,10 +4,10 @@ import { ColumnsType } from "antd/es/table";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import GridView from "src/components/GridView/GridView";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCareer, getCareer } from "src/redux/actions/careerAction";
 import { stringLimt } from "src/helper/helper";
 import { Link } from "react-router-dom";
-import "./dashboard.scss";
+import "./University.scss";
+import { deleteUni, getUni } from "src/redux/actions/universityAction";
 
 interface DataType {
   key: React.Key;
@@ -16,10 +16,10 @@ interface DataType {
   address: string;
 }
 
-function Dashboard() {
+function University() {
   const disptch = useDispatch<any>();
   useEffect(() => {
-    disptch(getCareer());
+    disptch(getUni());
   }, []);
   const { confirm } = Modal;
   const showPromiseConfirm = (id: any) => {
@@ -32,10 +32,10 @@ function Dashboard() {
       okText: "Delete",
       onOk() {
         return new Promise((resolve, reject) => {
-          disptch(deleteCareer(id))
+          disptch(deleteUni(id))
             .then((res: any) => {
               resolve(res);
-              disptch(getCareer());
+              disptch(getUni());
             })
             .catch((err: any) => {
               reject(err);
@@ -47,38 +47,49 @@ function Dashboard() {
   };
   const columns: ColumnsType<DataType> = [
     {
+      title: "Uni Number",
+      // dataIndex: "name",
+      render: (res: any) => (
+        <span title={res?.attributes?.uni_number}>
+          {res?.attributes?.uni_number}
+        </span>
+      ),
+    },
+    {
       title: "Name",
       // dataIndex: "name",
       render: (res: any) => (
-        <span title={res?.attributes?.title}>
-          {stringLimt(res?.attributes?.title, 20)}
+        <span title={res?.attributes?.name}>
+          {stringLimt(res?.attributes?.name, 20)}
         </span>
       ),
     },
     {
-      title: "Category",
+      title: "Email",
       // dataIndex: "name",
       render: (res: any) => (
-        <span title={res?.attributes?.career_category}>
-          {stringLimt(res?.attributes?.career_category, 20)}
+        <span title={res?.attributes?.email}>
+          {stringLimt(res?.attributes?.email, 20)}
         </span>
       ),
     },
     {
-      title: "Description",
+      title: "Link",
+      // dataIndex: "name",
+      render: (res: any) => (
+        <span title={res?.attributes?.link}>
+          <a href={res?.attributes?.link} target="_blank">
+            {stringLimt(res?.attributes?.link, 20)}
+          </a>
+        </span>
+      ),
+    },
+    {
+      title: "State",
       // dataIndex: "location",
       render: (res: any) => (
-        <span title={res?.attributes?.job_description}>
-          {stringLimt(res?.attributes?.job_description, 50)}
-        </span>
-      ),
-    },
-    {
-      title: "Average Salary",
-      // dataIndex: "study",
-      render: (res: any) => (
-        <span title={res?.attributes?.average_salary}>
-          {stringLimt(res?.attributes?.average_salary, 22)}
+        <span title={res?.attributes?.state}>
+          {stringLimt(res?.attributes?.state, 50)}
         </span>
       ),
     },
@@ -88,7 +99,10 @@ function Dashboard() {
       render(value, record) {
         return (
           <Space className="">
-            <Link to={`career/${value?.id}`} className="btn-next">
+            <Link
+              to={`/dashboard/university/${value?.id}`}
+              className="btn-next"
+            >
               Edit
             </Link>
             <Button
@@ -103,21 +117,19 @@ function Dashboard() {
     },
   ];
 
-  const { career = [], loader = false } = useSelector(
-    (store: any) => store.career
-  );
-  console.log(career);
+  const { uni = [], loader = false } = useSelector((store: any) => store.uni);
+  console.log("unversity", uni);
 
   return (
     <div className="overflow-auto">
       <div className="d-flex justify-content-end align-items-center mb-3">
-        <Link className="btn btn-primary" to={"/dashboard/career/new"}>
+        <Link className="btn btn-primary" to={"/dashboard/university/new"}>
           Add new
         </Link>
       </div>
-      <GridView data={career} columns={columns} loading={loader} />
+      <GridView data={uni} columns={columns} loading={loader} />
     </div>
   );
 }
 
-export default Dashboard;
+export default University;

@@ -40,7 +40,7 @@ const uniReducer = (state = initialState, action: any) => {
 
     case UNI_BYID_SUCCESS: {
       return Object.assign({}, state, {
-        careerById: action.payload,
+        uniById: action.payload,
         loader: false,
       });
     }

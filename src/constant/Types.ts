@@ -16,3 +16,9 @@ export const UNI_REQUEST = "UNI_REQUEST";
 export const UNI_SUCCESS = "UNI_SUCCESS";
 export const UNI_ERROR = "UNI_ERROR";
 export const UNI_BYID_SUCCESS = "UNI_BYID_SUCCESS";
+
+export const MEDIA_REQUEST = "MEDIA_REQUEST";
+export const MEDIA_SUCCESS = "MEDIA_SUCCESS";
+export const MEDIA_ERROR = "MEDIA_ERROR";
+
+export const DELETE_SUCCESS = "DELETE_SUCCESS";
