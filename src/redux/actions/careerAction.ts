@@ -13,11 +13,13 @@ import {
 import { httpService } from "src/network/axiosAgent";
 
 export const getCareer =
-  (page = 1, take = 10) =>
+  (page = 1, take = 10, search?: string) =>
   (dispatch: any) => {
     dispatch({ type: CAREER_REQUEST });
     httpService
-      .get(`/career?page=${page}&take=${take}`)
+      .get(
+        `/career?page=${page}&take=${take}${search ? `&search=${search}` : ""}`
+      )
       .then((res) => {
         const {
           data: { data },

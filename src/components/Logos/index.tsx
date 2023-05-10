@@ -20,7 +20,7 @@ const Logos = ({ count = 10, customClass }: any) => {
   }
   const { uni = [], loader = false } = useSelector((store: any) => store.uni);
   return (
-    <div className={`logos ${customClass && "details"}`}>
+    <div className={`logos d-none d-md-block ${customClass && "details"}`}>
       <Container>
         <Spin spinning={loader}>
           <Row className={customClass ? "gap-4" : ""}>

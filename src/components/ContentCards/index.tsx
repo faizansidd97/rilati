@@ -15,7 +15,7 @@ const ContentCards = () => {
   const [data, setData] = useState([...contentData]);
   const disptach = useDispatch<any>();
   useEffect(() => {
-    disptach(getCareer(1));
+    disptach(getCareer(1, 10));
   }, []);
   const arr = [];
   for (let index = 0; index < 100; index++) {
@@ -26,6 +26,9 @@ const ContentCards = () => {
     temp.splice(index, 1);
     temp.push(item);
     setData(temp);
+  };
+  const onChange = (value: any) => {
+    disptach(getCareer(1, 10, value));
   };
 
   const { career = [], loader = false } = useSelector(
@@ -59,37 +62,40 @@ const ContentCards = () => {
     },
   ];
   return (
-    <Container className="content-card mb-3 px-3" fluid>
+    <Container className="content-card mb-3 px-0" fluid>
       <Row>
         <Col
           md={12}
           className="d-flex align-items-center  flex-wrap justify-content-end justify-content-md-between my-3"
         >
-          <div className="button-wrapper d-flex align-items-center flex-wrap flex-column-reverse flex-md-row">
+          <div className="button-wrapper d-flex align-items-center flex-wrap flex-row">
             <Button className="btn btn-primary custom">Filters</Button>
             <Input
               placeholder="Search or filter"
               prefix={<AiFillPlusCircle size={25} color="#ff4742" />}
-              className="search-input "
+              className="search-input"
+              onPressEnter={(e: any) => onChange(e.target.value)}
             />
           </div>
-          <Dropdown
-            menu={{ items }}
-            placement="bottomRight"
-            className="my-3 my-md-0"
-          >
-            <Button className="btn-secondary sort-by">Sory By</Button>
-          </Dropdown>
+          <div className="d-none d-md-block">
+            <Dropdown
+              menu={{ items }}
+              placement="bottomRight"
+              className="my-3 my-md-0 "
+            >
+              <Button className="btn-secondary sort-by">Sory By</Button>
+            </Dropdown>
+          </div>
         </Col>
       </Row>
-      <Row className="gap-4 pb-5 justify-content-center">
+      <ul className="grid ps-0 pb-5 justify-content-center">
         {loader &&
           [1, 2, 3, 4, 5, 6, 7, 8].map((index) => (
-            <Col md={3} key={index} className="mb-4">
+            <li className="item mb-4" key={index}>
               <Skeleton.Node active={loader}>
                 <DotChartOutlined style={{ fontSize: 100, color: "#bfbfbf" }} />
               </Skeleton.Node>
-            </Col>
+            </li>
           ))}
         {!loader &&
           career.map((item: any, index: any) => (
@@ -97,15 +103,17 @@ const ContentCards = () => {
             //   key={index}
             //   className="mb-4 card-col d-flex flex-wrap justify-content-lg-start justify-content-center justify-content-md-center"
             // >
-            <ContentInnerCards
-              item={item}
-              index={index}
-              image={contentData[index]}
-              onArrayChange={onArrayChange}
-            />
+            <li className="item">
+              <ContentInnerCards
+                item={item}
+                index={index}
+                image={contentData[index]}
+                onArrayChange={onArrayChange}
+              />
+            </li>
             // </Col>
           ))}
-      </Row>
+      </ul>
     </Container>
   );
 };

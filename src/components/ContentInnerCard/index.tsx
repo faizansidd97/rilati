@@ -38,7 +38,7 @@ const ContentInnerCards = ({
 
   return (
     <div
-      className="content-card__wrapper d-flex flex-column flex-wrap gap-3 justify-content-between position-relative"
+      className="content-card__wrapper d-flex flex-column gap-1 gap-md-3 justify-content-between position-relative"
       style={{ backgroundImage: `url("${image?.image}")` }}
       key={index}
       onMouseEnter={() => {
@@ -80,8 +80,8 @@ const ContentInnerCards = ({
         <h2>{index + 1}</h2>
       </div>
       <div className="content-card__wrapper__info d-flex justify-content-center align-items-center flex-column">
-        <h3>{stringLimt(item?.attributes?.title, 20)}</h3>
-        <p>{stringLimt(item?.attributes?.career_category, 20)}</p>
+        <h3>{stringLimt(item?.attributes?.title, 16)}</h3>
+        <p>{stringLimt(item?.attributes?.career_category, 18)}</p>
       </div>
       <div className="content-card__wrapper__pricing d-flex justify-content-between p-2">
         <div className="content-card__wrapper__pricing__temp">

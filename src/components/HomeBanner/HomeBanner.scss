@@ -76,7 +76,7 @@
 
 @media (max-width: 786px) {
   .home-banner {
-    padding-top: 100px;
+    padding-top: 60px;
     height: auto;
     background-position: top center;
     .title {
@@ -96,6 +96,7 @@
   }
   .subcription {
     &__form_wrapper {
+      padding: 10px 20px !important;
       width: 95% !important;
     }
   }

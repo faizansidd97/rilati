@@ -123,11 +123,11 @@ const HomeBanner = () => {
             <div className="subcription__form_wrapper d-flex flex-column align-items-center mb-4">
               {/* <img src={thumbnail} className="w-100" /> */}
               <Form>
-                <Form.Item className="my-3">
+                <Form.Item className="my-1 mb-2 my-md-3">
                   <Input placeholder="Type your email...." />
                 </Form.Item>
                 <Form.Item>
-                  <Button className="btn btn-primary mb-3 w-100">
+                  <Button className="btn btn-primary mb-0 mb-md-3 w-100">
                     Join Us
                   </Button>
                 </Form.Item>
