@@ -10,22 +10,22 @@ import { PersistGate } from "redux-persist/integration/react";
 function App() {
   const { store, persistor } = storeFactory();
   return (
-    <Provider store={store}>
-      <ConfigProvider
-        theme={{
-          token: {
-            colorPrimary: "#ff4742",
-            fontFamily: "'Nunito', sans-serif",
-          },
-        }}
-      >
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: "#ff4742",
+          fontFamily: "'Nunito', sans-serif",
+        },
+      }}
+    >
+      <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Router>
             <Views />
           </Router>
         </PersistGate>
-      </ConfigProvider>
-    </Provider>
+      </Provider>
+    </ConfigProvider>
   );
 }
 

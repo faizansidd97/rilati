@@ -90,8 +90,8 @@ const Footer = () => {
             </Col>
             <Col lg={5} md={12} sm={12}>
               <div className="footer__newsletter d-flex justify-content-center align-items-md-start flex-column pt-4 ">
-                <h2 >Join Our Newsletter</h2>
-                <p >
+                <h2>Join Our Newsletter</h2>
+                <p>
                   Join our newsletter to see all the new stories and chapters.
                 </p>
                 <form>
@@ -105,7 +105,12 @@ const Footer = () => {
                       />
                     </Col>
                     <Col lg={4} md={4} sm={4} className="px-0">
-                      <button type="button" name="submit" className="w-100" disabled>
+                      <button
+                        type="button"
+                        name="submit"
+                        className="w-100"
+                        disabled
+                      >
                         Submit
                       </button>
                     </Col>
@@ -122,7 +127,7 @@ const Footer = () => {
                     <div className="icon">
                       <HiMail />
                     </div>
-                    <a href="mailto:info@goldenroom.com">info@goldenroom.com</a>
+                    <a href="mailto:info@rilati.com">info@rilati.com</a>
                   </div>
                 </div>
               </div>
@@ -137,7 +142,7 @@ const Footer = () => {
               <p className="footer__copyrights--text text-center m-0">
                 © Copyright 2021{" "}
                 <span>
-                  <a href="/">Golden Room</a>
+                  <a href="/">Rilati</a>
                 </span>{" "}
                 All Rights Reserved. Designed & Developed By Dallas Web Design
                 Company{" "}

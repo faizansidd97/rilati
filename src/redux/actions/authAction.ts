@@ -27,15 +27,15 @@ export const login = (body: any) => (dispatch: any) => {
       const {
         data: { data },
       }: any = res;
-      console.log(data, res);
 
       dispatch({ type: LOGIN_SUCCESS, payload: data });
       saveToLocalStorage(data);
       saveToUserLocalStorage(data);
       setHeaders(data);
+      //ignore-ilint
     })
     .catch((err) => {
-      message.error("Login Failed Unauthorized");
+      // message.error("Login Failed Unauthorized");
       dispatch({ type: LOGIN_ERROR });
     });
 };

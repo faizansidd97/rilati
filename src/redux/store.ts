@@ -15,7 +15,7 @@ declare global {
 //   Reducer: typeof reducers
 // }
 const encryptor = encryptTransform({
-  secretKey: "goldenroom",
+  secretKey: "rilati",
   onError: ({ error }: any) => {},
 });
 

@@ -10,7 +10,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const onFinish = (values: any) => {
     dispatch(login(values));
-    console.log("Received values of form: ", values);
   };
 
   const { loginLoader } = useSelector((storeState: any) => storeState.auth);

@@ -88,7 +88,7 @@ export const stringLimt = (text: string, limit = 10) => {
 export const login = (auth: any) => {
   httpService.defaults.headers = {
     ...httpService.defaults.headers,
-    Authorization: `Bearer ${auth.currentUser.token}`,
+    Authorization: `Bearer ${auth.token}`,
     // user_id: auth.user_id,
   } as CommonHeaderProperties;
   // if (cb) cb();
