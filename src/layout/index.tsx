@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import AddEditCareer from "src/views/dashboard/AddEditCareer";
 import University from "src/views/dashboard/University";
 import AddEditUni from "src/views/dashboard/University/AddEditUni";
+import Category from "src/views/dashboard/Category/Category";
 
 const Layout = () => {
   const { isLogin = false } = useSelector((storeState: any) => storeState.auth);
@@ -27,6 +28,8 @@ const Layout = () => {
           <Route path="career/:id" element={<AddEditCareer />} />
           <Route path="university/" element={<University />} />
           <Route path="university/:id" element={<AddEditUni />} />
+          <Route path="category" element={<Category />} />
+          {/* <Route path="category/:id" element={<AddEditUni />} /> */}
         </Route>
       ) : (
         <>

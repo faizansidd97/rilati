@@ -27,7 +27,7 @@ const AdminLayout = () => {
     },
     {
       icon: <UserOutlined />,
-      label: <Link to={"#"}>Category</Link>,
+      label: <Link to={"category"}>Category</Link>,
       key: "Setting",
     },
   ];

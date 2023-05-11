@@ -1,4 +1,4 @@
-import { LOGIN_ENDPOINT } from "../constant/EndPoints";
+import { CAT_ENDPOINT, LOGIN_ENDPOINT } from "../constant/EndPoints";
 import { CAREER_ENDPOINT, UNI_ENDPOINT } from "../constant/EndPoints";
 import { httpService } from "./axiosAgent";
 
@@ -24,6 +24,22 @@ export const updateCareerApi = (id: string, body: any) => {
 };
 export const deleteCareerApi = (id: any) => {
   return httpService.delete(`${CAREER_ENDPOINT}/${id}`);
+};
+
+export const getCategoryApi = (body: any) => {
+  return httpService.get(`${CAT_ENDPOINT}`, { ...body });
+};
+export const getCategorybyIdApi = (id: number, body: any) => {
+  return httpService.get(`${CAT_ENDPOINT}/${id}`, { ...body });
+};
+export const postCategoryApi = (body: any) => {
+  return httpService.post(`${CAT_ENDPOINT}`, { ...body });
+};
+export const updateCategoryApi = (id: string, body: any) => {
+  return httpService.patch(`${CAT_ENDPOINT}/${id}`, { ...body });
+};
+export const deleteCategoryApi = (id: any) => {
+  return httpService.delete(`${CAT_ENDPOINT}/${id}`);
 };
 
 export const getUniApi = (body: any) => {
