@@ -1,10 +1,7 @@
-import { useState, useEffect } from "react";
-
-import { AiOutlineClose, AiOutlineHeart } from "react-icons/ai";
 import ProgressBar from "react-bootstrap/ProgressBar";
 
 import { IoShareOutline } from "react-icons/io5";
-import { Col, Modal, Row } from "antd";
+import { Col, Row } from "antd";
 import "./ContentTabs.scss";
 import Logos from "../Logos";
 import { stringLimt } from "src/helper/helper";
@@ -34,8 +31,12 @@ const ContentTabs = ({
         className="content-tabs__header d-flex flex-column align-items-center justify-content-center "
         style={{ backgroundImage: `url("${image?.image}")` }}
       >
-        <h3>{stringLimt(item?.attributes?.title, 50)}</h3>
-        <p>{stringLimt(item?.attributes?.career_category, 70)}</p>
+        <h3 className="text-center">
+          {stringLimt(item?.attributes?.title, 50)}
+        </h3>
+        <p className="text-center">
+          {stringLimt(item?.attributes?.career_category, 70)}
+        </p>
       </div>
       <Row>
         <Col md={10} xs={24}>

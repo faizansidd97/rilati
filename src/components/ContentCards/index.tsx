@@ -10,6 +10,7 @@ import "./ContentCards.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getCareer } from "src/redux/actions/careerAction";
 import ContentInnerCards from "../ContentInnerCard";
+import { Link } from "react-router-dom";
 
 const ContentCards = () => {
   const [data, setData] = useState([...contentData]);
@@ -39,25 +40,25 @@ const ContentCards = () => {
     {
       key: "1",
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="#">
+        <Link rel="noopener noreferrer" to="#">
           1st menu item
-        </a>
+        </Link>
       ),
     },
     {
       key: "2",
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="#">
+        <Link rel="noopener noreferrer" to="#">
           2nd menu item
-        </a>
+        </Link>
       ),
     },
     {
       key: "3",
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="#">
+        <Link rel="noopener noreferrer" to="#">
           3rd menu item
-        </a>
+        </Link>
       ),
     },
   ];
