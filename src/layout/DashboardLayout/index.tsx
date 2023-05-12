@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import { Link, Outlet } from "react-router-dom";
+import logo from "../../assets/images/mainLogo.png";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -46,7 +47,12 @@ const AdminLayout = () => {
           }}
           className="text-center mb-5"
         >
-          <svg
+          <img
+            src={logo}
+            className={`${collapsed ? "collapsed" : "dashboard-logo"}`}
+            style={collapsed ? { width: 30 } : { width: 50 }}
+          />
+          {/* <svg
             className="logo me-2"
             enable-background="new 0 0 907.3 906.4"
             viewBox="0 0 907.3 906.4"
@@ -67,7 +73,7 @@ const AdminLayout = () => {
               d="m521.4 658.3c-9.8-6.6-18.8-12.6-27.7-18.7-33.1-22.4-66.3-44.7-99.4-67-2.5-1.7-4-3.3-4-6.7.1-108.5.1-217 .1-325.5 0-.8 0-1.6 0-3 1.3.6 2.4.9 3.2 1.4 41.6 28 83.1 56.1 124.7 84 2.5 1.7 3.4 3.6 3.4 6.6-.1 108-.1 216-.1 324 0 1.3-.1 2.6-.2 4.9z"
               fill="var(--brand-color)"
             ></path>
-          </svg>
+          </svg> */}
         </div>
         <Menu
           theme="dark"

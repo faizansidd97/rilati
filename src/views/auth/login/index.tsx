@@ -1,10 +1,11 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
+import logo from "../../../assets/images/mainLogo.png";
 import thumbnail1 from "../../../assets/images/thumbnail (1).jpg";
-import "./login.scss";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "src/redux/actions/authAction";
+import "./login.scss";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const Login = () => {
     >
       <div className="overlay d-flex justify-content-center align-items-center">
         <div className=" login-screen__wrapper d-flex flex-column justify-content-center align-items-center">
-          <svg
+          {/* <svg
             className="logo mb-4"
             enable-background="new 0 0 907.3 906.4"
             viewBox="0 0 907.3 906.4"
@@ -41,7 +42,8 @@ const Login = () => {
               d="m521.4 658.3c-9.8-6.6-18.8-12.6-27.7-18.7-33.1-22.4-66.3-44.7-99.4-67-2.5-1.7-4-3.3-4-6.7.1-108.5.1-217 .1-325.5 0-.8 0-1.6 0-3 1.3.6 2.4.9 3.2 1.4 41.6 28 83.1 56.1 124.7 84 2.5 1.7 3.4 3.6 3.4 6.6-.1 108-.1 216-.1 324 0 1.3-.1 2.6-.2 4.9z"
               fill="var(--brand-color)"
             ></path>
-          </svg>
+          </svg> */}
+          <img src={logo} className="login-logo" />
           <Form
             name="normal_login"
             className="login-form"
