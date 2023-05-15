@@ -152,7 +152,7 @@ const ContentInnerCards = ({
               max={10}
             />
           </div>
-          <p>Still an amazing island</p>
+          {/* <p>Still an amazing island</p> */}
           <div className="d-flex justify-content-end">
             <IoShareOutline color="#fff" size={20} />
           </div>

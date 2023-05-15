@@ -33,7 +33,7 @@ const HomeBanner = () => {
               <h1 className="title">🌍 Rilati</h1>
               <h1 className="desc">
                 Your career is a journey, not a destination.
-                <br /> Let Rilati guide you
+                {/* <br /> Let Rilati guide you */}
               </h1>
               {/* <p className="desc">
                 Join a global community of remote workers living and traveling
