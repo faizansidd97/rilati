@@ -41,12 +41,12 @@ const Header = () => {
               <h5>🙂 Have a complaint?</h5>
             </div>
           </div>
-          <div className="mt-3 me-4">
+          {/* <div className="mt-3 me-4">
             <h5>Join us</h5>
             <div className="menu-items mb-3">
               <Link to="/login">👋 Log in</Link>
             </div>
-          </div>
+          </div> */}
         </div>
       ),
     },

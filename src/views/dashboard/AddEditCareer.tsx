@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Form, Input, InputNumber, Row, Spin } from "antd";
+import { Button, Col, Form, Input, Row, Select, Spin } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getCareerById } from "src/redux/actions/careerAction";
 import { useParams } from "react-router-dom";
@@ -49,7 +49,43 @@ function AddEditCareer() {
 
     setImage(value);
   };
+  const option = [
+    {
+      value: "1",
+    },
+    {
+      value: "2",
+    },
+    {
+      value: "3",
+    },
+    {
+      value: "4",
+    },
+    {
+      value: "5",
+    },
+    {
+      value: "6",
+    },
+    {
+      value: "7",
+    },
+    {
+      value: "8",
+    },
+    {
+      value: "9",
+    },
+    {
+      value: "10",
+    },
+  ];
+  const handleChange = (value: any) => {
+    console.log({ value });
 
+    // setImage(value);
+  };
   return (
     <div className="overflow-auto">
       <Spin spinning={loader}>
@@ -246,7 +282,12 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: "100%" }}
+                  onChange={handleChange}
+                  options={option}
+                />
               </Form.Item>
             </Col>
             <Col md={4} sm={12} xs={24} className="px-2">
@@ -259,7 +300,12 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: "100%" }}
+                  onChange={handleChange}
+                  options={option}
+                />
               </Form.Item>
             </Col>
             <Col md={4} sm={12} xs={24} className="px-2">
@@ -272,7 +318,12 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: "100%" }}
+                  onChange={handleChange}
+                  options={option}
+                />
               </Form.Item>
             </Col>
             <Col md={4} sm={12} xs={24} className="px-2">
@@ -285,7 +336,12 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: "100%" }}
+                  onChange={handleChange}
+                  options={option}
+                />
               </Form.Item>
             </Col>
             <Col md={4} sm={12} xs={24} className="px-2">
@@ -298,7 +354,12 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: "100%" }}
+                  onChange={handleChange}
+                  options={option}
+                />
               </Form.Item>
             </Col>
             <Col md={4} sm={12} xs={24} className="px-2">
@@ -311,7 +372,12 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: "100%" }}
+                  onChange={handleChange}
+                  options={option}
+                />
               </Form.Item>
             </Col>
             <Col md={4} sm={12} xs={24} className="px-2">
@@ -324,7 +390,12 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: "100%" }}
+                  onChange={handleChange}
+                  options={option}
+                />
               </Form.Item>
             </Col>
             <Col md={4} sm={12} xs={24} className="px-2">
@@ -337,7 +408,12 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: "100%" }}
+                  onChange={handleChange}
+                  options={option}
+                />
               </Form.Item>
             </Col>
             <Col md={4} sm={12} xs={24} className="px-2">
@@ -350,7 +426,12 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: "100%" }}
+                  onChange={handleChange}
+                  options={option}
+                />
               </Form.Item>
             </Col>
             <Col md={4} sm={12} xs={24} className="px-2">
@@ -363,7 +444,12 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: "100%" }}
+                  onChange={handleChange}
+                  options={option}
+                />
               </Form.Item>
             </Col>
             <Col md={4} sm={12} xs={24} className="px-2">
@@ -376,7 +462,12 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: "100%" }}
+                  onChange={handleChange}
+                  options={option}
+                />
               </Form.Item>
             </Col>
             <Col md={4} sm={12} xs={24} className="px-2">
@@ -389,7 +480,12 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: "100%" }}
+                  onChange={handleChange}
+                  options={option}
+                />
               </Form.Item>
             </Col>
             <Col md={4} sm={12} xs={24} className="px-2">
@@ -402,7 +498,12 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: "100%" }}
+                  onChange={handleChange}
+                  options={option}
+                />
               </Form.Item>
             </Col>
             <Col md={4} sm={12} xs={24} className="px-2">
@@ -415,7 +516,12 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: "100%" }}
+                  onChange={handleChange}
+                  options={option}
+                />
               </Form.Item>
             </Col>
             <Col md={4} sm={12} xs={24} className="px-2">
@@ -428,7 +534,12 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: "100%" }}
+                  onChange={handleChange}
+                  options={option}
+                />
               </Form.Item>
             </Col>
             <Col md={4} sm={12} xs={24} className="px-2">
@@ -441,7 +552,12 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: "100%" }}
+                  onChange={handleChange}
+                  options={option}
+                />
               </Form.Item>
             </Col>
             <Col md={4} sm={12} xs={24} className="px-2">
@@ -454,7 +570,12 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: "100%" }}
+                  onChange={handleChange}
+                  options={option}
+                />
               </Form.Item>
             </Col>
             <Col md={4} sm={12} xs={24} className="px-2">
@@ -467,7 +588,12 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <InputNumber className="w-100" min={0} max={10} />
+                <Select
+                  placeholder="Select option"
+                  style={{ width: "100%" }}
+                  onChange={handleChange}
+                  options={option}
+                />
               </Form.Item>
             </Col>
             <Col md={8} sm={12} xs={24} className="px-2">
