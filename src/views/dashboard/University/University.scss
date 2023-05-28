@@ -1,0 +1,11 @@
+div#university_category_id {
+  justify-content: flex-start;
+  flex-flow: wrap;
+  .ant-checkbox-wrapper {
+    margin-inline-start: 0px;
+    margin-bottom: 20px;
+    // margin-right: 20px;
+    // min-width: 300px;
+    width: 25%;
+  }
+}

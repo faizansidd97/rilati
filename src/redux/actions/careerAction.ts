@@ -81,7 +81,7 @@ export const deleteCareer = (id: any) => (dispatch: any) => {
         }: any = res;
         resolve(data);
 
-        dispatch({ type: CAREER_SUCCESS, payload: id });
+        dispatch({ type: CAREER_SUCCESS });
       })
       .catch((err) => {
         reject(err);

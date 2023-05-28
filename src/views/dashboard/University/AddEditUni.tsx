@@ -1,5 +1,14 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Form, Input, InputNumber, Row, Select, Spin } from "antd";
+import {
+  Button,
+  Checkbox,
+  Col,
+  Form,
+  Input,
+  InputNumber,
+  Row,
+  Spin,
+} from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ImageUpload from "src/components/ImageUpload/ImageUpload";
@@ -9,31 +18,47 @@ import {
   postUni,
   updateUni,
 } from "src/redux/actions/universityAction";
+import { getCategory } from "src/redux/actions/categoryAction";
+import "./University.scss";
 
 function AddEditUni() {
   const [image, setImage]: any = useState();
+  const [option, setOption]: any = useState([]);
   const disptch = useDispatch<any>();
   const params = useParams();
   const [form] = Form.useForm();
   const { id } = params;
 
   useEffect(() => {
+    disptch(getCategory(1, 1000));
     form.resetFields();
     if (id !== "new") {
       disptch(getUniById(id));
     }
-  }, [disptch]);
+  }, [, disptch]);
 
   const { uniById = {}, loader = false } = useSelector(
     (store: any) => store.uni
   );
+  const { category = [], loader: cartLoader = false } = useSelector(
+    (store: any) => store.category
+  );
   useEffect(() => {
-    console.log(uniById);
-
     form.setFieldsValue(uniById?.attributes);
   }, [uniById]);
 
+  useEffect(() => {
+    const temp =
+      category &&
+      category?.map((items: any) => {
+        return { label: items?.attributes?.name, value: items?.id };
+      });
+    setOption(temp);
+  }, [category]);
+
   const onFinish = (values: any) => {
+    console.log("values", values);
+
     if (id !== "new") {
       disptch(updateUni(id, values));
     } else {
@@ -41,7 +66,7 @@ function AddEditUni() {
       formData.append("file", image);
       console.log({ formData });
       disptch(uploadImage(formData)).then((res: any) => {
-        console.log(res);
+        console.log("res", res);
 
         const payload = { ...values, image: res?.file_url };
         disptch(postUni(payload));
@@ -59,10 +84,10 @@ function AddEditUni() {
 
     // setImage(value);
   };
-  const options = [
-    { value: "y", label: "Yes" },
-    { value: "n", label: "No" },
-  ];
+  // const options = [
+  //   { value: "y", label: "Yes" },
+  //   { value: "n", label: "No" },
+  // ];
 
   return (
     <div className="overflow-auto">
@@ -180,25 +205,18 @@ function AddEditUni() {
                 <Input />
               </Form.Item>
             </Col>
-            <Col md={4} sm={12} xs={24} className="px-2">
+            <h4 className="w-100">Select Education Category</h4>
+            <Col md={24} sm={24} xs={24} className="px-2">
               <Form.Item
-                name="agriculture_environment"
-                label="Agriculture Environment"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
+                name="category_id"
+                valuePropName="check"
+                className="flex-wrap mt-3"
               >
-                <Select
-                  placeholder="Select option"
-                  style={{ width: 120 }}
-                  onChange={handleChange}
-                  options={options}
-                />
+                <Checkbox.Group options={option}></Checkbox.Group>
               </Form.Item>
             </Col>
-            <Col md={4} sm={12} xs={24} className="px-2">
+
+            {/* <Col md={4} sm={12} xs={24} className="px-2">
               <Form.Item
                 name="architecture"
                 label="Architecture"
@@ -450,7 +468,7 @@ function AddEditUni() {
                   options={options}
                 />
               </Form.Item>
-            </Col>
+            </Col> */}
 
             <Col md={24} sm={24} xs={24} className="px-2">
               <Form.Item className="d-flex justify-content-end">

@@ -80,13 +80,15 @@ const ContentInnerCards = ({
         <h2>{index + 1}</h2>
       </div>
       <div className="content-card__wrapper__info d-flex justify-content-center align-items-center flex-column">
-        <h3>{stringLimt(item?.attributes?.title, 16)}</h3>
-        <p>{stringLimt(item?.attributes?.career_category, 18)}</p>
+        <h3 className="text-center">
+          {stringLimt(item?.attributes?.title, 50)}
+        </h3>
+        {/* <p>{stringLimt(item?.attributes?.career_category, 18)}</p> */}
       </div>
       <div className="content-card__wrapper__pricing d-flex justify-content-between p-2">
-        <div className="content-card__wrapper__pricing__temp">
+        {/* <div className="content-card__wrapper__pricing__temp">
           <h2>{item?.attributes?.years_needed}</h2>
-        </div>
+        </div> */}
         <div className="content-card__wrapper__pricing__price">
           <h2>{stringLimt(item?.attributes?.average_salary_aud, 20)}/year</h2>
         </div>

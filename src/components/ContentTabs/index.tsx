@@ -37,6 +37,9 @@ const ContentTabs = ({
         <p className="text-center">
           {stringLimt(item?.attributes?.career_category, 70)}
         </p>
+        <p className="text-center desc">
+          {stringLimt(item?.attributes?.job_description, 400)}
+        </p>
       </div>
       <Row>
         <Col md={10} xs={24}>

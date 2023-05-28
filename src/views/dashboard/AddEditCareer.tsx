@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Form, Input, Row, Select, Spin } from "antd";
+import { Button, Checkbox, Col, Form, Input, Row, Select, Spin } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getCareerById } from "src/redux/actions/careerAction";
 import { useParams } from "react-router-dom";
@@ -7,15 +7,18 @@ import { postCareer } from "src/redux/actions/careerAction";
 import { updateCareer } from "src/redux/actions/careerAction";
 import ImageUpload from "src/components/ImageUpload/ImageUpload";
 import { uploadImage } from "src/redux/actions/mediaUpload";
+import { getCategory } from "src/redux/actions/categoryAction";
 
 function AddEditCareer() {
   const [image, setImage]: any = useState();
+  const [uniCat, setUniCat]: any = useState();
   const disptch = useDispatch<any>();
   const params = useParams();
   const [form] = Form.useForm();
   const { id } = params;
 
   useEffect(() => {
+    disptch(getCategory(1, 1000));
     if (id !== "new") {
       disptch(getCareerById(id));
     }
@@ -24,6 +27,19 @@ function AddEditCareer() {
   const { careerById = {}, loader = false } = useSelector(
     (store: any) => store.career
   );
+  const { category = [], loader: cartLoader = false } = useSelector(
+    (store: any) => store.category
+  );
+
+  useEffect(() => {
+    const temp =
+      category &&
+      category?.map((items: any) => {
+        return { label: items?.attributes?.name, value: items?.id };
+      });
+    setUniCat(temp);
+  }, [category]);
+
   useEffect(() => {
     form.setFieldsValue(careerById?.attributes);
   }, [careerById]);
@@ -144,20 +160,27 @@ function AddEditCareer() {
 
             <Col md={8} sm={12} xs={24} className="px-2">
               <Form.Item
-                name="categories"
-                label="Categories"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
+                name="education_category"
+                className="flex-wrap mt-3"
+                label="Uni Category"
               >
-                <Input />
+                <Select
+                  mode="multiple"
+                  size={"middle"}
+                  placeholder="Please select"
+                  // defaultValue={["a10", "c12"]}
+                  allowClear
+                  onChange={handleChange}
+                  style={{
+                    width: "100%",
+                  }}
+                  options={uniCat}
+                />
               </Form.Item>
             </Col>
             <Col md={8} sm={12} xs={24} className="px-2">
               <Form.Item
-                name="career_category"
+                name="categories"
                 label="Career Category"
                 rules={[
                   {
@@ -165,7 +188,18 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <Input />
+                <Select
+                  mode="multiple"
+                  size={"middle"}
+                  placeholder="Please select"
+                  // defaultValue={["a10", "c12"]}
+                  allowClear
+                  onChange={handleChange}
+                  style={{
+                    width: "100%",
+                  }}
+                  options={uniCat}
+                />
               </Form.Item>
             </Col>
             <Col md={8} sm={12} xs={24} className="px-2">
