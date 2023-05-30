@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUni } from "src/redux/actions/universityAction";
 import { Spin } from "antd";
+import placeholder from "../../assets/images/placeholderCareer.jpeg";
 
 const Logos = ({ count = 10, customClass }: any) => {
   console.log(count, customClass);
@@ -12,12 +13,12 @@ const Logos = ({ count = 10, customClass }: any) => {
   useEffect(() => {
     dispatch(getUni(1, 9));
   }, []);
-  const myLogos: any = [];
-  const number = [120, 163, 4, 23, 13, 93, 57, 163, 106];
-  for (let index = 0; index < number.length; index++) {
-    const logo = require(`../../assets/images/uni_logo (${number[index]}).png`);
-    myLogos.push(logo);
-  }
+  // const myLogos: any = [];
+  // const number = [120, 163, 4, 23, 13, 93, 57, 163, 106];
+  // for (let index = 0; index < number.length; index++) {
+  //   const logo = require(`../../assets/images/uni_logo (${number[index]}).png`);
+  //   myLogos.push(logo);
+  // }
   const { uni = [], loader = false } = useSelector((store: any) => store.uni);
   return (
     <div
@@ -32,7 +33,7 @@ const Logos = ({ count = 10, customClass }: any) => {
                   <a href={item?.attributes?.link} target="_blank">
                     <img
                       key={index}
-                      src={myLogos[index]}
+                      src={item?.attributes?.image || placeholder}
                       className="logo cursor-pointer"
                     />
                   </a>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Checkbox, Col, Form, Input, Row, Select, Spin } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getCareerById } from "src/redux/actions/careerAction";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { postCareer } from "src/redux/actions/careerAction";
 import { updateCareer } from "src/redux/actions/careerAction";
 import ImageUpload from "src/components/ImageUpload/ImageUpload";
@@ -12,16 +12,25 @@ import { getCategory } from "src/redux/actions/categoryAction";
 function AddEditCareer() {
   const [image, setImage]: any = useState();
   const [uniCat, setUniCat]: any = useState();
+  const [careerImage, setCareerImage]: any = useState();
+  const [careerCat, setCareerCat]: any = useState();
   const disptch = useDispatch<any>();
   const params = useParams();
   const [form] = Form.useForm();
   const { id } = params;
+  const navigate = useNavigate();
 
   useEffect(() => {
-    disptch(getCategory(1, 1000));
-    if (id !== "new") {
-      disptch(getCareerById(id));
+    async function load() {
+      await disptch(getCategory(1, 1000));
+      if (id !== "new") {
+        await disptch(getCareerById(id));
+      } else {
+        form.resetFields();
+        setCareerImage(null);
+      }
     }
+    load();
   }, [disptch]);
 
   const { careerById = {}, loader = false } = useSelector(
@@ -30,32 +39,62 @@ function AddEditCareer() {
   const { category = [], loader: cartLoader = false } = useSelector(
     (store: any) => store.category
   );
+  const { loader: mediaLoader = false } = useSelector(
+    (store: any) => store.media
+  );
 
   useEffect(() => {
-    const temp =
+    const uniCategory =
       category &&
-      category?.map((items: any) => {
-        return { label: items?.attributes?.name, value: items?.id };
-      });
-    setUniCat(temp);
+      category
+        ?.filter((items: any) => items?.attributes?.type === "UNIVERSITY")
+        ?.map((items: any) => {
+          return { label: items?.attributes?.name, value: items?.id };
+        });
+    const careerCategory =
+      category &&
+      category
+        ?.filter((items: any) => items?.attributes?.type === "CAREER")
+        ?.map((items: any) => {
+          return { label: items?.attributes?.name, value: items?.id };
+        });
+    setUniCat(uniCategory);
+    setCareerCat(careerCategory);
   }, [category]);
 
   useEffect(() => {
     form.setFieldsValue(careerById?.attributes);
+    let edu = careerById?.attributes?.education_categories?.map((item: any) => {
+      return { label: item?.attributes?.name, value: item?.id };
+    });
+    let career = careerById?.attributes?.categories?.map((item: any) => {
+      return { label: item?.attributes?.name, value: item?.id };
+    });
+    form.setFieldsValue({ education_category: edu, categories: career });
+    setCareerImage(careerById?.attributes?.image);
   }, [careerById]);
-
+  const callback = () => {
+    navigate("/dashboard");
+  };
   const onFinish = (values: any) => {
     if (id !== "new") {
-      disptch(updateCareer(id, values));
+      if (!!image) {
+        let formData = new FormData();
+        formData.append("file", image);
+        disptch(uploadImage(formData)).then((res: any) => {
+          const payload = { ...values, image: res?.file_url };
+          disptch(updateCareer(id, payload, callback));
+        });
+      } else {
+        disptch(updateCareer(id, values, callback));
+      }
     } else {
       let formData = new FormData();
       formData.append("file", image);
       console.log({ formData });
       disptch(uploadImage(formData)).then((res: any) => {
-        console.log(res);
-
         const payload = { ...values, image: res?.file_url };
-        disptch(postCareer(payload));
+        disptch(postCareer(payload, callback));
       });
     }
   };
@@ -66,6 +105,9 @@ function AddEditCareer() {
     setImage(value);
   };
   const option = [
+    {
+      value: "0",
+    },
     {
       value: "1",
     },
@@ -104,16 +146,35 @@ function AddEditCareer() {
   };
   return (
     <div className="overflow-auto">
-      <Spin spinning={loader}>
+      <Spin spinning={loader || mediaLoader}>
         <Form name="career" form={form} layout="vertical" onFinish={onFinish}>
           <Row className="">
             <Col md={8} sm={12} xs={24} className="px-2">
               <Form.Item name="image" label="Image">
-                <ImageUpload onChange={onChange} />
+                <ImageUpload imageURL={careerImage} onChange={onChange} />
               </Form.Item>
             </Col>
             <Col
-              md={16}
+              md={4}
+              sm={12}
+              xs={24}
+              className="px-2 d-flex justify-content-start align-items-end"
+            >
+              <Form.Item
+                name="career_number"
+                label="Career Number"
+                className="w-100"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col
+              md={12}
               sm={12}
               xs={24}
               className="px-2 d-flex justify-content-start align-items-end"
@@ -131,6 +192,7 @@ function AddEditCareer() {
                 <Input />
               </Form.Item>
             </Col>
+
             <Col md={8} sm={12} xs={24} className="px-2">
               <Form.Item
                 name="average_salary"
@@ -198,7 +260,7 @@ function AddEditCareer() {
                   style={{
                     width: "100%",
                   }}
-                  options={uniCat}
+                  options={careerCat}
                 />
               </Form.Item>
             </Col>
@@ -653,7 +715,11 @@ function AddEditCareer() {
             </Col>
             <Col md={24} sm={24} xs={24} className="px-2">
               <Form.Item className="d-flex justify-content-end">
-                <Button className="btn btn-primary" htmlType="submit">
+                <Button
+                  className="btn btn-primary"
+                  htmlType="submit"
+                  loading={loader || mediaLoader}
+                >
                   {id !== "new" ? "Update" : "Add"}
                 </Button>
               </Form.Item>

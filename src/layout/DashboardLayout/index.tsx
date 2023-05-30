@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import { Link, Outlet } from "react-router-dom";
 import logo from "../../assets/images/mainLogo.png";
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { MdLogout } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { logoutRequest } from "src/redux/actions/authAction";
+import { BsBriefcase } from "react-icons/bs";
+import { FaUniversity } from "react-icons/fa";
+import { BiCategory } from "react-icons/bi";
 
 const { Header, Content, Sider } = Layout;
 
@@ -17,19 +16,20 @@ const AdminLayout = () => {
   const dispatch = useDispatch();
   const sidebarItems = [
     {
-      icon: <UserOutlined />,
+      icon: <BsBriefcase />,
+      label: <Link to={""}>Career</Link>,
+      key: "",
+    },
+    {
+      icon: <FaUniversity />,
       label: <Link to={"university"}>University</Link>,
-      key: "Templates",
+      key: "university",
     },
+
     {
-      icon: <UserOutlined />,
-      label: <Link to={"career"}>Career</Link>,
-      key: "Envelopes",
-    },
-    {
-      icon: <UserOutlined />,
+      icon: <BiCategory />,
       label: <Link to={"category"}>Category</Link>,
-      key: "Setting",
+      key: "category",
     },
   ];
   const [collapsed, setCollapsed] = useState(false);

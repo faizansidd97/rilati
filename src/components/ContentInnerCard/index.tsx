@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { AiOutlineClose, AiOutlineHeart } from "react-icons/ai";
 import ProgressBar from "react-bootstrap/ProgressBar";
-
+import imageCareer from "../../assets/images/placeholderCareer.jpeg";
 import { IoShareOutline } from "react-icons/io5";
 import { Modal } from "antd";
 import ContentTabs from "../ContentTabs";
@@ -39,7 +39,7 @@ const ContentInnerCards = ({
   return (
     <div
       className="content-card__wrapper d-flex flex-column gap-1 gap-md-3 justify-content-between position-relative"
-      style={{ backgroundImage: `url("${image?.image}")` }}
+      style={{ backgroundImage: `url("${image ? image : imageCareer}")` }}
       key={index}
       onMouseEnter={() => {
         setProgress({

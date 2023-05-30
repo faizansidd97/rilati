@@ -44,7 +44,7 @@ export const getUniById = (id: any) => (dispatch: any) => {
       dispatch({ type: UNI_ERROR });
     });
 };
-export const postUni = (body: any) => (dispatch: any) => {
+export const postUni = (body: any, callback: Function) => (dispatch: any) => {
   dispatch({ type: UNI_REQUEST, payload: body });
   postUniApi(body)
     .then((res) => {
@@ -53,6 +53,7 @@ export const postUni = (body: any) => (dispatch: any) => {
       }: any = res;
 
       dispatch({ type: UNI_SUCCESS, payload: data });
+      callback();
     })
     .catch((err) => {
       dispatch({ type: UNI_ERROR });

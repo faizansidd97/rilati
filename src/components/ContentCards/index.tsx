@@ -108,7 +108,7 @@ const ContentCards = () => {
               <ContentInnerCards
                 item={item}
                 index={index}
-                image={contentData[index]}
+                image={item?.attributes?.image}
                 onArrayChange={onArrayChange}
               />
             </li>

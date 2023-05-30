@@ -1,0 +1,32 @@
+.logos {
+  margin-top: -40px;
+  position: relative;
+  z-index: 2;
+  &.details {
+    img {
+      width: 120px;
+      height: 120px;
+    }
+  }
+  &-card {
+    margin-bottom: 9px;
+    transition: 0.3s ease-in-out;
+  }
+
+  img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    filter: grayscale(1);
+    transition: 0.2s ease-in-out;
+    &:hover {
+      filter: grayscale(0);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .logos {
+    margin-top: 10px;
+  }
+}

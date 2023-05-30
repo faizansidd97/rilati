@@ -37,9 +37,7 @@ const Header = () => {
             <div className="menu-items mb-3">
               <h5>💵 Add A Career</h5>
             </div>
-            <div className="menu-items mb-3">
-              <h5>🙂 Have a complaint?</h5>
-            </div>
+
             <div className="menu-items mb-3">
               <h5>🧐 Have a suggestion?</h5>
             </div>

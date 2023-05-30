@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { Modal, Upload } from "antd";
 import type { RcFile, UploadProps } from "antd/es/upload";
 import type { UploadFile } from "antd/es/upload/interface";
+import { newArr } from "src/views/Website/Home/constant";
 
 const getBase64 = (file: RcFile): Promise<string> =>
   new Promise((resolve, reject) => {
@@ -12,13 +13,25 @@ const getBase64 = (file: RcFile): Promise<string> =>
     reader.onerror = (error) => reject(error);
   });
 
-const ImageUpload = ({ onChange }: any) => {
+const ImageUpload = ({ onChange, imageURL }: any) => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
   const [fileList, setFileList] = useState<UploadFile[]>([]);
 
   const handleCancel = () => setPreviewOpen(false);
+  useEffect(() => {
+    if (imageURL) {
+      setFileList([
+        {
+          uid: "-1",
+          name: "image.png",
+          status: "done",
+          url: imageURL,
+        },
+      ]);
+    }
+  }, [imageURL]);
 
   const handlePreview = async (file: UploadFile) => {
     if (!file.url && !file.preview) {
@@ -39,8 +52,6 @@ const ImageUpload = ({ onChange }: any) => {
     if (newFileList?.length > 0) {
       onChange(file);
     }
-    console.log(file);
-
     setFileList(newFileList);
   };
 
@@ -50,11 +61,12 @@ const ImageUpload = ({ onChange }: any) => {
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
+
   return (
     <>
       <Upload
         listType="picture-card"
-        // fileList={fileList}
+        fileList={fileList}
         beforeUpload={() => false}
         onPreview={handlePreview}
         onChange={handleChange}

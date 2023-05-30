@@ -47,11 +47,11 @@ function Dashboard() {
   };
   const columns: ColumnsType<DataType> = [
     {
-      title: "Name",
+      title: "Career Number",
       // dataIndex: "name",
       render: (res: any) => (
-        <span title={res?.attributes?.title}>
-          {stringLimt(res?.attributes?.title, 20)}
+        <span title={res?.attributes?.career_number}>
+          {stringLimt(res?.attributes?.career_number, 20)}
         </span>
       ),
     },
@@ -59,8 +59,8 @@ function Dashboard() {
       title: "Category",
       // dataIndex: "name",
       render: (res: any) => (
-        <span title={res?.attributes?.career_category}>
-          {stringLimt(res?.attributes?.career_category, 20)}
+        <span title={res?.attributes?.title}>
+          {stringLimt(res?.attributes?.title, 20)}
         </span>
       ),
     },

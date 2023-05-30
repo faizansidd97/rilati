@@ -10,7 +10,7 @@ import {
   Spin,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ImageUpload from "src/components/ImageUpload/ImageUpload";
 import { uploadImage } from "src/redux/actions/mediaUpload";
 import {
@@ -22,7 +22,9 @@ import { getCategory } from "src/redux/actions/categoryAction";
 import "./University.scss";
 
 function AddEditUni() {
+  const navigate = useNavigate();
   const [image, setImage]: any = useState();
+  const [previewImage, setPreviewImage] = useState("");
   const [option, setOption]: any = useState([]);
   const disptch = useDispatch<any>();
   const params = useParams();
@@ -30,7 +32,7 @@ function AddEditUni() {
   const { id } = params;
 
   useEffect(() => {
-    disptch(getCategory(1, 1000));
+    disptch(getCategory(1, 1000, "", "UNIVERSITY"));
     form.resetFields();
     if (id !== "new") {
       disptch(getUniById(id));
@@ -45,6 +47,7 @@ function AddEditUni() {
   );
   useEffect(() => {
     form.setFieldsValue(uniById?.attributes);
+    setPreviewImage(uniById?.attributes?.image);
   }, [uniById]);
 
   useEffect(() => {
@@ -56,21 +59,35 @@ function AddEditUni() {
     setOption(temp);
   }, [category]);
 
+  const callback = () => {
+    navigate("/dashboard/university");
+  };
+
   const onFinish = (values: any) => {
-    console.log("values", values);
-
     if (id !== "new") {
-      disptch(updateUni(id, values));
+      let payload = { ...values };
+      if (!!image) {
+        let formData = new FormData();
+        formData.append("file", image);
+        disptch(uploadImage(formData)).then((res: any) => {
+          payload = { ...payload, image: res?.file_url };
+          disptch(updateUni(id, payload));
+        });
+      } else {
+        disptch(updateUni(id, values));
+      }
     } else {
-      let formData = new FormData();
-      formData.append("file", image);
-      console.log({ formData });
-      disptch(uploadImage(formData)).then((res: any) => {
-        console.log("res", res);
-
-        const payload = { ...values, image: res?.file_url };
-        disptch(postUni(payload));
-      });
+      let payload = { ...values };
+      if (!!image) {
+        let formData = new FormData();
+        formData.append("file", image);
+        disptch(uploadImage(formData)).then((res: any) => {
+          payload = { ...payload, image: res?.file_url };
+          disptch(postUni(payload, callback));
+        });
+      } else {
+        disptch(postUni(payload, callback));
+      }
     }
   };
 
@@ -101,11 +118,30 @@ function AddEditUni() {
           <Row className="">
             <Col md={8} sm={12} xs={24} className="px-2">
               <Form.Item name="image" label="Image">
-                <ImageUpload onChange={onChange} />
+                <ImageUpload image={previewImage} onChange={onChange} />
+              </Form.Item>
+            </Col>
+
+            <Col
+              md={4}
+              sm={12}
+              xs={24}
+              className="px-2 d-flex justify-content-start align-items-end"
+            >
+              <Form.Item
+                name="uni_number"
+                label="Uni Number"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <InputNumber className="w-100" />
               </Form.Item>
             </Col>
             <Col
-              md={16}
+              md={12}
               sm={12}
               xs={24}
               className="px-2 d-flex justify-content-start align-items-end"
@@ -136,19 +172,7 @@ function AddEditUni() {
                 <Input />
               </Form.Item>
             </Col>
-            <Col md={8} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="uni_number"
-                label="Uni Number"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber />
-              </Form.Item>
-            </Col>
+
             <Col md={8} sm={12} xs={24} className="px-2">
               <Form.Item
                 name="state"
@@ -179,13 +203,10 @@ function AddEditUni() {
             <Col md={8} sm={12} xs={24} className="px-2">
               <Form.Item
                 name="email"
-                label="Email"
+                label="Email/Contact"
                 rules={[
                   {
                     required: true,
-                  },
-                  {
-                    type: "email",
                   },
                 ]}
               >

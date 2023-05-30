@@ -1,10 +1,11 @@
 import ProgressBar from "react-bootstrap/ProgressBar";
-
+import careerImage from "../../assets/images/placeholderCareer.jpeg";
 import { IoShareOutline } from "react-icons/io5";
 import { Col, Row } from "antd";
 import "./ContentTabs.scss";
 import Logos from "../Logos";
 import { stringLimt } from "src/helper/helper";
+import CareerUniversity from "../CareerUniversity";
 
 interface IContentTabs {
   item: any;
@@ -13,14 +14,12 @@ interface IContentTabs {
   onArrayChange?: any;
   progress?: any;
 }
-const ContentTabs = ({
-  item,
-  index,
-  onArrayChange,
-  progress,
-  image,
-}: IContentTabs) => {
-  console.log("item", item);
+const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
+  const cat =
+    item?.attributes?.categories &&
+    item?.attributes?.categories[0] &&
+    item?.attributes?.categories[0]?.attributes?.name;
+  console.log("items?.id", item);
 
   return (
     <div
@@ -29,14 +28,12 @@ const ContentTabs = ({
     >
       <div
         className="content-tabs__header d-flex flex-column align-items-center justify-content-center "
-        style={{ backgroundImage: `url("${image?.image}")` }}
+        style={{ backgroundImage: `url("${image ? image : careerImage}")` }}
       >
-        <h3 className="text-center">
+        <h3 className="text-center m-0">
           {stringLimt(item?.attributes?.title, 50)}
         </h3>
-        <p className="text-center">
-          {stringLimt(item?.attributes?.career_category, 70)}
-        </p>
+        <p className="text-center m-0">{stringLimt(cat, 70)}</p>
         <p className="text-center desc">
           {stringLimt(item?.attributes?.job_description, 400)}
         </p>
@@ -162,7 +159,11 @@ const ContentTabs = ({
         </Col>
         <Col md={14} xs={24}>
           <h4 className="my-3 pb-5 text-center">Universities / Institutions</h4>
-          <Logos count={20} customClass="details" />
+          <CareerUniversity
+            count={20}
+            universities={item?.attributes?.universities}
+            customClass="details"
+          />
         </Col>
       </Row>
     </div>

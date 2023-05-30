@@ -43,34 +43,38 @@ export const getCareerById = (id: any, param?: any) => (dispatch: any) => {
       dispatch({ type: CAREER_ERROR });
     });
 };
-export const postCareer = (body: any) => (dispatch: any) => {
-  dispatch({ type: CAREER_REQUEST, payload: body });
-  postCareerApi(body)
-    .then((res) => {
-      const {
-        data: { data },
-      }: any = res;
+export const postCareer =
+  (body: any, callback: Function) => (dispatch: any) => {
+    dispatch({ type: CAREER_REQUEST, payload: body });
+    postCareerApi(body)
+      .then((res) => {
+        const {
+          data: { data },
+        }: any = res;
 
-      dispatch({ type: CAREER_SUCCESS, payload: data });
-    })
-    .catch((err) => {
-      dispatch({ type: CAREER_ERROR });
-    });
-};
-export const updateCareer = (id: any, body: any) => (dispatch: any) => {
-  dispatch({ type: CAREER_REQUEST, payload: body });
-  updateCareerApi(id, body)
-    .then((res) => {
-      const {
-        data: { data },
-      }: any = res;
+        dispatch({ type: CAREER_SUCCESS, payload: data });
+        callback();
+      })
+      .catch((err) => {
+        dispatch({ type: CAREER_ERROR });
+      });
+  };
+export const updateCareer =
+  (id: any, body: any, callback: Function) => (dispatch: any) => {
+    dispatch({ type: CAREER_REQUEST });
+    updateCareerApi(id, body)
+      .then((res) => {
+        const {
+          data: { data },
+        }: any = res;
 
-      dispatch({ type: CAREER_SUCCESS, payload: data });
-    })
-    .catch((err) => {
-      dispatch({ type: CAREER_ERROR });
-    });
-};
+        dispatch({ type: CAREER_SUCCESS, payload: data });
+        callback();
+      })
+      .catch((err) => {
+        dispatch({ type: CAREER_ERROR });
+      });
+  };
 export const deleteCareer = (id: any) => (dispatch: any) => {
   return new Promise((resolve, reject) => {
     dispatch({ type: CAREER_REQUEST });
