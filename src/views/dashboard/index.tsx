@@ -106,7 +106,6 @@ function Dashboard() {
   const { career = [], loader = false } = useSelector(
     (store: any) => store.career
   );
-  console.log(career);
 
   return (
     <div className="overflow-auto">

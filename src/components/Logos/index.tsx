@@ -3,11 +3,11 @@ import "./Logos.scss";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUni } from "src/redux/actions/universityAction";
-import { Spin } from "antd";
+import { Layout, Spin } from "antd";
 import placeholder from "../../assets/images/placeholderCareer.jpeg";
 
 const Logos = ({ count = 10, customClass }: any) => {
-  console.log(count, customClass);
+  const { Content } = Layout;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -21,7 +21,7 @@ const Logos = ({ count = 10, customClass }: any) => {
   // }
   const { uni = [], loader = false } = useSelector((store: any) => store.uni);
   return (
-    <div
+    <Content
       className={`logos d-md-block ${customClass ? " details" : "  d-none"}`}
     >
       <Container>
@@ -43,7 +43,7 @@ const Logos = ({ count = 10, customClass }: any) => {
           </Row>
         </Spin>
       </Container>
-    </div>
+    </Content>
   );
 };
 export default Logos;

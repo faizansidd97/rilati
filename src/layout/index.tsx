@@ -18,7 +18,6 @@ const Layout = () => {
   const { isLogin = false } = useSelector((storeState: any) => storeState.auth);
   const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
   const loginUser = getUser ? JSON.parse(getUser) : null;
-  console.log("loginUser", loginUser);
 
   return (
     <Routes>

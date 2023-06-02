@@ -91,7 +91,6 @@ function AddEditCareer() {
     } else {
       let formData = new FormData();
       formData.append("file", image);
-      console.log({ formData });
       disptch(uploadImage(formData)).then((res: any) => {
         const payload = { ...values, image: res?.file_url };
         disptch(postCareer(payload, callback));

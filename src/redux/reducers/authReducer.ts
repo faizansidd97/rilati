@@ -41,7 +41,6 @@ const authReducer = (state = initialState, action: any) => {
     }
 
     case LOGIN_SUCCESS: {
-      console.log("state.isLogin", action);
       return Object.assign({}, state, {
         isLogin: true,
         user: action.payload,

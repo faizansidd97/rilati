@@ -19,8 +19,6 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
     item?.attributes?.categories &&
     item?.attributes?.categories[0] &&
     item?.attributes?.categories[0]?.attributes?.name;
-  console.log("items?.id", item);
-
   return (
     <div
       className="content-tabs d-flex flex-column justify-content-between position-relative"

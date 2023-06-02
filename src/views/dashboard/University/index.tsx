@@ -118,8 +118,6 @@ function University() {
   ];
 
   const { uni = [], loader = false } = useSelector((store: any) => store.uni);
-  console.log("unversity", uni);
-
   return (
     <div className="overflow-auto">
       <div className="d-flex justify-content-end align-items-center mb-3">

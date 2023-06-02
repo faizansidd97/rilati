@@ -83,7 +83,7 @@ const AdminLayout = () => {
         />
       </Sider>
       <Layout className="site-layout">
-        <Header style={{ padding: 0, background: "#fff" }}>
+        <Header style={{ padding: 0 }}>
           <div className="d-flex justify-content-between align-items-center h-100 pe-4">
             {React.createElement(
               collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
@@ -106,7 +106,7 @@ const AdminLayout = () => {
             margin: "24px 16px",
             padding: 24,
             minHeight: 280,
-            background: "#fff",
+            // background: "#fff",
           }}
         >
           <Outlet />

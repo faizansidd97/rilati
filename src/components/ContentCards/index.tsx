@@ -1,18 +1,17 @@
 import { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { DotChartOutlined } from "@ant-design/icons";
-import { AiOutlineHeart, AiFillPlusCircle } from "react-icons/ai";
-import ProgressBar from "react-bootstrap/ProgressBar";
-import { Dropdown, Input, MenuProps, Skeleton } from "antd";
-import { IoShareOutline } from "react-icons/io5";
+import { AiFillPlusCircle } from "react-icons/ai";
+import { Dropdown, Input, Layout, MenuProps, Skeleton } from "antd";
 import { contentData } from "./constant";
-import "./ContentCards.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getCareer } from "src/redux/actions/careerAction";
 import ContentInnerCards from "../ContentInnerCard";
 import { Link } from "react-router-dom";
+import "./ContentCards.scss";
 
 const ContentCards = () => {
+  const { Content } = Layout;
   const [data, setData] = useState([...contentData]);
   const disptach = useDispatch<any>();
   useEffect(() => {
@@ -63,13 +62,13 @@ const ContentCards = () => {
     },
   ];
   return (
-    <Container className="content-card mb-3 px-0" fluid>
-      <Row>
+    <Container className="content-card mb-3 px-0 " fluid>
+      <Row className="px-3">
         <Col
           md={12}
           className="d-flex align-items-center  flex-wrap justify-content-end justify-content-md-between my-3"
         >
-          <div className="button-wrapper d-flex align-items-center flex-wrap flex-row">
+          <div className="button-wrapper d-flex align-items-center flex-wrap flex-row ">
             <Button className="btn btn-primary custom">Filters</Button>
             <Input
               placeholder="Search or filter"
