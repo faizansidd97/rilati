@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Button, Modal, Space } from "antd";
+import React, { useEffect, useState } from "react";
+import { Button, Input, Modal, Space } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import GridView from "src/components/GridView/GridView";
@@ -17,6 +17,7 @@ interface DataType {
 }
 
 function Dashboard() {
+  const [search, setSearch] = useState("");
   const disptch = useDispatch<any>();
   useEffect(() => {
     disptch(getCareer());
@@ -26,8 +27,7 @@ function Dashboard() {
     confirm({
       title: "Do you want to delete these items?",
       icon: <ExclamationCircleFilled />,
-      content:
-        "When clicked the OK button, this dialog will be closed after 1 second",
+      content: "When clicked the OK button, the selected item will be delete!",
       okType: "danger",
       okText: "Delete",
       onOk() {
@@ -44,6 +44,9 @@ function Dashboard() {
       },
       onCancel() {},
     });
+  };
+  const onChange = (value: any) => {
+    disptch(getCareer(1, 10, value));
   };
   const columns: ColumnsType<DataType> = [
     {
@@ -109,7 +112,13 @@ function Dashboard() {
 
   return (
     <div className="overflow-auto">
-      <div className="d-flex justify-content-end align-items-center mb-3">
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <div className="d-flex">
+          <Input onChange={(e) => setSearch(e.target.value)} />
+          <Button className="mx-3" onClick={() => onChange(search)}>
+            Search
+          </Button>
+        </div>
         <Link className="btn btn-primary" to={"/dashboard/career/new"}>
           Add new
         </Link>

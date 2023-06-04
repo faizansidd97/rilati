@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, Input, Modal, Select, Space } from "antd";
+import { Button, Dropdown, Form, Input, Modal, Select, Space } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import GridView from "src/components/GridView/GridView";
@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { stringLimt } from "src/helper/helper";
 import { Link } from "react-router-dom";
 import "./Category.scss";
+import moment from "moment";
 import {
   deleteCategory,
   getCategory,
@@ -24,6 +25,8 @@ interface DataType {
 
 function Category() {
   const [edit, setEdit]: any = useState(null);
+  const [search, setSearch]: any = useState("");
+  const [type, setType]: any = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const disptch = useDispatch<any>();
   useEffect(() => {
@@ -82,7 +85,7 @@ function Category() {
       title: "Create At",
       render: (res: any) => (
         <span title={res?.attributes?.createdAt}>
-          {stringLimt(res?.attributes?.createdAt, 50)}
+          {moment(res?.attributes?.createdAt).format("MMM DD, YYYY")}
         </span>
       ),
     },
@@ -124,8 +127,8 @@ function Category() {
     { label: "Both", value: "BOTH" },
   ];
   const handleChange = (value: any) => {
-    console.log({ value });
-
+    setType(value);
+    disptch(getCategory(1, 10, search, value));
     // setImage(value);
   };
   const onFinish = (value: any) => {
@@ -144,13 +147,38 @@ function Category() {
       });
     }
   };
+  const onChange = (value: string) => {
+    disptch(getCategory(1, 10, value, type));
+  };
 
   return (
     <div className="overflow-auto">
-      <div className="d-flex justify-content-end align-items-center mb-3">
-        <Button className="btn btn-primary" onClick={() => setIsVisible(true)}>
-          Add new
-        </Button>
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <div className="d-flex">
+          <Input onChange={(e) => setSearch(e.target.value)} />
+          <Button className="mx-3" onClick={() => onChange(search)}>
+            Search
+          </Button>
+        </div>
+        <div className="d-flex">
+          <Select
+            size={"middle"}
+            placeholder="Please select"
+            // defaultValue={["a10", "c12"]}
+            allowClear
+            onChange={handleChange}
+            style={{
+              width: "100%",
+            }}
+            options={options}
+          />
+          <Button
+            className="btn btn-primary"
+            onClick={() => setIsVisible(true)}
+          >
+            Add new
+          </Button>
+        </div>
       </div>
       <GridView data={category} columns={columns} loading={loader} p />
       <Modal

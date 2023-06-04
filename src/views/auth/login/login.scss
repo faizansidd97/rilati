@@ -17,10 +17,15 @@
   &__wrapper {
     width: 400px;
     height: 500px;
-    background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px #0000006e;
     padding: 0 40px;
+    &.dark {
+      background-color: #000000;
+    }
+    &.light {
+      background-color: #ffffff;
+    }
     #normal_login {
       width: 100%;
       input {

@@ -12,6 +12,7 @@ const Login = () => {
   const onFinish = (values: any) => {
     dispatch(login(values));
   };
+  const { isDark = false } = useSelector((store: any) => store.theme);
 
   const { loginLoader } = useSelector((storeState: any) => storeState.auth);
   return (
@@ -20,7 +21,11 @@ const Login = () => {
       style={{ backgroundImage: `url("${thumbnail1}")` }}
     >
       <div className="overlay d-flex justify-content-center align-items-center">
-        <div className=" login-screen__wrapper d-flex flex-column justify-content-center align-items-center">
+        <div
+          className={` ${
+            isDark ? "dark " : "light "
+          } login-screen__wrapper d-flex flex-column justify-content-center align-items-center`}
+        >
           {/* <svg
             className="logo mb-4"
             enable-background="new 0 0 907.3 906.4"

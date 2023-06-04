@@ -4,7 +4,7 @@ import { Link, Outlet } from "react-router-dom";
 import logo from "../../assets/images/mainLogo.png";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { MdLogout } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logoutRequest } from "src/redux/actions/authAction";
 import { BsBriefcase } from "react-icons/bs";
 import { FaUniversity } from "react-icons/fa";
@@ -13,6 +13,8 @@ import { BiCategory } from "react-icons/bi";
 const { Header, Content, Sider } = Layout;
 
 const AdminLayout = () => {
+  const { isDark = false } = useSelector((store: any) => store.theme);
+
   const dispatch = useDispatch();
   const sidebarItems = [
     {
@@ -94,9 +96,10 @@ const AdminLayout = () => {
             )}
             <div
               className="d-flex align-items-center me-2 cursor-pointer"
+              style={!isDark ? { color: "white" } : { color: "white" }}
               onClick={() => dispatch(logoutRequest())}
             >
-              <h6 className="mb-0 me-2 danger">Logout</h6>
+              <h6 className="mb-0 me-2">Logout</h6>
               <MdLogout />
             </div>
           </div>

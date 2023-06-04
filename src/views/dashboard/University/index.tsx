@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Button, Modal, Space } from "antd";
+import React, { useEffect, useState } from "react";
+import { Button, Input, Modal, Space } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import GridView from "src/components/GridView/GridView";
@@ -17,6 +17,8 @@ interface DataType {
 }
 
 function University() {
+  const [search, setSearch] = useState("");
+
   const disptch = useDispatch<any>();
   useEffect(() => {
     disptch(getUni());
@@ -117,10 +119,20 @@ function University() {
     },
   ];
 
+  const onChange = (value: any) => {
+    disptch(getUni(1, 10, value));
+  };
+
   const { uni = [], loader = false } = useSelector((store: any) => store.uni);
   return (
     <div className="overflow-auto">
-      <div className="d-flex justify-content-end align-items-center mb-3">
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <div className="d-flex">
+          <Input onChange={(e) => setSearch(e.target.value)} />
+          <Button className="mx-3" onClick={() => onChange(search)}>
+            Search
+          </Button>
+        </div>
         <Link className="btn btn-primary" to={"/dashboard/university/new"}>
           Add new
         </Link>

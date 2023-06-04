@@ -13,14 +13,14 @@ import {
 import { httpService } from "src/network/axiosAgent";
 
 export const getCategory =
-  (page = 1, take = 10, title?: string, type?: string) =>
+  (page = 1, take = 10, name?: string, type?: string) =>
   (dispatch: any) => {
     dispatch({ type: CATEGORY_REQUEST });
     httpService
       .get(
-        `/categories?page=${page}&take=${take}${
-          title ? `&title=${title}` : ""
-        }${type ? `&type=${type}` : ""}`
+        `/categories?page=${page}&take=${take}${name ? `&name=${name}` : ""}${
+          type ? `&type=${type}` : ""
+        }`
       )
       .then((res) => {
         const {

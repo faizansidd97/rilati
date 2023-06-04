@@ -14,11 +14,13 @@ import {
 import { httpService } from "src/network/axiosAgent";
 
 export const getUni =
-  (page = 1, take = 10) =>
+  (page = 1, take = 10, name?: string) =>
   (dispatch: any) => {
     dispatch({ type: UNI_REQUEST });
     httpService
-      .get(`/university?page=${page}&take=${take}`)
+      .get(
+        `/university?page=${page}&take=${take}${name ? `&name=${name}` : ""}`
+      )
       .then((res) => {
         const {
           data: { data },

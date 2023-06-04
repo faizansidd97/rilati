@@ -26,4 +26,6 @@ export const MEDIA_REQUEST = "MEDIA_REQUEST";
 export const MEDIA_SUCCESS = "MEDIA_SUCCESS";
 export const MEDIA_ERROR = "MEDIA_ERROR";
 
+export const THEME_REQUEST = "THEME_REQUEST";
+
 export const DELETE_SUCCESS = "DELETE_SUCCESS";
