@@ -1,10 +1,8 @@
 import { Button, Form, Input } from "antd";
-import thumbnail from "../../assets/images/thumbnail.jpg";
 import thumbnail1 from "../../assets/images/Homepage.jpg";
-
-import "./HomeBanner.scss";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import "./HomeBanner.scss";
 
 const HomeBanner = () => {
   const { isDark = false } = useSelector((store: any) => store.theme);

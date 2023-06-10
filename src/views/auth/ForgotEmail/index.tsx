@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input, Modal } from "antd";
+import { UserOutlined } from "@ant-design/icons";
+import { Button, Form, Input, Modal } from "antd";
 import logo from "../../../assets/images/mainLogo.png";
-
 import thumbnail1 from "../../../assets/images/thumbnail (1).jpg";
-import "./ForgotEmail.scss";
 import Otp from "src/components/Otp";
 import { useSelector } from "react-redux";
+import "./ForgotEmail.scss";
 
 const ForgotEmail = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,6 +13,7 @@ const ForgotEmail = () => {
     console.log("Received values of form: ", values);
   };
   const { isDark } = useSelector((storeState: any) => storeState.theme);
+
   return (
     <section
       className="login-screen d-flex justify-content-center align-items-center"
@@ -25,7 +25,7 @@ const ForgotEmail = () => {
             isDark ? "dark " : "light "
           } login-screen__wrapper d-flex flex-column justify-content-center align-items-center`}
         >
-          <img src={logo} className="login-logo" />
+          <img src={logo} className="login-logo" alt="logo" />
           {/* <svg
             className="logo mb-4"
             enable-background="new 0 0 907.3 906.4"

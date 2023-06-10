@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import Environment from "src/network/baseUrl";
 import {
   LOGIN_SUCCESS,
@@ -7,7 +6,6 @@ import {
   LOGOUT_SUCCESS,
 } from "../../constant/Types";
 import { loginApi } from "src/network/network";
-import { message } from "antd";
 import {
   saveToUserLocalStorage,
   saveToLocalStorage,

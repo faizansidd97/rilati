@@ -13,17 +13,19 @@ import {
 import { httpService } from "src/network/axiosAgent";
 
 export const getCareer =
-  (page = 1, take = 10, title?: string) =>
+  (page = 1, take = 20, title?: string) =>
   (dispatch: any) => {
     dispatch({ type: CAREER_REQUEST });
     httpService
       .get(`/career?page=${page}&take=${take}${title ? `&title=${title}` : ""}`)
       .then((res) => {
+        console.log("ress...", res);
+
         const {
           data: { data },
         }: any = res;
 
-        dispatch({ type: CAREER_SUCCESS, payload: data });
+        dispatch({ type: CAREER_SUCCESS, payload: { data, meta: res?.data } });
       })
       .catch((err) => {
         dispatch({ type: CAREER_ERROR });

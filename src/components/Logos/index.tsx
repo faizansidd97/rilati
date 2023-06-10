@@ -12,7 +12,7 @@ const Logos = ({ count = 10, customClass }: any) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUni(1, 9));
-  }, []);
+  }, [dispatch]);
   // const myLogos: any = [];
   // const number = [120, 163, 4, 23, 13, 93, 57, 163, 106];
   // for (let index = 0; index < number.length; index++) {
@@ -29,7 +29,7 @@ const Logos = ({ count = 10, customClass }: any) => {
           <Row className={customClass ? "gap-4" : ""}>
             <Col md={24} className="d-flex justify-content-around flex-wrap">
               {uni?.map((item: any, index: any) => (
-                <div className="mx-1 logos-card">
+                <div className="mx-1 logos-card" key={index}>
                   <a href={item?.attributes?.link} target="_blank">
                     <img
                       key={index}

@@ -13,6 +13,7 @@ const initialState: CareerState = {
   loader: false,
   career: [],
   careerById: {},
+  totaPage: 1,
 };
 
 const careerReducer = (state = initialState, action: any) => {
@@ -25,7 +26,8 @@ const careerReducer = (state = initialState, action: any) => {
 
     case CAREER_SUCCESS: {
       return Object.assign({}, state, {
-        career: action.payload,
+        career: [...state?.career, ...action.payload?.data],
+        totalPage: action.payload.meta?.lastPage,
         loader: false,
       });
     }
@@ -49,7 +51,7 @@ const careerReducer = (state = initialState, action: any) => {
     }
     case DELETE_SUCCESS: {
       const temp = state?.career?.filter(
-        (item: any) => item?.id != action.payload
+        (item: any) => item?.id !== action.payload
       );
       return Object.assign({}, state, {
         careerById: temp,

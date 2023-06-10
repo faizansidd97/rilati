@@ -37,7 +37,10 @@ const Layout = () => {
           </Route>
 
           <Route path="" element={<AuthLayout />}>
-            <Route path="login" element={<Login />} />
+            <Route
+              path="bG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQgbG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQgbG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQg"
+              element={<Login />}
+            />
             <Route path="forgor-email" element={<ForgotEmail />} />
             <Route path="reset-password" element={<ResetPassword />} />
           </Route>

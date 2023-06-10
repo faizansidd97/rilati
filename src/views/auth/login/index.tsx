@@ -48,7 +48,7 @@ const Login = () => {
               fill="var(--brand-color)"
             ></path>
           </svg> */}
-          <img src={logo} className="login-logo" />
+          <img src={logo} className="login-logo" alt="logo" />
           <Form
             name="normal_login"
             className="login-form"

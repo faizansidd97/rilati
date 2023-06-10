@@ -24,7 +24,7 @@ const ResetPassword = () => {
             isDark ? "dark " : "light "
           } login-screen__wrapper d-flex flex-column justify-content-center align-items-center`}
         >
-          <img src={logo} className="login-logo" />
+          <img src={logo} className="login-logo" alt="logo" />
           <h2 style={!isDark ? { color: "black" } : { color: "white" }}>
             Reset Password
           </h2>

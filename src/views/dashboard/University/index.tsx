@@ -20,9 +20,11 @@ function University() {
   const [search, setSearch] = useState("");
 
   const disptch = useDispatch<any>();
+
   useEffect(() => {
     disptch(getUni());
-  }, []);
+  }, [disptch]);
+
   const { confirm } = Modal;
   const showPromiseConfirm = (id: any) => {
     confirm({
@@ -80,7 +82,7 @@ function University() {
       // dataIndex: "name",
       render: (res: any) => (
         <span title={res?.attributes?.link}>
-          <a href={res?.attributes?.link} target="_blank">
+          <a href={res?.attributes?.link} target="_blank" rel="noreferrer">
             {stringLimt(res?.attributes?.link, 20)}
           </a>
         </span>

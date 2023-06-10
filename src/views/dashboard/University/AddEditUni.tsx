@@ -37,7 +37,7 @@ function AddEditUni() {
     if (id !== "new") {
       disptch(getUniById(id));
     }
-  }, [, disptch]);
+  }, [disptch]);
 
   const { uniById = {}, loader = false } = useSelector(
     (store: any) => store.uni
@@ -95,11 +95,6 @@ function AddEditUni() {
     console.log({ value });
 
     setImage(value);
-  };
-  const handleChange = (value: any) => {
-    console.log({ value });
-
-    // setImage(value);
   };
   // const options = [
   //   { value: "y", label: "Yes" },

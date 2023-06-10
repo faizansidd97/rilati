@@ -2,10 +2,9 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import careerImage from "../../assets/images/placeholderCareer.jpeg";
 import { IoShareOutline } from "react-icons/io5";
 import { Col, Row } from "antd";
-import "./ContentTabs.scss";
-import Logos from "../Logos";
 import { stringLimt } from "src/helper/helper";
 import CareerUniversity from "../CareerUniversity";
+import "./ContentTabs.scss";
 
 interface IContentTabs {
   item: any;

@@ -1,6 +1,5 @@
 import {
   deleteUniApi,
-  getUniApi,
   getUnibyIdApi,
   postUniApi,
   updateUniApi,

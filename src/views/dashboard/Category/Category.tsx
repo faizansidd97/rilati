@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Button, Dropdown, Form, Input, Modal, Select, Space } from "antd";
+import { Button, Form, Input, Modal, Select, Space } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import GridView from "src/components/GridView/GridView";
 import { useDispatch, useSelector } from "react-redux";
 import { stringLimt } from "src/helper/helper";
-import { Link } from "react-router-dom";
 import "./Category.scss";
 import moment from "moment";
 import {
@@ -31,7 +30,7 @@ function Category() {
   const disptch = useDispatch<any>();
   useEffect(() => {
     disptch(getCategory());
-  }, []);
+  }, [disptch]);
 
   const [form] = useForm();
   const { confirm } = Modal;

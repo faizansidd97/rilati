@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Checkbox, Col, Form, Input, Row, Select, Spin } from "antd";
+import { Button, Col, Form, Input, Row, Select, Spin } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getCareerById } from "src/redux/actions/careerAction";
 import { useNavigate, useParams } from "react-router-dom";
@@ -36,9 +36,8 @@ function AddEditCareer() {
   const { careerById = {}, loader = false } = useSelector(
     (store: any) => store.career
   );
-  const { category = [], loader: cartLoader = false } = useSelector(
-    (store: any) => store.category
-  );
+  const { category = [] } = useSelector((store: any) => store.category);
+
   const { loader: mediaLoader = false } = useSelector(
     (store: any) => store.media
   );
@@ -73,6 +72,7 @@ function AddEditCareer() {
     form.setFieldsValue({ education_category: edu, categories: career });
     setCareerImage(careerById?.attributes?.image);
   }, [careerById]);
+
   const callback = () => {
     navigate("/dashboard");
   };

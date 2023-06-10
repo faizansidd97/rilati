@@ -2,21 +2,25 @@ import { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { DotChartOutlined } from "@ant-design/icons";
 import { AiFillPlusCircle } from "react-icons/ai";
-import { Dropdown, Input, Layout, MenuProps, Skeleton } from "antd";
+import { Dropdown, Input, MenuProps, Skeleton } from "antd";
 import { contentData } from "./constant";
 import { useDispatch, useSelector } from "react-redux";
 import { getCareer } from "src/redux/actions/careerAction";
 import ContentInnerCards from "../ContentInnerCard";
+import debounce from "lodash/debounce";
 import { Link } from "react-router-dom";
 import "./ContentCards.scss";
 
+let page = 1;
 const ContentCards = () => {
-  const { Content } = Layout;
   const [data, setData] = useState([...contentData]);
+
   const disptach = useDispatch<any>();
+
   useEffect(() => {
-    disptach(getCareer(1, 10));
-  }, []);
+    disptach(getCareer(page, 20));
+  }, [disptach]);
+
   const arr = [];
   for (let index = 0; index < 100; index++) {
     arr.push(index);
@@ -28,19 +32,33 @@ const ContentCards = () => {
     setData(temp);
   };
   const onChange = (value: any) => {
-    disptach(getCareer(1, 10, value));
+    disptach(getCareer(1, 100, value));
   };
 
-  const { career = [], loader = false } = useSelector(
-    (store: any) => store.career
-  );
+  const {
+    career = [],
+    loader = false,
+    totalPage = 0,
+  } = useSelector((store: any) => store.career);
+
+  window.onscroll = debounce((e) => {
+    if (
+      document.documentElement.scrollHeight -
+        document.documentElement.scrollTop ===
+        document.documentElement.clientHeight &&
+      totalPage >= page
+    ) {
+      page++;
+      disptach(getCareer(page));
+    }
+  }, 1000);
 
   const items: MenuProps["items"] = [
     {
       key: "1",
       label: (
         <Link rel="noopener noreferrer" to="#">
-          1st menu item
+          ACS
         </Link>
       ),
     },
@@ -48,15 +66,7 @@ const ContentCards = () => {
       key: "2",
       label: (
         <Link rel="noopener noreferrer" to="#">
-          2nd menu item
-        </Link>
-      ),
-    },
-    {
-      key: "3",
-      label: (
-        <Link rel="noopener noreferrer" to="#">
-          3rd menu item
+          DESC
         </Link>
       ),
     },
@@ -89,30 +99,33 @@ const ContentCards = () => {
         </Col>
       </Row>
       <ul className="grid ps-0 pb-5 justify-content-center">
+        {career.map((item: any, index: any) => (
+          // <Col
+          //   key={index}
+          //   className="mb-4 card-col d-flex flex-wrap justify-content-lg-start justify-content-center justify-content-md-center"
+          // >
+          <li className="item">
+            <ContentInnerCards
+              item={item}
+              index={index}
+              image={item?.attributes?.image}
+              onArrayChange={onArrayChange}
+            />
+          </li>
+          // </Col>
+        ))}
         {loader &&
-          [1, 2, 3, 4, 5, 6, 7, 8].map((index) => (
-            <li className="item mb-4" key={index}>
-              <Skeleton.Node active={loader}>
-                <DotChartOutlined style={{ fontSize: 100, color: "#bfbfbf" }} />
-              </Skeleton.Node>
-            </li>
-          ))}
-        {!loader &&
-          career.map((item: any, index: any) => (
-            // <Col
-            //   key={index}
-            //   className="mb-4 card-col d-flex flex-wrap justify-content-lg-start justify-content-center justify-content-md-center"
-            // >
-            <li className="item">
-              <ContentInnerCards
-                item={item}
-                index={index}
-                image={item?.attributes?.image}
-                onArrayChange={onArrayChange}
-              />
-            </li>
-            // </Col>
-          ))}
+          [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(
+            (index) => (
+              <li className="item mb-4" key={index}>
+                <Skeleton.Node active={loader}>
+                  <DotChartOutlined
+                    style={{ fontSize: 100, color: "#bfbfbf" }}
+                  />
+                </Skeleton.Node>
+              </li>
+            )
+          )}
       </ul>
     </Container>
   );

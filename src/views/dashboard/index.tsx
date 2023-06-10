@@ -19,9 +19,11 @@ interface DataType {
 function Dashboard() {
   const [search, setSearch] = useState("");
   const disptch = useDispatch<any>();
+
   useEffect(() => {
     disptch(getCareer());
-  }, []);
+  }, [disptch]);
+
   const { confirm } = Modal;
   const showPromiseConfirm = (id: any) => {
     confirm({
