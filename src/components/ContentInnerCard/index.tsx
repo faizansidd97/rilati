@@ -119,7 +119,7 @@ const ContentInnerCards = ({
             />
           </div>
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
-            <h3>😞 Stress </h3>
+            <h3>😞 Work Load </h3>
             <ProgressBar
               color="#ffffff36"
               now={progress.cost}
@@ -146,7 +146,7 @@ const ContentInnerCards = ({
             />
           </div>
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
-            <h3>👮 Satisfaction</h3>
+            <h3>👮 Job Satisfaction</h3>
             <ProgressBar
               color="#ffffff36"
               now={progress.saftey}

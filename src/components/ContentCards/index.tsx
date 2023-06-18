@@ -8,17 +8,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCareer } from "src/redux/actions/careerAction";
 import ContentInnerCards from "../ContentInnerCard";
 import debounce from "lodash/debounce";
-import { Link } from "react-router-dom";
 import "./ContentCards.scss";
 
 let page = 1;
 const ContentCards = () => {
   const [data, setData] = useState([...contentData]);
+  const [career, setCareer]: any = useState([]);
 
   const disptach = useDispatch<any>();
 
   useEffect(() => {
-    disptach(getCareer(page, 20));
+    disptach(getCareer({ page, take: 20 }));
   }, [disptach]);
 
   const arr = [];
@@ -32,11 +32,13 @@ const ContentCards = () => {
     setData(temp);
   };
   const onChange = (value: any) => {
-    disptach(getCareer(1, 100, value));
+    page = 1;
+    setCareer([]);
+    disptach(getCareer({ title: value, page: 1, take: 20 }));
   };
 
   const {
-    career = [],
+    career: careerData = [],
     loader = false,
     totalPage = 0,
   } = useSelector((store: any) => store.career);
@@ -49,37 +51,76 @@ const ContentCards = () => {
       totalPage >= page
     ) {
       page++;
-      disptach(getCareer(page));
+      disptach(getCareer({ page, take: 20 }));
     }
   }, 1000);
+
+  const onFilterChange = (params: object) => {
+    setCareer([]);
+    page = 1;
+    disptach(getCareer({ ...params, page: 1, take: 200 }));
+  };
+
+  useEffect(() => {
+    setCareer([...career, ...careerData]);
+  }, [careerData]);
 
   const items: MenuProps["items"] = [
     {
       key: "1",
       label: (
-        <Link rel="noopener noreferrer" to="#">
-          ACS
-        </Link>
+        <span onClick={() => onFilterChange({ sort_by: "ASC" })}>
+          Title ACS
+        </span>
       ),
     },
     {
       key: "2",
       label: (
-        <Link rel="noopener noreferrer" to="#">
-          DESC
-        </Link>
+        <span onClick={() => onFilterChange({ sort_by: "DESC" })}>
+          Title DESC
+        </span>
+      ),
+    },
+    {
+      key: "3",
+      label: (
+        <span onClick={() => onFilterChange({ years_needed: "YES" })}>
+          Year Needed
+        </span>
+      ),
+    },
+    {
+      key: "4",
+      label: (
+        <span onClick={() => onFilterChange({ admission_rank: "YES" })}>
+          Admission Rank
+        </span>
       ),
     },
   ];
   return (
     <Container className="content-card mb-3 px-0 " fluid>
-      <Row className="px-3">
+      <Row className="px-md-3 px-0 m-0">
         <Col
           md={12}
           className="d-flex align-items-center  flex-wrap justify-content-end justify-content-md-between my-3"
         >
-          <div className="button-wrapper d-flex align-items-center flex-wrap flex-row ">
-            <Button className="btn btn-primary custom">Filters</Button>
+          <div className="button-wrapper d-flex align-items-center flex-wrap flex-md-row ">
+            <div className="d-md-block d-flex justify-content-between ">
+              <Button className="btn btn-primary me-2 custom">Filters</Button>
+              <div className="d-md-none d-block">
+                <Dropdown
+                  menu={{ items }}
+                  placement="bottomRight"
+                  className="my-0 my-md-0 d-md-none d-block"
+                >
+                  <Button className="btn-secondary d-md-none d-block sort-by">
+                    Sory By
+                  </Button>
+                </Dropdown>
+              </div>
+            </div>
             <Input
               placeholder="Search or filter"
               prefix={<AiFillPlusCircle size={25} color="#ff4742" />}

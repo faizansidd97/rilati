@@ -116,7 +116,7 @@
         h3 {
           color: #fff;
           flex: 1;
-          font-size: 16px;
+          font-size: 14px;
           text-shadow: 1px 0px 8px #000000cf;
           margin: 0;
         }
@@ -177,13 +177,17 @@
       width: 100% !important;
       margin: 0 20px;
     }
+    .sort-by {
+      width: auto !important;
+    }
     .search-input {
       width: 100% !important;
       margin-left: 0px;
     }
     .custom {
       margin-bottom: 15px;
-      // width: 100% !important;
+      width: 100% !important;
+      font-size: 16px !important;
     }
   }
 }

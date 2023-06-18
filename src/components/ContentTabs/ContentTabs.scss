@@ -50,6 +50,18 @@
       }
     }
   }
+  .ant-tabs-tab {
+    background-color: transparent !important;
+    border: none !important;
+  }
+  .ant-tabs-tab-btn {
+    color: #000;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .ant-tabs-nav-wrap {
+    background-color: #f7f7f7;
+  }
 }
 
 @media (max-width: 768px) {

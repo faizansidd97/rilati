@@ -48,7 +48,7 @@ function Dashboard() {
     });
   };
   const onChange = (value: any) => {
-    disptch(getCareer(1, 10, value));
+    disptch(getCareer({ value }));
   };
   const columns: ColumnsType<DataType> = [
     {

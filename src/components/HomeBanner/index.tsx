@@ -8,11 +8,12 @@ const HomeBanner = () => {
   const { isDark = false } = useSelector((store: any) => store.theme);
   return (
     <div
-      className="home-banner position-relative "
+      className="home-banner position-relative d-flex align-items-center"
       style={{ backgroundImage: `url("${thumbnail1}")` }}
     >
+      {/*
       <div className="home-banner__background-video">
-        {/* <video
+         <video
           preload="true"
           autoPlay
           loop
@@ -24,10 +25,14 @@ const HomeBanner = () => {
           <source src="./bgVideo.mp4" type="video/mp4" />
           <source src="./bgVideo.ogg" type="video/ogg" />
           Your browser does not support HTML video.
-        </video> */}
+        </video>
       </div>
-      <Container className="h-100 d-flex justify-content-center" fluid>
-        <Row className="align-self-center w-100">
+         */}
+      <Container
+        className="h-100 d-flex justify-content-center align-self-center"
+        fluid
+      >
+        <Row className="align-self-center w-100  align-items-center ">
           <Col sm={12} md={6} lg={6}>
             <div className="d-flex flex-column justify-content-end h-100">
               <h1 className="title">🌍 Rilati</h1>
@@ -118,7 +123,7 @@ const HomeBanner = () => {
             sm={12}
             md={6}
             lg={6}
-            className="d-flex justify-content-center justify-content-md-end mb-4 mb-md-0"
+            className="d-md-flex d-none justify-content-center justify-content-md-end mb-4 mb-md-0"
           >
             <div className="subcription__form_wrapper d-flex flex-column align-items-center mb-4">
               {/* <img src={thumbnail} className="w-100" /> */}

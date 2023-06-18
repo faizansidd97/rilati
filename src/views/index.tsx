@@ -14,7 +14,7 @@ function Views() {
   const { isDark = false } = useSelector((store: any) => store.theme);
   return (
     <Suspense fallback={""}>
-      <Button className="theme-switcher">
+      <Button className="theme-switcher d-none d-md-block">
         <FaSun
           size={20}
           onClick={() => dispatch(themeSwitcher(false))}
