@@ -10,6 +10,7 @@ const initialState: UniState = {
   loader: false,
   uni: [],
   uniById: {},
+  metaData: {},
 };
 
 const uniReducer = (state = initialState, action: any) => {
@@ -22,7 +23,8 @@ const uniReducer = (state = initialState, action: any) => {
 
     case UNI_SUCCESS: {
       return Object.assign({}, state, {
-        uni: action.payload,
+        uni: action.payload?.data,
+        metaData: action.payload,
         loader: false,
       });
     }

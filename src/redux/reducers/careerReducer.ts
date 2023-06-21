@@ -14,6 +14,7 @@ const initialState: CareerState = {
   career: [],
   careerById: {},
   totaPage: 1,
+  metaData: {},
 };
 
 const careerReducer = (state = initialState, action: any) => {
@@ -29,6 +30,7 @@ const careerReducer = (state = initialState, action: any) => {
         career: [...action.payload?.data],
         // career: [...state?.career, ...action.payload?.data],
         totalPage: action.payload.meta?.lastPage,
+        metaData: action.payload.meta,
         loader: false,
       });
     }

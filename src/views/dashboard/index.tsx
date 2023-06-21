@@ -48,7 +48,7 @@ function Dashboard() {
     });
   };
   const onChange = (value: any) => {
-    disptch(getCareer({ value }));
+    disptch(getCareer({ title: value }));
   };
   const columns: ColumnsType<DataType> = [
     {
@@ -108,10 +108,15 @@ function Dashboard() {
     },
   ];
 
-  const { career = [], loader = false } = useSelector(
-    (store: any) => store.career
-  );
+  const {
+    career = [],
+    loader = false,
+    metaData = {},
+  } = useSelector((store: any) => store.career);
 
+  const callback = (params: any) => {
+    disptch(getCareer(params));
+  };
   return (
     <div className="overflow-auto">
       <div className="d-flex justify-content-between align-items-center mb-3">
@@ -125,7 +130,16 @@ function Dashboard() {
           Add new
         </Link>
       </div>
-      <GridView data={career} columns={columns} loading={loader} />
+      <GridView
+        data={career}
+        columns={columns}
+        loading={loader}
+        listingCallback={callback}
+        pagination={{
+          total: metaData?.totalCount,
+          currentPage: metaData?.currentPage,
+        }}
+      />
     </div>
   );
 }

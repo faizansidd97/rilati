@@ -5,6 +5,7 @@ import UniReducer from "./uniReducer";
 import MediaReducer from "./mediaReducer";
 import CategoryReducer from "./categoryReducer";
 import ThemeReducer from "./themeReducers";
+import MailReducers from "./mailReducers";
 import { AuthState } from "./Modules/auth";
 import { CareerState } from "./Modules/career";
 import { UniState } from "./Modules/uni";
@@ -12,7 +13,6 @@ import { MediaState } from "./Modules/media";
 import { CategoryState } from "./Modules/category";
 import { ThemeState } from "./Modules/theme";
 import { MailState } from "./Modules/mail";
-import MailReducers from "./mailReducers";
 
 interface CombineReducers {
   auth: AuthState;

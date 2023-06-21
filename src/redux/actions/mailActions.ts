@@ -18,3 +18,23 @@ export const senMail = (body: any) => (dispatch: any) => {
       });
   });
 };
+
+export const getMails = () => (dispatch: any) => {
+  return new Promise((resolve, rejects) => {
+    dispatch({ type: MAIL_REQUEST });
+    httpService
+      .get(`/send-mail`)
+      .then((res) => {
+        const {
+          data: { data },
+        }: any = res;
+        console.log("data", data);
+        resolve(data);
+        dispatch({ type: MAIL_SUCCESS, payload: data });
+      })
+      .catch((err) => {
+        rejects(err);
+        dispatch({ type: MAIL_ERROR });
+      });
+  });
+};

@@ -122,10 +122,18 @@ function University() {
   ];
 
   const onChange = (value: any) => {
-    disptch(getUni(1, 10, value));
+    disptch(getUni({ name: value }));
   };
 
-  const { uni = [], loader = false } = useSelector((store: any) => store.uni);
+  const {
+    uni = [],
+    loader = false,
+    metaData = {},
+  } = useSelector((store: any) => store.uni);
+
+  const callback = (params: any) => {
+    disptch(getUni(params));
+  };
   return (
     <div className="overflow-auto">
       <div className="d-flex justify-content-between align-items-center mb-3">
@@ -139,7 +147,16 @@ function University() {
           Add new
         </Link>
       </div>
-      <GridView data={uni} columns={columns} loading={loader} />
+      <GridView
+        data={uni}
+        columns={columns}
+        loading={loader}
+        listingCallback={callback}
+        pagination={{
+          total: metaData?.totalCount,
+          currentPage: metaData?.currentPage,
+        }}
+      />
     </div>
   );
 }

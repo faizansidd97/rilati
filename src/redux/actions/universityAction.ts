@@ -12,25 +12,20 @@ import {
 } from "src/constant/Types";
 import { httpService } from "src/network/axiosAgent";
 
-export const getUni =
-  (page = 1, take = 10, name?: string) =>
-  (dispatch: any) => {
-    dispatch({ type: UNI_REQUEST });
-    httpService
-      .get(
-        `/university?page=${page}&take=${take}${name ? `&name=${name}` : ""}`
-      )
-      .then((res) => {
-        const {
-          data: { data },
-        }: any = res;
+export const getUni = (params?: any) => (dispatch: any) => {
+  dispatch({ type: UNI_REQUEST });
+  httpService
+    .get(`/university`, { params })
+    .then((res) => {
+      const { data }: any = res;
+      console.log("res........", res);
 
-        dispatch({ type: UNI_SUCCESS, payload: data });
-      })
-      .catch((err) => {
-        dispatch({ type: UNI_ERROR });
-      });
-  };
+      dispatch({ type: UNI_SUCCESS, payload: data });
+    })
+    .catch((err) => {
+      dispatch({ type: UNI_ERROR });
+    });
+};
 export const getUniById = (id: any) => (dispatch: any) => {
   dispatch({ type: UNI_REQUEST });
   getUnibyIdApi(id)

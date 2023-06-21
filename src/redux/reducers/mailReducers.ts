@@ -1,8 +1,4 @@
-import {
-  MEDIA_REQUEST,
-  MEDIA_SUCCESS,
-  MEDIA_ERROR,
-} from "../../constant/Types";
+import { MAIL_REQUEST, MAIL_SUCCESS, MAIL_ERROR } from "../../constant/Types";
 import { MailState } from "./Modules/mail";
 
 const initialState: MailState = {
@@ -12,20 +8,21 @@ const initialState: MailState = {
 
 const mailReducers = (state = initialState, action: any) => {
   switch (action.type) {
-    case MEDIA_REQUEST: {
+    case MAIL_REQUEST: {
       return Object.assign({}, state, {
         loader: true,
       });
     }
 
-    case MEDIA_SUCCESS: {
+    case MAIL_SUCCESS: {
+      console.log(action.payload);
       return Object.assign({}, state, {
         mail: action.payload,
         loader: false,
       });
     }
 
-    case MEDIA_ERROR: {
+    case MAIL_ERROR: {
       return Object.assign({}, state, {
         loader: false,
       });
