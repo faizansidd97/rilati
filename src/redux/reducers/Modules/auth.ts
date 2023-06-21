@@ -1,6 +1,7 @@
 export interface AuthState {
   isLogin: boolean;
   user: any | null;
+  attempt: number;
   loginLoader: boolean;
   signLoader: boolean;
   forgotLoading: boolean;

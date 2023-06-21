@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
 import logo from "../../../assets/images/mainLogo.png";
@@ -9,12 +10,38 @@ import "./login.scss";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const [seconds, setSeconds] = useState(180);
   const onFinish = (values: any) => {
     dispatch(login(values));
   };
+  const { loginLoader, attempt = 0 } = useSelector(
+    (storeState: any) => storeState.auth
+  );
   const { isDark = false } = useSelector((store: any) => store.theme);
+  useEffect(() => {
+    let timer: any = null;
+    if (attempt >= 3) {
+      timer = setInterval(() => {
+        setSeconds((prevSeconds) => prevSeconds - 1);
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [attempt]);
 
-  const { loginLoader } = useSelector((storeState: any) => storeState.auth);
+  const formatTime = (time: any) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+
+    const formattedMinutes = minutes.toString().padStart(2, "0");
+    const formattedSeconds = seconds.toString().padStart(2, "0");
+
+    return `${formattedMinutes}:${formattedSeconds}`;
+  };
+  const isTimerFinished = seconds === 0;
+
+  if (isTimerFinished) {
+    window.location.reload();
+  }
   return (
     <section
       className="login-screen d-flex justify-content-center align-items-center"
@@ -49,58 +76,67 @@ const Login = () => {
             ></path>
           </svg> */}
           <img src={logo} className="login-logo" alt="logo" />
-          <Form
-            name="normal_login"
-            className="login-form"
-            initialValues={{ remember: true }}
-            onFinish={onFinish}
-          >
-            <Form.Item
-              name="email"
-              rules={[
-                { required: true, message: "Please input your Username!" },
-              ]}
+          {attempt > 3 ? (
+            <div>
+              <h4 className="text-center">Maximum login attempts exceeded!</h4>
+              <h5 className="text-center text-danger">
+                wait till {formatTime(seconds)}
+              </h5>
+            </div>
+          ) : (
+            <Form
+              name="normal_login"
+              className="login-form"
+              initialValues={{ remember: true }}
+              onFinish={onFinish}
             >
-              <Input
-                prefix={<UserOutlined className="site-form-item-icon" />}
-                placeholder="Email"
-              />
-            </Form.Item>
-            <Form.Item
-              name="password"
-              rules={[
-                { required: true, message: "Please input your Password!" },
-              ]}
-            >
-              <Input
-                prefix={<LockOutlined className="site-form-item-icon" />}
-                type="password"
-                placeholder="Password"
-              />
-            </Form.Item>
-            <Form.Item>
-              <div className="d-flex justify-content-between">
-                <Form.Item name="remember" valuePropName="checked" noStyle>
-                  <Checkbox>Remember me</Checkbox>
-                </Form.Item>
-
-                <Link to="/forgor-email" className="login-form-forgot">
-                  Forgot password
-                </Link>
-              </div>
-            </Form.Item>
-
-            <Form.Item className="text-center">
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="login-form-button w-100"
-                loading={loginLoader}
+              <Form.Item
+                name="email"
+                rules={[
+                  { required: true, message: "Please input your Username!" },
+                ]}
               >
-                Log in
-              </Button>
-            </Form.Item>
-          </Form>
+                <Input
+                  prefix={<UserOutlined className="site-form-item-icon" />}
+                  placeholder="Email"
+                />
+              </Form.Item>
+              <Form.Item
+                name="password"
+                rules={[
+                  { required: true, message: "Please input your Password!" },
+                ]}
+              >
+                <Input
+                  prefix={<LockOutlined className="site-form-item-icon" />}
+                  type="password"
+                  placeholder="Password"
+                />
+              </Form.Item>
+              <Form.Item>
+                <div className="d-flex justify-content-between">
+                  <Form.Item name="remember" valuePropName="checked" noStyle>
+                    <Checkbox>Remember me</Checkbox>
+                  </Form.Item>
+
+                  <Link to="/forgor-email" className="login-form-forgot">
+                    Forgot password
+                  </Link>
+                </div>
+              </Form.Item>
+
+              <Form.Item className="text-center">
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className="login-form-button w-100"
+                  loading={loginLoader}
+                >
+                  Log in
+                </Button>
+              </Form.Item>
+            </Form>
+          )}
         </div>
       </div>
     </section>

@@ -11,6 +11,8 @@ import { UniState } from "./Modules/uni";
 import { MediaState } from "./Modules/media";
 import { CategoryState } from "./Modules/category";
 import { ThemeState } from "./Modules/theme";
+import { MailState } from "./Modules/mail";
+import MailReducers from "./mailReducers";
 
 interface CombineReducers {
   auth: AuthState;
@@ -19,6 +21,7 @@ interface CombineReducers {
   media: MediaState;
   category: CategoryState;
   theme: ThemeState;
+  mail: MailState;
 }
 export default combineReducers<CombineReducers>({
   auth: AuthReducer,
@@ -27,6 +30,7 @@ export default combineReducers<CombineReducers>({
   media: MediaReducer,
   category: CategoryReducer,
   theme: ThemeReducer,
+  mail: MailReducers,
 });
 
 // export default AuthReducer;

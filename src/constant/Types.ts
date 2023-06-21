@@ -26,6 +26,10 @@ export const MEDIA_REQUEST = "MEDIA_REQUEST";
 export const MEDIA_SUCCESS = "MEDIA_SUCCESS";
 export const MEDIA_ERROR = "MEDIA_ERROR";
 
+export const MAIL_REQUEST = "MAIL_REQUEST";
+export const MAIL_SUCCESS = "MAIL_SUCCESS";
+export const MAIL_ERROR = "MAIL_ERROR";
+
 export const THEME_REQUEST = "THEME_REQUEST";
 
 export const DELETE_SUCCESS = "DELETE_SUCCESS";

@@ -5,8 +5,13 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/mainLogo.png";
 import "./header.scss";
+import { senMail } from "src/redux/actions/mailActions";
+import { useDispatch } from "react-redux";
+import { useForm } from "antd/es/form/Form";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const [form] = useForm();
   const [toggle, setToggle] = useState(false);
   const toggleMenu = () => {
     setToggle(!toggle);
@@ -55,6 +60,10 @@ const Header = () => {
       ),
     },
   ];
+  const onFinish = (value: any) => {
+    dispatch(senMail(value));
+  };
+  // const {}
   return (
     <header className="header">
       <Dropdown menu={{ items }} trigger={["click"]}>
@@ -70,15 +79,17 @@ const Header = () => {
         onCancel={handleCancel}
         footer={false}
       >
-        <Form>
-          <Form.Item>
+        <Form onFinish={onFinish} form={form}>
+          <Form.Item name="email" rules={[{ type: "email", required: true }]}>
             <Input placeholder="Enter your email" />
           </Form.Item>
-          <Form.Item>
+          <Form.Item name="description" rules={[{ required: true }]}>
             <Input.TextArea rows={9} placeholder="Add your notes here" />
           </Form.Item>
           <Form.Item>
-            <Button className="btn btn-primary">Submit</Button>
+            <Button htmlType="submit" className="btn btn-primary">
+              Submit
+            </Button>
           </Form.Item>
         </Form>
       </Modal>

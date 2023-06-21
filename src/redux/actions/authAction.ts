@@ -17,7 +17,7 @@ export const logoutRequest = () => (dispatch: any) => {
   localStorage.removeItem(Environment.LOCAL_STORAGE_USER_KEY);
   dispatch({ type: LOGOUT_SUCCESS });
 };
-
+let attempt = 0;
 export const login = (body: any) => (dispatch: any) => {
   dispatch({ type: LOGIN_REQUEST });
   loginApi(body)
@@ -35,5 +35,6 @@ export const login = (body: any) => (dispatch: any) => {
     .catch((err) => {
       // message.error("Login Failed Unauthorized");
       dispatch({ type: LOGIN_ERROR });
+      localStorage.setItem("attempt", `${++attempt}`);
     });
 };

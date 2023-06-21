@@ -110,7 +110,7 @@ const ContentInnerCards = ({
           key={index}
         >
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
-            <h3>🏆 Skills</h3>
+            <h3>🌟 Expertise</h3>
             <ProgressBar
               color="#ffffff36"
               now={progress.over}

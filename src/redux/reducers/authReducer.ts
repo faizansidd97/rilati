@@ -10,6 +10,7 @@ import { AuthState } from "./Modules/auth";
 const initialState: AuthState = {
   isLogin: false,
   user: null,
+  attempt: 0,
   loginLoader: false,
   signLoader: false,
   forgotLoading: false,
@@ -37,6 +38,7 @@ const authReducer = (state = initialState, action: any) => {
       return Object.assign({}, state, {
         loginLoader: true,
         isLogin: false,
+        attempt: state.attempt + 1,
       });
     }
 
