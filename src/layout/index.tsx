@@ -13,15 +13,11 @@ import AddEditCareer from "src/views/dashboard/AddEditCareer";
 import University from "src/views/dashboard/University";
 import AddEditUni from "src/views/dashboard/University/AddEditUni";
 import Category from "src/views/dashboard/Category/Category";
-import Mail from "src/views/dashboard/Mail";
 
 const Layout = () => {
   const { isLogin = false } = useSelector((storeState: any) => storeState.auth);
   const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
   const loginUser = getUser ? JSON.parse(getUser) : null;
-  const RoutePaths = {
-    LOGIN: "/bG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQgbG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQgbG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQg"
-  };
 
   return (
     <Routes>
@@ -32,7 +28,6 @@ const Layout = () => {
           <Route path="university/" element={<University />} />
           <Route path="university/:id" element={<AddEditUni />} />
           <Route path="category" element={<Category />} />
-          <Route path="mails" element={<Mail />} />
           {/* <Route path="category/:id" element={<AddEditUni />} /> */}
         </Route>
       ) : (
@@ -43,7 +38,7 @@ const Layout = () => {
 
           <Route path="" element={<AuthLayout />}>
             <Route
-              path={RoutePaths.LOGIN}
+              path="bG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQgbG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQgbG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQg"
               element={<Login />}
             />
             <Route path="forgor-email" element={<ForgotEmail />} />
