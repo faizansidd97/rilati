@@ -19,6 +19,9 @@ const Layout = () => {
   const { isLogin = false } = useSelector((storeState: any) => storeState.auth);
   const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
   const loginUser = getUser ? JSON.parse(getUser) : null;
+  const RoutePaths = {
+    LOGIN: "/bG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQgbG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQgbG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQg"
+  };
 
   return (
     <Routes>
@@ -40,7 +43,7 @@ const Layout = () => {
 
           <Route path="" element={<AuthLayout />}>
             <Route
-              path="bG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQgbG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQgbG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQg"
+              path={RoutePaths.LOGIN}
               element={<Login />}
             />
             <Route path="forgor-email" element={<ForgotEmail />} />
