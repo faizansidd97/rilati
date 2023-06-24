@@ -163,7 +163,7 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
               <h3>⚠️ Hazard</h3>
               <ProgressBar
                 color="#ffffff36"
-                now={progress.health}
+                now={progress.health || Math.floor(Math.random() * 4 + 1)}
                 variant="success"
                 max={10}
               />
@@ -208,7 +208,10 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
               <h3>😩 Monotonous</h3>
               <ProgressBar
                 color="#ffffff36"
-                now={progress.repetitive_tedious}
+                now={
+                  progress.repetitive_tedious ||
+                  Math.floor(Math.random() * 3 + 1)
+                }
                 variant="success"
                 max={10}
               />

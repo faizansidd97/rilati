@@ -62,7 +62,6 @@ function AddEditCareer() {
   }, [category]);
 
   useEffect(() => {
-    form.setFieldsValue(careerById?.attributes);
     let edu = careerById?.attributes?.education_categories?.map((item: any) => {
       return { label: item?.attributes?.name, value: item?.id };
     });
@@ -71,6 +70,7 @@ function AddEditCareer() {
     });
     form.setFieldsValue({ education_category: edu, categories: career });
     setCareerImage(careerById?.attributes?.image);
+    form.setFieldsValue(careerById?.attributes);
   }, [careerById]);
 
   const callback = () => {
@@ -382,6 +382,7 @@ function AddEditCareer() {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                   options={option}
+                  showSearch
                 />
               </Form.Item>
             </Col>
@@ -400,6 +401,7 @@ function AddEditCareer() {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                   options={option}
+                  showSearch
                 />
               </Form.Item>
             </Col>
@@ -418,6 +420,7 @@ function AddEditCareer() {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                   options={option}
+                  showSearch
                 />
               </Form.Item>
             </Col>
@@ -436,6 +439,7 @@ function AddEditCareer() {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                   options={option}
+                  showSearch
                 />
               </Form.Item>
             </Col>
@@ -454,6 +458,7 @@ function AddEditCareer() {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                   options={option}
+                  showSearch
                 />
               </Form.Item>
             </Col>
@@ -472,6 +477,7 @@ function AddEditCareer() {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                   options={option}
+                  showSearch
                 />
               </Form.Item>
             </Col>
@@ -490,6 +496,7 @@ function AddEditCareer() {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                   options={option}
+                  showSearch
                 />
               </Form.Item>
             </Col>
@@ -508,6 +515,7 @@ function AddEditCareer() {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                   options={option}
+                  showSearch
                 />
               </Form.Item>
             </Col>
@@ -526,6 +534,7 @@ function AddEditCareer() {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                   options={option}
+                  showSearch
                 />
               </Form.Item>
             </Col>
@@ -544,6 +553,7 @@ function AddEditCareer() {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                   options={option}
+                  showSearch
                 />
               </Form.Item>
             </Col>
@@ -562,6 +572,7 @@ function AddEditCareer() {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                   options={option}
+                  showSearch
                 />
               </Form.Item>
             </Col>
@@ -580,6 +591,7 @@ function AddEditCareer() {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                   options={option}
+                  showSearch
                 />
               </Form.Item>
             </Col>
@@ -598,6 +610,7 @@ function AddEditCareer() {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                   options={option}
+                  showSearch
                 />
               </Form.Item>
             </Col>
@@ -616,6 +629,7 @@ function AddEditCareer() {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                   options={option}
+                  showSearch
                 />
               </Form.Item>
             </Col>
@@ -634,6 +648,7 @@ function AddEditCareer() {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                   options={option}
+                  showSearch
                 />
               </Form.Item>
             </Col>
@@ -652,6 +667,7 @@ function AddEditCareer() {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                   options={option}
+                  showSearch
                 />
               </Form.Item>
             </Col>
@@ -670,6 +686,7 @@ function AddEditCareer() {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                   options={option}
+                  showSearch
                 />
               </Form.Item>
             </Col>
@@ -688,6 +705,7 @@ function AddEditCareer() {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                   options={option}
+                  showSearch
                 />
               </Form.Item>
             </Col>
