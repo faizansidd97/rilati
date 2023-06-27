@@ -51,11 +51,15 @@ const ContentInnerCards = ({
           saftey: item?.attributes?.job_satisfaction,
           status: item?.attributes?.status_in_company,
           team: item?.attributes?.team_reliance,
-          health: item?.attributes?.risk_to_health,
+          health:
+            item?.attributes?.risk_to_health ||
+            Math.floor(Math.random() * 4 + 1),
           precision_work: item?.attributes?.precision_work,
           work_hours: item?.attributes?.work_hours,
           job_enviroment: item?.attributes?.job_help_environment,
-          repetitive_tedious: item?.attributes?.repetitive_tedious,
+          repetitive_tedious:
+            item?.attributes?.repetitive_tedious ||
+            Math.floor(Math.random() * 3 + 1),
         });
       }}
       onMouseLeave={() =>
@@ -80,9 +84,7 @@ const ContentInnerCards = ({
         <h2>{index + 1}</h2>
       </div>
       <div className="content-card__wrapper__info d-flex justify-content-center align-items-center flex-column">
-        <h3 className="text-center">
-          {stringLimt(item?.attributes?.title, 50)}
-        </h3>
+        <h3 className="text-center">{item?.attributes?.title}</h3>
         {/* <p>{stringLimt(item?.attributes?.career_category, 18)}</p> */}
       </div>
       <div className="content-card__wrapper__pricing d-flex justify-content-between p-2">
@@ -90,7 +92,7 @@ const ContentInnerCards = ({
           <h2>{item?.attributes?.years_needed}</h2>
         </div> */}
         <div className="content-card__wrapper__pricing__price">
-          <h2>{stringLimt(item?.attributes?.average_salary_aud, 20)}/year</h2>
+          <h2>{item?.attributes?.average_salary_aud}/year</h2>
         </div>
       </div>
       <div className="mb-4 px-3 back p-3">

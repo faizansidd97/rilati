@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Form, Input, Row, Select, Spin } from "antd";
+import { Button, Col, Form, Input, Row, Select, Spin, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getCareerById } from "src/redux/actions/careerAction";
 import { useNavigate, useParams } from "react-router-dom";
@@ -73,7 +73,8 @@ function AddEditCareer() {
     form.setFieldsValue(careerById?.attributes);
   }, [careerById]);
 
-  const callback = () => {
+  const callback = (msg: string) => {
+    message.success(msg);
     navigate("/dashboard");
   };
   const onFinish = (values: any) => {
@@ -724,12 +725,17 @@ function AddEditCareer() {
                 <Input />
               </Form.Item>
             </Col>
-
+            <Col md={24} sm={24} xs={24} className="px-2">
+              <Form.Item name="youtube" label="Youtube Link">
+                <Input placeholder="Add your video link here" />
+              </Form.Item>
+            </Col>
             <Col md={24} sm={24} xs={24} className="px-2">
               <Form.Item name="job_description" label="Job Ddescription">
                 <Input.TextArea rows={4} />
               </Form.Item>
             </Col>
+
             <Col md={24} sm={24} xs={24} className="px-2">
               <Form.Item className="d-flex justify-content-end">
                 <Button

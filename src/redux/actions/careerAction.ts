@@ -11,6 +11,7 @@ import {
   CAREER_SUCCESS,
 } from "src/constant/Types";
 import { httpService } from "src/network/axiosAgent";
+import { message } from "antd";
 
 export const getCareer = (params?: any) => (dispatch: any) => {
   dispatch({ type: CAREER_REQUEST });
@@ -70,11 +71,14 @@ export const postCareer =
         const {
           data: { data },
         }: any = res;
+        console.log("res", res);
 
-        dispatch({ type: CAREER_SUCCESS, payload: data });
-        callback();
+        dispatch({ type: CAREER_SUCCESS });
+        callback("Career successfully added");
       })
       .catch((err) => {
+        console.log("err", err);
+
         dispatch({ type: CAREER_ERROR });
       });
   };
@@ -86,11 +90,12 @@ export const updateCareer =
         const {
           data: { data },
         }: any = res;
-
+        console.log("res", data);
         dispatch({ type: CAREER_SUCCESS, payload: data });
-        callback();
+        callback("Career successfully updated");
       })
       .catch((err) => {
+        message.error(err?.response?.data?.message);
         dispatch({ type: CAREER_ERROR });
       });
   };
