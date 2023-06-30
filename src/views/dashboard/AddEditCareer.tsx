@@ -43,13 +43,6 @@ function AddEditCareer() {
   );
 
   useEffect(() => {
-    const uniCategory =
-      category &&
-      category
-        ?.filter((items: any) => items?.attributes?.type === "UNIVERSITY")
-        ?.map((items: any) => {
-          return { label: items?.attributes?.name, value: items?.id };
-        });
     const careerCategory =
       category &&
       category
@@ -57,20 +50,28 @@ function AddEditCareer() {
         ?.map((items: any) => {
           return { label: items?.attributes?.name, value: items?.id };
         });
-    setUniCat(uniCategory);
+    const uniCategory =
+      category &&
+      category
+        ?.filter((items: any) => items?.attributes?.type === "UNIVERSITY")
+        ?.map((items: any) => {
+          return { label: items?.attributes?.name, value: items?.id };
+        });
     setCareerCat(careerCategory);
+    setUniCat(uniCategory);
   }, [category]);
 
   useEffect(() => {
-    let edu = careerById?.attributes?.education_categories?.map((item: any) => {
-      return { label: item?.attributes?.name, value: item?.id };
-    });
-    let career = careerById?.attributes?.categories?.map((item: any) => {
-      return { label: item?.attributes?.name, value: item?.id };
-    });
-    form.setFieldsValue({ education_category: edu, categories: career });
+    let edu = careerById?.attributes?.education_categories?.map(
+      (item: any) => item?.id
+    );
+    let career = careerById?.attributes?.categories?.map(
+      (item: any) => item?.id
+    );
+
     setCareerImage(careerById?.attributes?.image);
     form.setFieldsValue(careerById?.attributes);
+    form.setFieldsValue({ education_category: edu, categories: career });
   }, [careerById]);
 
   const callback = (msg: string) => {

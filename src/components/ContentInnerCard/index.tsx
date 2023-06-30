@@ -95,7 +95,7 @@ const ContentInnerCards = ({
           <h2>{item?.attributes?.average_salary_aud}/year</h2>
         </div>
       </div>
-      <div className="mb-4 px-3 back p-3">
+      <div className="mb-4 back py-3 px-2">
         <div className="back-header d-flex justify-content-between mb-3">
           <AiOutlineHeart className="heart-1" size={28} />
           <AiOutlineClose
@@ -112,7 +112,7 @@ const ContentInnerCards = ({
           key={index}
         >
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
-            <h3>🌟 Expertise</h3>
+            <h3>🌟 Professional Competencies</h3>
             <ProgressBar
               color="#ffffff36"
               now={progress.over}
@@ -121,7 +121,7 @@ const ContentInnerCards = ({
             />
           </div>
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
-            <h3>😞 Work Load </h3>
+            <h3>😫 Occupational Strain</h3>
             <ProgressBar
               color="#ffffff36"
               now={progress.cost}
@@ -130,7 +130,7 @@ const ContentInnerCards = ({
             />
           </div>
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
-            <h3>🤝 Help</h3>
+            <h3>🙌 Foster Motivation</h3>
             <ProgressBar
               color="#ffffff36"
               now={progress.internet}
@@ -139,7 +139,7 @@ const ContentInnerCards = ({
             />
           </div>
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
-            <h3>😀 Potential</h3>
+            <h3>🌠 Untapped Capacities</h3>
             <ProgressBar
               color="#ffffff36"
               now={progress.fun}
@@ -148,7 +148,7 @@ const ContentInnerCards = ({
             />
           </div>
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
-            <h3>👮 Job Satisfaction</h3>
+            <h3>😊 Career Fulfillment</h3>
             <ProgressBar
               color="#ffffff36"
               now={progress.saftey}

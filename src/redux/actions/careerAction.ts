@@ -5,6 +5,8 @@ import {
   updateCareerApi,
 } from "src/network/network";
 import {
+  CAREER_BYID_ERROR,
+  CAREER_BYID_REQUEST,
   CAREER_BYID_SUCCESS,
   CAREER_ERROR,
   CAREER_REQUEST,
@@ -84,19 +86,15 @@ export const postCareer =
   };
 export const updateCareer =
   (id: any, body: any, callback: Function) => (dispatch: any) => {
-    dispatch({ type: CAREER_REQUEST });
+    dispatch({ type: CAREER_BYID_REQUEST });
     updateCareerApi(id, body)
       .then((res) => {
-        const {
-          data: { data },
-        }: any = res;
-        console.log("res", data);
-        dispatch({ type: CAREER_SUCCESS, payload: data });
+        dispatch({ type: CAREER_BYID_SUCCESS });
         callback("Career successfully updated");
       })
       .catch((err) => {
         message.error(err?.response?.data?.message);
-        dispatch({ type: CAREER_ERROR });
+        dispatch({ type: CAREER_BYID_ERROR });
       });
   };
 export const deleteCareer = (id: any) => (dispatch: any) => {
