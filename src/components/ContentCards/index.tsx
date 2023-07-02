@@ -116,7 +116,7 @@ const ContentCards = () => {
                   className="my-0 my-md-0 d-md-none d-block"
                 >
                   <Button className="btn-secondary d-md-none d-block sort-by">
-                    Sory By
+                    Sort By
                   </Button>
                 </Dropdown>
               </div>

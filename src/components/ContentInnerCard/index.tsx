@@ -34,8 +34,10 @@ const ContentInnerCards = ({
     work_hours: 0,
     job_enviroment: 0,
     repetitive_tedious: 0,
+    people_interations: 0,
+    autonomy: 0,
   });
-
+  console.log(progress?.people_interations);
   return (
     <div
       className="content-card__wrapper d-flex flex-column gap-1 gap-md-3 justify-content-between position-relative"
@@ -44,11 +46,11 @@ const ContentInnerCards = ({
       onMouseEnter={() => {
         setProgress({
           ...progress,
-          cost: item?.attributes?.job_stress,
+          cost: item?.attributes?.admission_rank || 1,
           internet: item?.attributes?.job_help_people,
-          over: item?.attributes?.scope_of_skill,
+          over: item?.attributes?.work_life_balance,
           fun: item?.attributes?.potential,
-          saftey: item?.attributes?.job_satisfaction,
+          saftey: item?.attributes?.scope_of_skill,
           status: item?.attributes?.status_in_company,
           team: item?.attributes?.team_reliance,
           health:
@@ -60,6 +62,8 @@ const ContentInnerCards = ({
           repetitive_tedious:
             item?.attributes?.repetitive_tedious ||
             Math.floor(Math.random() * 3 + 1),
+          people_interations: item?.attributes?.people_interaction,
+          autonomy: item?.attributes?.autonomy,
         });
       }}
       onMouseLeave={() =>
@@ -77,6 +81,8 @@ const ContentInnerCards = ({
           work_hours: 0,
           job_enviroment: 0,
           repetitive_tedious: 0,
+          people_interations: 0,
+          autonomy: 0,
         })
       }
     >
@@ -112,7 +118,7 @@ const ContentInnerCards = ({
           key={index}
         >
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
-            <h3>🌟 Professional Competencies</h3>
+            <h3>⚖️ Life Balance</h3>
             <ProgressBar
               color="#ffffff36"
               now={progress.over}
@@ -121,25 +127,25 @@ const ContentInnerCards = ({
             />
           </div>
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
-            <h3>😫 Occupational Strain</h3>
+            <h3>🥇 ATAR</h3>
             <ProgressBar
               color="#ffffff36"
               now={progress.cost}
               variant="success"
-              max={10}
+              max={100}
             />
           </div>
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
-            <h3>🙌 Foster Motivation</h3>
+            <h3>🙌 Company Status</h3>
             <ProgressBar
               color="#ffffff36"
-              now={progress.internet}
+              now={progress.status}
               variant="success"
               max={10}
             />
           </div>
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
-            <h3>🌠 Untapped Capacities</h3>
+            <h3>🔀 Switch Potential</h3>
             <ProgressBar
               color="#ffffff36"
               now={progress.fun}
@@ -148,7 +154,7 @@ const ContentInnerCards = ({
             />
           </div>
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
-            <h3>😊 Career Fulfillment</h3>
+            <h3>🌐 Scope World wide</h3>
             <ProgressBar
               color="#ffffff36"
               now={progress.saftey}
