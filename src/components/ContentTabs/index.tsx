@@ -60,11 +60,15 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
               </p> */}
 
               <h6 className="mb-2 pb-0 text-left">Course Cost</h6>
-              <p className="text-left desc">{item?.attributes?.cost_course}</p>
+              <p className="text-left desc">${item?.attributes?.cost_course}</p>
               <h6 className="mb-2 pb-0 text-left">Internship Needed</h6>
-              <p className="text-left desc">
+              <p className="text-left desc mb-0">
                 {item?.attributes?.internship_needed}
               </p>
+              <span className="note">
+                {" "}
+                FT/PT = Full Time or Part Time in years
+              </span>
             </div>
           </Col>
         </Row>
@@ -182,7 +186,7 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-              <h3>👥 Collaborative Effortn</h3>
+              <h3>👥 Collaborative Effort</h3>
               <ProgressBar
                 color="#ffffff36"
                 now={progress.team}
@@ -240,6 +244,42 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
               <ProgressBar
                 color="#ffffff36"
                 now={progress.autonomy}
+                variant="success"
+                max={10}
+              />
+            </div>
+            <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+              <h3>👤 Life Risk</h3>
+              <ProgressBar
+                color="#ffffff36"
+                now={progress.life_risk}
+                variant="success"
+                max={10}
+              />
+            </div>
+            <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+              <h3>😞 Physical Stress</h3>
+              <ProgressBar
+                color="#ffffff36"
+                now={progress.physical_stress}
+                variant="success"
+                max={10}
+              />
+            </div>
+            <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+              <h3>😑 Mental Stress</h3>
+              <ProgressBar
+                color="#ffffff36"
+                now={progress.mental_stress}
+                variant="success"
+                max={10}
+              />
+            </div>
+            <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+              <h3>😓 Job Stress</h3>
+              <ProgressBar
+                color="#ffffff36"
+                now={progress.mental_stress}
                 variant="success"
                 max={10}
               />

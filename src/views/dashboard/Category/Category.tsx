@@ -67,9 +67,7 @@ function Category() {
     {
       title: "Name",
       render: (res: any) => (
-        <span title={res?.attributes?.name}>
-          {stringLimt(res?.attributes?.name, 20)}
-        </span>
+        <span title={res?.attributes?.name}>{res?.attributes?.name}</span>
       ),
     },
     {

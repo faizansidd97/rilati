@@ -194,7 +194,7 @@ function AddEditCareer() {
               </Form.Item>
             </Col>
 
-            <Col md={8} sm={12} xs={24} className="px-2">
+            <Col md={12} sm={12} xs={24} className="px-2">
               <Form.Item
                 name="average_salary"
                 label="Average Salary"
@@ -207,7 +207,7 @@ function AddEditCareer() {
                 <Input />
               </Form.Item>
             </Col>
-            <Col md={8} sm={12} xs={24} className="px-2">
+            <Col md={12} sm={12} xs={24} className="px-2">
               <Form.Item
                 name="average_salary_aud"
                 label="Average Salary Aud"
@@ -221,7 +221,7 @@ function AddEditCareer() {
               </Form.Item>
             </Col>
 
-            <Col md={8} sm={12} xs={24} className="px-2">
+            <Col md={12} sm={12} xs={24} className="px-2">
               <Form.Item
                 name="education_category"
                 className="flex-wrap mt-3"
@@ -241,9 +241,10 @@ function AddEditCareer() {
                 />
               </Form.Item>
             </Col>
-            <Col md={8} sm={12} xs={24} className="px-2">
+            <Col md={12} sm={12} xs={24} className="px-2">
               <Form.Item
                 name="categories"
+                className="flex-wrap mt-3"
                 label="Career Category"
                 rules={[
                   {
@@ -265,7 +266,7 @@ function AddEditCareer() {
                 />
               </Form.Item>
             </Col>
-            <Col md={8} sm={12} xs={24} className="px-2">
+            <Col md={24} sm={12} xs={24} className="px-2">
               <Form.Item
                 name="student_intrest"
                 label="Student Intrest"
@@ -275,7 +276,20 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <Input />
+                <Input.TextArea />
+              </Form.Item>
+            </Col>
+            <Col md={24} sm={12} xs={24} className="px-2">
+              <Form.Item
+                name="description_study"
+                label="Description Study"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Input.TextArea />
               </Form.Item>
             </Col>
             <Col md={8} sm={12} xs={24} className="px-2">
@@ -304,23 +318,11 @@ function AddEditCareer() {
                 <Input />
               </Form.Item>
             </Col>
-            <Col md={8} sm={12} xs={24} className="px-2">
-              <Form.Item
-                name="description_study"
-                label="Description Study"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
+
             <Col md={8} sm={12} xs={24} className="px-2">
               <Form.Item
                 name="admission_rank"
-                label="Admission Rank"
+                label="ATAR"
                 rules={[
                   {
                     required: true,

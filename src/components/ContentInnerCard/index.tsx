@@ -36,6 +36,11 @@ const ContentInnerCards = ({
     repetitive_tedious: 0,
     people_interations: 0,
     autonomy: 0,
+    life_risk: 0,
+    physical_stress: 0,
+    mental_stress: 0,
+    job_stress: 0,
+    job_satisfaction: 0,
   });
   console.log(progress?.people_interations);
   return (
@@ -64,6 +69,11 @@ const ContentInnerCards = ({
             Math.floor(Math.random() * 3 + 1),
           people_interations: item?.attributes?.people_interaction,
           autonomy: item?.attributes?.autonomy,
+          life_risk: item?.attributes?.risk_to_life,
+          physical_stress: item?.attributes?.physical_stress,
+          mental_stress: item?.attributes?.mental_stress,
+          job_stress: item?.attributes?.job_stress,
+          job_satisfaction: item?.attributes?.job_satisfaction,
         });
       }}
       onMouseLeave={() =>
@@ -83,6 +93,11 @@ const ContentInnerCards = ({
           repetitive_tedious: 0,
           people_interations: 0,
           autonomy: 0,
+          life_risk: 0,
+          physical_stress: 0,
+          mental_stress: 0,
+          job_stress: 0,
+          job_satisfaction: 0,
         })
       }
     >
