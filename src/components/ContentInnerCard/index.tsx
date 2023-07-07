@@ -105,7 +105,11 @@ const ContentInnerCards = ({
         <h2>{index + 1}</h2>
       </div>
       <div className="content-card__wrapper__info d-flex justify-content-center align-items-center flex-column">
-        <h3 className="text-center">{item?.attributes?.title}</h3>
+        <h3 className="text-center">
+          {item?.attributes?.title
+            ?.replace(36, "education")
+            ?.replace(37, "Health")}
+        </h3>
         {/* <p>{stringLimt(item?.attributes?.career_category, 18)}</p> */}
       </div>
       <div className="content-card__wrapper__pricing d-flex justify-content-between p-2">

@@ -157,16 +157,17 @@ function Category() {
             Search
           </Button>
         </div>
-        <div className="d-flex">
+        <div className="d-flex w-50">
           <Select
             size={"middle"}
-            placeholder="Please select"
+            placeholder="Please select type"
             // defaultValue={["a10", "c12"]}
             allowClear
             onChange={handleChange}
             style={{
               width: "100%",
             }}
+            className="me-3"
             options={options}
           />
           <Button

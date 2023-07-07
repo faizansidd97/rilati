@@ -64,8 +64,17 @@ function Dashboard() {
       title: "Category",
       // dataIndex: "name",
       render: (res: any) => (
-        <span title={res?.attributes?.title}>
-          {stringLimt(res?.attributes?.title, 20)}
+        <span
+          title={res?.attributes?.title
+            ?.replace(36, "education")
+            ?.replace(37, "Health ")}
+        >
+          {stringLimt(
+            res?.attributes?.title
+              ?.replace(36, "education")
+              ?.replace(37, "Health "),
+            20
+          )}
         </span>
       ),
     },
@@ -73,8 +82,17 @@ function Dashboard() {
       title: "Description",
       // dataIndex: "location",
       render: (res: any) => (
-        <span title={res?.attributes?.job_description}>
-          {stringLimt(res?.attributes?.job_description, 50)}
+        <span
+          title={res?.attributes?.job_description
+            ?.replace(36, "education")
+            ?.replace(37, "Health ")}
+        >
+          {stringLimt(
+            res?.attributes?.job_description
+              ?.replace(36, "education")
+              ?.replace(37, "Health"),
+            50
+          )}
         </span>
       ),
     },

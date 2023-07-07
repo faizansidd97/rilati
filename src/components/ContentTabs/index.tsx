@@ -32,11 +32,15 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
             <div className="px-2">
               <h6 className="mb-2 pb-0 text-left">Job Descriptions</h6>
               <p className="text-left desc">
-                {item?.attributes?.job_description}
+                {item?.attributes?.job_description
+                  ?.replace(36, "education")
+                  ?.replace(37, "Health ")}
               </p>
               <h6 className="mb-2 pb-0 text-left">Study Description</h6>
               <p className="text-left desc">
-                {item?.attributes?.description_study}
+                {item?.attributes?.description_study
+                  ?.replace(36, "education")
+                  ?.replace(37, "Health ")}
               </p>
               <h6 className="mb-2 pb-0 text-left">
                 Student Interest Ideal for this Career
@@ -111,8 +115,14 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
         className="content-tabs__header d-flex flex-column align-items-center justify-content-center "
         style={{ backgroundImage: `url("${image ? image : careerImage}")` }}
       >
-        <h3 className="text-center m-0">{item?.attributes?.title}</h3>
-        <p className="text-center m-0">{cat}</p>
+        <h3 className="text-center m-0">
+          {item?.attributes?.title
+            ?.replace(36, "education")
+            ?.replace(37, "Health ")}
+        </h3>
+        <p className="text-center m-0">
+          {cat?.replace(36, "education")?.replace(37, "Health ")}
+        </p>
         {/* <p className="text-center desc">
           {stringLimt(item?.attributes?.job_description, 400)}
         </p> */}
@@ -137,7 +147,7 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
                 color="#ffffff36"
                 now={progress.cost}
                 variant="success"
-                max={10}
+                max={100}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
