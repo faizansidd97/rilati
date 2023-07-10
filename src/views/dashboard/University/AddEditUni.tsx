@@ -46,7 +46,14 @@ function AddEditUni() {
     (store: any) => store.category
   );
   useEffect(() => {
+    const cat_ids = uniById?.attributes?.category?.map((items: any) => {
+      return { checked: items?.id };
+    });
+    console.log("cat_ids", cat_ids);
+
     form.setFieldsValue(uniById?.attributes);
+    form.setFieldsValue({ category_id: [33, 39, 41, 42] });
+    console.log(form.getFieldsValue());
     setPreviewImage(uniById?.attributes?.image);
   }, [uniById]);
 
@@ -113,7 +120,7 @@ function AddEditUni() {
           <Row className="">
             <Col md={8} sm={12} xs={24} className="px-2">
               <Form.Item name="image" label="Image">
-                <ImageUpload image={previewImage} onChange={onChange} />
+                <ImageUpload imageURL={previewImage} onChange={onChange} />
               </Form.Item>
             </Col>
 
@@ -225,10 +232,13 @@ function AddEditUni() {
             <Col md={24} sm={24} xs={24} className="px-2">
               <Form.Item
                 name="category_id"
-                valuePropName="check"
+                // valuePropName="checked"
                 className="flex-wrap mt-3"
               >
-                <Checkbox.Group options={option}></Checkbox.Group>
+                <Checkbox.Group
+                  // defaultValue={[33, 39, 41, 42]}
+                  options={option}
+                />
               </Form.Item>
             </Col>
 

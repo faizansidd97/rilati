@@ -56,7 +56,7 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
                 Average Salary in Australia
               </h6>
               <p className="text-left desc">
-                {item?.attributes?.average_salary_aud?.contain("$")
+                {item?.attributes?.average_salary_aud?.includes("$")
                   ? item?.attributes?.average_salary_aud
                   : `$${item?.attributes?.average_salary_aud}`}
               </p>
