@@ -68,9 +68,18 @@ function AddEditCareer() {
     let career = careerById?.attributes?.categories?.map(
       (item: any) => item?.id
     );
+    console.log(careerById);
 
     setCareerImage(careerById?.attributes?.image);
-    form.setFieldsValue(careerById?.attributes);
+    form.setFieldsValue({
+      ...careerById?.attributes,
+      title: careerById?.attributes?.title
+        ?.replace(36, "Education")
+        ?.replace(37, "Health"),
+      description_study: careerById?.attributes?.description_study
+        ?.replace(36, "Education")
+        ?.replace(37, "Health"),
+    });
     form.setFieldsValue({ education_category: edu, categories: career });
   }, [careerById]);
 

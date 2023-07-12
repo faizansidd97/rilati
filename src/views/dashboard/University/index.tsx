@@ -73,7 +73,7 @@ function University() {
       // dataIndex: "name",
       render: (res: any) => (
         <span title={res?.attributes?.email}>
-          {stringLimt(res?.attributes?.email, 20)}
+          {(res?.attributes?.email, 20)}
         </span>
       ),
     },
@@ -82,8 +82,19 @@ function University() {
       // dataIndex: "name",
       render: (res: any) => (
         <span title={res?.attributes?.link}>
-          <a href={res?.attributes?.link} target="_blank" rel="noreferrer">
-            {stringLimt(res?.attributes?.link, 20)}
+          <a
+            href={res?.attributes?.link
+              ?.replace("https:", "https://")
+              ?.replace("hhttps:////", "https://")
+              .replace("ttps:", "https://")}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {res?.attributes?.link
+              ?.replace("https:", "https://")
+              ?.replace("hhttps:////", "https://")
+              ?.replace("hhttps:////", "https://")
+              .replace("ttps:w", "https://w")}
           </a>
         </span>
       ),
@@ -93,7 +104,7 @@ function University() {
       // dataIndex: "location",
       render: (res: any) => (
         <span title={res?.attributes?.state}>
-          {stringLimt(res?.attributes?.state, 50)}
+          {(res?.attributes?.state, 50)}
         </span>
       ),
     },

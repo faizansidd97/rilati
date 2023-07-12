@@ -51,7 +51,13 @@ function AddEditUni() {
     });
     console.log("cat_ids", cat_ids);
 
-    form.setFieldsValue(uniById?.attributes);
+    form.setFieldsValue({
+      ...uniById?.attributes,
+      link: uniById?.attributes?.link
+        .replace("http://", "")
+        .replace("https://", "")
+        .replace("https:", ""),
+    });
     form.setFieldsValue({ category_id: [33, 39, 41, 42] });
     console.log(form.getFieldsValue());
     setPreviewImage(uniById?.attributes?.image);
