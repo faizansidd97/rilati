@@ -53,10 +53,7 @@ function AddEditUni() {
 
     form.setFieldsValue({
       ...uniById?.attributes,
-      link: uniById?.attributes?.link
-        .replace("http://", "")
-        .replace("https://", "")
-        .replace("https:", ""),
+      link: uniById?.attributes?.link,
     });
     form.setFieldsValue({ category_id: [33, 39, 41, 42] });
     console.log(form.getFieldsValue());
@@ -84,10 +81,10 @@ function AddEditUni() {
         formData.append("file", image);
         disptch(uploadImage(formData)).then((res: any) => {
           payload = { ...payload, image: res?.file_url };
-          disptch(updateUni(id, payload));
+          disptch(updateUni(id, payload, callback));
         });
       } else {
-        disptch(updateUni(id, values));
+        disptch(updateUni(id, values, callback));
       }
     } else {
       let payload = { ...values };

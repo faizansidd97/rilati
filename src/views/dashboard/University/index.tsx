@@ -63,18 +63,14 @@ function University() {
       title: "Name",
       // dataIndex: "name",
       render: (res: any) => (
-        <span title={res?.attributes?.name}>
-          {stringLimt(res?.attributes?.name, 20)}
-        </span>
+        <span title={res?.attributes?.name}>{res?.attributes?.name}</span>
       ),
     },
     {
       title: "Email",
       // dataIndex: "name",
       render: (res: any) => (
-        <span title={res?.attributes?.email}>
-          {(res?.attributes?.email, 20)}
-        </span>
+        <span title={res?.attributes?.email}>{res?.attributes?.email}</span>
       ),
     },
     {
@@ -103,9 +99,7 @@ function University() {
       title: "State",
       // dataIndex: "location",
       render: (res: any) => (
-        <span title={res?.attributes?.state}>
-          {(res?.attributes?.state, 50)}
-        </span>
+        <span title={res?.attributes?.state}>{res?.attributes?.state}</span>
       ),
     },
     {

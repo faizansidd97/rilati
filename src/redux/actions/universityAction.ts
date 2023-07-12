@@ -11,6 +11,7 @@ import {
   UNI_SUCCESS,
 } from "src/constant/Types";
 import { httpService } from "src/network/axiosAgent";
+import { message } from "antd";
 
 export const getUni = (params?: any) => (dispatch: any) => {
   dispatch({ type: UNI_REQUEST });
@@ -55,15 +56,13 @@ export const postUni = (body: any, callback: Function) => (dispatch: any) => {
       dispatch({ type: UNI_ERROR });
     });
 };
-export const updateUni = (id: any, body: any) => (dispatch: any) => {
+export const updateUni = (id: any, body: any, cb?: any) => (dispatch: any) => {
   dispatch({ type: UNI_REQUEST, payload: body });
   updateUniApi(id, body)
     .then((res) => {
-      const {
-        data: { data },
-      }: any = res;
-
-      dispatch({ type: UNI_SUCCESS, payload: data });
+      dispatch({ type: UNI_SUCCESS });
+      message.success("University Update Successfully");
+      cb();
     })
     .catch((err) => {
       dispatch({ type: UNI_ERROR });
