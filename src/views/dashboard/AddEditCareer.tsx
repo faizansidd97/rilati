@@ -74,11 +74,17 @@ function AddEditCareer() {
     form.setFieldsValue({
       ...careerById?.attributes,
       title: careerById?.attributes?.title
-        ?.replace(36, "Education")
-        ?.replace(37, "Health"),
+        ?.replace("36", "Education")
+        ?.replace("37", "Health"),
       description_study: careerById?.attributes?.description_study
-        ?.replace(36, "Education")
-        ?.replace(37, "Health"),
+        ?.replace("36", "Education")
+        ?.replace("37", "Health"),
+      job_description: careerById?.attributes?.job_description
+        ?.replace("36", "Education")
+        ?.replace("37", "Health"),
+      student_intrest: careerById?.attributes?.student_intrest
+        ?.replace("36", "Education")
+        ?.replace("37", "Health"),
     });
     form.setFieldsValue({ education_category: edu, categories: career });
   }, [careerById]);
@@ -311,7 +317,7 @@ function AddEditCareer() {
                   },
                 ]}
               >
-                <Input />
+                <Input.TextArea />
               </Form.Item>
             </Col>
             <Col md={8} sm={12} xs={24} className="px-2">

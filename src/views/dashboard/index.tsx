@@ -64,35 +64,15 @@ function Dashboard() {
       title: "Category",
       // dataIndex: "name",
       render: (res: any) => (
-        <span
-          title={res?.attributes?.title
-            ?.replace(36, "education")
-            ?.replace(37, "Health ")}
-        >
-          {stringLimt(
-            res?.attributes?.title
-              ?.replace(36, "education")
-              ?.replace(37, "Health "),
-            20
-          )}
-        </span>
+        <span title={res?.attributes?.title}>{res?.attributes?.title}</span>
       ),
     },
     {
       title: "Description",
       // dataIndex: "location",
       render: (res: any) => (
-        <span
-          title={res?.attributes?.job_description
-            ?.replace(36, "education")
-            ?.replace(37, "Health ")}
-        >
-          {stringLimt(
-            res?.attributes?.job_description
-              ?.replace(36, "education")
-              ?.replace(37, "Health"),
-            50
-          )}
+        <span title={res?.attributes?.job_description}>
+          {res?.attributes?.job_description}
         </span>
       ),
     },

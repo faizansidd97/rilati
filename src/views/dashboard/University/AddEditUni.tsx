@@ -49,14 +49,12 @@ function AddEditUni() {
     const cat_ids = uniById?.attributes?.category?.map((items: any) => {
       return { checked: items?.id };
     });
-    console.log("cat_ids", cat_ids);
 
     form.setFieldsValue({
       ...uniById?.attributes,
       link: uniById?.attributes?.link,
     });
-    form.setFieldsValue({ category_id: [33, 39, 41, 42] });
-    console.log(form.getFieldsValue());
+    form.setFieldsValue({ category_id: cat_ids });
     setPreviewImage(uniById?.attributes?.image);
   }, [uniById]);
 
