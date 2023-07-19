@@ -135,7 +135,7 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
 
           <div className="content-tabs__detail">
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-              <h3>🌟 Professional Competencies</h3>
+              <h3>🌟 Work-Life Balance</h3>
               <ProgressBar
                 color="#ffffff36"
                 now={progress.over}
@@ -162,7 +162,7 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-              <h3>🔀 Switch Potential</h3>
+              <h3>🔀 Potential to Switch</h3>
               <ProgressBar
                 color="#ffffff36"
                 now={progress.fun}
@@ -180,7 +180,7 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-              <h3>🙌 Company Status</h3>
+              <h3>🙌 Status in Company</h3>
               <ProgressBar
                 color="#ffffff36"
                 now={progress.status}
@@ -189,7 +189,7 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-              <h3>⚠️ Well-being Peril</h3>
+              <h3>⚠️ Risk to health</h3>
               <ProgressBar
                 color="#ffffff36"
                 now={progress.health}
@@ -198,7 +198,7 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-              <h3>👥 Collaborative Effort</h3>
+              <h3>👥 Team Reliance</h3>
               <ProgressBar
                 color="#ffffff36"
                 now={progress.team}
@@ -207,7 +207,7 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-              <h3>🔍 Detailed Precision</h3>
+              <h3>🔍 Precision Work</h3>
               <ProgressBar
                 color="#ffffff36"
                 now={progress.precision_work}
@@ -216,7 +216,7 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-              <h3>⏰ Time Allocation</h3>
+              <h3>⏰ Work Hours</h3>
               <ProgressBar
                 color="#ffffff36"
                 now={progress.work_hours}
@@ -225,7 +225,7 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-              <h3>🏢 Workplace Culture</h3>
+              <h3>🏢 Helping Environment</h3>
               <ProgressBar
                 color="#ffffff36"
                 now={progress.job_enviroment}
@@ -234,7 +234,7 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-              <h3>😩 Monotonous and Laborious</h3>
+              <h3>😩 Repetitive or Tedious</h3>
               <ProgressBar
                 color="#ffffff36"
                 now={progress.repetitive_tedious}
@@ -252,7 +252,7 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-              <h3>✌️ Autonomy</h3>
+              <h3>✌️ Autonomy & Freedom</h3>
               <ProgressBar
                 color="#ffffff36"
                 now={progress.autonomy}
@@ -261,7 +261,7 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-              <h3>👤 Life Risk</h3>
+              <h3>👤 Risk to Life</h3>
               <ProgressBar
                 color="#ffffff36"
                 now={progress.life_risk}
@@ -292,6 +292,15 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
               <ProgressBar
                 color="#ffffff36"
                 now={progress.mental_stress}
+                variant="success"
+                max={10}
+              />
+            </div>
+            <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+              <h3>✌️ Job Satisfaction</h3>
+              <ProgressBar
+                color="#ffffff36"
+                now={progress.job_satisfaction}
                 variant="success"
                 max={10}
               />

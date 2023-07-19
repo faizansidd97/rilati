@@ -18,7 +18,7 @@ const CareerUniversity = ({ customClass, universities }: any) => {
                 <div className="mx-1 logos-card">
                   <a
                     href={
-                      item.uni_id.link?.replace("https://", "https://") || "#"
+                      item.uni_id.link?.replace("https:", "https://") || "#"
                     }
                     target="_blank"
                   >

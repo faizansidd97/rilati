@@ -46,10 +46,9 @@ function AddEditUni() {
     (store: any) => store.category
   );
   useEffect(() => {
-    const cat_ids = uniById?.attributes?.category?.map((items: any) => {
-      return { checked: items?.id };
-    });
-
+    const cat_ids = uniById?.attributes?.category?.map(
+      (items: any) => items?.id
+    );
     form.setFieldsValue({
       ...uniById?.attributes,
       link: uniById?.attributes?.link,

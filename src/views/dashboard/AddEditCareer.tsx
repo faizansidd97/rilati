@@ -465,7 +465,7 @@ function AddEditCareer() {
             <Col md={4} sm={12} xs={24} className="px-2">
               <Form.Item
                 name="work_life_balance"
-                label="Work Life Balance"
+                label="Work-Life Balance"
                 rules={[
                   {
                     required: true,
@@ -484,7 +484,7 @@ function AddEditCareer() {
             <Col md={4} sm={12} xs={24} className="px-2">
               <Form.Item
                 name="scope_of_skill"
-                label="Scope of Skill"
+                label="Scope World Wide"
                 rules={[
                   {
                     required: true,
@@ -503,7 +503,7 @@ function AddEditCareer() {
             <Col md={4} sm={12} xs={24} className="px-2">
               <Form.Item
                 name="autonomy"
-                label="Autonomy"
+                label="Autonomy & Freedom"
                 rules={[
                   {
                     required: true,
@@ -522,7 +522,7 @@ function AddEditCareer() {
             <Col md={4} sm={12} xs={24} className="px-2">
               <Form.Item
                 name="repetitive_tedious"
-                label="Repetitive Tedious"
+                label="Repetitive or Tedious"
                 rules={[
                   {
                     required: true,
@@ -617,7 +617,7 @@ function AddEditCareer() {
             <Col md={4} sm={12} xs={24} className="px-2">
               <Form.Item
                 name="risk_to_health"
-                label="Risk to Health"
+                label="Risk to health"
                 rules={[
                   {
                     required: true,
@@ -674,7 +674,7 @@ function AddEditCareer() {
             <Col md={4} sm={12} xs={24} className="px-2">
               <Form.Item
                 name="job_help_people"
-                label=" Job Help People"
+                label="Helping People"
                 rules={[
                   {
                     required: true,
@@ -693,7 +693,7 @@ function AddEditCareer() {
             <Col md={4} sm={12} xs={24} className="px-2">
               <Form.Item
                 name="job_help_environment"
-                label="Job Help Environment"
+                label="Helping Environment"
                 rules={[
                   {
                     required: true,
@@ -712,7 +712,7 @@ function AddEditCareer() {
             <Col md={4} sm={12} xs={24} className="px-2">
               <Form.Item
                 name="potential"
-                label="Potential"
+                label="Potential to Switch"
                 rules={[
                   {
                     required: true,
