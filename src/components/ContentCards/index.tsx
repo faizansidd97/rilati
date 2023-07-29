@@ -134,7 +134,7 @@ const ContentCards = () => {
               placement="bottomRight"
               className="my-3 my-md-0 "
             >
-              <Button className="btn-secondary sort-by">Sory By</Button>
+              <Button className="btn-secondary sort-by">Sort By</Button>
             </Dropdown>
           </div>
         </Col>

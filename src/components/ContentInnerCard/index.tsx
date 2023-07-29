@@ -137,15 +137,6 @@ const ContentInnerCards = ({
           key={index}
         >
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
-            <h3>⚖️ Work Life Balance</h3>
-            <ProgressBar
-              color="#ffffff36"
-              now={progress.over}
-              variant="success"
-              max={10}
-            />
-          </div>
-          <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
             <h3>🥇 ATAR</h3>
             <ProgressBar
               color="#ffffff36"
@@ -154,6 +145,16 @@ const ContentInnerCards = ({
               max={100}
             />
           </div>
+          <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
+            <h3>⚖️ Work Life Balance</h3>
+            <ProgressBar
+              color="#ffffff36"
+              now={progress.over}
+              variant="success"
+              max={10}
+            />
+          </div>
+
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
             <h3>🙌 Status in company</h3>
             <ProgressBar
