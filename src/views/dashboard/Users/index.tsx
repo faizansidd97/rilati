@@ -4,11 +4,11 @@ import { ColumnsType } from "antd/es/table";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import GridView from "src/components/GridView/GridView";
 import { useDispatch, useSelector } from "react-redux";
-import { stringLimt } from "src/helper/helper";
+// import { stringLimt } from "src/helper/helper";
 import { Link } from "react-router-dom";
 import "./University.scss";
-import { deleteUni, getUni } from "src/redux/actions/universityAction";
-import { getUsers } from "src/redux/actions/userActions";
+// import { deleteUni, getUser } from "src/redux/actions/universityAction";
+import { deleteUsers, getUsers } from "src/redux/actions/userActions";
 
 interface DataType {
   key: React.Key;
@@ -37,10 +37,10 @@ function Users() {
       okText: "Delete",
       onOk() {
         return new Promise((resolve, reject) => {
-          disptch(deleteUni(id))
+          disptch(deleteUsers(id))
             .then((res: any) => {
               resolve(res);
-              disptch(getUni());
+              disptch(getUsers());
             })
             .catch((err: any) => {
               reject(err);
@@ -76,20 +76,9 @@ function Users() {
       title: "Link",
       // dataIndex: "name",
       render: (res: any) => (
-        <span title={res?.attributes?.link}>
-          <a
-            href={res?.attributes?.link
-              ?.replace("https:", "https://")
-              ?.replace("hhttps:////", "https://")
-              .replace("ttps:", "https://")}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {res?.attributes?.link
-              ?.replace("https:", "https://")
-              ?.replace("hhttps:////", "https://")
-              ?.replace("hhttps:////", "https://")
-              .replace("ttps:w", "https://w")}
+        <span title={res?.attributes?.details?.phone}>
+          <a href={`tel:${res?.attributes?.details?.phone}`}>
+            {res?.attributes?.details?.phone}
           </a>
         </span>
       ),
@@ -107,12 +96,12 @@ function Users() {
       render(value, record) {
         return (
           <Space className="">
-            <Link
+            {/* <Link
               to={`/dashboard/university/${value?.id}`}
               className="btn-next"
             >
               Edit
-            </Link>
+            </Link> */}
             <Button
               onClick={() => showPromiseConfirm(value?.id)}
               className="btn-danger"
@@ -126,7 +115,7 @@ function Users() {
   ];
 
   const onChange = (value: any) => {
-    disptch(getUni({ name: value }));
+    disptch(getUsers({ name: value }));
   };
 
   const {
@@ -136,9 +125,8 @@ function Users() {
   } = useSelector((store: any) => store.subject);
 
   const callback = (params: any) => {
-    disptch(getUni(params));
+    disptch(getUsers(params));
   };
-  console.log("user....", users);
 
   return (
     <div className="overflow-auto">
@@ -149,9 +137,6 @@ function Users() {
             Search
           </Button>
         </div>
-        <Link className="btn btn-primary" to={"/dashboard/university/new"}>
-          Add new
-        </Link>
       </div>
       <GridView
         data={users}

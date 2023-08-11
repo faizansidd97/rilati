@@ -11,6 +11,8 @@ import {
   saveToLocalStorage,
   login as setHeaders,
 } from "src/helper/helper";
+import { httpService } from "src/network/axiosAgent";
+import { useNavigate } from "react-router-dom";
 
 export const logoutRequest = () => (dispatch: any) => {
   localStorage.removeItem(Environment.LOCAL_STORAGE_KEY);
@@ -36,5 +38,27 @@ export const login = (body: any) => (dispatch: any) => {
       // message.error("Login Failed Unauthorized");
       dispatch({ type: LOGIN_ERROR });
       localStorage.setItem("attempt", `${++attempt}`);
+    });
+};
+
+export const register = (body: any, cb?: any) => (dispatch: any) => {
+  dispatch({ type: LOGIN_REQUEST });
+  httpService
+    .post(`register`, body)
+    .then((res) => {
+      const {
+        data: { data },
+      }: any = res;
+      dispatch({ type: LOGIN_SUCCESS, payload: data });
+      cb();
+      saveToLocalStorage(data);
+      saveToUserLocalStorage(data);
+      setHeaders(data);
+      //ignore-ilint
+    })
+    .catch((err) => {
+      // message.error("Login Failed Unauthorized");
+      dispatch({ type: LOGIN_ERROR });
+      // localStorage.setItem("attempt", `${++attempt}`);
     });
 };

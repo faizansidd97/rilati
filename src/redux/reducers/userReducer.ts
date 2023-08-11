@@ -8,6 +8,9 @@ import {
   USERS_REQUEST,
   USERS_SUCCESS,
   USERS_ERROR,
+  USERS_DELETE_REQUEST,
+  USERS_DELETE_SUCCESS,
+  USERS_DELETE_ERROR,
 } from "../../constant/Types";
 import { SubjectsState } from "./Modules/subject";
 
@@ -74,6 +77,24 @@ const subjectsReducer = (state = initialState, action: any) => {
     }
 
     case USERS_ERROR: {
+      return Object.assign({}, state, {
+        userLoader: false,
+      });
+    }
+    case USERS_DELETE_REQUEST: {
+      return Object.assign({}, state, {
+        userLoader: true,
+      });
+    }
+
+    case USERS_DELETE_SUCCESS: {
+      return Object.assign({}, state, {
+        // users: action.payload?.data,
+        userLoader: false,
+      });
+    }
+
+    case USERS_DELETE_ERROR: {
       return Object.assign({}, state, {
         userLoader: false,
       });

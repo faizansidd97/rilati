@@ -5,23 +5,27 @@ import logo from "../../../assets/images/mainLogo.png";
 import thumbnail1 from "../../../assets/images/thumbnail (1).jpg";
 // import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "src/redux/actions/authAction";
+import { login, register } from "src/redux/actions/authAction";
 import "./signup.scss";
 import { Row, Col } from "react-bootstrap";
 import { myAtar, startWorking } from "./constant";
 import { getIndustries, getSubjects } from "src/redux/actions/userActions";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RoutePaths } from "src/layout";
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const [form] = Form.useForm();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getSubjects());
     dispatch(getIndustries());
   }, [dispatch]);
-
+  const callBack = () => {
+    navigate("/");
+  };
   const onFinish = (values: any) => {
-    dispatch(login(values));
+    dispatch(register(values, callBack));
   };
 
   const { isDark = false } = useSelector((store: any) => store.theme);
@@ -32,8 +36,6 @@ const Signup = () => {
     industriesLoader = false,
     industries = [],
   } = useSelector((store: any) => store.subject);
-
-  console.log("industries", industries);
 
   return (
     <section
@@ -50,8 +52,9 @@ const Signup = () => {
 
           <Form
             name="signup"
+            form={form}
             className="signup-form"
-            initialValues={{ remember: true }}
+            // initialValues={{ remember: true }}
             onFinish={onFinish}
           >
             <Row>
@@ -70,10 +73,22 @@ const Signup = () => {
                     placeholder="Name or Username"
                   />
                 </Form.Item>
+                <Form.Item name="first_name" hidden initialValue={"aaa"}>
+                  <Input
+                    // prefix={<UserOutlined className="site-form-item-icon" />}
+                    placeholder="Name or Username"
+                  />
+                </Form.Item>
+                <Form.Item name="last_name" hidden initialValue={"aaa"}>
+                  <Input
+                    // prefix={<UserOutlined className="site-form-item-icon" />}
+                    placeholder="Name or Username"
+                  />
+                </Form.Item>
               </Col>
               <Col md={6} xs={12}>
                 <Form.Item
-                  name="study"
+                  name="education_stage"
                   rules={[
                     { required: true, message: "Please input your study!" },
                   ]}
@@ -83,7 +98,7 @@ const Signup = () => {
                     options={[
                       { label: "High School", value: "HIGH_SCHOOL" },
                       { label: "University", value: "UNIVERSITY" },
-                      { label: "Rather not say", value: "RATHER_NOT_SAY" },
+                      { label: "Rather not say", value: "PREFER_NOT_TO_SAY" },
                     ]}
                   />
                 </Form.Item>
@@ -158,9 +173,12 @@ const Signup = () => {
               </Form.Item>
               <Form.Item
                 name="role_id"
-                rules={[
-                  { required: true, message: "Please input your phone!" },
-                ]}
+                initialValue={"USER"}
+                rules={
+                  [
+                    // { required: true, message: "Please input your phone!" },
+                  ]
+                }
                 hidden
               >
                 <Input
@@ -356,7 +374,7 @@ const Signup = () => {
               </Col>
               <Col md={6} xs={12}>
                 <Form.Item
-                  name="personality "
+                  name="personal_trait"
                   rules={[
                     {
                       required: true,
@@ -380,24 +398,25 @@ const Signup = () => {
                   />
                 </Form.Item>
               </Col>
-
-              <Form.Item className="text-center">
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  className="signup-form-button w-100"
-                  //   loading={loginLoader}
-                >
-                  Sign Up
-                </Button>
-              </Form.Item>
-              <Form.Item>
+              <Col>
+                <Form.Item className="text-center">
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    className="signup-form-button w-100"
+                    //   loading={loginLoader}
+                  >
+                    Sign Up
+                  </Button>
+                </Form.Item>
+              </Col>
+              {/* <Form.Item>
                 <div className="d-flex justify-content-center">
                   <Link to={RoutePaths.LOGIN} className="login-form-forgot ">
                     Back to Login
                   </Link>
                 </div>
-              </Form.Item>
+              </Form.Item> */}
             </Row>
           </Form>
         </div>

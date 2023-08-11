@@ -25,10 +25,11 @@ const Layout = () => {
   const { isLogin = false } = useSelector((storeState: any) => storeState.auth);
   const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
   const loginUser = getUser ? JSON.parse(getUser) : null;
+  const IS_ADMIN = loginUser?.role?.type === "ADMIN";
 
   return (
     <Routes>
-      {isLogin || loginUser ? (
+      {(isLogin || loginUser) && IS_ADMIN ? (
         <Route path="/dashboard" element={<AdminLayout />}>
           <Route path="" element={<Dashboard />} />
           <Route path="career/:id" element={<AddEditCareer />} />
@@ -55,7 +56,11 @@ const Layout = () => {
       )}
       <Route
         path="*"
-        element={<Navigate to={isLogin || loginUser ? "/dashboard" : "/"} />}
+        element={
+          <Navigate
+            to={(isLogin || loginUser) && IS_ADMIN ? "/dashboard" : "/"}
+          />
+        }
       />
     </Routes>
   );
