@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutRequest } from "src/redux/actions/authAction";
 import { BsBriefcase } from "react-icons/bs";
 import { FaUniversity } from "react-icons/fa";
-import { BiCategory, BiMailSend } from "react-icons/bi";
+import { BiCategory, BiMailSend, BiUser } from "react-icons/bi";
 
 const { Header, Content, Sider } = Layout;
 
@@ -37,6 +37,11 @@ const AdminLayout = () => {
       icon: <BiMailSend />,
       label: <Link to={"mails"}>Mails</Link>,
       key: "mails",
+    },
+    {
+      icon: <BiUser />,
+      label: <Link to={"users"}>Users</Link>,
+      key: "users",
     },
   ];
   const [collapsed, setCollapsed] = useState(false);

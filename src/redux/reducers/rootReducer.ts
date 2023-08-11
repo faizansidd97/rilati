@@ -5,6 +5,7 @@ import UniReducer from "./uniReducer";
 import MediaReducer from "./mediaReducer";
 import CategoryReducer from "./categoryReducer";
 import ThemeReducer from "./themeReducers";
+import UserReducer from "./userReducer";
 import MailReducers from "./mailReducers";
 import { AuthState } from "./Modules/auth";
 import { CareerState } from "./Modules/career";
@@ -13,6 +14,7 @@ import { MediaState } from "./Modules/media";
 import { CategoryState } from "./Modules/category";
 import { ThemeState } from "./Modules/theme";
 import { MailState } from "./Modules/mail";
+import { SubjectsState } from "./Modules/subject";
 
 interface CombineReducers {
   auth: AuthState;
@@ -22,6 +24,7 @@ interface CombineReducers {
   category: CategoryState;
   theme: ThemeState;
   mail: MailState;
+  subject: SubjectsState;
 }
 export default combineReducers<CombineReducers>({
   auth: AuthReducer,
@@ -31,6 +34,7 @@ export default combineReducers<CombineReducers>({
   category: CategoryReducer,
   theme: ThemeReducer,
   mail: MailReducers,
+  subject: UserReducer,
 });
 
 // export default AuthReducer;

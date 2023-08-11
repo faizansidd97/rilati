@@ -19,7 +19,6 @@ export const getUni = (params?: any) => (dispatch: any) => {
     .get(`/university`, { params })
     .then((res) => {
       const { data }: any = res;
-      console.log("res........", res);
 
       dispatch({ type: UNI_SUCCESS, payload: data });
     })

@@ -14,14 +14,17 @@ import University from "src/views/dashboard/University";
 import AddEditUni from "src/views/dashboard/University/AddEditUni";
 import Category from "src/views/dashboard/Category/Category";
 import Mail from "src/views/dashboard/Mail";
+import Signup from "src/views/auth/signup";
+import Users from "src/views/dashboard/Users";
 
+export const RoutePaths = {
+  LOGIN:
+    "/bG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQgbG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQgbG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQg",
+};
 const Layout = () => {
   const { isLogin = false } = useSelector((storeState: any) => storeState.auth);
   const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
   const loginUser = getUser ? JSON.parse(getUser) : null;
-  const RoutePaths = {
-    LOGIN: "/bG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQgbG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQgbG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQg"
-  };
 
   return (
     <Routes>
@@ -33,6 +36,7 @@ const Layout = () => {
           <Route path="university/:id" element={<AddEditUni />} />
           <Route path="category" element={<Category />} />
           <Route path="mails" element={<Mail />} />
+          <Route path="users" element={<Users />} />
           {/* <Route path="category/:id" element={<AddEditUni />} /> */}
         </Route>
       ) : (
@@ -42,10 +46,8 @@ const Layout = () => {
           </Route>
 
           <Route path="" element={<AuthLayout />}>
-            <Route
-              path={RoutePaths.LOGIN}
-              element={<Login />}
-            />
+            <Route path={RoutePaths.LOGIN} element={<Login />} />
+            <Route path={"signup"} element={<Signup />} />
             <Route path="forgor-email" element={<ForgotEmail />} />
             <Route path="reset-password" element={<ResetPassword />} />
           </Route>
