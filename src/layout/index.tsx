@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Environment from "../network/baseUrl";
 import Home from "src/views/Website/Home/Home";
 import AuthLayout from "./AuthLayout";
@@ -16,20 +16,26 @@ import Category from "src/views/dashboard/Category/Category";
 import Mail from "src/views/dashboard/Mail";
 import Signup from "src/views/auth/signup";
 import Users from "src/views/dashboard/Users";
+import AboutUs from "src/views/Website/AboutUs";
+import FAQ from "src/views/Website/FAQ's";
+import TermsAndConditions from "src/views/Website/TermsAndConditions";
 
 export const RoutePaths = {
   LOGIN:
     "/bG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQgbG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQgbG9naW4gaXMgc2VjcmV0IGxvZ2luIGlzIHNlY3JldCBsb2dpbiBpcyBzZWNyZXQg",
 };
 const Layout = () => {
-  const { isLogin = false } = useSelector((storeState: any) => storeState.auth);
+  const { isLogin = false, user = null } = useSelector(
+    (storeState: any) => storeState.auth
+  );
   const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
   const loginUser = getUser ? JSON.parse(getUser) : null;
   const IS_ADMIN = loginUser?.role?.type === "ADMIN";
+  const ADMIN = user?.user?.role?.type === "ADMIN";
 
   return (
     <Routes>
-      {(isLogin || loginUser) && IS_ADMIN ? (
+      {(isLogin || loginUser) && (IS_ADMIN || ADMIN) ? (
         <Route path="/dashboard" element={<AdminLayout />}>
           <Route path="" element={<Dashboard />} />
           <Route path="career/:id" element={<AddEditCareer />} />
@@ -44,6 +50,9 @@ const Layout = () => {
         <>
           <Route path="/" element={<WebsiteLayout />}>
             <Route path="" element={<Home />} />
+            <Route path="about-us" element={<AboutUs />} />
+            <Route path="faq" element={<FAQ />} />
+            <Route path="terms-conditions" element={<TermsAndConditions />} />
           </Route>
 
           <Route path="" element={<AuthLayout />}>
@@ -58,7 +67,9 @@ const Layout = () => {
         path="*"
         element={
           <Navigate
-            to={(isLogin || loginUser) && IS_ADMIN ? "/dashboard" : "/"}
+            to={
+              (isLogin || loginUser) && (IS_ADMIN || ADMIN) ? "/dashboard" : "/"
+            }
           />
         }
       />

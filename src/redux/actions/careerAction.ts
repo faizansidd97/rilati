@@ -9,6 +9,8 @@ import {
   CAREER_BYID_REQUEST,
   CAREER_BYID_SUCCESS,
   CAREER_ERROR,
+  CAREER_LIKE_REQUEST,
+  CAREER_LIKE_SUCCESS,
   CAREER_REQUEST,
   CAREER_SUCCESS,
 } from "src/constant/Types";
@@ -97,6 +99,21 @@ export const updateCareer =
         dispatch({ type: CAREER_BYID_ERROR });
       });
   };
+
+export const likeCareer = (body: any, cb?: any) => (dispatch: any) => {
+  dispatch({ type: CAREER_LIKE_REQUEST });
+  httpService
+    .post(`/career-likes`, body)
+    .then((res) => {
+      dispatch({ type: CAREER_LIKE_SUCCESS });
+      cb();
+    })
+    .catch((err) => {
+      message.error(err?.response?.data?.message);
+      dispatch({ type: CAREER_LIKE_SUCCESS });
+    });
+};
+
 export const deleteCareer = (id: any) => (dispatch: any) => {
   return new Promise((resolve, reject) => {
     dispatch({ type: CAREER_REQUEST });

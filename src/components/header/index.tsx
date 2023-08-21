@@ -8,14 +8,20 @@ import "./header.scss";
 import { senMail } from "src/redux/actions/mailActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "antd/es/form/Form";
+import SignUpModal from "../SignUpModal";
+import Environment from "../../network/baseUrl";
+import SignInModal from "../SignInModal";
+import { logoutRequest } from "src/redux/actions/authAction";
 
 const Header = () => {
   const dispatch = useDispatch<any>();
   const [form] = useForm();
-  const [toggle, setToggle] = useState(false);
-  const toggleMenu = () => {
-    setToggle(!toggle);
-  };
+  // const [toggle, setToggle] = useState(false);
+  const [signUpToggle, setSignUpToggle] = useState(false);
+  const [signInToggle, setSignInToggle] = useState(false);
+  // const toggleMenu = () => {
+  //   setToggle(!toggle);
+  // };
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -25,6 +31,11 @@ const Header = () => {
   const handleOk = () => {
     setIsModalOpen(false);
   };
+  const { isLogin = false, user = null } = useSelector(
+    (storeState: any) => storeState.auth
+  );
+  const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
+  const loginUser = getUser ? JSON.parse(getUser) : null;
 
   const handleCancel = () => {
     setIsModalOpen(false);
@@ -74,12 +85,48 @@ const Header = () => {
               <h5>🤔 Other</h5>
             </div>
           </div>
-          {/* <div className="mt-3 me-4">
+          <div className="mt-3 me-4">
             <h5>Join us</h5>
-            <div className="menu-items mb-3">
-              <Link to="/login">👋 Log in</Link>
-            </div>
-          </div> */}
+            {loginUser || isLogin ? (
+              <div
+                className="menu-items mb-3"
+                onClick={() => {
+                  dispatch(logoutRequest());
+                  window.location.reload();
+                }}
+              >
+                <h5>✋ Logout</h5>
+              </div>
+            ) : (
+              <>
+                <div
+                  className="menu-items mb-3"
+                  onClick={() => setSignUpToggle(true)}
+                >
+                  <h5>✋ Sign Up</h5>
+                </div>
+                <div
+                  className="menu-items mb-3"
+                  onClick={() => setSignInToggle(true)}
+                >
+                  <h5>👋 Sign in</h5>
+                </div>
+              </>
+            )}
+          </div>
+          <div className="mt-3 me-4">
+            <h5>About us</h5>
+
+            <Link className="menu-items mb-3" to={"about-us"}>
+              <h5 className="menu-items mb-3">📙 About</h5>
+            </Link>
+            <Link className="menu-items mb-3" to={"faq"}>
+              <h5 className="menu-items mb-3">❓ FAQ's</h5>
+            </Link>
+            <Link className="menu-items mb-3" to={"terms-conditions"}>
+              <h5 className="menu-items mb-3">🔏 Terms and Conditions</h5>
+            </Link>
+          </div>
         </div>
       ),
     },
@@ -132,6 +179,19 @@ const Header = () => {
           </Form.Item>
         </Form>
       </Modal>
+      <SignUpModal
+        isModalOpen={signUpToggle}
+        handleOk={() => setSignUpToggle(false)}
+        handleCancel={() => setSignUpToggle(false)}
+        signInOpen={() => setSignInToggle(true)}
+        footer={false}
+      />
+      <SignInModal
+        isModalOpen={signInToggle}
+        handleOk={() => setSignInToggle(false)}
+        handleCancel={() => setSignInToggle(false)}
+        footer={false}
+      />
     </header>
   );
 };

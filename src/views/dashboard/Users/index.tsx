@@ -5,10 +5,15 @@ import { ExclamationCircleFilled } from "@ant-design/icons";
 import GridView from "src/components/GridView/GridView";
 import { useDispatch, useSelector } from "react-redux";
 // import { stringLimt } from "src/helper/helper";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "./University.scss";
 // import { deleteUni, getUser } from "src/redux/actions/universityAction";
 import { deleteUsers, getUsers } from "src/redux/actions/userActions";
+import {
+  confidentSkills,
+  myAtar,
+  startWorking,
+} from "src/components/SignUpModal/constant";
 
 interface DataType {
   key: React.Key;
@@ -58,13 +63,7 @@ function Users() {
         <span title={res?.attributes?.name}>{res?.attributes?.name}</span>
       ),
     },
-    {
-      title: "Name",
-      // dataIndex: "name",
-      render: (res: any) => (
-        <span title={res?.attributes?.name}>{res?.attributes?.name}</span>
-      ),
-    },
+
     {
       title: "Email",
       // dataIndex: "name",
@@ -73,21 +72,60 @@ function Users() {
       ),
     },
     {
-      title: "Link",
+      title: "Name",
       // dataIndex: "name",
       render: (res: any) => (
-        <span title={res?.attributes?.details?.phone}>
-          <a href={`tel:${res?.attributes?.details?.phone}`}>
-            {res?.attributes?.details?.phone}
-          </a>
+        <span
+          title={
+            startWorking?.find(
+              (i) => i?.value === res?.attributes?.details?.start_working
+            )?.label
+          }
+        >
+          {
+            startWorking?.find(
+              (i) => i?.value === res?.attributes?.details?.start_working
+            )?.label
+          }
         </span>
       ),
     },
     {
-      title: "State",
+      title: "Confident Skills",
+      // dataIndex: "name",
+      render: (res: any) => (
+        <span
+          title={
+            confidentSkills?.find(
+              (i) => i?.value === res?.attributes?.details?.confident_skills
+            )?.label
+          }
+        >
+          {/* <a href={`tel:${res?.attributes?.details?.confident_skills}`}> */}
+          {
+            confidentSkills?.find(
+              (i) => i?.value === res?.attributes?.details?.confident_skills
+            )?.label
+          }
+          {/* </a> */}
+        </span>
+      ),
+    },
+    {
+      title: "ATAR",
       // dataIndex: "location",
       render: (res: any) => (
-        <span title={res?.attributes?.state}>{res?.attributes?.state}</span>
+        <span
+          title={
+            myAtar?.find((i) => i?.value === res?.attributes?.details?.my_atar)
+              ?.label
+          }
+        >
+          {
+            myAtar?.find((i) => i?.value === res?.attributes?.details?.my_atar)
+              ?.label
+          }
+        </span>
       ),
     },
     {
@@ -127,6 +165,7 @@ function Users() {
   const callback = (params: any) => {
     disptch(getUsers(params));
   };
+  console.log("users", users);
 
   return (
     <div className="overflow-auto">

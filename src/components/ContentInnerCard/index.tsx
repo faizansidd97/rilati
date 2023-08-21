@@ -1,12 +1,14 @@
 import { useState } from "react";
 
-import { AiOutlineClose, AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import imageCareer from "../../assets/images/placeholderCareer.jpeg";
 import { IoShareOutline } from "react-icons/io5";
 import { Modal } from "antd";
 import ContentTabs from "../ContentTabs";
 import { stringLimt } from "src/helper/helper";
+import { useDispatch } from "react-redux";
+import { likeCareer } from "src/redux/actions/careerAction";
 
 interface IContentCards {
   item: any;
@@ -20,7 +22,9 @@ const ContentInnerCards = ({
   image,
   onArrayChange,
 }: IContentCards) => {
+  const dispatch = useDispatch();
   const [isVisible, setIsVisible] = useState(false);
+  const [like, setLike] = useState(item?.attributes?.userLike);
   const [progress, setProgress] = useState({
     over: 0,
     cost: 0,
@@ -42,7 +46,9 @@ const ContentInnerCards = ({
     job_stress: 0,
     job_satisfaction: 0,
   });
-  console.log(progress?.people_interations);
+  const callback = () => {
+    setLike(!like);
+  };
   return (
     <div
       className="content-card__wrapper d-flex flex-column gap-1 gap-md-3 justify-content-between position-relative"
@@ -122,7 +128,23 @@ const ContentInnerCards = ({
       </div>
       <div className="mb-4 back py-3 px-2">
         <div className="back-header d-flex justify-content-between mb-3">
-          <AiOutlineHeart className="heart-1" size={28} />
+          {like ? (
+            <AiFillHeart
+              size={28}
+              style={{ fill: "#ff4742" }}
+              onClick={() =>
+                dispatch(likeCareer({ career_id: item?.id }, callback))
+              }
+            />
+          ) : (
+            <AiOutlineHeart
+              className="heart-1"
+              size={28}
+              onClick={() =>
+                dispatch(likeCareer({ career_id: item?.id }, callback))
+              }
+            />
+          )}
           <AiOutlineClose
             size={28}
             onClick={() => {

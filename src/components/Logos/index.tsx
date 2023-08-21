@@ -11,7 +11,7 @@ const Logos = ({ count = 10, customClass }: any) => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUni());
+    dispatch(getUni({ page: 1, take: 5 }));
   }, [dispatch]);
   // const myLogos: any = [];
   // const number = [120, 163, 4, 23, 13, 93, 57, 163, 106];

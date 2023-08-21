@@ -6,11 +6,14 @@ import {
   CAREER_BYID_SUCCESS,
   CAREER_BYID_ERROR,
   DELETE_SUCCESS,
+  CAREER_LIKE_REQUEST,
+  CAREER_LIKE_SUCCESS,
 } from "../../constant/Types";
 import { CareerState } from "./Modules/career";
 
 const initialState: CareerState = {
   loader: false,
+  likeLoader: false,
   career: [],
   careerById: {},
   totaPage: 1,
@@ -50,6 +53,17 @@ const careerReducer = (state = initialState, action: any) => {
       return Object.assign({}, state, {
         careerById: action.payload,
         loader: false,
+      });
+    }
+    case CAREER_LIKE_REQUEST: {
+      return Object.assign({}, state, {
+        likeLoader: true,
+      });
+    }
+
+    case CAREER_LIKE_SUCCESS: {
+      return Object.assign({}, state, {
+        likeLoader: false,
       });
     }
     case DELETE_SUCCESS: {

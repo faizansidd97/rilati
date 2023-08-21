@@ -7,6 +7,8 @@ import { contentData } from "./constant";
 import { useDispatch, useSelector } from "react-redux";
 import { getCareer } from "src/redux/actions/careerAction";
 import ContentInnerCards from "../ContentInnerCard";
+import Environment from "../../network/baseUrl";
+
 import debounce from "lodash/debounce";
 import "./ContentCards.scss";
 
@@ -17,8 +19,15 @@ const ContentCards = () => {
 
   const disptach = useDispatch<any>();
 
+  const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
+  const loginUser = getUser ? JSON.parse(getUser) : null;
+
   useEffect(() => {
-    disptach(getCareer({ page, take: 20 }));
+    if (loginUser) {
+      disptach(getCareer({ page, take: 20, user_id: loginUser?.id }));
+    } else {
+      disptach(getCareer({ page, take: 20 }));
+    }
   }, [disptach]);
 
   const arr = [];
@@ -34,7 +43,13 @@ const ContentCards = () => {
   const onChange = (value: any) => {
     page = 1;
     setCareer([]);
-    disptach(getCareer({ title: value, page: 1, take: 20 }));
+    let payload = {};
+    if (loginUser) {
+      payload = { title: value, page: 1, take: 20, user_id: loginUser?.id };
+    } else {
+      payload = { title: value, page: 1, take: 20 };
+    }
+    disptach(getCareer(payload));
   };
 
   const {
@@ -51,7 +66,13 @@ const ContentCards = () => {
       totalPage >= page
     ) {
       page++;
-      disptach(getCareer({ page, take: 20 }));
+      let payload = {};
+      if (loginUser) {
+        payload = { page, take: 20, user_id: loginUser?.id };
+      } else {
+        payload = { page, take: 20 };
+      }
+      disptach(getCareer(payload));
     }
   }, 1000);
 
@@ -99,6 +120,12 @@ const ContentCards = () => {
       ),
     },
   ];
+  const dummy: MenuProps["items"] = [
+    {
+      key: "1",
+      label: "",
+    },
+  ];
   return (
     <Container className="content-card mb-3 px-0 " fluid>
       <Row className="px-md-3 px-0 m-0">
@@ -108,8 +135,20 @@ const ContentCards = () => {
         >
           <div className="button-wrapper d-flex align-items-center flex-wrap flex-md-row ">
             <div className="d-md-block d-flex justify-content-between ">
-              <Button className="btn btn-primary me-2 custom">Filters</Button>
+              <Button className="btn btn-primary me-2 custom">Career</Button>
+              <Button className="btn btn-primary me-2 custom">
+                Inspirations
+              </Button>
               <div className="d-md-none d-block">
+                {/* <Dropdown
+                  menu={{ items }}
+                  placement="bottomRight"
+                  className="my-0 my-md-0 d-md-none d-block"
+                > */}
+                <Button className="btn-secondary me-2 d-md-none d-block sort-by">
+                  Oracle{" "}
+                </Button>
+                {/* </Dropdown> */}
                 <Dropdown
                   menu={{ items }}
                   placement="bottomRight"
@@ -121,14 +160,23 @@ const ContentCards = () => {
                 </Dropdown>
               </div>
             </div>
-            <Input
-              placeholder="Search or filter"
-              prefix={<AiFillPlusCircle size={25} color="#ff4742" />}
-              className="search-input"
-              onPressEnter={(e: any) => onChange(e.target.value)}
-            />
           </div>
+          <Input
+            placeholder="Search or filter"
+            prefix={<AiFillPlusCircle size={25} color="#ff4742" />}
+            className="search-input"
+            onPressEnter={(e: any) => onChange(e.target.value)}
+          />
           <div className="d-none d-md-block">
+            {/* <Dropdown
+              menu={{dummy}}
+              placement="bottomRight"
+              className="my-3 my-md-0 "
+            > */}
+            <Button className="btn-secondary me-2 d-md-none d-block sort-by">
+              Oracle{" "}
+            </Button>
+            {/* </Dropdown> */}
             <Dropdown
               menu={{ items }}
               placement="bottomRight"

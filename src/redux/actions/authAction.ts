@@ -20,7 +20,7 @@ export const logoutRequest = () => (dispatch: any) => {
   dispatch({ type: LOGOUT_SUCCESS });
 };
 let attempt = 0;
-export const login = (body: any) => (dispatch: any) => {
+export const login = (body: any, cb?: any) => (dispatch: any) => {
   dispatch({ type: LOGIN_REQUEST });
   loginApi(body)
     .then((res) => {
@@ -32,6 +32,7 @@ export const login = (body: any) => (dispatch: any) => {
       saveToLocalStorage(data);
       saveToUserLocalStorage(data);
       setHeaders(data);
+      cb();
       //ignore-ilint
     })
     .catch((err) => {

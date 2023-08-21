@@ -3,8 +3,13 @@ import thumbnail1 from "../../assets/images/Homepage.jpg";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import "./HomeBanner.scss";
+import { useState } from "react";
+import SignUpModal from "../SignUpModal";
+import SignInModal from "../SignInModal";
 
 const HomeBanner = () => {
+  const [signUpToggle, setSignUpToggle] = useState(false);
+  const [signInToggle, setSignInToggle] = useState(false);
   const { isDark = false } = useSelector((store: any) => store.theme);
   return (
     <div
@@ -132,12 +137,22 @@ const HomeBanner = () => {
                   <Input placeholder="Type your email...." />
                 </Form.Item>
                 <Form.Item>
-                  <Button className="btn btn-primary mb-0 mb-md-3 w-100">
+                  <Button
+                    className="btn btn-primary mb-0 mb-md-3 w-100"
+                    onClick={() => setSignUpToggle(true)}
+                  >
                     Join Us
                   </Button>
                 </Form.Item>
                 <span>
-                  Already Member? <a href="#">Log In</a>
+                  Already Member?
+                  <span
+                    onClick={() => setSignInToggle(true)}
+                    className="cursor-pointer"
+                  >
+                    {" "}
+                    Log In
+                  </span>
                 </span>
               </Form>
             </div>
@@ -154,6 +169,18 @@ const HomeBanner = () => {
           </Col>
         </Row>
       </Container>
+      <SignUpModal
+        isModalOpen={signUpToggle}
+        handleOk={() => setSignUpToggle(false)}
+        handleCancel={() => setSignUpToggle(false)}
+        footer={false}
+      />
+      <SignInModal
+        isModalOpen={signInToggle}
+        handleOk={() => setSignInToggle(false)}
+        handleCancel={() => setSignInToggle(false)}
+        footer={false}
+      />
     </div>
   );
 };
