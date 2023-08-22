@@ -3,10 +3,10 @@ import logo from "../../../assets/images/mainLogo.png";
 import "./AboutUs.scss";
 import { Link } from "react-router-dom";
 
-const AboutUs = () => {
+const AboutUs = ({ termsHandler }: any) => {
   return (
     <div className="about-us ">
-      <HomeBanner />
+      {/* <HomeBanner /> */}
       <section className="about-us__content">
         <div className="container">
           <div className="row">
@@ -86,9 +86,12 @@ const AboutUs = () => {
               </p>
               <span>
                 Please click{" "}
-                <Link style={{ color: "red" }} to={"/terms-conditions"}>
+                <span
+                  style={{ color: "red", cursor: "pointer" }}
+                  onClick={termsHandler}
+                >
                   here{" "}
-                </Link>
+                </span>
                 to read our terms and conditions
               </span>
             </div>

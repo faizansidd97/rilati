@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button, Checkbox, Form, Input, Modal, Select, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "src/redux/actions/authAction";
@@ -15,6 +15,8 @@ const SignUpModal = ({
   handleCancel,
   signInOpen,
 }: any) => {
+  const [leastIndustries, setLeastIndustries] = useState([]);
+  const [leastSubject, setLeastSubject] = useState([]);
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const dispatch = useDispatch();
@@ -43,6 +45,44 @@ const SignUpModal = ({
     industries = [],
   } = useSelector((store: any) => store.subject);
 
+  const leastHandler = (value: any) => {
+    const updatedIndustries = industries?.map((item: any) => {
+      return {
+        value: item?.id,
+        label: item?.name,
+        disabled: !!value?.includes(item?.id) || false,
+      };
+    });
+    setLeastIndustries(updatedIndustries);
+  };
+  const leastSubjectHandler = (value: any) => {
+    const updatedIndustries = subjects?.map((item: any) => {
+      return {
+        value: item?.id,
+        label: item?.name,
+        disabled: !!value?.includes(item?.id) || false,
+      };
+    });
+    setLeastSubject(updatedIndustries);
+  };
+  useEffect(() => {
+    const indust = industries?.map((item: any) => {
+      return {
+        value: item?.id,
+        label: item?.name,
+      };
+    });
+    setLeastIndustries(indust);
+  }, [industries]);
+  useEffect(() => {
+    const indust = subjects?.map((item: any) => {
+      return {
+        value: item?.id,
+        label: item?.name,
+      };
+    });
+    setLeastSubject(indust);
+  }, [subjects]);
   return (
     <Modal
       open={isModalOpen}
@@ -64,6 +104,22 @@ const SignUpModal = ({
             isDark ? "dark " : "light "
           } signup-screen__wrapper d-flex flex-column justify-content-center align-items-center`}
         >
+          <p className="text-center text-black">
+            We understand that choosing the right path can be daunting, which is
+            why we have developed this form as a tool to guide you towards the
+            best-suited career options. By providing us with your valuable
+            information, you enable our advanced algorithm to analyze your
+            strengths, interests, and aspirations effectively. This data serves
+            as the foundation for our personalized career suggestions, ensuring
+            that the recommendations you receive are tailored specifically to
+            you. This form is not just another routine task; it is an
+            opportunity for you to gain valuable insights that can shape your
+            professional journey in a meaningful way. The time you invest in
+            completing this form will prove to be a strategic investment in your
+            future success. Allow us to empower you with the knowledge and
+            guidance needed to make informed decisions and embark on a
+            fulfilling career path
+          </p>
           <Form
             name="signup"
             form={form}
@@ -251,6 +307,7 @@ const SignUpModal = ({
                 >
                   <Checkbox.Group
                     className="favorite-subject"
+                    onChange={leastSubjectHandler}
                     options={subjects?.map((items: any) => {
                       return {
                         value: items?.id,
@@ -273,12 +330,7 @@ const SignUpModal = ({
                 >
                   <Checkbox.Group
                     className="favorite-subject least"
-                    options={subjects?.map((items: any) => {
-                      return {
-                        value: items?.id,
-                        label: items?.name,
-                      };
-                    })}
+                    options={leastSubject}
                   />
                 </Form.Item>
               </Col>
@@ -295,6 +347,7 @@ const SignUpModal = ({
                 >
                   <Checkbox.Group
                     className="favorite-subject"
+                    onChange={leastHandler}
                     options={industries?.map((items: any) => {
                       return {
                         value: items?.id,
@@ -317,12 +370,7 @@ const SignUpModal = ({
                 >
                   <Checkbox.Group
                     className="least favorite-subject"
-                    options={industries?.map((items: any) => {
-                      return {
-                        value: items?.id,
-                        label: items?.name,
-                      };
-                    })}
+                    options={leastIndustries}
                   />
                 </Form.Item>
               </Col>

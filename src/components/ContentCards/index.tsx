@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCareer } from "src/redux/actions/careerAction";
 import ContentInnerCards from "../ContentInnerCard";
 import Environment from "../../network/baseUrl";
-
+import { getInspiration } from "src/redux/actions/inspirationsAction";
 import debounce from "lodash/debounce";
 import "./ContentCards.scss";
 
@@ -16,6 +16,7 @@ let page = 1;
 const ContentCards = () => {
   const [data, setData] = useState([...contentData]);
   const [career, setCareer]: any = useState([]);
+  const [isInspiration, setIsInspiration] = useState(false);
 
   const disptach = useDispatch<any>();
 
@@ -58,10 +59,25 @@ const ContentCards = () => {
     totalPage = 0,
   } = useSelector((store: any) => store.career);
 
+  const {
+    inspiration = [],
+    loader: inspirationsLoader = false,
+    totalPage: inspirationPage = 0,
+  } = useSelector((store: any) => store.inspiration);
+
   window.onscroll = debounce((e) => {
+    console.log(
+      document.documentElement.scrollHeight -
+        document.documentElement.scrollTop -
+        651,
+      document.documentElement.clientHeight,
+      totalPage,
+      page
+    );
     if (
       document.documentElement.scrollHeight -
-        document.documentElement.scrollTop ===
+        document.documentElement.scrollTop -
+        651 <=
         document.documentElement.clientHeight &&
       totalPage >= page
     ) {
@@ -79,7 +95,7 @@ const ContentCards = () => {
   const onFilterChange = (params: object) => {
     setCareer([]);
     page = 1;
-    disptach(getCareer({ ...params, page: 1, take: 200 }));
+    disptach(getCareer({ ...params, page: 1, take: 20 }));
   };
 
   useEffect(() => {
@@ -126,6 +142,11 @@ const ContentCards = () => {
       label: "",
     },
   ];
+  const inspirationHandler = () => {
+    setIsInspiration(false);
+    disptach(getInspiration({ page, take: 20 }));
+  };
+
   return (
     <Container className="content-card mb-3 px-0 " fluid>
       <Row className="px-md-3 px-0 m-0">
@@ -135,8 +156,16 @@ const ContentCards = () => {
         >
           <div className="button-wrapper d-flex align-items-center flex-wrap flex-md-row ">
             <div className="d-md-block d-flex justify-content-between ">
-              <Button className="btn btn-primary me-2 custom">Career</Button>
-              <Button className="btn btn-primary me-2 custom">
+              <Button
+                className="btn btn-primary me-2 custom"
+                onClick={() => setIsInspiration(false)}
+              >
+                Career
+              </Button>
+              <Button
+                className="btn btn-primary me-2 custom"
+                // onClick={inspirationHandler}
+              >
                 Inspirations
               </Button>
               <div className="d-md-none d-block">
@@ -188,18 +217,20 @@ const ContentCards = () => {
         </Col>
       </Row>
       <ul className="grid ps-0 pb-5 justify-content-center">
-        {career.map((item: any, index: any) => (
+        {career?.map((item: any, index: any) => (
           // <Col
           //   key={index}
           //   className="mb-4 card-col d-flex flex-wrap justify-content-lg-start justify-content-center justify-content-md-center"
           // >
-          <li className="item">
+          <li className="item" key={item?.id}>
             <ContentInnerCards
               item={item}
               index={index}
               image={item?.attributes?.image}
               onArrayChange={onArrayChange}
+              key={item?.id}
             />
+            {/* <img src={item?.image} />  */}
           </li>
           // </Col>
         ))}

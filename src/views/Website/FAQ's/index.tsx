@@ -6,7 +6,7 @@ import HomeBanner from "src/components/HomeBanner";
 const FAQ = () => {
   return (
     <div className="faq">
-      <HomeBanner />
+      {/* <HomeBanner /> */}
       <section className="pt-3 pb-5">
         <Container>
           <Row>

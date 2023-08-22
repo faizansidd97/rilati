@@ -29,7 +29,7 @@ const Logos = ({ count = 10, customClass }: any) => {
           <Row className={customClass ? "gap-4" : ""}>
             <Col md={24} className="d-flex justify-content-around flex-wrap">
               {uni?.map((item: any, index: any) => (
-                <div className="mx-1 logos-card" key={index}>
+                <div className="mx-1 logos-card" key={item?.id}>
                   <a href={item?.attributes?.link} target="_blank">
                     <img
                       key={index}

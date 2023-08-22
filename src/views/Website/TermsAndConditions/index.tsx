@@ -5,7 +5,7 @@ import "./TermsAndConditions.scss";
 const TermsAndConditions = () => {
   return (
     <div className="terms-and-conditions">
-      <HomeBanner />
+      {/* <HomeBanner /> */}
       <section>
         <Container>
           <Row>

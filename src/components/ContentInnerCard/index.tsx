@@ -53,7 +53,7 @@ const ContentInnerCards = ({
     <div
       className="content-card__wrapper d-flex flex-column gap-1 gap-md-3 justify-content-between position-relative"
       style={{ backgroundImage: `url("${image ? image : imageCareer}")` }}
-      key={index}
+      // key={item?.id}
       onMouseEnter={() => {
         setProgress({
           ...progress,

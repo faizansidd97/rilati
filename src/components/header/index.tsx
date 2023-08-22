@@ -12,6 +12,9 @@ import SignUpModal from "../SignUpModal";
 import Environment from "../../network/baseUrl";
 import SignInModal from "../SignInModal";
 import { logoutRequest } from "src/redux/actions/authAction";
+import AboutUs from "src/views/Website/AboutUs";
+import TermsAndConditions from "src/views/Website/TermsAndConditions";
+import FAQ from "src/views/Website/FAQ's";
 
 const Header = () => {
   const dispatch = useDispatch<any>();
@@ -19,6 +22,9 @@ const Header = () => {
   // const [toggle, setToggle] = useState(false);
   const [signUpToggle, setSignUpToggle] = useState(false);
   const [signInToggle, setSignInToggle] = useState(false);
+  const [isTerms, setIsTerms] = useState(false);
+  const [isAbout, setIsAbout] = useState(false);
+  const [isFAQ, setIsFAQ] = useState(false);
   // const toggleMenu = () => {
   //   setToggle(!toggle);
   // };
@@ -117,15 +123,15 @@ const Header = () => {
           <div className="mt-3 me-4">
             <h5>About us</h5>
 
-            <Link className="menu-items mb-3" to={"about-us"}>
-              <h5 className="menu-items mb-3">📙 About</h5>
-            </Link>
-            <Link className="menu-items mb-3" to={"faq"}>
-              <h5 className="menu-items mb-3">❓ FAQ's</h5>
-            </Link>
-            <Link className="menu-items mb-3" to={"terms-conditions"}>
+            <div className="menu-items mb-3" onClick={() => setIsAbout(true)}>
+              <h5>📙 About</h5>
+            </div>
+            <div className="menu-items mb-3" onClick={() => setIsFAQ(true)}>
+              <h5>❓ FAQ's</h5>
+            </div>
+            {/* <div className="menu-items mb-3" onClick={() => setIsAbout(true)}>
               <h5 className="menu-items mb-3">🔏 Terms and Conditions</h5>
-            </Link>
+            </div> */}
           </div>
         </div>
       ),
@@ -143,6 +149,10 @@ const Header = () => {
       });
   };
   const { loader } = useSelector((store: any) => store.mail);
+  const termsHandler = () => {
+    setIsAbout(false);
+    setIsTerms(true);
+  };
   return (
     <header className="header">
       <Dropdown menu={{ items }} trigger={["click"]}>
@@ -192,6 +202,33 @@ const Header = () => {
         handleCancel={() => setSignInToggle(false)}
         footer={false}
       />
+      <Modal
+        open={isAbout}
+        onOk={() => setIsAbout(false)}
+        onCancel={() => setIsAbout(false)}
+        footer={false}
+        width={"80%"}
+      >
+        <AboutUs termsHandler={termsHandler} />
+      </Modal>
+      <Modal
+        open={isTerms}
+        onOk={() => setIsTerms(false)}
+        onCancel={() => setIsTerms(false)}
+        footer={false}
+        width={"80%"}
+      >
+        <TermsAndConditions />
+      </Modal>
+      <Modal
+        open={isFAQ}
+        onOk={() => setIsFAQ(false)}
+        onCancel={() => setIsFAQ(false)}
+        footer={false}
+        width={"80%"}
+      >
+        <FAQ />
+      </Modal>
     </header>
   );
 };

@@ -111,7 +111,7 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
   return (
     <div
       className="content-tabs d-flex flex-column justify-content-between position-relative"
-      key={index}
+      key={item?.id}
     >
       <div
         className="content-tabs__header d-flex flex-column align-items-center justify-content-center "

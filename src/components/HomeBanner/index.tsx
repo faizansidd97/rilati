@@ -1,6 +1,8 @@
 import { Button, Form, Input } from "antd";
 import thumbnail1 from "../../assets/images/Homepage.jpg";
 import { Col, Container, Row } from "react-bootstrap";
+import Environment from "../../network/baseUrl";
+
 import { useSelector } from "react-redux";
 import "./HomeBanner.scss";
 import { useState } from "react";
@@ -11,6 +13,9 @@ const HomeBanner = () => {
   const [signUpToggle, setSignUpToggle] = useState(false);
   const [signInToggle, setSignInToggle] = useState(false);
   const { isDark = false } = useSelector((store: any) => store.theme);
+  const { isLogin = false } = useSelector((storeState: any) => storeState.auth);
+  const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
+  const loginUser = getUser ? JSON.parse(getUser) : null;
   return (
     <div
       className="home-banner position-relative d-flex align-items-center"
@@ -124,38 +129,41 @@ const HomeBanner = () => {
               </div> */}
             </div>
           </Col>
+
           <Col
             sm={12}
             md={6}
             lg={6}
             className="d-md-flex d-none justify-content-center justify-content-md-end mb-4 mb-md-0"
           >
-            <div className="subcription__form_wrapper d-flex flex-column align-items-center mb-4">
-              {/* <img src={thumbnail} className="w-100" /> */}
-              <Form>
-                <Form.Item className="my-1 mb-2 my-md-3">
-                  <Input placeholder="Type your email...." />
-                </Form.Item>
-                <Form.Item>
-                  <Button
-                    className="btn btn-primary mb-0 mb-md-3 w-100"
-                    onClick={() => setSignUpToggle(true)}
-                  >
-                    Join Us
-                  </Button>
-                </Form.Item>
-                <span>
-                  Already Member?
-                  <span
-                    onClick={() => setSignInToggle(true)}
-                    className="cursor-pointer"
-                  >
-                    {" "}
-                    Log In
+            {!(isLogin || loginUser) && (
+              <div className="subcription__form_wrapper d-flex flex-column align-items-center mb-4">
+                {/* <img src={thumbnail} className="w-100" /> */}
+                <Form>
+                  <Form.Item className="my-1 mb-2 my-md-3">
+                    <Input placeholder="Type your email...." />
+                  </Form.Item>
+                  <Form.Item>
+                    <Button
+                      className="btn btn-primary mb-0 mb-md-3 w-100"
+                      onClick={() => setSignUpToggle(true)}
+                    >
+                      Join Us
+                    </Button>
+                  </Form.Item>
+                  <span>
+                    Already Member?
+                    <span
+                      onClick={() => setSignInToggle(true)}
+                      className="cursor-pointer"
+                    >
+                      {" "}
+                      Log In
+                    </span>
                   </span>
-                </span>
-              </Form>
-            </div>
+                </Form>
+              </div>
+            )}
             <svg
               viewBox="0 0 1440 120"
               className="wave"
@@ -169,6 +177,7 @@ const HomeBanner = () => {
           </Col>
         </Row>
       </Container>
+
       <SignUpModal
         isModalOpen={signUpToggle}
         handleOk={() => setSignUpToggle(false)}
