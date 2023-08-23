@@ -16,7 +16,6 @@ export const getInspiration = (params?: any) => (dispatch: any) => {
       const {
         data: { data },
       }: any = res;
-      console.log("resinspirations", data);
 
       dispatch({
         type: INSPIRATION_SUCCESS,

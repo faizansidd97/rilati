@@ -12,6 +12,7 @@ const initialState: InspirationState = {
   loader: false,
   inspiration: [],
   metaData: {},
+  totaPage: 0,
   deleteLoader: false,
 };
 
@@ -25,8 +26,9 @@ const inspirationReducer = (state = initialState, action: any) => {
 
     case INSPIRATION_SUCCESS: {
       return Object.assign({}, state, {
-        inspiration: action.payload?.data,
+        inspiration: [...action.payload?.data],
         metaData: action.payload,
+        totaPage: action.payload.meta?.lastPage,
         loader: false,
       });
     }

@@ -11,11 +11,15 @@ import Environment from "../../network/baseUrl";
 import { getInspiration } from "src/redux/actions/inspirationsAction";
 import debounce from "lodash/debounce";
 import "./ContentCards.scss";
+import { log } from "console";
+import InspirationInnerCard from "../InspirationInnerCard";
 
 let page = 1;
+let curretnInspirationPage = 1;
 const ContentCards = () => {
   const [data, setData] = useState([...contentData]);
   const [career, setCareer]: any = useState([]);
+  const [inspirations, setInspirations]: any = useState([]);
   const [isInspiration, setIsInspiration] = useState(false);
 
   const disptach = useDispatch<any>();
@@ -65,32 +69,49 @@ const ContentCards = () => {
     totalPage: inspirationPage = 0,
   } = useSelector((store: any) => store.inspiration);
 
-  window.onscroll = debounce((e) => {
-    console.log(
-      document.documentElement.scrollHeight -
-        document.documentElement.scrollTop -
-        651,
-      document.documentElement.clientHeight,
-      totalPage,
-      page
-    );
-    if (
-      document.documentElement.scrollHeight -
-        document.documentElement.scrollTop -
-        651 <=
-        document.documentElement.clientHeight &&
-      totalPage >= page
-    ) {
-      page++;
-      let payload = {};
-      if (loginUser) {
-        payload = { page, take: 20, user_id: loginUser?.id };
-      } else {
-        payload = { page, take: 20 };
+  if (isInspiration) {
+    window.onscroll = debounce((e) => {
+      if (
+        document.documentElement.scrollHeight -
+          document.documentElement.scrollTop -
+          651 <=
+          document.documentElement.clientHeight &&
+        totalPage >= inspirationPage
+      ) {
+        curretnInspirationPage++;
+        let payload = {};
+        if (loginUser) {
+          payload = {
+            page: curretnInspirationPage,
+            take: 20,
+            user_id: loginUser?.id,
+          };
+        } else {
+          payload = { page: curretnInspirationPage, take: 20 };
+        }
+        disptach(getInspiration(payload));
       }
-      disptach(getCareer(payload));
-    }
-  }, 1000);
+    }, 1000);
+  } else {
+    window.onscroll = debounce((e) => {
+      if (
+        document.documentElement.scrollHeight -
+          document.documentElement.scrollTop -
+          651 <=
+          document.documentElement.clientHeight &&
+        totalPage >= page
+      ) {
+        page++;
+        let payload = {};
+        if (loginUser) {
+          payload = { page, take: 20, user_id: loginUser?.id };
+        } else {
+          payload = { page, take: 20 };
+        }
+        disptach(getCareer(payload));
+      }
+    }, 1000);
+  }
 
   const onFilterChange = (params: object) => {
     setCareer([]);
@@ -101,6 +122,9 @@ const ContentCards = () => {
   useEffect(() => {
     setCareer([...career, ...careerData]);
   }, [careerData]);
+  useEffect(() => {
+    setInspirations([...inspirations, ...inspiration]);
+  }, [inspiration]);
 
   const items: MenuProps["items"] = [
     {
@@ -143,7 +167,7 @@ const ContentCards = () => {
     },
   ];
   const inspirationHandler = () => {
-    setIsInspiration(false);
+    setIsInspiration(true);
     disptach(getInspiration({ page, take: 20 }));
   };
 
@@ -164,7 +188,7 @@ const ContentCards = () => {
               </Button>
               <Button
                 className="btn btn-primary me-2 custom"
-                // onClick={inspirationHandler}
+                onClick={inspirationHandler}
               >
                 Inspirations
               </Button>
@@ -217,28 +241,46 @@ const ContentCards = () => {
         </Col>
       </Row>
       <ul className="grid ps-0 pb-5 justify-content-center">
-        {career?.map((item: any, index: any) => (
-          // <Col
-          //   key={index}
-          //   className="mb-4 card-col d-flex flex-wrap justify-content-lg-start justify-content-center justify-content-md-center"
-          // >
-          <li className="item" key={item?.id}>
-            <ContentInnerCards
-              item={item}
-              index={index}
-              image={item?.attributes?.image}
-              onArrayChange={onArrayChange}
-              key={item?.id}
-            />
-            {/* <img src={item?.image} />  */}
-          </li>
-          // </Col>
-        ))}
-        {loader &&
+        {!isInspiration
+          ? career?.map((item: any, index: any) => (
+              // <Col
+              //   key={index}
+              //   className="mb-4 card-col d-flex flex-wrap justify-content-lg-start justify-content-center justify-content-md-center"
+              // >
+              <li className="item" key={item?.id}>
+                <ContentInnerCards
+                  item={item}
+                  index={index}
+                  image={item?.attributes?.image}
+                  onArrayChange={onArrayChange}
+                  key={item?.id}
+                />
+                {/* <img src={item?.image} />  */}
+              </li>
+              // </Col>
+            ))
+          : inspirations?.map((item: any, index: any) => (
+              // <Col
+              //   key={index}
+              //   className="mb-4 card-col d-flex flex-wrap justify-content-lg-start justify-content-center justify-content-md-center"
+              // >
+              <li className="item" key={item?.id}>
+                <InspirationInnerCard
+                  item={item}
+                  index={index}
+                  image={item?.image}
+                  onArrayChange={onArrayChange}
+                  key={item?.id}
+                />
+                {/* <img src={item?.image} />  */}
+              </li>
+              // </Col>
+            ))}
+        {(loader || inspirationsLoader) &&
           [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(
             (index) => (
               <li className="item mb-4" key={index}>
-                <Skeleton.Node active={loader}>
+                <Skeleton.Node active={loader || inspirationsLoader}>
                   <DotChartOutlined
                     style={{ fontSize: 100, color: "#bfbfbf" }}
                   />
