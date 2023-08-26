@@ -1,14 +1,15 @@
 import { useState } from "react";
 
 import { AiOutlineClose, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import ProgressBar from "react-bootstrap/ProgressBar";
+// import ProgressBar from "react-bootstrap/ProgressBar";
 import imageCareer from "../../assets/images/placeholderCareer.jpeg";
 import { IoShareOutline } from "react-icons/io5";
 import { Modal } from "antd";
 import ContentTabs from "../ContentTabs";
-import { stringLimt } from "src/helper/helper";
+// import { stringLimt } from "src/helper/helper";
 import { useDispatch } from "react-redux";
 import { likeCareer } from "src/redux/actions/careerAction";
+import ProgressBar from "@ramonak/react-progress-bar";
 
 interface IContentCards {
   item: any;
@@ -161,47 +162,63 @@ const ContentInnerCards = ({
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
             <h3>🥇 ATAR</h3>
             <ProgressBar
-              color="#ffffff36"
-              now={progress.cost}
-              variant="success"
-              max={100}
+              bgColor="#00eb75"
+              animateOnRender
+              completed={+progress.cost}
+              // variant="success"
+              maxCompleted={100}
+              className="progress"
+              baseBgColor="#ffffff36"
+              customLabel="10"
             />
           </div>
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
             <h3>⚖️ Work Life Balance</h3>
             <ProgressBar
-              color="#ffffff36"
-              now={progress.over}
-              variant="success"
-              max={10}
+              bgColor="#00eb75"
+              animateOnRender
+              completed={progress.over}
+              // variant="success"
+              maxCompleted={10}
+              baseBgColor="#ffffff36"
+              className="progress"
             />
           </div>
 
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
             <h3>🙌 Status in company</h3>
             <ProgressBar
-              color="#ffffff36"
-              now={progress.status}
-              variant="success"
-              max={10}
+              bgColor="#00eb75"
+              animateOnRender
+              completed={progress.status}
+              // variant="success"
+              maxCompleted={10}
+              baseBgColor="#ffffff36"
+              className="progress"
             />
           </div>
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
             <h3>🔀 Potential to Switch</h3>
             <ProgressBar
-              color="#ffffff36"
-              now={progress.fun}
-              variant="success"
-              max={10}
+              bgColor="#00eb75"
+              animateOnRender
+              completed={progress.fun}
+              // variant="success"
+              maxCompleted={10}
+              baseBgColor="#ffffff36"
+              className="progress"
             />
           </div>
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
             <h3>🌐 Scope World wide</h3>
             <ProgressBar
-              color="#ffffff36"
-              now={progress.saftey}
-              variant="success"
-              max={10}
+              bgColor="#00eb75"
+              animateOnRender
+              completed={progress.saftey}
+              // variant="success"
+              maxCompleted={10}
+              baseBgColor="#ffffff36"
+              className="progress"
             />
           </div>
           {/* <p>Still an amazing island</p> */}

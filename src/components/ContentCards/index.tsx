@@ -181,13 +181,17 @@ const ContentCards = () => {
           <div className="button-wrapper d-flex align-items-center flex-wrap flex-md-row ">
             <div className="d-md-block d-flex justify-content-between ">
               <Button
-                className="btn btn-primary me-2 custom"
+                className={`btn btn-primary me-2 custom ${
+                  isInspiration ? "" : "active"
+                }`}
                 onClick={() => setIsInspiration(false)}
               >
                 Career
               </Button>
               <Button
-                className="btn btn-primary me-2 custom"
+                className={`btn btn-primary me-2 custom ${
+                  isInspiration ? "active" : ""
+                }`}
                 onClick={inspirationHandler}
               >
                 Inspirations
@@ -243,10 +247,6 @@ const ContentCards = () => {
       <ul className="grid ps-0 pb-5 justify-content-center">
         {!isInspiration
           ? career?.map((item: any, index: any) => (
-              // <Col
-              //   key={index}
-              //   className="mb-4 card-col d-flex flex-wrap justify-content-lg-start justify-content-center justify-content-md-center"
-              // >
               <li className="item" key={item?.id}>
                 <ContentInnerCards
                   item={item}
@@ -255,27 +255,21 @@ const ContentCards = () => {
                   onArrayChange={onArrayChange}
                   key={item?.id}
                 />
-                {/* <img src={item?.image} />  */}
               </li>
-              // </Col>
             ))
-          : inspirations?.map((item: any, index: any) => (
-              // <Col
-              //   key={index}
-              //   className="mb-4 card-col d-flex flex-wrap justify-content-lg-start justify-content-center justify-content-md-center"
-              // >
-              <li className="item" key={item?.id}>
-                <InspirationInnerCard
-                  item={item}
-                  index={index}
-                  image={item?.image}
-                  onArrayChange={onArrayChange}
-                  key={item?.id}
-                />
-                {/* <img src={item?.image} />  */}
-              </li>
-              // </Col>
-            ))}
+          : inspirations?.map((item: any, index: any) =>
+              item?.name !== null && item?.image !== null ? (
+                <li className="item" key={item?.id}>
+                  <InspirationInnerCard
+                    item={item}
+                    index={index}
+                    image={item?.image}
+                    onArrayChange={onArrayChange}
+                    key={item?.id}
+                  />
+                </li>
+              ) : null
+            )}
         {(loader || inspirationsLoader) &&
           [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(
             (index) => (

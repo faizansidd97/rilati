@@ -1,4 +1,7 @@
 import {
+  INSPIRATION_BY_ID_ERROR,
+  INSPIRATION_BY_ID_REQUEST,
+  INSPIRATION_BY_ID_SUCCESS,
   INSPIRATION_DELETE_ERROR,
   INSPIRATION_DELETE_REQUEST,
   INSPIRATION_DELETE_SUCCESS,
@@ -14,6 +17,7 @@ const initialState: InspirationState = {
   metaData: {},
   totaPage: 0,
   deleteLoader: false,
+  inspirationById: {},
 };
 
 const inspirationReducer = (state = initialState, action: any) => {
@@ -53,6 +57,24 @@ const inspirationReducer = (state = initialState, action: any) => {
     case INSPIRATION_DELETE_ERROR: {
       return Object.assign({}, state, {
         deleteLoader: false,
+      });
+    }
+    case INSPIRATION_BY_ID_REQUEST: {
+      return Object.assign({}, state, {
+        loader: true,
+      });
+    }
+
+    case INSPIRATION_BY_ID_SUCCESS: {
+      return Object.assign({}, state, {
+        loader: false,
+        inspirationById: action.payload,
+      });
+    }
+
+    case INSPIRATION_BY_ID_ERROR: {
+      return Object.assign({}, state, {
+        loader: false,
       });
     }
 

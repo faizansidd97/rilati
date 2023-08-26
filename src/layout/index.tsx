@@ -19,6 +19,8 @@ import Users from "src/views/dashboard/Users";
 import AboutUs from "src/views/Website/AboutUs";
 import FAQ from "src/views/Website/FAQ's";
 import TermsAndConditions from "src/views/Website/TermsAndConditions";
+import Inspiration from "src/views/dashboard/Inspiration";
+import AddEditInspiration from "src/views/dashboard/Inspiration/AddEditInspiration";
 
 export const RoutePaths = {
   LOGIN:
@@ -44,6 +46,8 @@ const Layout = () => {
           <Route path="category" element={<Category />} />
           <Route path="mails" element={<Mail />} />
           <Route path="users" element={<Users />} />
+          <Route path="inspiration" element={<Inspiration />} />
+          <Route path="inspiration/:id" element={<AddEditInspiration />} />
           {/* <Route path="category/:id" element={<AddEditUni />} /> */}
         </Route>
       ) : (

@@ -1,4 +1,4 @@
-import ProgressBar from "react-bootstrap/ProgressBar";
+// import ProgressBar from "react-bootstrap/ProgressBar";
 import careerImage from "../../assets/images/placeholderCareer.jpeg";
 import { IoShareOutline } from "react-icons/io5";
 import { Col, Row, Tabs } from "antd";
@@ -6,6 +6,7 @@ import { Col, Row, Tabs } from "antd";
 import CareerUniversity from "../CareerUniversity";
 import "./ContentTabs.scss";
 
+import ProgressBar from "@ramonak/react-progress-bar";
 interface IContentTabs {
   item: any;
   image?: any;
@@ -137,173 +138,230 @@ const ContentTabs = ({ item, index, progress, image }: IContentTabs) => {
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
               <h3>🥇 ATAR</h3>
               <ProgressBar
-                color="#ffffff36"
-                now={progress.cost}
-                variant="success"
-                max={100}
+                baseBgColor="#ffffff36"
+                animateOnRender
+                className="progress"
+                completed={+progress.cost}
+                // variant="success"
+                bgColor="#00eb75"
+                maxCompleted={100}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
               <h3>🌟 Work-Life Balance</h3>
               <ProgressBar
-                color="#ffffff36"
-                now={progress.over}
-                variant="success"
-                max={10}
+                baseBgColor="#ffffff36"
+                animateOnRender
+                className="progress"
+                completed={progress.over}
+                // variant="success"
+                bgColor="#00eb75"
+                maxCompleted={10}
               />
             </div>
 
             {/* <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
               <h3>🙌 Foster Motivation</h3>
               <ProgressBar
-                color="#ffffff36"
-                now={progress.internet}
-                variant="success"
-                max={10}
+                baseBgColor="#ffffff36"
+               animateOnRender
+                className="progress"
+                completed={progress.internet}
+                // variant="success"
+                 bgColor="#00eb75"
+                maxCompleted={10}
               />
             </div> */}
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
               <h3>🔀 Potential to Switch</h3>
               <ProgressBar
-                color="#ffffff36"
-                now={progress.fun}
-                variant="success"
-                max={10}
+                baseBgColor="#ffffff36"
+                animateOnRender
+                className="progress"
+                completed={progress.fun}
+                // variant="success"
+                bgColor="#00eb75"
+                maxCompleted={10}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
               <h3>🌐 Scope World wide</h3>
               <ProgressBar
-                color="#ffffff36"
-                now={progress.saftey}
-                variant="success"
-                max={10}
+                baseBgColor="#ffffff36"
+                animateOnRender
+                className="progress"
+                completed={progress.saftey}
+                // variant="success"
+                bgColor="#00eb75"
+                maxCompleted={10}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
               <h3>🙌 Status in Company</h3>
               <ProgressBar
-                color="#ffffff36"
-                now={progress.status}
-                variant="success"
-                max={10}
+                baseBgColor="#ffffff36"
+                animateOnRender
+                className="progress"
+                completed={progress.status}
+                // variant="success"
+                bgColor="#00eb75"
+                maxCompleted={10}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
               <h3>⚠️ Risk to health</h3>
               <ProgressBar
-                color="#ffffff36"
-                now={progress.health}
-                variant="success"
-                max={10}
+                baseBgColor="#ffffff36"
+                animateOnRender
+                className="progress"
+                completed={progress.health}
+                // variant="success"
+                bgColor="#00eb75"
+                maxCompleted={10}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
               <h3>👥 Team Reliance</h3>
               <ProgressBar
-                color="#ffffff36"
-                now={progress.team}
-                variant="success"
-                max={10}
+                baseBgColor="#ffffff36"
+                animateOnRender
+                className="progress"
+                completed={progress.team}
+                // variant="success"
+                bgColor="#00eb75"
+                maxCompleted={10}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
               <h3>🔍 Precision Work</h3>
               <ProgressBar
-                color="#ffffff36"
-                now={progress.precision_work}
-                variant="success"
-                max={10}
+                baseBgColor="#ffffff36"
+                animateOnRender
+                className="progress"
+                completed={progress.precision_work}
+                // variant="success"
+                bgColor="#00eb75"
+                maxCompleted={10}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
               <h3>⏰ Work Hours</h3>
               <ProgressBar
-                color="#ffffff36"
-                now={progress.work_hours}
-                variant="success"
-                max={10}
+                baseBgColor="#ffffff36"
+                animateOnRender
+                className="progress"
+                completed={progress.work_hours}
+                // variant="success"
+                bgColor="#00eb75"
+                maxCompleted={10}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
               <h3>🏢 Helping Environment</h3>
               <ProgressBar
-                color="#ffffff36"
-                now={progress.job_enviroment}
-                variant="success"
-                max={10}
+                baseBgColor="#ffffff36"
+                animateOnRender
+                className="progress"
+                completed={progress.job_enviroment}
+                // variant="success"
+                bgColor="#00eb75"
+                maxCompleted={10}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
               <h3>😩 Repetitive or Tedious</h3>
               <ProgressBar
-                color="#ffffff36"
-                now={progress.repetitive_tedious}
-                variant="success"
-                max={10}
+                baseBgColor="#ffffff36"
+                animateOnRender
+                className="progress"
+                completed={progress.repetitive_tedious}
+                // variant="success"
+                bgColor="#00eb75"
+                maxCompleted={10}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
               <h3>🤩 People Interation</h3>
               <ProgressBar
-                color="#ffffff36"
-                now={progress.people_interations}
-                variant="success"
-                max={10}
+                baseBgColor="#ffffff36"
+                animateOnRender
+                className="progress"
+                completed={progress.people_interations}
+                // variant="success"
+                bgColor="#00eb75"
+                maxCompleted={10}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
               <h3>✌️ Autonomy & Freedom</h3>
               <ProgressBar
-                color="#ffffff36"
-                now={progress.autonomy}
-                variant="success"
-                max={10}
+                baseBgColor="#ffffff36"
+                animateOnRender
+                className="progress"
+                completed={progress.autonomy}
+                // variant="success"
+                bgColor="#00eb75"
+                maxCompleted={10}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
               <h3>👤 Risk to Life</h3>
               <ProgressBar
-                color="#ffffff36"
-                now={progress.life_risk}
-                variant="success"
-                max={10}
+                baseBgColor="#ffffff36"
+                animateOnRender
+                className="progress"
+                completed={progress.life_risk}
+                // variant="success"
+                bgColor="#00eb75"
+                maxCompleted={10}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
               <h3>😞 Physical Stress</h3>
               <ProgressBar
-                color="#ffffff36"
-                now={progress.physical_stress}
-                variant="success"
-                max={10}
+                baseBgColor="#ffffff36"
+                animateOnRender
+                className="progress"
+                completed={progress.physical_stress}
+                // variant="success"
+                bgColor="#00eb75"
+                maxCompleted={10}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
               <h3>😑 Mental Stress</h3>
               <ProgressBar
-                color="#ffffff36"
-                now={progress.mental_stress}
-                variant="success"
-                max={10}
+                baseBgColor="#ffffff36"
+                animateOnRender
+                className="progress"
+                completed={progress.mental_stress}
+                // variant="success"
+                bgColor="#00eb75"
+                maxCompleted={10}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
               <h3>😓 Job Stress</h3>
               <ProgressBar
-                color="#ffffff36"
-                now={progress.mental_stress}
-                variant="success"
-                max={10}
+                baseBgColor="#ffffff36"
+                animateOnRender
+                className="progress"
+                completed={progress.mental_stress}
+                // variant="success"
+                bgColor="#00eb75"
+                maxCompleted={10}
               />
             </div>
             <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
               <h3>✌️ Job Satisfaction</h3>
               <ProgressBar
-                color="#ffffff36"
-                now={progress.job_satisfaction}
-                variant="success"
-                max={10}
+                baseBgColor="#ffffff36"
+                animateOnRender
+                className="progress"
+                completed={progress.job_satisfaction}
+                // variant="success"
+                bgColor="#00eb75"
+                maxCompleted={10}
               />
             </div>
             {/* <p>Still an amazing island</p> */}

@@ -53,7 +53,12 @@ const SignUpModal = ({
         disabled: !!value?.includes(item?.id) || false,
       };
     });
+    const selectLeast = form.getFieldValue("least_industries_interest");
+    const removeSelected = selectLeast?.filter(
+      (item: any) => !value?.includes(item)
+    );
     setLeastIndustries(updatedIndustries);
+    form.setFieldsValue({ least_industries_interest: removeSelected });
   };
   const leastSubjectHandler = (value: any) => {
     const updatedIndustries = subjects?.map((item: any) => {
@@ -63,7 +68,14 @@ const SignUpModal = ({
         disabled: !!value?.includes(item?.id) || false,
       };
     });
+
+    const selectLeast = form.getFieldValue("least_favorite_subject");
+    const removeSelected = selectLeast?.filter(
+      (item: any) => !value?.includes(item)
+    );
     setLeastSubject(updatedIndustries);
+
+    form.setFieldsValue({ least_favorite_subject: removeSelected });
   };
   useEffect(() => {
     const indust = industries?.map((item: any) => {
@@ -482,7 +494,16 @@ const SignUpModal = ({
                     },
                   ]}
                 >
-                  <Select
+                  {/* <Select
+                    options={confidentSkills?.map((items: any) => {
+                      return {
+                        value: items?.value,
+                        label: items?.label,
+                      };
+                    })}
+                  /> */}
+                  <Checkbox.Group
+                    className="least favorite-subject"
                     options={confidentSkills?.map((items: any) => {
                       return {
                         value: items?.value,

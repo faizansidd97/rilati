@@ -12,7 +12,13 @@
       color: #ff4742 !important;
       border-color: #ff4742 !important;
     }
+    &.active {
+      background-color: transparent !important;
+      color: #ff4742 !important;
+      border-color: #ff4742 !important;
+    }
   }
+
   .grid {
     display: block;
     clear: both;
@@ -370,4 +376,9 @@
 // }
 .bg-success {
   background-color: #00eb75 !important;
+}
+
+.profile-image {
+  border-radius: 6px;
+  border: 2px solid red;
 }

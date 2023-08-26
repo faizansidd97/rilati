@@ -1,9 +1,9 @@
 import { lazy, Suspense } from "react";
 import "./Views.scss";
-import { Button, ConfigProvider, theme } from "antd";
+import { ConfigProvider, theme } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { themeSwitcher } from "src/redux/actions/themeAction";
-import { FaMoon, FaSun } from "react-icons/fa";
+// import { themeSwitcher } from "src/redux/actions/themeAction";
+// import { FaMoon, FaSun } from "react-icons/fa";
 
 const Layout = lazy(() => import("../layout"));
 // import Routing from "@routing";
