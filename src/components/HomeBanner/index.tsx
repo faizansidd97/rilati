@@ -45,7 +45,8 @@ const HomeBanner = () => {
         <Row className="align-self-center w-100  align-items-center ">
           <Col sm={12} md={6} lg={6}>
             <div className="d-flex flex-column justify-content-end h-100">
-              <h1 className="title">🌍 Rilati</h1>
+              {/* <h1 className="title">🌍 Rilati</h1> */}
+              <h1 className="title">Rilati</h1>
               <h1 className="desc">
                 Your career is a journey, not a destination.
                 {/* <br /> Let Rilati guide you */}

@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { DotChartOutlined } from "@ant-design/icons";
 import { AiFillPlusCircle } from "react-icons/ai";
-import { Dropdown, Input, MenuProps, Skeleton } from "antd";
+import { Dropdown, Input, MenuProps, Modal, Skeleton } from "antd";
 import { contentData } from "./constant";
 import { useDispatch, useSelector } from "react-redux";
 import { getCareer } from "src/redux/actions/careerAction";
@@ -11,8 +11,9 @@ import Environment from "../../network/baseUrl";
 import { getInspiration } from "src/redux/actions/inspirationsAction";
 import debounce from "lodash/debounce";
 import "./ContentCards.scss";
-import { log } from "console";
 import InspirationInnerCard from "../InspirationInnerCard";
+import ContentTabs from "../ContentTabs";
+import { useNavigate, useParams } from "react-router-dom";
 
 let page = 1;
 let curretnInspirationPage = 1;
@@ -21,11 +22,12 @@ const ContentCards = () => {
   const [career, setCareer]: any = useState([]);
   const [inspirations, setInspirations]: any = useState([]);
   const [isInspiration, setIsInspiration] = useState(false);
-
+  const { id } = useParams();
   const disptach = useDispatch<any>();
-
+  const [isVisible, setIsVisible] = useState(false);
   const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
   const loginUser = getUser ? JSON.parse(getUser) : null;
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (loginUser) {
@@ -160,17 +162,18 @@ const ContentCards = () => {
       ),
     },
   ];
-  const dummy: MenuProps["items"] = [
-    {
-      key: "1",
-      label: "",
-    },
-  ];
   const inspirationHandler = () => {
     setIsInspiration(true);
     disptach(getInspiration({ page, take: 20 }));
   };
 
+  useEffect(() => {
+    if (id) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  }, [id]);
   return (
     <Container className="content-card mb-3 px-0 " fluid>
       <Row className="px-md-3 px-0 m-0">
@@ -247,13 +250,12 @@ const ContentCards = () => {
       <ul className="grid ps-0 pb-5 justify-content-center">
         {!isInspiration
           ? career?.map((item: any, index: any) => (
-              <li className="item" key={item?.id}>
+              <li className="item" key={item?.id + Math.random()}>
                 <ContentInnerCards
                   item={item}
                   index={index}
                   image={item?.attributes?.image}
-                  onArrayChange={onArrayChange}
-                  key={item?.id}
+                  key={item?.id + 100}
                 />
               </li>
             ))
@@ -273,7 +275,7 @@ const ContentCards = () => {
         {(loader || inspirationsLoader) &&
           [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(
             (index) => (
-              <li className="item mb-4" key={index}>
+              <li className="item mb-4" key={index + Math.random()}>
                 <Skeleton.Node active={loader || inspirationsLoader}>
                   <DotChartOutlined
                     style={{ fontSize: 100, color: "#bfbfbf" }}
@@ -283,7 +285,16 @@ const ContentCards = () => {
             )
           )}
       </ul>
+      <Modal
+        open={isVisible}
+        footer={false}
+        onCancel={() => navigate(`/`)}
+        width={"80%"}
+        zIndex={9999}
+      >
+        <ContentTabs />
+      </Modal>
     </Container>
   );
 };
-export default ContentCards;
+export default memo(ContentCards);

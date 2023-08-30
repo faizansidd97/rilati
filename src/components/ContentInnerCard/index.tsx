@@ -1,15 +1,13 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 
-import { AiOutlineClose, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-// import ProgressBar from "react-bootstrap/ProgressBar";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import imageCareer from "../../assets/images/placeholderCareer.jpeg";
 import { IoShareOutline } from "react-icons/io5";
-import { Modal } from "antd";
-import ContentTabs from "../ContentTabs";
-// import { stringLimt } from "src/helper/helper";
+import { Tooltip, message } from "antd";
 import { useDispatch } from "react-redux";
 import { likeCareer } from "src/redux/actions/careerAction";
 import ProgressBar from "@ramonak/react-progress-bar";
+import { useNavigate } from "react-router-dom";
 
 interface IContentCards {
   item: any;
@@ -21,10 +19,10 @@ const ContentInnerCards = ({
   item,
   index,
   image,
-  onArrayChange,
-}: IContentCards) => {
+}: // onArrayChange,
+IContentCards) => {
   const dispatch = useDispatch();
-  const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate();
   const [like, setLike] = useState(item?.attributes?.userLike);
   const [progress, setProgress] = useState({
     over: 0,
@@ -49,6 +47,17 @@ const ContentInnerCards = ({
   });
   const callback = () => {
     setLike(!like);
+  };
+  const handleCopy = () => {
+    const textToCopy = `https://rilati.com/career/${item?.id}`;
+    const textArea = document.createElement("textarea");
+    document.body.appendChild(textArea);
+    textArea.value = textToCopy;
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
+    message.info("Career Copied!");
+    // setCopied(true);
   };
   return (
     <div
@@ -146,17 +155,18 @@ const ContentInnerCards = ({
               }
             />
           )}
-          <AiOutlineClose
+          {/* <AiOutlineClose
             size={28}
             onClick={() => {
               onArrayChange(index, item);
             }}
-          />
+          /> */}
           {/* <AiTwotoneHeart size={28} className="heart-2" /> */}
         </div>
         <div
           className="content-card__wrapper__back"
-          onClick={() => setIsVisible(true)}
+          // onClick={() => setIsVisible(true)}
+          onClick={() => navigate(`/career/${item?.id}`)}
           key={index}
         >
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
@@ -164,12 +174,12 @@ const ContentInnerCards = ({
             <ProgressBar
               bgColor="#00eb75"
               animateOnRender
-              completed={+progress.cost}
+              completed={progress.cost}
               // variant="success"
               maxCompleted={100}
               className="progress"
               baseBgColor="#ffffff36"
-              customLabel="10"
+              // customLabel="10"
             />
           </div>
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
@@ -222,26 +232,22 @@ const ContentInnerCards = ({
             />
           </div>
           {/* <p>Still an amazing island</p> */}
-          <div className="d-flex justify-content-end">
-            <IoShareOutline color="#fff" size={20} />
+          <div className="d-flex justify-content-end" style={{ zIndex: 99999 }}>
+            <Tooltip placement="top" title={"Share with link"} color="#ff4742">
+              <IoShareOutline
+                color="#fff"
+                size={20}
+                onClick={(event: any) => {
+                  handleCopy();
+
+                  event.stopPropagation();
+                }}
+              />
+            </Tooltip>
           </div>
         </div>
       </div>
-      <Modal
-        open={isVisible}
-        footer={false}
-        onCancel={() => setIsVisible(false)}
-        width={"80%"}
-        zIndex={9999}
-      >
-        <ContentTabs
-          image={image}
-          item={item}
-          index={index}
-          progress={progress}
-        />
-      </Modal>
     </div>
   );
 };
-export default ContentInnerCards;
+export default memo(ContentInnerCards);

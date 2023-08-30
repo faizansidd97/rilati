@@ -54,6 +54,7 @@ const Layout = () => {
         <>
           <Route path="/" element={<WebsiteLayout />}>
             <Route path="" element={<Home />} />
+            <Route path="/career/:id" element={<Home />} />
             <Route path="about-us" element={<AboutUs />} />
             <Route path="faq" element={<FAQ />} />
             <Route path="terms-conditions" element={<TermsAndConditions />} />

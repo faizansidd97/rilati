@@ -60,7 +60,7 @@ const Header = () => {
                 form.setFieldsValue({ flag: "University" });
               }}
             >
-              <h5>🏛️ Add A university</h5>
+              <h5>🏛️ Suggest a University</h5>
             </div>
             <div
               className="menu-items mb-3"
@@ -69,7 +69,7 @@ const Header = () => {
                 form.setFieldsValue({ flag: "Career" });
               }}
             >
-              <h5>💵 Add A Career</h5>
+              <h5>💵 Suggest a Career</h5>
             </div>
 
             <div

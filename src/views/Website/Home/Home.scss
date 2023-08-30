@@ -4,6 +4,26 @@
   position: absolute;
   width: 100%;
 }
+button.bottom-top {
+  position: fixed;
+  bottom: 0px;
+  right: 20px;
+  background-color: #ff3029;
+  color: #fff;
+  border-radius: 50px;
+  border: none;
+  box-shadow: 0 0 10px #fff;
+  padding: 10px;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 99999;
+  transition: ease-in-out 0.3s;
+  &.active {
+    bottom: 20px;
+    opacity: 1;
+    visibility: visible;
+  }
+}
 
 @media (max-width: 600px) {
   .search-from {

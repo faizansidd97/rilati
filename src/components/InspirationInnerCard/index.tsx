@@ -1,7 +1,6 @@
 import { useState } from "react";
 import imageCareer from "../../assets/images/placeholderCareer.jpeg";
 import { Modal } from "antd";
-import ContentTabs from "../ContentTabs";
 import { Col, Row } from "react-bootstrap";
 
 interface IContentCards {
@@ -12,7 +11,6 @@ interface IContentCards {
 }
 const ContentInnerCards = ({ item, index, image }: IContentCards) => {
   const [isVisible, setIsVisible] = useState(false);
-  console.log("item", item);
 
   return (
     <div
@@ -56,7 +54,7 @@ const ContentInnerCards = ({ item, index, image }: IContentCards) => {
           <h3 className="text-center pb-4">Profile Details</h3>
           <Row>
             <Col md={4} sm={12}>
-              <img src={image} className="w-100 profile-image" />
+              <img src={image} className="w-100 profile-image" alt="people" />
             </Col>
             <Col md={8} sm={12}>
               <Row>
@@ -72,7 +70,9 @@ const ContentInnerCards = ({ item, index, image }: IContentCards) => {
                   <h6>Description:</h6>
                 </Col>
                 <Col md={10}>
-                  <p className="ms-2">{item?.description}</p>
+                  <p className="ms-2">
+                    {item?.description?.replace(/\. {4}/g, ".\n")}
+                  </p>
                 </Col>
               </Row>
               <Row>
@@ -80,7 +80,9 @@ const ContentInnerCards = ({ item, index, image }: IContentCards) => {
                   <h6>Education:</h6>
                 </Col>
                 <Col md={10}>
-                  <p className="ms-2">{item?.education}</p>
+                  <p className="ms-2">
+                    {item?.education?.replace(/\. {4}/g, ".\n")}
+                  </p>
                 </Col>
               </Row>
               <Row>
@@ -96,7 +98,9 @@ const ContentInnerCards = ({ item, index, image }: IContentCards) => {
                   <h6>Career Path:</h6>
                 </Col>
                 <Col md={10}>
-                  <p className="ms-2">{item?.career_path}</p>
+                  <p className="ms-2" style={{ whiteSpace: "pre-line" }}>
+                    {item?.career_path?.replace(/\. {4}/g, ".\n")}
+                  </p>
                 </Col>
               </Row>
             </Col>

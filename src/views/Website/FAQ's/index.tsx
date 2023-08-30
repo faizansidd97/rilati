@@ -410,6 +410,171 @@ const FAQ = () => {
                     remove it.
                   </Accordion.Body>
                 </Accordion.Item>
+                <Accordion.Item eventKey="22">
+                  <Accordion.Header>
+                    <h6>What is a career path?</h6>
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    A career path is the sequence of jobs, roles, and positions
+                    that a person follows throughout their life. It represents
+                    the progression and development of a person's career over
+                    time. A career path typically involves a series of steps,
+                    each building upon the skills, experiences, and achievements
+                    of the previous one. It may involve promotions, lateral
+                    moves, job changes, and transitions to higher-level
+                    responsibilities or different industries. Career paths can
+                    be linear, where a person advances within the same field or
+                    industry, or they can be nonlinear, involving shifts into
+                    different fields or industries. People often set career
+                    goals and make strategic decisions to navigate their career
+                    path and achieve their desired outcomes.
+                  </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="23">
+                  <Accordion.Header>
+                    <h6> How can you organise a career path?</h6>
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    Organizing a career path involves thoughtful planning and
+                    strategic decision-making to achieve your professional
+                    goals. Here are some steps to help you organize your career
+                    path: <br />
+                    <br />
+                    1. Self-Assessment: Start by understanding your strengths,
+                    skills, interests, and values. Identify your passions and
+                    what you excel at. Assess your career goals, both short-term
+                    and long-term, and consider the type of work environment and
+                    industry that align with your aspirations.
+                    <br />
+                    <br /> 2. Research: Conduct thorough research about various
+                    career options and industries that match your interests and
+                    skills. Learn about the job market, required qualifications,
+                    potential growth opportunities, and job responsibilities in
+                    your chosen fields.
+                    <br />
+                    <br /> 3. Set Clear Goals: Based on your self-assessment and
+                    research, set clear and achievable career goals. Define
+                    milestones and timelines for reaching these goals. Your
+                    goals can include acquiring specific skills, getting certain
+                    certifications, or reaching certain job positions.
+                    <br />
+                    <br /> 4. Skill Development: Identify the skills and
+                    qualifications needed for your desired career path. Take up
+                    courses, workshops, or training programs to develop these
+                    skills. Consider pursuing higher education or professional
+                    certifications to enhance your expertise and marketability.
+                    <br />
+                    <br />
+                    5. Gain Experience: Obtain relevant work experience through
+                    internships, part-time jobs, or entry-level positions.
+                    Building a strong foundation of experience in your field
+                    will open doors to more advanced opportunities in the
+                    future.
+                    <br />
+                    <br /> 6. Network: Networking is crucial for career growth.
+                    Attend industry events, join professional associations, and
+                    connect with people in your desired field. Building
+                    relationships with professionals can lead to job
+                    opportunities, mentorship, and valuable insights.
+                    <br />
+                    <br /> 7. Adaptability: Be open to opportunities that may
+                    not align exactly with your initial plan. Sometimes, lateral
+                    moves or exploring related fields can provide valuable
+                    experiences and new perspectives that contribute to your
+                    overall career path.
+                    <br />
+                    <br /> 8. Seek Guidance: Consider seeking advice from career
+                    counselors, mentors, or experienced professionals. They can
+                    provide valuable insights, guidance, and support to help you
+                    navigate your career journey effectively.
+                    <br />
+                    <br /> 9. Regular Evaluation: Periodically evaluate your
+                    progress and reassess your career goals. Be willing to adapt
+                    your plans based on changing circumstances and new
+                    opportunities. 10. Work Ethic and Persistence: Success in a
+                    career path requires hard work, dedication, and persistence.
+                    Stay committed to your goals and consistently work towards
+                    achieving them.
+                    <br />
+                    <br /> Remember that a career path is not always linear and
+                    can involve unexpected turns. Embrace change, be proactive
+                    in your career development, and stay focused on your
+                    long-term vision while remaining open to new possibilities.
+                  </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="24">
+                  <Accordion.Header>
+                    <h6>What are some examples of career paths</h6>
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    Here are some examples of career paths in different fields:
+                    <br />
+                    <br />
+                    1. Software Development:
+                    <br /> &nbsp; &nbsp;&nbsp;o Junior Software Developer →
+                    Software Engineer → Senior Software Engineer → Software
+                    Architect
+                    <br />
+                    <br />
+                    2. Healthcare:
+                    <br />
+                    &nbsp;&nbsp;o Nursing Assistant → Licensed Practical Nurse
+                    (LPN) → Registered Nurse (RN) → Nurse Practitioner
+                    <br />
+                    <br />
+                    3. Marketing:
+                    <br />
+                    &nbsp;&nbsp;o Marketing Assistant → Marketing Coordinator →
+                    Marketing Manager → Director of Marketing
+                    <br />
+                    <br />
+                    4. Finance:
+                    <br />
+                    &nbsp;&nbsp;o Financial Analyst → Senior Financial Analyst →
+                    Finance Manager → Chief Financial Officer (CFO)
+                    <br />
+                    <br />
+                    5. Human Resources:
+                    <br />
+                    &nbsp;&nbsp;o HR Assistant → HR Generalist → HR Manager → HR
+                    Director
+                    <br />
+                    <br />
+                    6. Education:
+                    <br />
+                    &nbsp;&nbsp;o Teacher's Aide → Teacher → Department Head →
+                    Principal
+                    <br />
+                    <br />
+                    7. Graphic Design:
+                    <br />
+                    &nbsp;&nbsp;o Graphic Design Intern → Graphic Designer →
+                    Senior Graphic Designer → Art Director
+                    <br />
+                    <br />
+                    8. Hospitality:
+                    <br />
+                    &nbsp;&nbsp;o Front Desk Agent → Guest Service Supervisor →
+                    Hotel Manager → General Manager
+                    <br />
+                    <br />
+                    9. Sales: &nbsp;&nbsp;o Sales Representative → Sales Manager
+                    → Sales Director → Vice President of Sales
+                    <br />
+                    <br />
+                    10. Engineering:
+                    <br />
+                    &nbsp;&nbsp;o Engineering Technician → Project Engineer →
+                    Engineering Manager → Chief Engineer
+                    <br />
+                    <br /> Remember that these career paths are just examples,
+                    and actual career progressions can vary depending on
+                    individual goals, companies, industries, and opportunities
+                    available. It's important to set personalized goals and make
+                    strategic decisions to build a successful and fulfilling
+                    career path.
+                  </Accordion.Body>
+                </Accordion.Item>
               </Accordion>
             </Col>
           </Row>
