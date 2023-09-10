@@ -1,13 +1,29 @@
 import { useState, memo } from "react";
 
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import {
+  AiOutlineHeart,
+  AiFillHeart,
+  AiFillTwitterSquare,
+  AiFillInstagram,
+} from "react-icons/ai";
 import imageCareer from "../../assets/images/placeholderCareer.jpeg";
 import { IoShareOutline } from "react-icons/io5";
-import { Tooltip, message } from "antd";
+import { Button, Input, Modal, Tooltip, message } from "antd";
 import { useDispatch } from "react-redux";
 import { likeCareer } from "src/redux/actions/careerAction";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useNavigate } from "react-router-dom";
+import {
+  FacebookShareButton,
+  WhatsappShareButton,
+  TwitterShareButton,
+  InstapaperShareButton,
+  EmailShareButton,
+} from "react-share";
+import { Helmet } from "react-helmet";
+import { BsFacebook, BsInstagram, BsTwitter, BsWhatsapp } from "react-icons/bs";
+import { GrMail } from "react-icons/gr";
+import { BiCopy } from "react-icons/bi";
 
 interface IContentCards {
   item: any;
@@ -23,6 +39,7 @@ const ContentInnerCards = ({
 IContentCards) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
   const [like, setLike] = useState(item?.attributes?.userLike);
   const [progress, setProgress] = useState({
     over: 0,
@@ -48,8 +65,16 @@ IContentCards) => {
   const callback = () => {
     setLike(!like);
   };
-  const handleCopy = () => {
-    const textToCopy = `https://rilati.com/career/${item?.id}`;
+  const shareLink = `https://rilati.com/career/${item?.id}`;
+  const shareWithMessage = `
+  Hey there!
+  I came across this amazing resource that delves deep into a potential career path.
+  It covers everything from salary expectations to required skills and education. 
+  I thought you might find it as insightful as I did! 
+  Take a look.
+  Click here 👉 :: https://rilati.com/career/${item?.id}`;
+  const handleCopy = (text = shareWithMessage) => {
+    const textToCopy = text;
     const textArea = document.createElement("textarea");
     document.body.appendChild(textArea);
     textArea.value = textToCopy;
@@ -59,6 +84,13 @@ IContentCards) => {
     message.info("Career Copied!");
     // setCopied(true);
   };
+  const WhatsappShare = `
+Hey there!
+I came across this amazing resource that delves deep into a potential career path.
+It covers everything from salary expectations to required skills and education. I thought you might find it as insightful as I did! 
+Take a look. 
+Click here 👉 `;
+
   return (
     <div
       className="content-card__wrapper d-flex flex-column gap-1 gap-md-3 justify-content-between position-relative"
@@ -238,8 +270,8 @@ IContentCards) => {
                 color="#fff"
                 size={20}
                 onClick={(event: any) => {
-                  handleCopy();
-
+                  // handleCopy();
+                  setIsVisible(true);
                   event.stopPropagation();
                 }}
               />
@@ -247,6 +279,102 @@ IContentCards) => {
           </div>
         </div>
       </div>
+      <Modal
+        open={isVisible}
+        onCancel={() => setIsVisible(false)}
+        footer={false}
+        // width={"80%"}
+      >
+        <h2 className="text-center">Share Career</h2>
+        <div>
+          <div className="textarea">
+            <span>
+              Hey there!
+              <br />I came across this amazing resource that delves deep into a
+              potential career path. It covers everything from salary
+              expectations to required skills and education. I thought you might
+              find it as insightful as I did!
+              <br />
+              Take a look.
+            </span>
+          </div>
+          <p className="my-1">Career Link</p>
+          <div className="d-flex gap-2">
+            <Input
+              value={shareLink}
+              readOnly
+              color="#000"
+              suffix={
+                <BiCopy
+                  className="cursor-pointer"
+                  onClick={() => handleCopy(shareLink)}
+                />
+              }
+            />
+            <Button className="custom" onClick={() => handleCopy(shareLink)}>
+              Copy
+            </Button>
+            <Button className="custom" onClick={() => handleCopy()}>
+              Copy Message and Link
+            </Button>
+          </div>
+        </div>
+        <div className="w-100 d-flex justify-content-between px-5 py-3">
+          <FacebookShareButton quote={item?.attributes?.title} url={shareLink}>
+            <BsFacebook size={32} color="#3b5998 " />
+            {/* <span>Facebook</span> */}
+          </FacebookShareButton>
+          <WhatsappShareButton
+            url={shareLink}
+            title={WhatsappShare}
+            separator=":: "
+          >
+            <BsWhatsapp size={32} color="#25D366" />
+            {/* <span>Whatsapp</span> */}
+          </WhatsappShareButton>
+          <TwitterShareButton
+            url={shareLink}
+            title={item?.attributes?.title}
+            via="Rilati"
+            className="Demo__some-network__share-button"
+          >
+            <BsTwitter size={32} color="#00acee" />
+
+            {/* <span>Twitter</span> */}
+          </TwitterShareButton>
+          <InstapaperShareButton
+            url={shareLink}
+            title={item?.attributes?.title}
+            className="Demo__some-network__share-button"
+          >
+            <AiFillInstagram size={32} color="#fa7e1e " />
+            {/* <span>Instagram</span> */}
+          </InstapaperShareButton>
+          <EmailShareButton
+            url={shareLink}
+            subject={item?.attributes?.title}
+            body="Hey there!
+            I came across this amazing resource that delves deep into a potential career path. It covers everything from salary expectations to required skills and education. I thought you might find it as insightful as I did! 
+            Take a look. 
+            "
+            className="Demo__some-network__share-button "
+          >
+            <GrMail size={32} />
+            {/* <span>Email</span> */}
+          </EmailShareButton>
+        </div>
+        {/* <div className="d-flex mt-4 align-items-center justify-content-center">
+          <h4 className="m-0 me-3">Share with link</h4>
+          <h5
+            className="m-0 cursor-pointer"
+            color="red"
+            style={{ color: "red" }}
+            onClick={() => handleCopy()}
+          >
+            {shareLink}
+          </h5>
+        </div> */}
+      </Modal>
     </div>
   );
 };

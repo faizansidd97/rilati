@@ -4,14 +4,18 @@ import { ConfigProvider, theme } from "antd";
 import { useSelector } from "react-redux";
 import { BiUpArrow } from "react-icons/bi";
 import { useEffect, useState } from "react";
+
 // import { themeSwitcher } from "src/redux/actions/themeAction";
 // import { FaMoon, FaSun } from "react-icons/fa";
+// import HighchartsTreeMap from "highcharts/modules/treegraph";
+// import Highcharts from "highcharts";
 
 const Layout = lazy(() => import("../layout"));
 // import Routing from "@routing";
 
 function Views() {
   // const dispatch = useDispatch();
+
   const [isScroll, setIsScroll] = useState(false);
   const { isDark = false } = useSelector((store: any) => store.theme);
   const scrollToTop = () => {
@@ -22,6 +26,7 @@ function Views() {
   //   console.log("scrollPosition", scrollPosition);
   // };
   useEffect(() => {
+    // HighchartsTreeMap(Highcharts);
     handleScroll();
     window.addEventListener("scroll", handleScroll);
     function handleScroll() {
@@ -36,6 +41,7 @@ function Views() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   return (
     <Suspense fallback={""}>
       {/* <Button className="theme-switcher d-none d-md-block">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Form, Input, MenuProps, Modal, message } from "antd";
+import { Button, Form, Input, MenuProps, Modal, Tooltip, message } from "antd";
 import { Dropdown } from "antd";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -15,6 +15,8 @@ import { logoutRequest } from "src/redux/actions/authAction";
 import AboutUs from "src/views/Website/AboutUs";
 import TermsAndConditions from "src/views/Website/TermsAndConditions";
 import FAQ from "src/views/Website/FAQ's";
+import CustomTooltip from "../CustomTooltip";
+import { TOOLTIP } from "src/constant/Tooltip";
 
 const Header = () => {
   const dispatch = useDispatch<any>();
@@ -30,6 +32,13 @@ const Header = () => {
   // };
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const text = (
+    <span>
+      Clinch your dreams here! <br /> Click the logo to explore options like
+      contacting us, joining our community, signing in, learning about us, and
+      checking out FAQs
+    </span>
+  );
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -155,12 +164,14 @@ const Header = () => {
   };
   return (
     <header className="header">
-      <Dropdown menu={{ items }} trigger={["click"]}>
-        <a onClick={(e) => e.preventDefault()} style={{ color: "#000" }}>
-          <img src={logo} alt="logo" width={50} />
-          <MdKeyboardArrowDown color="#fff" size={30} />
-        </a>
-      </Dropdown>
+      <CustomTooltip zIndex={2} autoAdjustOverflow title={text}>
+        <Dropdown menu={{ items }} trigger={["click"]}>
+          <a onClick={(e) => e.preventDefault()} style={{ color: "#000" }}>
+            <img src={logo} alt="logo" width={50} />
+            <MdKeyboardArrowDown color="#fff" size={30} />
+          </a>
+        </Dropdown>
+      </CustomTooltip>
       <Modal
         title="Contacting Us"
         open={isModalOpen}

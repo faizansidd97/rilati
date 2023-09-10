@@ -4,7 +4,7 @@ import { ColumnsType } from "antd/es/table";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import GridView from "src/components/GridView/GridView";
 import { useDispatch, useSelector } from "react-redux";
-import { stringLimt } from "src/helper/helper";
+// import { stringLimt } from "src/helper/helper";
 import { Link } from "react-router-dom";
 import "./University.scss";
 import { deleteUni, getUni } from "src/redux/actions/universityAction";

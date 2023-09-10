@@ -8,6 +8,8 @@ import "./HomeBanner.scss";
 import { useState } from "react";
 import SignUpModal from "../SignUpModal";
 import SignInModal from "../SignInModal";
+import { TOOLTIP } from "src/constant/Tooltip";
+import CustomTooltip from "../CustomTooltip";
 
 const HomeBanner = () => {
   const [signUpToggle, setSignUpToggle] = useState(false);
@@ -16,6 +18,13 @@ const HomeBanner = () => {
   const { isLogin = false } = useSelector((storeState: any) => storeState.auth);
   const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
   const loginUser = getUser ? JSON.parse(getUser) : null;
+  const t7 = (
+    <span>
+      Your Gateway Awaits! <br />
+      Access your journey by 'Join Us' or 'Log In.' Uncover a world of
+      possibilities tailored just for you.
+    </span>
+  );
   return (
     <div
       className="home-banner position-relative d-flex align-items-center"
@@ -138,32 +147,34 @@ const HomeBanner = () => {
             className="d-md-flex d-none justify-content-center justify-content-md-end mb-4 mb-md-0"
           >
             {!(isLogin || loginUser) && (
-              <div className="subcription__form_wrapper d-flex flex-column align-items-center mb-4">
-                {/* <img src={thumbnail} className="w-100" /> */}
-                <Form>
-                  <Form.Item className="my-1 mb-2 my-md-3">
-                    <Input placeholder="Type your email...." />
-                  </Form.Item>
-                  <Form.Item>
-                    <Button
-                      className="btn btn-primary mb-0 mb-md-3 w-100"
-                      onClick={() => setSignUpToggle(true)}
-                    >
-                      Join Us
-                    </Button>
-                  </Form.Item>
-                  <span>
-                    Already Member?
-                    <span
-                      onClick={() => setSignInToggle(true)}
-                      className="cursor-pointer"
-                    >
-                      {" "}
-                      Log In
+              <CustomTooltip title={TOOLTIP.T7}>
+                <div className="subcription__form_wrapper d-flex flex-column align-items-center mb-4">
+                  {/* <img src={thumbnail} className="w-100" /> */}
+                  <Form>
+                    <Form.Item className="my-1 mb-2 my-md-3">
+                      <Input placeholder="Type your email...." />
+                    </Form.Item>
+                    <Form.Item>
+                      <Button
+                        className="btn btn-primary mb-0 mb-md-3 w-100"
+                        onClick={() => setSignUpToggle(true)}
+                      >
+                        Join Us
+                      </Button>
+                    </Form.Item>
+                    <span>
+                      Already Member?
+                      <span
+                        onClick={() => setSignInToggle(true)}
+                        className="cursor-pointer"
+                      >
+                        {" "}
+                        Log In
+                      </span>
                     </span>
-                  </span>
-                </Form>
-              </div>
+                  </Form>
+                </div>
+              </CustomTooltip>
             )}
             <svg
               viewBox="0 0 1440 120"

@@ -5,6 +5,8 @@ import { Provider } from "react-redux";
 import storeFactory from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 
+// Initialize exporting module
+
 function App() {
   const { store, persistor } = storeFactory();
   return (

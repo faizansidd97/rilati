@@ -62,6 +62,10 @@ export const MAIL_REQUEST = "MAIL_REQUEST";
 export const MAIL_SUCCESS = "MAIL_SUCCESS";
 export const MAIL_ERROR = "MAIL_ERROR";
 
+export const GRAPH_REQUEST = "GRAPH_REQUEST";
+export const GRAPH_SUCCESS = "GRAPH_SUCCESS";
+export const GRAPH_ERROR = "GRAPH_ERROR";
+
 export const THEME_REQUEST = "THEME_REQUEST";
 
 export const DELETE_SUCCESS = "DELETE_SUCCESS";

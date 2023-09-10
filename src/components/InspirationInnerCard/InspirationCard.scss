@@ -1,0 +1,19 @@
+.inspiration {
+  .content-card {
+    &__wrapper {
+      &__info {
+        h3 {
+          font-size: 18px !important;
+        }
+        .occupation {
+          font-size: 14px !important;
+          color: #fc9667;
+        }
+      }
+    }
+  }
+
+  &.content-card__wrapper::before {
+    background: linear-gradient(transparent 50%, #000 99%);
+  }
+}

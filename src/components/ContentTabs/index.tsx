@@ -12,6 +12,8 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getCareerById } from "src/redux/actions/careerAction";
+import { TOOLTIP } from "src/constant/Tooltip";
+import CustomTooltip from "../CustomTooltip";
 
 interface IContentTabs {
   item?: any;
@@ -91,58 +93,91 @@ const ContentTabs = ({ item }: IContentTabs) => {
 
   const tabArray = [
     {
-      label: `Descriptions`,
+      label: <CustomTooltip title={TOOLTIP.T34}>Descriptions</CustomTooltip>,
       key: "1",
       children: (
         <Row>
           <Col md={24} xs={24}>
             {/* <h4 className="my-3 pb-5 text-center">Descriptions</h4> */}
             <div className="px-2">
-              <h6 className="mb-2 pb-0 text-left">Job Descriptions</h6>
+              <h6 className="mb-2 pb-0 text-left">
+                <CustomTooltip title={TOOLTIP.T26}>
+                  Job Descriptions
+                </CustomTooltip>
+              </h6>
               <p className="text-left desc">
                 {careerById?.attributes?.job_description
                   ?.replace(36, "education")
                   ?.replace(37, "Health ")}
               </p>
-              <h6 className="mb-2 pb-0 text-left">Study Description</h6>
+              <h6 className="mb-2 pb-0 text-left">
+                <CustomTooltip title={TOOLTIP.T27}>
+                  Study Description
+                </CustomTooltip>
+              </h6>
               <p className="text-left desc">
                 {careerById?.attributes?.description_study
                   ?.replace(36, "education")
                   ?.replace(37, "Health ")}
               </p>
               <h6 className="mb-2 pb-0 text-left">
-                Student Interest Ideal for this Career
+                <CustomTooltip title={TOOLTIP.T28}>
+                  Student Interest Ideal for this Career
+                </CustomTooltip>
               </h6>
               <p className="text-left desc">
                 {careerById?.attributes?.student_intrest}
               </p>
-              <h6 className="mb-2 pb-0 text-left">Skill Transferable</h6>
+              <h6 className="mb-2 pb-0 text-left">
+                <CustomTooltip title={TOOLTIP.T29}>
+                  Skill Transferable
+                </CustomTooltip>
+              </h6>
               <p className="text-left desc">
                 {careerById?.attributes?.skills_transferable}
               </p>
               <h6 className="mb-2 pb-0 text-left">
-                Average Salary in Australia
+                <CustomTooltip title={TOOLTIP.T30}>
+                  Average Salary in Australia
+                </CustomTooltip>
               </h6>
               <p className="text-left desc">
                 {careerById?.attributes?.average_salary_aud?.includes("$")
                   ? careerById?.attributes?.average_salary_aud
                   : `$${careerById?.attributes?.average_salary_aud}`}
               </p>
-              {/* <h6 className="mb-2 pb-0 text-left">Average Salary</h6>
+              {/* <h6 className="mb-2 pb-0 text-left">
+              Average Salary
               <p className="text-left desc">
+              </h6>
                 {careerById?.attributes?.average_salary}
               </p> */}
-
-              <h6 className="mb-2 pb-0 text-left">Course Cost</h6>
+              <h6 className="mb-2 pb-0 text-left">
+                <CustomTooltip title={TOOLTIP.T31}>Course Cost</CustomTooltip>
+              </h6>
               <p className="text-left desc">
                 ${careerById?.attributes?.cost_course}
               </p>
-              <h6 className="mb-2 pb-0 text-left">Internship Needed</h6>
+              <h6 className="mb-2 pb-0 text-left">
+                <CustomTooltip title={TOOLTIP.T32}>
+                  Course Duration
+                </CustomTooltip>
+              </h6>
               <p className="text-left desc mb-0">
                 {careerById?.attributes?.internship_needed}
               </p>
               <span className="note">
-                {" "}
+                FT/PT = Full Time or Part Time in years
+              </span>
+              <h6 className="mb-2 pb-0 text-left">
+                <CustomTooltip title={TOOLTIP.T33}>
+                  Internship Duration
+                </CustomTooltip>
+              </h6>
+              <p className="text-left desc mb-0">
+                {careerById?.attributes?.internship_needed}
+              </p>
+              <span className="note">
                 FT/PT = Full Time or Part Time in years
               </span>
             </div>
@@ -151,7 +186,7 @@ const ContentTabs = ({ item }: IContentTabs) => {
       ),
     },
     {
-      label: `University`,
+      label: <CustomTooltip title={TOOLTIP.T35}>University</CustomTooltip>,
       key: "2",
       children: (
         <Row>
@@ -169,7 +204,7 @@ const ContentTabs = ({ item }: IContentTabs) => {
       ),
     },
     youtube && {
-      label: `Video`,
+      label: <CustomTooltip title={TOOLTIP.T36}>Video</CustomTooltip>,
       key: "3",
       children: (
         <div className="d-flex justify-content-center align-items-center">
@@ -217,7 +252,9 @@ const ContentTabs = ({ item }: IContentTabs) => {
 
             <div className="content-tabs__detail">
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>🥇 ATAR</h3>
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T8}>🥇 ATAR</CustomTooltip>
+                </h3>
                 <ProgressBar
                   baseBgColor="#ffffff36"
                   animateOnRender
@@ -229,7 +266,11 @@ const ContentTabs = ({ item }: IContentTabs) => {
                 />
               </div>
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>🌟 Work-Life Balance</h3>
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T9}>
+                    🌟 Work-Life Balance
+                  </CustomTooltip>
+                </h3>
                 <ProgressBar
                   baseBgColor="#ffffff36"
                   animateOnRender
@@ -242,7 +283,8 @@ const ContentTabs = ({ item }: IContentTabs) => {
               </div>
 
               {/* <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-              <h3>🙌 Foster Motivation</h3>
+              <h3>
+              🙌 Foster Motivation</h3>
               <ProgressBar
                 baseBgColor="#ffffff36"
                animateOnRender
@@ -254,7 +296,11 @@ const ContentTabs = ({ item }: IContentTabs) => {
               />
             </div> */}
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>🔀 Potential to Switch</h3>
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T10}>
+                    🔀 Potential to Switch
+                  </CustomTooltip>
+                </h3>
                 <ProgressBar
                   baseBgColor="#ffffff36"
                   animateOnRender
@@ -266,7 +312,11 @@ const ContentTabs = ({ item }: IContentTabs) => {
                 />
               </div>
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>🌐 Scope World wide</h3>
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T11}>
+                    🌐 Scope World wide
+                  </CustomTooltip>
+                </h3>
                 <ProgressBar
                   baseBgColor="#ffffff36"
                   animateOnRender
@@ -278,7 +328,11 @@ const ContentTabs = ({ item }: IContentTabs) => {
                 />
               </div>
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>🙌 Status in Company</h3>
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T12}>
+                    🙌 Status in Company
+                  </CustomTooltip>
+                </h3>
                 <ProgressBar
                   baseBgColor="#ffffff36"
                   animateOnRender
@@ -290,7 +344,11 @@ const ContentTabs = ({ item }: IContentTabs) => {
                 />
               </div>
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>⚠️ Risk to health</h3>
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T13}>
+                    ⚠️ Risk to health
+                  </CustomTooltip>
+                </h3>
                 <ProgressBar
                   baseBgColor="#ffffff36"
                   animateOnRender
@@ -302,7 +360,11 @@ const ContentTabs = ({ item }: IContentTabs) => {
                 />
               </div>
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>👥 Team Reliance</h3>
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T14}>
+                    👥 Team Reliance
+                  </CustomTooltip>
+                </h3>
                 <ProgressBar
                   baseBgColor="#ffffff36"
                   animateOnRender
@@ -314,7 +376,11 @@ const ContentTabs = ({ item }: IContentTabs) => {
                 />
               </div>
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>🔍 Precision Work</h3>
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T15}>
+                    🔍 Precision Work
+                  </CustomTooltip>
+                </h3>
                 <ProgressBar
                   baseBgColor="#ffffff36"
                   animateOnRender
@@ -326,7 +392,11 @@ const ContentTabs = ({ item }: IContentTabs) => {
                 />
               </div>
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>⏰ Work Hours</h3>
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T16}>
+                    ⏰ Work Hours
+                  </CustomTooltip>
+                </h3>
                 <ProgressBar
                   baseBgColor="#ffffff36"
                   animateOnRender
@@ -338,7 +408,11 @@ const ContentTabs = ({ item }: IContentTabs) => {
                 />
               </div>
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>🏢 Helping Environment</h3>
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T17}>
+                    🏢 Helping Environment
+                  </CustomTooltip>
+                </h3>
                 <ProgressBar
                   baseBgColor="#ffffff36"
                   animateOnRender
@@ -350,7 +424,11 @@ const ContentTabs = ({ item }: IContentTabs) => {
                 />
               </div>
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>😩 Repetitive or Tedious</h3>
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T18}>
+                    😩 Repetitive or Tedious
+                  </CustomTooltip>
+                </h3>
                 <ProgressBar
                   baseBgColor="#ffffff36"
                   animateOnRender
@@ -362,7 +440,11 @@ const ContentTabs = ({ item }: IContentTabs) => {
                 />
               </div>
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>🤩 People Interation</h3>
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T19}>
+                    🤩 People Interation
+                  </CustomTooltip>
+                </h3>
                 <ProgressBar
                   baseBgColor="#ffffff36"
                   animateOnRender
@@ -374,7 +456,11 @@ const ContentTabs = ({ item }: IContentTabs) => {
                 />
               </div>
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>✌️ Autonomy & Freedom</h3>
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T20}>
+                    ✌️ Autonomy & Freedom
+                  </CustomTooltip>
+                </h3>
                 <ProgressBar
                   baseBgColor="#ffffff36"
                   animateOnRender
@@ -386,7 +472,11 @@ const ContentTabs = ({ item }: IContentTabs) => {
                 />
               </div>
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>👤 Risk to Life</h3>
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T21}>
+                    👤 Risk to Life
+                  </CustomTooltip>
+                </h3>
                 <ProgressBar
                   baseBgColor="#ffffff36"
                   animateOnRender
@@ -398,7 +488,11 @@ const ContentTabs = ({ item }: IContentTabs) => {
                 />
               </div>
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>😞 Physical Stress</h3>
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T22}>
+                    😞 Physical Stress
+                  </CustomTooltip>
+                </h3>
                 <ProgressBar
                   baseBgColor="#ffffff36"
                   animateOnRender
@@ -410,7 +504,11 @@ const ContentTabs = ({ item }: IContentTabs) => {
                 />
               </div>
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>😑 Mental Stress</h3>
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T23}>
+                    😑 Mental Stress
+                  </CustomTooltip>
+                </h3>
                 <ProgressBar
                   baseBgColor="#ffffff36"
                   animateOnRender
@@ -422,7 +520,11 @@ const ContentTabs = ({ item }: IContentTabs) => {
                 />
               </div>
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>😓 Job Stress</h3>
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T24}>
+                    😓 Job Stress
+                  </CustomTooltip>
+                </h3>
                 <ProgressBar
                   baseBgColor="#ffffff36"
                   animateOnRender
@@ -434,7 +536,11 @@ const ContentTabs = ({ item }: IContentTabs) => {
                 />
               </div>
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>✌️ Job Satisfaction</h3>
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T25}>
+                    ✌️ Job Satisfaction
+                  </CustomTooltip>
+                </h3>
                 <ProgressBar
                   baseBgColor="#ffffff36"
                   animateOnRender

@@ -2,6 +2,7 @@ import { useState } from "react";
 import imageCareer from "../../assets/images/placeholderCareer.jpeg";
 import { Modal } from "antd";
 import { Col, Row } from "react-bootstrap";
+import "./InspirationCard.scss";
 
 interface IContentCards {
   item: any;
@@ -14,22 +15,29 @@ const ContentInnerCards = ({ item, index, image }: IContentCards) => {
 
   return (
     <div
-      className="content-card__wrapper d-flex flex-column gap-1 gap-md-3 justify-content-between position-relative"
+      className="inspiration content-card__wrapper  d-flex flex-column gap-1 gap-md-3 justify-content-between position-relative"
       style={{ backgroundImage: `url("${image ? image : imageCareer}")` }}
       key={item?.id}
     >
       <div className="number">
         <h2>{index + 1}</h2>
       </div>
-      <div className="content-card__wrapper__info d-flex justify-content-center align-items-center flex-column">
-        <h3 className="text-center">{item?.name}</h3>
-        {/* <p>{stringLimt(item?.attributes?.career_category, 18)}</p> */}
+      <div style={{ zIndex: 2 }}>
+        <div className="content-card__wrapper__info d-flex justify-content-center align-items-center flex-column">
+          <h3 className="text-center" style={{ textShadow: "0 0 5px #000" }}>
+            {item?.name}
+          </h3>
+        </div>
+        <div className="content-card__wrapper__info d-flex justify-content-center align-items-center flex-column">
+          <h3
+            className="text-center occupation"
+            style={{ textShadow: "0 0 5px #000" }}
+          >
+            {item?.occupation}
+          </h3>
+        </div>
       </div>
-      <div className="content-card__wrapper__pricing d-flex justify-content-between p-2">
-        {/* <div className="content-card__wrapper__pricing__temp">
-          <h2>{item?.attributes?.years_needed}</h2>
-        </div> */}
-      </div>
+
       <div className="mb-4 back py-3 px-2">
         <div className="back-header d-flex justify-content-between mb-3"></div>
         <div
@@ -67,11 +75,21 @@ const ContentInnerCards = ({ item, index, image }: IContentCards) => {
               </Row>
               <Row>
                 <Col md={2}>
-                  <h6>Description:</h6>
+                  <h6>Occupation:</h6>
+                </Col>
+                <Col md={10}>
+                  <p className="ms-2">{item?.occupation}</p>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={2}>
+                  <h6>About:</h6>
                 </Col>
                 <Col md={10}>
                   <p className="ms-2">
-                    {item?.description?.replace(/\. {4}/g, ".\n")}
+                    {item?.description
+                      ?.replace(". 20", ".\n")
+                      ?.replace(". 19", ".\n")}
                   </p>
                 </Col>
               </Row>
@@ -81,25 +99,22 @@ const ContentInnerCards = ({ item, index, image }: IContentCards) => {
                 </Col>
                 <Col md={10}>
                   <p className="ms-2">
-                    {item?.education?.replace(/\. {4}/g, ".\n")}
+                    {item?.education
+                      ?.replace(". 20", ".\n")
+                      ?.replace(". 19", ".\n")}
                   </p>
                 </Col>
               </Row>
-              <Row>
-                <Col md={2}>
-                  <h6>Occupation:</h6>
-                </Col>
-                <Col md={10}>
-                  <p className="ms-2">{item?.occupation}</p>
-                </Col>
-              </Row>
+
               <Row>
                 <Col md={2}>
                   <h6>Career Path:</h6>
                 </Col>
                 <Col md={10}>
                   <p className="ms-2" style={{ whiteSpace: "pre-line" }}>
-                    {item?.career_path?.replace(/\. {4}/g, ".\n")}
+                    {item?.career_path
+                      ?.replace(". 20", ".\n")
+                      ?.replace(". 19", ".\n")}
                   </p>
                 </Col>
               </Row>

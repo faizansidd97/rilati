@@ -26,8 +26,18 @@ const Logos = ({ count = 10, customClass }: any) => {
     >
       <Container>
         <Spin spinning={loader}>
-          <Row className={customClass ? "gap-4" : ""}>
-            <Col md={24} className="d-flex justify-content-around flex-wrap">
+          <Row
+            className={
+              customClass
+                ? "justify-content-center gap-4"
+                : "justify-content-center"
+            }
+          >
+            <Col
+              // lg={customClass ? 24 : 12}
+              md={customClass ? 12 : 8}
+              className="d-flex justify-content-around flex-wrap"
+            >
               {uni?.map((item: any, index: any) => (
                 <div className="mx-1 logos-card" key={item?.id}>
                   <a href={item?.attributes?.link} target="_blank">

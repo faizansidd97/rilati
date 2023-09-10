@@ -9,3 +9,8 @@ div#university_category_id {
     width: 25%;
   }
 }
+.table-user {
+  th.ant-table-cell {
+    min-width: 200px;
+  }
+}

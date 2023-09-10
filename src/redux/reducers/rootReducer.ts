@@ -7,6 +7,7 @@ import CategoryReducer from "./categoryReducer";
 import ThemeReducer from "./themeReducers";
 import UserReducer from "./userReducer";
 import MailReducers from "./mailReducers";
+import GraphReducers from "./graphReducers";
 import InspirationReducers from "./inspirationReducer";
 import { AuthState } from "./Modules/auth";
 import { CareerState } from "./Modules/career";
@@ -17,6 +18,7 @@ import { ThemeState } from "./Modules/theme";
 import { MailState } from "./Modules/mail";
 import { SubjectsState } from "./Modules/subject";
 import { InspirationState } from "./Modules/inspiration";
+import { GraphState } from "./Modules/graph";
 
 interface CombineReducers {
   auth: AuthState;
@@ -28,6 +30,7 @@ interface CombineReducers {
   mail: MailState;
   subject: SubjectsState;
   inspiration: InspirationState;
+  graph: GraphState;
 }
 export default combineReducers<CombineReducers>({
   auth: AuthReducer,
@@ -39,6 +42,7 @@ export default combineReducers<CombineReducers>({
   mail: MailReducers,
   subject: UserReducer,
   inspiration: InspirationReducers,
+  graph: GraphReducers,
 });
 
 // export default AuthReducer;

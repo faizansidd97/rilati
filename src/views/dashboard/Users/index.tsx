@@ -101,7 +101,6 @@ function Users() {
             )?.label
           }
         >
-          {/* <a href={`tel:${res?.attributes?.details?.confident_skills}`}> */}
           {
             confidentSkills?.find(
               (i) => i?.value === res?.attributes?.details?.confident_skills
@@ -127,6 +126,74 @@ function Users() {
           }
         </span>
       ),
+    },
+    {
+      title: "Favorite Industry ",
+      // dataIndex: "location",
+      render: (res: any) => {
+        const temp = res?.attributes?.industry?.filter(
+          (i: any) => i?.attributes?.type === "PREFERRED"
+        );
+
+        return (
+          <span>
+            {temp?.map((item: any) => (
+              <span>{item?.attributes?.name}, </span>
+            ))}
+          </span>
+        );
+      },
+    },
+    {
+      title: "Least Industry ",
+      // dataIndex: "location",
+      render: (res: any) => {
+        const temp = res?.attributes?.industry?.filter(
+          (i: any) => i?.attributes?.type === "LESS_PREFERRED"
+        );
+
+        return (
+          <span>
+            {temp?.map((item: any) => (
+              <span>{item?.attributes?.name}, </span>
+            ))}
+          </span>
+        );
+      },
+    },
+    {
+      title: "Favorite Subjects ",
+      // dataIndex: "location",
+      render: (res: any) => {
+        const temp = res?.attributes?.subject?.filter(
+          (i: any) => i?.attributes?.type === "PREFERRED"
+        );
+
+        return (
+          <span>
+            {temp?.map((item: any) => (
+              <span>{item?.attributes?.name}, </span>
+            ))}
+          </span>
+        );
+      },
+    },
+    {
+      title: "Least Subjects ",
+      // dataIndex: "location",
+      render: (res: any) => {
+        const temp = res?.attributes?.subject?.filter(
+          (i: any) => i?.attributes?.type === "LESS_PREFERRED"
+        );
+
+        return (
+          <span>
+            {temp?.map((item: any) => (
+              <span>{item?.attributes?.name}, </span>
+            ))}
+          </span>
+        );
+      },
     },
     {
       title: "Action",
@@ -168,7 +235,7 @@ function Users() {
   console.log("users", users);
 
   return (
-    <div className="overflow-auto">
+    <div className="overflow-auto user-table">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <div className="d-flex">
           <Input onChange={(e) => setSearch(e.target.value)} />
@@ -180,6 +247,7 @@ function Users() {
       <GridView
         data={users}
         columns={columns}
+        scroll={{ x: 1300 }}
         loading={userLoader}
         listingCallback={callback}
         pagination={{

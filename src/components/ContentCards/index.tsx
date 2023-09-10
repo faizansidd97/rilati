@@ -1,8 +1,8 @@
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo, useRef } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { DotChartOutlined } from "@ant-design/icons";
 import { AiFillPlusCircle } from "react-icons/ai";
-import { Dropdown, Input, MenuProps, Modal, Skeleton } from "antd";
+import { Dropdown, Input, MenuProps, Modal, Radio, Skeleton } from "antd";
 import { contentData } from "./constant";
 import { useDispatch, useSelector } from "react-redux";
 import { getCareer } from "src/redux/actions/careerAction";
@@ -14,6 +14,10 @@ import "./ContentCards.scss";
 import InspirationInnerCard from "../InspirationInnerCard";
 import ContentTabs from "../ContentTabs";
 import { useNavigate, useParams } from "react-router-dom";
+import CustomTooltip from "../CustomTooltip";
+import HighChartTree from "../HighChartTree";
+import { TOOLTIP } from "src/constant/Tooltip";
+import { getGraph } from "src/redux/actions/graphActions";
 
 let page = 1;
 let curretnInspirationPage = 1;
@@ -25,6 +29,8 @@ const ContentCards = () => {
   const { id } = useParams();
   const disptach = useDispatch<any>();
   const [isVisible, setIsVisible] = useState(false);
+  const [isOracle, setIsOracle] = useState(false);
+  const [isSort, setIsSort] = useState(false);
   const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
   const loginUser = getUser ? JSON.parse(getUser) : null;
   const navigate = useNavigate();
@@ -36,7 +42,11 @@ const ContentCards = () => {
       disptach(getCareer({ page, take: 20 }));
     }
   }, [disptach]);
-
+  const onCareerClick = (link: string) => {
+    const career = link?.split("-")[2];
+    setIsOracle(false);
+    navigate(`/career/${career}`);
+  };
   const arr = [];
   for (let index = 0; index < 100; index++) {
     arr.push(index);
@@ -49,14 +59,21 @@ const ContentCards = () => {
   };
   const onChange = (value: any) => {
     page = 1;
-    setCareer([]);
-    let payload = {};
-    if (loginUser) {
-      payload = { title: value, page: 1, take: 20, user_id: loginUser?.id };
+
+    if (isInspiration) {
+      setInspirations([]);
+      let payload = { search: value, page: 1, take: 20 };
+      disptach(getInspiration(payload));
     } else {
-      payload = { title: value, page: 1, take: 20 };
+      let payload = {};
+      if (loginUser) {
+        setCareer([]);
+        payload = { title: value, page: 1, take: 20, user_id: loginUser?.id };
+      } else {
+        payload = { title: value, page: 1, take: 20 };
+      }
+      disptach(getCareer(payload));
     }
-    disptach(getCareer(payload));
   };
 
   const {
@@ -166,7 +183,11 @@ const ContentCards = () => {
     setIsInspiration(true);
     disptach(getInspiration({ page, take: 20 }));
   };
-
+  const oracleHandler = () => {
+    if (loginUser) {
+      setIsOracle(true);
+    }
+  };
   useEffect(() => {
     if (id) {
       setIsVisible(true);
@@ -174,6 +195,46 @@ const ContentCards = () => {
       setIsVisible(false);
     }
   }, [id]);
+  const t2 = (
+    <span>
+      Unlock your future! <br /> Click ‘Career’ to access comprehensive career
+      details, including in-depth information, videos, educational paths, study
+      descriptions and much more, all in one convenient popup window.
+    </span>
+  );
+  const t3 = (
+    <span>
+      Unveil the path of greatness! <br /> Click ‘Inspiration’ to explore
+      influential figures from diverse fields. Each thumbnail opens a popup
+      showcasing their inspiring journey, career path, and educational
+      background, offering insights into how your role models achieved their
+      remarkable success.
+    </span>
+  );
+  const t4 = (
+    <span>
+      Find your answers! <br /> Use the 'Search' option to discover specific
+      career information or explore profiles of inspirational individuals
+      tailored to your search query.
+    </span>
+  );
+  const t5 = (
+    <span>
+      Unleash Your Destiny! <br /> The 'Oracle' button holds the key to your
+      unique journey. Your profile's data paints a vivid career roadmap,
+      reflecting your answers. Explore your personalized path in a stunning
+      graphical presentation, unveiling the array of careers and opportunities
+      destined for you.
+    </span>
+  );
+  const t6 = (
+    <span>
+      Tailor Your Vision! <br /> Click 'Sort' to arrange careers according to
+      your preferences. Organize by ATAR score, Annual Salary, Cost of course,
+      study duration, and more. Choose your sorting criteria and unlock a
+      customized view of careers aligned with your goals.
+    </span>
+  );
   return (
     <Container className="content-card mb-3 px-0 " fluid>
       <Row className="px-md-3 px-0 m-0">
@@ -189,7 +250,7 @@ const ContentCards = () => {
                 }`}
                 onClick={() => setIsInspiration(false)}
               >
-                Career
+                <CustomTooltip title={t2}>Career</CustomTooltip>
               </Button>
               <Button
                 className={`btn btn-primary me-2 custom ${
@@ -197,7 +258,7 @@ const ContentCards = () => {
                 }`}
                 onClick={inspirationHandler}
               >
-                Inspirations
+                <CustomTooltip title={t3}>Inspirations</CustomTooltip>
               </Button>
               <div className="d-md-none d-block">
                 {/* <Dropdown
@@ -205,8 +266,11 @@ const ContentCards = () => {
                   placement="bottomRight"
                   className="my-0 my-md-0 d-md-none d-block"
                 > */}
-                <Button className="btn-secondary me-2 d-md-none d-block sort-by">
-                  Oracle{" "}
+                <Button
+                  className="btn-secondary me-2 d-md-none d-block sort-by"
+                  onClick={oracleHandler}
+                >
+                  Oracles
                 </Button>
                 {/* </Dropdown> */}
                 <Dropdown
@@ -221,29 +285,80 @@ const ContentCards = () => {
               </div>
             </div>
           </div>
-          <Input
-            placeholder="Search or filter"
-            prefix={<AiFillPlusCircle size={25} color="#ff4742" />}
-            className="search-input"
-            onPressEnter={(e: any) => onChange(e.target.value)}
-          />
+          <CustomTooltip title={t4}>
+            <Input
+              placeholder="Search or filter"
+              prefix={<AiFillPlusCircle size={25} color="#ff4742" />}
+              className="search-input"
+              onPressEnter={(e: any) => onChange(e.target.value)}
+            />
+          </CustomTooltip>
           <div className="d-none d-md-block">
             {/* <Dropdown
               menu={{dummy}}
               placement="bottomRight"
               className="my-3 my-md-0 "
             > */}
-            <Button className="btn-secondary me-2 d-md-none d-block sort-by">
-              Oracle{" "}
+
+            <Button
+              className="btn-secondary me-2 d-md-none d-block sort-by"
+              onClick={() => setIsOracle(true)}
+            >
+              <CustomTooltip title={t5}>Oracle </CustomTooltip>
             </Button>
             {/* </Dropdown> */}
-            <Dropdown
+            {/* <Dropdown
               menu={{ items }}
               placement="bottomRight"
               className="my-3 my-md-0 "
+            > */}
+            <Button
+              className="btn-secondary sort-by"
+              onClick={() => setIsSort(!isSort)}
             >
-              <Button className="btn-secondary sort-by">Sort By</Button>
-            </Dropdown>
+              <CustomTooltip title={t6}>Sort By</CustomTooltip>
+            </Button>
+            {/* </Dropdown> */}
+          </div>
+        </Col>
+      </Row>
+      <Row>
+        <Col md={12}>
+          <div
+            className={`filter-section d-flex justify-content-around ${
+              isSort ? "active" : ""
+            } `}
+          >
+            <Radio.Group className="w-100 d-flex justify-content-around">
+              <Radio.Button
+                className="radio-button "
+                onClick={() => onFilterChange({ sort_by: "ASC" })}
+                value={0}
+              >
+                Title ACS
+              </Radio.Button>
+              <Radio.Button
+                className="radio-button "
+                value={1}
+                onClick={() => onFilterChange({ sort_by: "DESC" })}
+              >
+                Title DESC
+              </Radio.Button>
+              <Radio.Button
+                value={2}
+                className="radio-button "
+                onClick={() => onFilterChange({ years_needed: "YES" })}
+              >
+                Years Needed
+              </Radio.Button>
+              <Radio.Button
+                value={3}
+                className="radio-button "
+                onClick={() => onFilterChange({ admission_rank: "YES" })}
+              >
+                Admission Rank
+              </Radio.Button>
+            </Radio.Group>
           </div>
         </Col>
       </Row>
@@ -290,9 +405,18 @@ const ContentCards = () => {
         footer={false}
         onCancel={() => navigate(`/`)}
         width={"80%"}
-        zIndex={9999}
+        zIndex={9}
       >
         <ContentTabs />
+      </Modal>
+      <Modal
+        open={isOracle}
+        footer={false}
+        onCancel={() => setIsOracle(false)}
+        width={"80%"}
+        zIndex={9}
+      >
+        <HighChartTree isOracle={isOracle} onCareerClick={onCareerClick} />
       </Modal>
     </Container>
   );
