@@ -16,7 +16,6 @@ import AboutUs from "src/views/Website/AboutUs";
 import TermsAndConditions from "src/views/Website/TermsAndConditions";
 import FAQ from "src/views/Website/FAQ's";
 import CustomTooltip from "../CustomTooltip";
-import { TOOLTIP } from "src/constant/Tooltip";
 
 const Header = () => {
   const dispatch = useDispatch<any>();
@@ -162,6 +161,10 @@ const Header = () => {
     setIsAbout(false);
     setIsTerms(true);
   };
+  const signUpHandler = () => {
+    setSignInToggle(false);
+    setSignUpToggle(true);
+  };
   return (
     <header className="header">
       <CustomTooltip zIndex={2} autoAdjustOverflow title={text}>
@@ -212,6 +215,7 @@ const Header = () => {
         handleOk={() => setSignInToggle(false)}
         handleCancel={() => setSignInToggle(false)}
         footer={false}
+        signUpHandler={signUpHandler}
       />
       <Modal
         open={isAbout}

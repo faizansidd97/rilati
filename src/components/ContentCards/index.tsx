@@ -2,7 +2,15 @@ import { useState, useEffect, memo, useRef } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { DotChartOutlined } from "@ant-design/icons";
 import { AiFillPlusCircle } from "react-icons/ai";
-import { Dropdown, Input, MenuProps, Modal, Radio, Skeleton } from "antd";
+import {
+  Dropdown,
+  Input,
+  MenuProps,
+  Modal,
+  Radio,
+  Skeleton,
+  message,
+} from "antd";
 import { contentData } from "./constant";
 import { useDispatch, useSelector } from "react-redux";
 import { getCareer } from "src/redux/actions/careerAction";
@@ -16,8 +24,6 @@ import ContentTabs from "../ContentTabs";
 import { useNavigate, useParams } from "react-router-dom";
 import CustomTooltip from "../CustomTooltip";
 import HighChartTree from "../HighChartTree";
-import { TOOLTIP } from "src/constant/Tooltip";
-import { getGraph } from "src/redux/actions/graphActions";
 
 let page = 1;
 let curretnInspirationPage = 1;
@@ -186,6 +192,8 @@ const ContentCards = () => {
   const oracleHandler = () => {
     if (loginUser) {
       setIsOracle(true);
+    } else {
+      message.info("Please Login to check you oracle");
     }
   };
   useEffect(() => {
@@ -302,7 +310,7 @@ const ContentCards = () => {
 
             <Button
               className="btn-secondary me-2 d-md-none d-block sort-by"
-              onClick={() => setIsOracle(true)}
+              onClick={oracleHandler}
             >
               <CustomTooltip title={t5}>Oracle </CustomTooltip>
             </Button>

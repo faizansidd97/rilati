@@ -1,12 +1,17 @@
 import { Button, Form, Input, Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { register, login } from "src/redux/actions/authAction";
+import { login } from "src/redux/actions/authAction";
 import { Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import bgImage from "../../assets/images/02.webp";
 import "./SignInModal.scss";
 
-const SignInModal = ({ isModalOpen = false, handleOk, handleCancel }: any) => {
+const SignInModal = ({
+  isModalOpen = false,
+  signUpHandler,
+  handleOk,
+  handleCancel,
+}: any) => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const dispatch = useDispatch();
@@ -96,6 +101,17 @@ const SignInModal = ({ isModalOpen = false, handleOk, handleCancel }: any) => {
                     Sign In
                   </Button>
                 </Form.Item>
+              </Col>
+              <Col md={12}>
+                <p className="text-center">
+                  New to Rilati?{" "}
+                  <span
+                    style={{ color: "red", cursor: "pointer" }}
+                    onClick={signUpHandler}
+                  >
+                    Signup
+                  </span>
+                </p>
               </Col>
             </Row>
           </Form>

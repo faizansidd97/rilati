@@ -550,6 +550,20 @@ const SignUpModal = ({
                   </Button>
                 </Form.Item>
               </Col>
+              <Col md={12} xs={12}>
+                <p className="text-center">
+                  Already have an account?{" "}
+                  <span
+                    style={{ color: "red", cursor: "pointer" }}
+                    onClick={() => {
+                      handleCancel();
+                      signInOpen();
+                    }}
+                  >
+                    Sign in
+                  </span>
+                </p>
+              </Col>
               {/* <Form.Item>
                 <div className="d-flex justify-content-center">
                   <Link to={RoutePaths.LOGIN} className="login-form-forgot ">
