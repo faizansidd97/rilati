@@ -6,12 +6,20 @@ import { useNavigate } from "react-router-dom";
 import bgImage from "../../assets/images/02.webp";
 import "./SignInModal.scss";
 
+interface SiginProp {
+  isModalOpen: any;
+  signUpHandler: any;
+  handleOk: any;
+  handleCancel: any;
+  forgotHandler: Function;
+}
 const SignInModal = ({
   isModalOpen = false,
   signUpHandler,
   handleOk,
   handleCancel,
-}: any) => {
+  forgotHandler,
+}: SiginProp) => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const dispatch = useDispatch();
@@ -103,6 +111,18 @@ const SignInModal = ({
                 </Form.Item>
               </Col>
               <Col md={12}>
+                <div className="text-end">
+                  <span
+                    style={{ color: "red", cursor: "pointer" }}
+                    onClick={() => {
+                      console.log("click");
+
+                      forgotHandler();
+                    }}
+                  >
+                    Forgot Password?
+                  </span>
+                </div>
                 <p className="text-center">
                   New to Rilati?{" "}
                   <span

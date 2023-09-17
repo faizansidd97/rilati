@@ -345,29 +345,43 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
               </h5>
             </CustomTooltip>
             <Radio.Group className="w-100 d-flex justify-content-around">
+              {loginUser && (
+                <Radio.Button
+                  className="radio-button "
+                  onClick={() => {
+                    setCareer([]);
+                    disptach(
+                      getCareer({ page, take: 20, user_id: loginUser?.id })
+                    );
+                  }}
+                  value={0}
+                >
+                  Favorite
+                </Radio.Button>
+              )}
               <Radio.Button
                 className="radio-button "
                 onClick={() => onFilterChange({ sort_by: "ASC" })}
-                value={0}
+                value={1}
               >
                 Title ACS
               </Radio.Button>
               <Radio.Button
                 className="radio-button "
-                value={1}
+                value={2}
                 onClick={() => onFilterChange({ sort_by: "DESC" })}
               >
                 Title DESC
               </Radio.Button>
               <Radio.Button
-                value={2}
+                value={3}
                 className="radio-button "
                 onClick={() => onFilterChange({ years_needed: "YES" })}
               >
                 Years Needed
               </Radio.Button>
               <Radio.Button
-                value={3}
+                value={4}
                 className="radio-button "
                 onClick={() => onFilterChange({ admission_rank: "YES" })}
               >

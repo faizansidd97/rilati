@@ -4,6 +4,9 @@ import {
   LOGIN_ERROR,
   LOGIN_REQUEST,
   LOGOUT_SUCCESS,
+  EMAIL_REQUEST,
+  EMAIL_SUCCESS,
+  EMAIL_ERROR,
 } from "../../constant/Types";
 import { loginApi } from "src/network/network";
 import {
@@ -37,10 +40,65 @@ export const login = (body: any, cb?: any) => (dispatch: any) => {
       //ignore-ilint
     })
     .catch((err) => {
-      // message.error("Login Failed Unauthorized");
+      console.log(err);
+
+      message.error(err?.response?.data?.error);
       dispatch({ type: LOGIN_ERROR });
       localStorage.setItem("attempt", `${++attempt}`);
     });
+};
+
+export const verifyEmail = (body: any) => (dispatch: any) => {
+  return new Promise((resolve, reject) => {
+    dispatch({ type: EMAIL_REQUEST });
+    httpService
+      .post(`/forget-password`, body)
+      .then((res) => {
+        dispatch({ type: EMAIL_SUCCESS });
+        resolve(res);
+      })
+      .catch((err) => {
+        message.error(err?.response?.data?.error);
+
+        dispatch({ type: EMAIL_ERROR });
+        reject();
+      });
+  });
+};
+export const verifyOTP = (body: any) => (dispatch: any) => {
+  return new Promise((resolve, reject) => {
+    dispatch({ type: EMAIL_REQUEST });
+    httpService
+      .post(`/verify-otp`, body)
+      .then((res) => {
+        dispatch({ type: EMAIL_SUCCESS });
+        resolve(res);
+      })
+      .catch((err) => {
+        message.error(err?.response?.data?.error);
+
+        dispatch({ type: EMAIL_ERROR });
+        reject();
+      });
+  });
+};
+
+export const resetPassword = (body: any) => (dispatch: any) => {
+  return new Promise((resolve, reject) => {
+    dispatch({ type: EMAIL_REQUEST });
+    httpService
+      .post(`/reset-password`, body)
+      .then((res) => {
+        dispatch({ type: EMAIL_SUCCESS });
+        resolve(res);
+      })
+      .catch((err) => {
+        message.error(err?.response?.data?.error);
+
+        dispatch({ type: EMAIL_ERROR });
+        reject();
+      });
+  });
 };
 
 export const register = (body: any, cb?: any) => (dispatch: any) => {
@@ -59,7 +117,7 @@ export const register = (body: any, cb?: any) => (dispatch: any) => {
       //ignore-ilint
     })
     .catch((err) => {
-      console.log("errzxzxzx", err);
+      message.error(err?.response?.data?.error);
       if (err?.response?.status === 409) {
         message.error("Email Already Exist");
       } else {

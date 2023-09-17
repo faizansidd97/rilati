@@ -43,7 +43,6 @@ const httpService = axios.create({
   },
 });
 httpService.interceptors.response.use(undefined, (error) => {
-  console.warn("error?.response?.status", error?.response?.status);
   if (error?.response?.status === 401) {
     message.error("401 unauthorized User login again");
     store.dispatch(logoutRequest());

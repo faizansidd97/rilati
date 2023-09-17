@@ -190,7 +190,7 @@ const HomeBanner = () => {
         </Row>
       </Container>
 
-      <SignUpModal
+      {/* <SignUpModal
         isModalOpen={signUpToggle}
         handleOk={() => setSignUpToggle(false)}
         handleCancel={() => setSignUpToggle(false)}
@@ -200,8 +200,8 @@ const HomeBanner = () => {
         isModalOpen={signInToggle}
         handleOk={() => setSignInToggle(false)}
         handleCancel={() => setSignInToggle(false)}
-        footer={false}
-      />
+        // footer={false}
+      /> */}
     </div>
   );
 };

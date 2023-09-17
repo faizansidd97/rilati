@@ -66,11 +66,18 @@ const ContentInnerCards = ({
   });
   const callback = () => {
     setLike(!like);
-    if (like) {
-      setLikeCount(likeCount - 1);
-    } else {
-      setLikeCount(likeCount + 1);
-    }
+    setLikeCount((likeCount: any) => {
+      if (like) {
+        return likeCount - 1;
+      } else {
+        return likeCount + 1;
+      }
+    });
+    // if (like) {
+    //   setLikeCount(likeCount - 1);
+    // } else {
+    //   setLikeCount(likeCount + 1);
+    // }
   };
   const shareCallback = async () => {
     // setIsVisible(false);
@@ -115,11 +122,13 @@ Click here 👉 `;
     }
   };
   useEffect(() => {
+    const ac = new AbortController();
     isMounted = true;
 
     // Your asynchronous task here
 
     return () => {
+      ac.abort();
       isMounted = false;
       // Cleanup code here (e.g., cancel API requests, clear timers)
     };
@@ -228,7 +237,13 @@ Click here 👉 `;
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
             <h3>🥇 ATAR</h3>
             <ProgressBar
-              bgColor="#00eb75"
+              bgColor={
+                progress?.cost > 66
+                  ? "#00eb75"
+                  : progress?.cost > 33
+                  ? "#ffc81c"
+                  : "#ff3028"
+              }
               animateOnRender
               completed={progress.cost}
               maxCompleted={100}
@@ -240,7 +255,13 @@ Click here 👉 `;
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
             <h3>⚖️ Work Life Balance</h3>
             <ProgressBar
-              bgColor="#00eb75"
+              bgColor={
+                progress?.over > 6
+                  ? "#00eb75"
+                  : progress?.over > 3
+                  ? "#ffc81c"
+                  : "#ff3028"
+              }
               animateOnRender
               completed={progress.over}
               maxCompleted={10}
@@ -252,7 +273,13 @@ Click here 👉 `;
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
             <h3>🙌 Status in company</h3>
             <ProgressBar
-              bgColor="#00eb75"
+              bgColor={
+                progress?.status > 6
+                  ? "#00eb75"
+                  : progress?.status > 3
+                  ? "#ffc81c"
+                  : "#ff3028"
+              }
               animateOnRender
               completed={progress.status}
               maxCompleted={10}
@@ -263,7 +290,13 @@ Click here 👉 `;
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
             <h3>🔀 Potential to Switch</h3>
             <ProgressBar
-              bgColor="#00eb75"
+              bgColor={
+                progress?.fun > 6
+                  ? "#00eb75"
+                  : progress?.fun > 3
+                  ? "#ffc81c"
+                  : "#ff3028"
+              }
               animateOnRender
               completed={progress.fun}
               maxCompleted={10}
@@ -274,7 +307,13 @@ Click here 👉 `;
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
             <h3>🌐 Scope World wide</h3>
             <ProgressBar
-              bgColor="#00eb75"
+              bgColor={
+                progress?.saftey > 6
+                  ? "#00eb75"
+                  : progress?.saftey > 3
+                  ? "#ffc81c"
+                  : "#ff3028"
+              }
               animateOnRender
               completed={progress.saftey}
               maxCompleted={10}

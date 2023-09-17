@@ -3,6 +3,9 @@ import {
   LOGIN_SUCCESS,
   LOGIN_ERROR,
   LOGOUT_SUCCESS,
+  EMAIL_REQUEST,
+  EMAIL_SUCCESS,
+  EMAIL_ERROR,
 } from "../../constant/Types";
 import { AuthState } from "./Modules/auth";
 
@@ -54,6 +57,23 @@ const authReducer = (state = initialState, action: any) => {
       return Object.assign({}, state, {
         loginLoader: false,
         isLogin: false,
+      });
+    }
+    case EMAIL_REQUEST: {
+      return Object.assign({}, state, {
+        resetLoader: true,
+      });
+    }
+
+    case EMAIL_SUCCESS: {
+      return Object.assign({}, state, {
+        resetLoader: false,
+      });
+    }
+
+    case EMAIL_ERROR: {
+      return Object.assign({}, state, {
+        resetLoader: false,
       });
     }
     default:

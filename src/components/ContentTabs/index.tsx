@@ -267,141 +267,15 @@ const ContentTabs = ({ item }: IContentTabs) => {
               </div>
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
                 <h3>
-                  <CustomTooltip title={TOOLTIP.T9}>
-                    🌟 Work-Life Balance
+                  <CustomTooltip title={TOOLTIP.T20}>
+                    ✌️ Autonomy & Freedom
                   </CustomTooltip>
                 </h3>
                 <ProgressBar
                   baseBgColor="#ffffff36"
                   animateOnRender
                   className="progress"
-                  completed={progress.over}
-                  // variant="success"
-                  bgColor="#00eb75"
-                  maxCompleted={10}
-                />
-              </div>
-
-              {/* <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-              <h3>
-              🙌 Foster Motivation</h3>
-              <ProgressBar
-                baseBgColor="#ffffff36"
-               animateOnRender
-                className="progress"
-                completed={progress.internet}
-                // variant="success"
-                 bgColor="#00eb75"
-                maxCompleted={10}
-              />
-            </div> */}
-              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>
-                  <CustomTooltip title={TOOLTIP.T10}>
-                    🔀 Potential to Switch
-                  </CustomTooltip>
-                </h3>
-                <ProgressBar
-                  baseBgColor="#ffffff36"
-                  animateOnRender
-                  className="progress"
-                  completed={progress.fun}
-                  // variant="success"
-                  bgColor="#00eb75"
-                  maxCompleted={10}
-                />
-              </div>
-              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>
-                  <CustomTooltip title={TOOLTIP.T11}>
-                    🌐 Scope World wide
-                  </CustomTooltip>
-                </h3>
-                <ProgressBar
-                  baseBgColor="#ffffff36"
-                  animateOnRender
-                  className="progress"
-                  completed={progress.saftey}
-                  // variant="success"
-                  bgColor="#00eb75"
-                  maxCompleted={10}
-                />
-              </div>
-              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>
-                  <CustomTooltip title={TOOLTIP.T12}>
-                    🙌 Status in Company
-                  </CustomTooltip>
-                </h3>
-                <ProgressBar
-                  baseBgColor="#ffffff36"
-                  animateOnRender
-                  className="progress"
-                  completed={progress.status}
-                  // variant="success"
-                  bgColor="#00eb75"
-                  maxCompleted={10}
-                />
-              </div>
-              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>
-                  <CustomTooltip title={TOOLTIP.T13}>
-                    ⚠️ Risk to health
-                  </CustomTooltip>
-                </h3>
-                <ProgressBar
-                  baseBgColor="#ffffff36"
-                  animateOnRender
-                  className="progress"
-                  completed={progress.health?.toString()}
-                  // variant="success"
-                  bgColor="#00eb75"
-                  maxCompleted={10}
-                />
-              </div>
-              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>
-                  <CustomTooltip title={TOOLTIP.T14}>
-                    👥 Team Reliance
-                  </CustomTooltip>
-                </h3>
-                <ProgressBar
-                  baseBgColor="#ffffff36"
-                  animateOnRender
-                  className="progress"
-                  completed={progress.team}
-                  // variant="success"
-                  bgColor="#00eb75"
-                  maxCompleted={10}
-                />
-              </div>
-              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>
-                  <CustomTooltip title={TOOLTIP.T15}>
-                    🔍 Precision Work
-                  </CustomTooltip>
-                </h3>
-                <ProgressBar
-                  baseBgColor="#ffffff36"
-                  animateOnRender
-                  className="progress"
-                  completed={progress.precision_work}
-                  // variant="success"
-                  bgColor="#00eb75"
-                  maxCompleted={10}
-                />
-              </div>
-              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>
-                  <CustomTooltip title={TOOLTIP.T16}>
-                    ⏰ Work Hours
-                  </CustomTooltip>
-                </h3>
-                <ProgressBar
-                  baseBgColor="#ffffff36"
-                  animateOnRender
-                  className="progress"
-                  completed={progress.work_hours}
+                  completed={progress.autonomy}
                   // variant="success"
                   bgColor="#00eb75"
                   maxCompleted={10}
@@ -423,102 +297,7 @@ const ContentTabs = ({ item }: IContentTabs) => {
                   maxCompleted={10}
                 />
               </div>
-              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>
-                  <CustomTooltip title={TOOLTIP.T18}>
-                    😩 Repetitive or Tedious
-                  </CustomTooltip>
-                </h3>
-                <ProgressBar
-                  baseBgColor="#ffffff36"
-                  animateOnRender
-                  className="progress"
-                  completed={progress.repetitive_tedious?.toString()}
-                  // variant="success"
-                  bgColor="#00eb75"
-                  maxCompleted={10}
-                />
-              </div>
-              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>
-                  <CustomTooltip title={TOOLTIP.T19}>
-                    🤩 People Interation
-                  </CustomTooltip>
-                </h3>
-                <ProgressBar
-                  baseBgColor="#ffffff36"
-                  animateOnRender
-                  className="progress"
-                  completed={progress.people_interations}
-                  // variant="success"
-                  bgColor="#00eb75"
-                  maxCompleted={10}
-                />
-              </div>
-              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>
-                  <CustomTooltip title={TOOLTIP.T20}>
-                    ✌️ Autonomy & Freedom
-                  </CustomTooltip>
-                </h3>
-                <ProgressBar
-                  baseBgColor="#ffffff36"
-                  animateOnRender
-                  className="progress"
-                  completed={progress.autonomy}
-                  // variant="success"
-                  bgColor="#00eb75"
-                  maxCompleted={10}
-                />
-              </div>
-              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>
-                  <CustomTooltip title={TOOLTIP.T21}>
-                    👤 Risk to Life
-                  </CustomTooltip>
-                </h3>
-                <ProgressBar
-                  baseBgColor="#ffffff36"
-                  animateOnRender
-                  className="progress"
-                  completed={progress.life_risk}
-                  // variant="success"
-                  bgColor="#00eb75"
-                  maxCompleted={10}
-                />
-              </div>
-              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>
-                  <CustomTooltip title={TOOLTIP.T22}>
-                    😞 Physical Stress
-                  </CustomTooltip>
-                </h3>
-                <ProgressBar
-                  baseBgColor="#ffffff36"
-                  animateOnRender
-                  className="progress"
-                  completed={progress.physical_stress}
-                  // variant="success"
-                  bgColor="#00eb75"
-                  maxCompleted={10}
-                />
-              </div>
-              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>
-                  <CustomTooltip title={TOOLTIP.T23}>
-                    😑 Mental Stress
-                  </CustomTooltip>
-                </h3>
-                <ProgressBar
-                  baseBgColor="#ffffff36"
-                  animateOnRender
-                  className="progress"
-                  completed={progress.mental_stress}
-                  // variant="success"
-                  bgColor="#00eb75"
-                  maxCompleted={10}
-                />
-              </div>
+
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
                 <h3>
                   <CustomTooltip title={TOOLTIP.T24}>
@@ -551,6 +330,218 @@ const ContentTabs = ({ item }: IContentTabs) => {
                   maxCompleted={10}
                 />
               </div>
+              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T23}>
+                    😑 Mental Stress
+                  </CustomTooltip>
+                </h3>
+                <ProgressBar
+                  baseBgColor="#ffffff36"
+                  animateOnRender
+                  className="progress"
+                  completed={progress.mental_stress}
+                  // variant="success"
+                  bgColor="#00eb75"
+                  maxCompleted={10}
+                />
+              </div>
+              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T10}>
+                    🔀 Potential to Switch
+                  </CustomTooltip>
+                </h3>
+                <ProgressBar
+                  baseBgColor="#ffffff36"
+                  animateOnRender
+                  className="progress"
+                  completed={progress.fun}
+                  // variant="success"
+                  bgColor="#00eb75"
+                  maxCompleted={10}
+                />
+              </div>
+              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T22}>
+                    😞 Physical Stress
+                  </CustomTooltip>
+                </h3>
+                <ProgressBar
+                  baseBgColor="#ffffff36"
+                  animateOnRender
+                  className="progress"
+                  completed={progress.physical_stress}
+                  // variant="success"
+                  bgColor="#00eb75"
+                  maxCompleted={10}
+                />
+              </div>
+              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T19}>
+                    🤩 People Interation
+                  </CustomTooltip>
+                </h3>
+                <ProgressBar
+                  baseBgColor="#ffffff36"
+                  animateOnRender
+                  className="progress"
+                  completed={progress.people_interations}
+                  // variant="success"
+                  bgColor="#00eb75"
+                  maxCompleted={10}
+                />
+              </div>
+              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T15}>
+                    🔍 Precision Work
+                  </CustomTooltip>
+                </h3>
+                <ProgressBar
+                  baseBgColor="#ffffff36"
+                  animateOnRender
+                  className="progress"
+                  completed={progress.precision_work}
+                  // variant="success"
+                  bgColor="#00eb75"
+                  maxCompleted={10}
+                />
+              </div>
+              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T21}>
+                    👤 Risk to Life
+                  </CustomTooltip>
+                </h3>
+                <ProgressBar
+                  baseBgColor="#ffffff36"
+                  animateOnRender
+                  className="progress"
+                  completed={progress.life_risk}
+                  // variant="success"
+                  bgColor="#00eb75"
+                  maxCompleted={10}
+                />
+              </div>
+              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T18}>
+                    😩 Repetitive or Tedious
+                  </CustomTooltip>
+                </h3>
+                <ProgressBar
+                  baseBgColor="#ffffff36"
+                  animateOnRender
+                  className="progress"
+                  completed={progress.repetitive_tedious?.toString()}
+                  // variant="success"
+                  bgColor="#00eb75"
+                  maxCompleted={10}
+                />
+              </div>
+              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T13}>
+                    ⚠️ Risk to health
+                  </CustomTooltip>
+                </h3>
+                <ProgressBar
+                  baseBgColor="#ffffff36"
+                  animateOnRender
+                  className="progress"
+                  completed={progress.health?.toString()}
+                  // variant="success"
+                  bgColor="#00eb75"
+                  maxCompleted={10}
+                />
+              </div>
+              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T12}>
+                    🙌 Status in Company
+                  </CustomTooltip>
+                </h3>
+                <ProgressBar
+                  baseBgColor="#ffffff36"
+                  animateOnRender
+                  className="progress"
+                  completed={progress.status}
+                  // variant="success"
+                  bgColor="#00eb75"
+                  maxCompleted={10}
+                />
+              </div>
+
+              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T11}>
+                    🌐 Scope World wide
+                  </CustomTooltip>
+                </h3>
+                <ProgressBar
+                  baseBgColor="#ffffff36"
+                  animateOnRender
+                  className="progress"
+                  completed={progress.saftey}
+                  // variant="success"
+                  bgColor="#00eb75"
+                  maxCompleted={10}
+                />
+              </div>
+
+              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T14}>
+                    👥 Team Reliance
+                  </CustomTooltip>
+                </h3>
+                <ProgressBar
+                  baseBgColor="#ffffff36"
+                  animateOnRender
+                  className="progress"
+                  completed={progress.team}
+                  // variant="success"
+                  bgColor="#00eb75"
+                  maxCompleted={10}
+                />
+              </div>
+
+              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T16}>
+                    ⏰ Work Hours
+                  </CustomTooltip>
+                </h3>
+                <ProgressBar
+                  baseBgColor="#ffffff36"
+                  animateOnRender
+                  className="progress"
+                  completed={progress.work_hours}
+                  // variant="success"
+                  bgColor="#00eb75"
+                  maxCompleted={10}
+                />
+              </div>
+              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T9}>
+                    🌟 Work-Life Balance
+                  </CustomTooltip>
+                </h3>
+                <ProgressBar
+                  baseBgColor="#ffffff36"
+                  animateOnRender
+                  className="progress"
+                  completed={progress.over}
+                  // variant="success"
+                  bgColor="#00eb75"
+                  maxCompleted={10}
+                />
+              </div>
+
               {/* <p>Still an amazing island</p> */}
               <div className="d-flex justify-content-end">
                 <IoShareOutline color="#fff" size={20} />
