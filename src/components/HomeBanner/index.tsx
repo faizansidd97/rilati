@@ -57,7 +57,7 @@ const HomeBanner = () => {
               {/* <h1 className="title">🌍 Rilati</h1> */}
               <h1 className="title">Rilati</h1>
               <h1 className="desc">
-                Your career is a journey, not a destination.
+                Your career, Your Journey
                 {/* <br /> Let Rilati guide you */}
               </h1>
               {/* <p className="desc">
@@ -147,7 +147,7 @@ const HomeBanner = () => {
             className="d-md-flex d-none justify-content-center justify-content-md-end mb-4 mb-md-0"
           >
             {!(isLogin || loginUser) && (
-              <CustomTooltip title={TOOLTIP.T7}>
+              <CustomTooltip title={t7}>
                 <div className="subcription__form_wrapper d-flex flex-column align-items-center mb-4">
                   {/* <img src={thumbnail} className="w-100" /> */}
                   <Form>

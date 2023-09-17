@@ -59,7 +59,7 @@ const SignInModal = ({
               <Col md={12} xs={12}>
                 <Form.Item
                   name="email"
-                  label="Username/Email"
+                  label="Email"
                   rules={[
                     {
                       required: true,

@@ -164,7 +164,7 @@ const ContentTabs = ({ item }: IContentTabs) => {
                 </CustomTooltip>
               </h6>
               <p className="text-left desc mb-0">
-                {careerById?.attributes?.internship_needed}
+                {careerById?.attributes?.years_needed}
               </p>
               <span className="note">
                 FT/PT = Full Time or Part Time in years

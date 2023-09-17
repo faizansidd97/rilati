@@ -3,7 +3,7 @@ import Header from "src/components/header";
 
 const WebsiteLayout = () => (
   <>
-    <Header />
+    {/* <Header /> */}
     <Outlet />
   </>
 );

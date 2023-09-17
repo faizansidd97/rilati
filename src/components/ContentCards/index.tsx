@@ -1,4 +1,4 @@
-import { useState, useEffect, memo, useRef } from "react";
+import { useState, useEffect, memo } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { DotChartOutlined } from "@ant-design/icons";
 import { AiFillPlusCircle } from "react-icons/ai";
@@ -14,20 +14,23 @@ import {
 import { contentData } from "./constant";
 import { useDispatch, useSelector } from "react-redux";
 import { getCareer } from "src/redux/actions/careerAction";
+import { getInspiration } from "src/redux/actions/inspirationsAction";
+import { useNavigate, useParams } from "react-router-dom";
 import ContentInnerCards from "../ContentInnerCard";
 import Environment from "../../network/baseUrl";
-import { getInspiration } from "src/redux/actions/inspirationsAction";
 import debounce from "lodash/debounce";
-import "./ContentCards.scss";
 import InspirationInnerCard from "../InspirationInnerCard";
 import ContentTabs from "../ContentTabs";
-import { useNavigate, useParams } from "react-router-dom";
 import CustomTooltip from "../CustomTooltip";
 import HighChartTree from "../HighChartTree";
+import "./ContentCards.scss";
 
 let page = 1;
 let curretnInspirationPage = 1;
-const ContentCards = () => {
+interface ContentCards {
+  setSignUpToggle: Function;
+}
+const ContentCards = ({ setSignUpToggle }: ContentCards) => {
   const [data, setData] = useState([...contentData]);
   const [career, setCareer]: any = useState([]);
   const [inspirations, setInspirations]: any = useState([]);
@@ -72,8 +75,8 @@ const ContentCards = () => {
       disptach(getInspiration(payload));
     } else {
       let payload = {};
+      setCareer([]);
       if (loginUser) {
-        setCareer([]);
         payload = { title: value, page: 1, take: 20, user_id: loginUser?.id };
       } else {
         payload = { title: value, page: 1, take: 20 };
@@ -193,7 +196,7 @@ const ContentCards = () => {
     if (loginUser) {
       setIsOracle(true);
     } else {
-      message.info("Please Login to check you oracle");
+      setSignUpToggle(true);
     }
   };
   useEffect(() => {
@@ -243,6 +246,7 @@ const ContentCards = () => {
       customized view of careers aligned with your goals.
     </span>
   );
+
   return (
     <Container className="content-card mb-3 px-0 " fluid>
       <Row className="px-md-3 px-0 m-0">
@@ -266,7 +270,7 @@ const ContentCards = () => {
                 }`}
                 onClick={inspirationHandler}
               >
-                <CustomTooltip title={t3}>Inspirations</CustomTooltip>
+                <CustomTooltip title={t3}>Inspiration</CustomTooltip>
               </Button>
               <div className="d-md-none d-block">
                 {/* <Dropdown
@@ -322,9 +326,9 @@ const ContentCards = () => {
             > */}
             <Button
               className="btn-secondary sort-by"
-              onClick={() => setIsSort(!isSort)}
+              // onClick={() => setIsSort(!isSort)}
             >
-              <CustomTooltip title={t6}>Sort By</CustomTooltip>
+              Chat
             </Button>
             {/* </Dropdown> */}
           </div>
@@ -333,10 +337,13 @@ const ContentCards = () => {
       <Row>
         <Col md={12}>
           <div
-            className={`filter-section d-flex justify-content-around ${
-              isSort ? "active" : ""
-            } `}
+            className={`filter-section d-flex align-items-center justify-content-around active`}
           >
+            <CustomTooltip title={t6}>
+              <h5 className="mx-3 mb-0" style={{ width: "max-content" }}>
+                Sort By
+              </h5>
+            </CustomTooltip>
             <Radio.Group className="w-100 d-flex justify-content-around">
               <Radio.Button
                 className="radio-button "
@@ -379,22 +386,22 @@ const ContentCards = () => {
                   index={index}
                   image={item?.attributes?.image}
                   key={item?.id + 100}
+                  loginUser={loginUser}
+                  setSignUpToggle={setSignUpToggle}
                 />
               </li>
             ))
-          : inspirations?.map((item: any, index: any) =>
-              item?.name !== null && item?.image !== null ? (
-                <li className="item" key={item?.id}>
-                  <InspirationInnerCard
-                    item={item}
-                    index={index}
-                    image={item?.image}
-                    onArrayChange={onArrayChange}
-                    key={item?.id}
-                  />
-                </li>
-              ) : null
-            )}
+          : inspirations?.map((item: any, index: any) => (
+              <li className="item" key={item?.id}>
+                <InspirationInnerCard
+                  item={item}
+                  index={index}
+                  image={item?.image}
+                  onArrayChange={onArrayChange}
+                  key={item?.id}
+                />
+              </li>
+            ))}
         {(loader || inspirationsLoader) &&
           [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(
             (index) => (
@@ -421,7 +428,7 @@ const ContentCards = () => {
         open={isOracle}
         footer={false}
         onCancel={() => setIsOracle(false)}
-        width={"80%"}
+        width={"90%"}
         zIndex={9}
       >
         <HighChartTree isOracle={isOracle} onCareerClick={onCareerClick} />

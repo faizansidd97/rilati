@@ -5,4 +5,5 @@ export interface CareerState {
   totaPage: number;
   metaData: any;
   careerById: object;
+  careerLoader: boolean;
 }

@@ -545,7 +545,7 @@ export const graphData1 = [
     name: "Risk Management Specialists",
   },
 ];
-export const hightOption = {
+export const hightOptionConstant = {
   title: {
     text: "Treegraph with box layout",
   },

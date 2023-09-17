@@ -8,7 +8,7 @@ import Home from "./Home/Home";
 function Website() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Home />
       {/* <Footer /> */}
     </>

@@ -483,7 +483,7 @@ const SignUpModal = ({
                   />
                 </Form.Item>
               </Col> */}
-              <Col md={6} xs={12}>
+              <Col md={12} xs={12}>
                 <Form.Item
                   name="confident_skills"
                   label="Check the skills you feel confident in"
@@ -513,18 +513,22 @@ const SignUpModal = ({
                   />
                 </Form.Item>
               </Col>
-              <Col md={6} xs={12}>
+              <Col md={12} xs={12}>
                 <Form.Item
                   name="newsletter"
                   label="Newsletter"
+                  initialValue={false}
                   rules={[
                     {
                       required: true,
-                      message: "Please input your least newsletter!",
+                      message: "Please input your newsletter!",
                     },
                   ]}
                 >
-                  <Select
+                  <Checkbox value={true}>
+                    Send email/newsletter, IF the content matches my profile
+                  </Checkbox>
+                  {/* <Select
                     placeholder="Newsletter"
                     options={[
                       {
@@ -534,7 +538,7 @@ const SignUpModal = ({
                       },
                       { label: "No, maybe later.", value: false },
                     ]}
-                  />
+                  /> */}
                 </Form.Item>
               </Col>
 

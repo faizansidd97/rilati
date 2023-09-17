@@ -17,18 +17,19 @@ import TermsAndConditions from "src/views/Website/TermsAndConditions";
 import FAQ from "src/views/Website/FAQ's";
 import CustomTooltip from "../CustomTooltip";
 
-const Header = () => {
+interface HeaderProps {
+  setSignUpToggle: Function;
+  setSignInToggle: Function;
+}
+
+const Header = ({ setSignUpToggle, setSignInToggle }: HeaderProps) => {
   const dispatch = useDispatch<any>();
   const [form] = useForm();
-  // const [toggle, setToggle] = useState(false);
-  const [signUpToggle, setSignUpToggle] = useState(false);
-  const [signInToggle, setSignInToggle] = useState(false);
+
   const [isTerms, setIsTerms] = useState(false);
   const [isAbout, setIsAbout] = useState(false);
   const [isFAQ, setIsFAQ] = useState(false);
-  // const toggleMenu = () => {
-  //   setToggle(!toggle);
-  // };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const text = (
@@ -203,20 +204,7 @@ const Header = () => {
           </Form.Item>
         </Form>
       </Modal>
-      <SignUpModal
-        isModalOpen={signUpToggle}
-        handleOk={() => setSignUpToggle(false)}
-        handleCancel={() => setSignUpToggle(false)}
-        signInOpen={() => setSignInToggle(true)}
-        footer={false}
-      />
-      <SignInModal
-        isModalOpen={signInToggle}
-        handleOk={() => setSignInToggle(false)}
-        handleCancel={() => setSignInToggle(false)}
-        footer={false}
-        signUpHandler={signUpHandler}
-      />
+
       <Modal
         open={isAbout}
         onOk={() => setIsAbout(false)}

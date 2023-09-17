@@ -30,7 +30,11 @@ const inspirationReducer = (state = initialState, action: any) => {
 
     case INSPIRATION_SUCCESS: {
       return Object.assign({}, state, {
-        inspiration: [...action.payload?.data],
+        inspiration: [
+          ...action.payload?.data?.filter(
+            (item: any) => item?.name !== null && item?.image !== null
+          ),
+        ],
         metaData: action.payload,
         totaPage: action.payload.meta?.lastPage,
         loader: false,

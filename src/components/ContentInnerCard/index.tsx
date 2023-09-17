@@ -1,16 +1,11 @@
-import { useState, memo } from "react";
+import { useState, memo, useEffect } from "react";
 
-import {
-  AiOutlineHeart,
-  AiFillHeart,
-  AiFillTwitterSquare,
-  AiFillInstagram,
-} from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart, AiFillInstagram } from "react-icons/ai";
 import imageCareer from "../../assets/images/placeholderCareer.jpeg";
 import { IoShareOutline } from "react-icons/io5";
 import { Button, Input, Modal, Tooltip, message } from "antd";
 import { useDispatch } from "react-redux";
-import { likeCareer } from "src/redux/actions/careerAction";
+import { careerMeta, likeCareer } from "src/redux/actions/careerAction";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useNavigate } from "react-router-dom";
 import {
@@ -20,8 +15,7 @@ import {
   InstapaperShareButton,
   EmailShareButton,
 } from "react-share";
-import { Helmet } from "react-helmet";
-import { BsFacebook, BsInstagram, BsTwitter, BsWhatsapp } from "react-icons/bs";
+import { BsFacebook, BsTwitter, BsWhatsapp } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { BiCopy } from "react-icons/bi";
 
@@ -30,17 +24,25 @@ interface IContentCards {
   index: number;
   image: any;
   onArrayChange?: any;
+  loginUser?: any;
+  setSignUpToggle: Function;
 }
+let isMounted = false;
 const ContentInnerCards = ({
   item,
   index,
   image,
-}: // onArrayChange,
-IContentCards) => {
-  const dispatch = useDispatch();
+  loginUser,
+  setSignUpToggle,
+}: IContentCards) => {
+  const dispatch = useDispatch<any>();
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [like, setLike] = useState(item?.attributes?.userLike);
+  const [likeCount, setLikeCount] = useState(item?.attributes?.like_count);
+  const [shareCount, setShareCount] = useState<number>(
+    item?.attributes?.share_count as number
+  );
   const [progress, setProgress] = useState({
     over: 0,
     cost: 0,
@@ -64,6 +66,21 @@ IContentCards) => {
   });
   const callback = () => {
     setLike(!like);
+    if (like) {
+      setLikeCount(likeCount - 1);
+    } else {
+      setLikeCount(likeCount + 1);
+    }
+  };
+  const shareCallback = async () => {
+    // setIsVisible(false);
+    if (isMounted) {
+      setTimeout(() => {
+        console.log("Im run");
+
+        setShareCount(shareCount + 1);
+      }, 3000);
+    }
   };
   const shareLink = `https://rilati.com/career/${item?.id}`;
   const shareWithMessage = `
@@ -90,12 +107,28 @@ I came across this amazing resource that delves deep into a potential career pat
 It covers everything from salary expectations to required skills and education. I thought you might find it as insightful as I did! 
 Take a look. 
 Click here 👉 `;
+  const likeHandler = () => {
+    if (loginUser) {
+      dispatch(likeCareer({ career_id: item?.id }, callback));
+    } else {
+      setSignUpToggle(true);
+    }
+  };
+  useEffect(() => {
+    isMounted = true;
+
+    // Your asynchronous task here
+
+    return () => {
+      isMounted = false;
+      // Cleanup code here (e.g., cancel API requests, clear timers)
+    };
+  }, []);
 
   return (
     <div
       className="content-card__wrapper d-flex flex-column gap-1 gap-md-3 justify-content-between position-relative"
       style={{ backgroundImage: `url("${image ? image : imageCareer}")` }}
-      // key={item?.id}
       onMouseEnter={() => {
         setProgress({
           ...progress,
@@ -169,35 +202,26 @@ Click here 👉 `;
         </div>
       </div>
       <div className="mb-4 back py-3 px-2">
-        <div className="back-header d-flex justify-content-between mb-3">
+        <div className="back-header d-flex justify-content-end mb-3">
+          <span className="me-2 text-white" style={{ fontSize: "16px" }}>
+            {likeCount}
+          </span>
           {like ? (
             <AiFillHeart
               size={28}
               style={{ fill: "#ff4742" }}
-              onClick={() =>
-                dispatch(likeCareer({ career_id: item?.id }, callback))
-              }
+              onClick={likeHandler}
             />
           ) : (
             <AiOutlineHeart
               className="heart-1"
               size={28}
-              onClick={() =>
-                dispatch(likeCareer({ career_id: item?.id }, callback))
-              }
+              onClick={likeHandler}
             />
           )}
-          {/* <AiOutlineClose
-            size={28}
-            onClick={() => {
-              onArrayChange(index, item);
-            }}
-          /> */}
-          {/* <AiTwotoneHeart size={28} className="heart-2" /> */}
         </div>
         <div
           className="content-card__wrapper__back"
-          // onClick={() => setIsVisible(true)}
           onClick={() => navigate(`/career/${item?.id}`)}
           key={index}
         >
@@ -207,7 +231,6 @@ Click here 👉 `;
               bgColor="#00eb75"
               animateOnRender
               completed={progress.cost}
-              // variant="success"
               maxCompleted={100}
               className="progress"
               baseBgColor="#ffffff36"
@@ -220,7 +243,6 @@ Click here 👉 `;
               bgColor="#00eb75"
               animateOnRender
               completed={progress.over}
-              // variant="success"
               maxCompleted={10}
               baseBgColor="#ffffff36"
               className="progress"
@@ -233,7 +255,6 @@ Click here 👉 `;
               bgColor="#00eb75"
               animateOnRender
               completed={progress.status}
-              // variant="success"
               maxCompleted={10}
               baseBgColor="#ffffff36"
               className="progress"
@@ -245,7 +266,6 @@ Click here 👉 `;
               bgColor="#00eb75"
               animateOnRender
               completed={progress.fun}
-              // variant="success"
               maxCompleted={10}
               baseBgColor="#ffffff36"
               className="progress"
@@ -257,20 +277,21 @@ Click here 👉 `;
               bgColor="#00eb75"
               animateOnRender
               completed={progress.saftey}
-              // variant="success"
               maxCompleted={10}
               baseBgColor="#ffffff36"
               className="progress"
             />
           </div>
-          {/* <p>Still an amazing island</p> */}
-          <div className="d-flex justify-content-end" style={{ zIndex: 99999 }}>
-            <Tooltip placement="top" title={"Share with link"} color="#ff4742">
+
+          <div className="d-flex justify-content-end" style={{ zIndex: 999 }}>
+            <span className="me-2 text-white" style={{ fontSize: "16px" }}>
+              {shareCount}
+            </span>
+            <Tooltip placement="top" title={"Share link"} color="#ff4742">
               <IoShareOutline
                 color="#fff"
                 size={20}
                 onClick={(event: any) => {
-                  // handleCopy();
                   setIsVisible(true);
                   event.stopPropagation();
                 }}
@@ -283,7 +304,6 @@ Click here 👉 `;
         open={isVisible}
         onCancel={() => setIsVisible(false)}
         footer={false}
-        // width={"80%"}
       >
         <h2 className="text-center">Share Career</h2>
         <div>
@@ -320,38 +340,85 @@ Click here 👉 `;
           </div>
         </div>
         <div className="w-100 d-flex justify-content-between px-5 py-3">
-          <FacebookShareButton quote={item?.attributes?.title} url={shareLink}>
-            <BsFacebook size={32} color="#3b5998 " />
-            {/* <span>Facebook</span> */}
+          <FacebookShareButton
+            quote={item?.attributes?.title}
+            onShareWindowClose={() => {
+              if (isMounted) {
+                setShareCount(shareCount + 1);
+                dispatch(
+                  careerMeta(
+                    item?.id,
+                    { count_type: "SHARE_COUNT" },
+                    shareCallback
+                  )
+                );
+              }
+            }}
+            url={shareLink}
+            onSubmitCapture={(e) => console.log("runddddddd", e)}
+          >
+            <BsFacebook size={32} color="#3b5998" />
           </FacebookShareButton>
           <WhatsappShareButton
             url={shareLink}
+            onShareWindowClose={() =>
+              dispatch(
+                careerMeta(
+                  item?.id,
+                  { count_type: "SHARE_COUNT" },
+                  shareCallback
+                )
+              )
+            }
             title={WhatsappShare}
             separator=":: "
           >
             <BsWhatsapp size={32} color="#25D366" />
-            {/* <span>Whatsapp</span> */}
           </WhatsappShareButton>
           <TwitterShareButton
             url={shareLink}
+            onShareWindowClose={() =>
+              dispatch(
+                careerMeta(
+                  item?.id,
+                  { count_type: "SHARE_COUNT" },
+                  shareCallback
+                )
+              )
+            }
             title={item?.attributes?.title}
             via="Rilati"
             className="Demo__some-network__share-button"
           >
             <BsTwitter size={32} color="#00acee" />
-
-            {/* <span>Twitter</span> */}
           </TwitterShareButton>
           <InstapaperShareButton
             url={shareLink}
             title={item?.attributes?.title}
+            onShareWindowClose={() =>
+              dispatch(
+                careerMeta(
+                  item?.id,
+                  { count_type: "SHARE_COUNT" },
+                  shareCallback
+                )
+              )
+            }
             className="Demo__some-network__share-button"
           >
             <AiFillInstagram size={32} color="#fa7e1e " />
-            {/* <span>Instagram</span> */}
           </InstapaperShareButton>
           <EmailShareButton
             url={shareLink}
+            onShareWindowClose={() =>
+              dispatch(
+                careerMeta(
+                  item?.id,
+                  { count_type: "SHARE_COUNT" },
+                  shareCallback
+                )
+              )
+            }
             subject={item?.attributes?.title}
             body="Hey there!
             I came across this amazing resource that delves deep into a potential career path. It covers everything from salary expectations to required skills and education. I thought you might find it as insightful as I did! 
@@ -360,7 +427,6 @@ Click here 👉 `;
             className="Demo__some-network__share-button "
           >
             <GrMail size={32} />
-            {/* <span>Email</span> */}
           </EmailShareButton>
         </div>
         {/* <div className="d-flex mt-4 align-items-center justify-content-center">

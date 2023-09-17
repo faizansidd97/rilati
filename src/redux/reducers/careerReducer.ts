@@ -8,6 +8,9 @@ import {
   DELETE_SUCCESS,
   CAREER_LIKE_REQUEST,
   CAREER_LIKE_SUCCESS,
+  CAREER_META_REQUEST,
+  CAREER_META_SUCCESS,
+  CAREER_META_ERROR,
 } from "../../constant/Types";
 import { CareerState } from "./Modules/career";
 
@@ -18,6 +21,7 @@ const initialState: CareerState = {
   careerById: {},
   totaPage: 1,
   metaData: {},
+  careerLoader: false,
 };
 
 const careerReducer = (state = initialState, action: any) => {
@@ -39,6 +43,23 @@ const careerReducer = (state = initialState, action: any) => {
     }
 
     case CAREER_ERROR: {
+      return Object.assign({}, state, {
+        careerLoader: false,
+      });
+    }
+    case CAREER_META_REQUEST: {
+      return Object.assign({}, state, {
+        careerLoader: true,
+      });
+    }
+
+    case CAREER_META_SUCCESS: {
+      return Object.assign({}, state, {
+        careerLoader: false,
+      });
+    }
+
+    case CAREER_META_ERROR: {
       return Object.assign({}, state, {
         loader: false,
       });

@@ -11,6 +11,9 @@ import {
   CAREER_ERROR,
   CAREER_LIKE_REQUEST,
   CAREER_LIKE_SUCCESS,
+  CAREER_META_ERROR,
+  CAREER_META_REQUEST,
+  CAREER_META_SUCCESS,
   CAREER_REQUEST,
   CAREER_SUCCESS,
 } from "src/constant/Types";
@@ -32,27 +35,28 @@ export const getCareer = (params?: any) => (dispatch: any) => {
       dispatch({ type: CAREER_ERROR });
     });
 };
-// export const getCareer =
-//   (page = 1, take = 20, title?: string, sort_by?: string, admission_rank?:string) =>
-//   (dispatch: any) => {
-//     dispatch({ type: CAREER_REQUEST });
-//     httpService
-//       .get(
-//         `/career?page=${page}&take=${take}${title ? `&title=${title}` : ""}${
-//           sort_by ? `&sort_by=${sort_by}` : ""
-//         }`
-//       )
-//       .then((res) => {
-//         const {
-//           data: { data },
-//         }: any = res;
 
-//         dispatch({ type: CAREER_SUCCESS, payload: { data, meta: res?.data } });
-//       })
-//       .catch((err) => {
-//         dispatch({ type: CAREER_ERROR });
-//       });
-//   };
+export const careerMeta =
+  (id: number, body: object, cb: Function) => (dispatch: any) => {
+    dispatch({ type: CAREER_META_REQUEST });
+    httpService
+      .patch(`/career/update-count/${id}`, body)
+      .then((res) => {
+        const {
+          data: { data },
+        }: any = res;
+
+        dispatch({
+          type: CAREER_META_SUCCESS,
+          payload: { data, meta: res?.data },
+        });
+        cb();
+      })
+      .catch((err) => {
+        dispatch({ type: CAREER_META_ERROR });
+      });
+  };
+
 export const getCareerById = (id: any, param?: any) => (dispatch: any) => {
   dispatch({ type: CAREER_REQUEST });
   getCareerbyIdApi(id, param)

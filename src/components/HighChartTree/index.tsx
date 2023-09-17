@@ -1,44 +1,45 @@
-import { memo, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Spin } from "antd";
+import { getGraph } from "src/redux/actions/graphActions";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import HighchartsTreeMap from "highcharts/modules/treemap";
 import HighchartsTreeGraph from "highcharts/modules/treegraph";
 import "./HighChartTree.scss";
-import { getGraph } from "src/redux/actions/graphActions";
-import { useDispatch, useSelector } from "react-redux";
-import { Spin } from "antd";
+import { hightOptionConstant } from "src/constant/Tooltip";
 
 const HighChartTree = ({ isOracle, onCareerClick }: any) => {
+  const [graph, setGraph] = useState([]);
   const dispatch = useDispatch();
   try {
     HighchartsTreeMap(Highcharts);
     HighchartsTreeGraph(Highcharts);
   } catch (e) {}
+  console.log("isOracle", graph);
+  let isMounted = true;
 
   useEffect(() => {
-    dispatch(getGraph());
-  }, [dispatch, isOracle]);
+    if (isMounted) {
+      dispatch(getGraph());
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, [isMounted]);
   const { graphData = [], mailLoader = false } = useSelector(
     (store: any) => store.graph
   );
+
+  useEffect(() => {
+    setGraph(graphData);
+  }, []);
 
   const hightOption = {
     title: {
       text: "Careers with matching your profile",
     },
     type: "tree",
-
-    // colors: [
-    //   "#89A54E",
-    //   "#AA4643",
-    //   "#4572A7",
-    //   "#80699B",
-    //   "#3D96AE",
-    //   "#DB843D",
-    //   "#92A8CD",
-    //   "#A47D7C",
-    //   "#B5CA92",
-    // ],
     series: [
       {
         type: "treegraph",
@@ -48,7 +49,7 @@ const HighChartTree = ({ isOracle, onCareerClick }: any) => {
         },
         marker: {
           symbol: "square",
-          width: "25%",
+          width: "30%",
         },
         borderRadius: 10,
         dataLabels: {
@@ -60,8 +61,7 @@ const HighChartTree = ({ isOracle, onCareerClick }: any) => {
         levels: [
           {
             level: 1,
-            levelIsConstant: false,
-            color: "#000",
+            levelIsConstant: true,
           },
           {
             level: 2,
@@ -69,15 +69,14 @@ const HighChartTree = ({ isOracle, onCareerClick }: any) => {
           },
           {
             level: 3,
-            color: "#000",
+
             colorVariation: {
               key: "brightness",
-              to: 0.5,
+              to: -0.5,
             },
           },
           {
             level: 4,
-            color: "#000",
             colorVariation: {
               key: "brightness",
               to: 0.5,
@@ -87,9 +86,6 @@ const HighChartTree = ({ isOracle, onCareerClick }: any) => {
         point: {
           events: {
             click: function (e: any) {
-              // Open the URL in a new tab/window when a node is clicked
-              console.log("e", e);
-
               if (e?.point?.id) {
                 const isCareer = e?.point?.id?.split("-")[0];
                 if (isCareer === "career") {
@@ -108,14 +104,13 @@ const HighChartTree = ({ isOracle, onCareerClick }: any) => {
       <div
         className="hightchart-div"
         style={{
-          maxWidth: "800px",
-          minWidth: "360px",
           margin: "0 auto",
+          maxWidth: "1000px",
         }}
         id="chart-container"
       >
         <HighchartsReact
-          containerProps={{ style: { height: "1200px" } }}
+          containerProps={{ style: { height: "1200px", width: "100%" } }}
           highcharts={Highcharts}
           options={hightOption}
         />

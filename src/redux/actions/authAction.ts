@@ -13,6 +13,7 @@ import {
 } from "src/helper/helper";
 import { httpService } from "src/network/axiosAgent";
 import { useNavigate } from "react-router-dom";
+import { message } from "antd";
 
 export const logoutRequest = () => (dispatch: any) => {
   localStorage.removeItem(Environment.LOCAL_STORAGE_KEY);
@@ -58,6 +59,13 @@ export const register = (body: any, cb?: any) => (dispatch: any) => {
       //ignore-ilint
     })
     .catch((err) => {
+      console.log("errzxzxzx", err);
+      if (err?.response?.status === 409) {
+        message.error("Email Already Exist");
+      } else {
+        message.error("Something went wrong");
+      }
+
       // message.error("Login Failed Unauthorized");
       dispatch({ type: LOGIN_ERROR });
       // localStorage.setItem("attempt", `${++attempt}`);
