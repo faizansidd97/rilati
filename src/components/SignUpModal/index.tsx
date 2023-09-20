@@ -30,22 +30,64 @@ const SignUpModal = ({
   const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
   const loginUser = getUser ? JSON.parse(getUser) : null;
   const id = loginUser?.id;
+
   useEffect(() => {
     dispatch(getSubjects());
     dispatch(getIndustries());
+  }, [dispatch]);
+  useEffect(() => {
     if (isEdit) {
       dispatch(getUserById(id)).then((res: any) => {
+        console.log(
+          res?.attributes?.subject
+            ?.filter((item: any) => item?.attributes?.type === "PREFERRED")
+            ?.map((item: any) => {
+              return item?.id;
+            })
+        );
         form?.setFieldsValue({
           ...res?.attributes?.details,
           name: res?.attributes?.name,
           email: res?.attributes?.email,
+          industries_interest:
+            res?.attributes?.industry &&
+            res?.attributes?.industry
+              ?.filter((item: any) => item?.attributes?.type === "PREFERRED")
+              ?.map((item: any) => {
+                return item?.id;
+              }),
+          least_industries_interest:
+            res?.attributes?.industry &&
+            res?.attributes?.industry
+              ?.filter(
+                (item: any) => item?.attributes?.type === "LESS_PREFERRED"
+              )
+              ?.map((item: any) => {
+                return item?.id;
+              }),
+          favorite_subject:
+            res?.attributes?.subject &&
+            res?.attributes?.subject
+              ?.filter((item: any) => item?.attributes?.type === "PREFERRED")
+              ?.map((item: any) => {
+                return item?.id;
+              }),
+          least_favorite_subject:
+            res?.attributes?.subject &&
+            res?.attributes?.subject
+              ?.filter(
+                (item: any) => item?.attributes?.type === "LESS_PREFERRED"
+              )
+              ?.map((item: any) => {
+                return item?.id;
+              }),
         });
       });
     }
-  }, [dispatch]);
+  }, [isEdit]);
 
   const callBack = () => {
-    if (isEdit) {
+    if (!isEdit) {
       message.success("Account Registered successfully");
       handleCancel();
       signInOpen();
@@ -53,11 +95,12 @@ const SignUpModal = ({
     } else {
       message.success("Account Updated!!");
       handleCancel();
+      window.location.reload();
     }
   };
   const onFinish = (values: any) => {
     if (isEdit) {
-      dispatch(updateUser(id, values));
+      dispatch(updateUser(id, values, callBack));
     } else {
       dispatch(register(values, callBack));
     }
@@ -587,27 +630,22 @@ const SignUpModal = ({
                   </Button>
                 </Form.Item>
               </Col>
-              <Col md={12} xs={12}>
-                <p className="text-center">
-                  Already have an account?{" "}
-                  <span
-                    style={{ color: "red", cursor: "pointer" }}
-                    onClick={() => {
-                      handleCancel();
-                      signInOpen();
-                    }}
-                  >
-                    Sign in
-                  </span>
-                </p>
-              </Col>
-              {/* <Form.Item>
-                <div className="d-flex justify-content-center">
-                  <Link to={RoutePaths.LOGIN} className="login-form-forgot ">
-                    Back to Login
-                  </Link>
-                </div>
-              </Form.Item> */}
+              {!isEdit && (
+                <Col md={12} xs={12}>
+                  <p className="text-center">
+                    Already have an account?{" "}
+                    <span
+                      style={{ color: "red", cursor: "pointer" }}
+                      onClick={() => {
+                        handleCancel();
+                        signInOpen();
+                      }}
+                    >
+                      Sign in
+                    </span>
+                  </p>
+                </Col>
+              )}
             </Row>
           </Form>
         </div>

@@ -55,13 +55,13 @@ export const getUsers = (params?: any) => (dispatch: any) => {
     });
 };
 
-export const updateUser = (id: any, body: any) => (dispatch: any) => {
+export const updateUser = (id: any, body: any, cb: any) => (dispatch: any) => {
   dispatch({ type: USERS_REQUEST });
   httpService
     .patch(`/users/${id}`, body)
     .then((res) => {
       const { data }: any = res;
-
+      cb();
       dispatch({ type: USERS_SUCCESS, payload: data });
     })
     .catch((err) => {

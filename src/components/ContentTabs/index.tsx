@@ -291,7 +291,7 @@ const ContentTabs = ({ item }: IContentTabs) => {
                   baseBgColor="#ffffff36"
                   animateOnRender
                   className="progress"
-                  completed={progress.job_enviroment}
+                  completed={progress.internet}
                   // variant="success"
                   bgColor="#00eb75"
                   maxCompleted={10}

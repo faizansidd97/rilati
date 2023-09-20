@@ -192,7 +192,7 @@ Click here 👉 `;
       }
     >
       <div className="number">
-        <h2>{index + 1}</h2>
+        <h2 style={{ fontSize: 0 }}>{index + 1}</h2>
       </div>
       <div className="content-card__wrapper__info d-flex justify-content-center align-items-center flex-column">
         <h3 className="text-center">

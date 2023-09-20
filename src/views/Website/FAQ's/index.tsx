@@ -323,7 +323,7 @@ const FAQ = () => {
                     LinkedIn.
                   </Accordion.Body>
                 </Accordion.Item>
-                <Accordion.Item eventKey="22">
+                <Accordion.Item eventKey="121">
                   <Accordion.Header>
                     <h6>
                       How can I stay up - to - date on the latest trends in my
