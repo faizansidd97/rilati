@@ -237,13 +237,7 @@ Click here 👉 `;
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
             <h3>🥇 ATAR</h3>
             <ProgressBar
-              bgColor={
-                progress?.cost > 66
-                  ? "#00eb75"
-                  : progress?.cost > 33
-                  ? "#ffc81c"
-                  : "#ff3028"
-              }
+              bgColor={"#00eb75"}
               animateOnRender
               completed={progress.cost}
               maxCompleted={100}
@@ -255,13 +249,7 @@ Click here 👉 `;
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
             <h3>⚖️ Work Life Balance</h3>
             <ProgressBar
-              bgColor={
-                progress?.over > 6
-                  ? "#00eb75"
-                  : progress?.over > 3
-                  ? "#ffc81c"
-                  : "#ff3028"
-              }
+              bgColor={"#00eb75"}
               animateOnRender
               completed={progress.over}
               maxCompleted={10}
@@ -273,13 +261,7 @@ Click here 👉 `;
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
             <h3>🙌 Status in company</h3>
             <ProgressBar
-              bgColor={
-                progress?.status > 6
-                  ? "#00eb75"
-                  : progress?.status > 3
-                  ? "#ffc81c"
-                  : "#ff3028"
-              }
+              bgColor={"#00eb75"}
               animateOnRender
               completed={progress.status}
               maxCompleted={10}
@@ -290,13 +272,7 @@ Click here 👉 `;
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
             <h3>🔀 Potential to Switch</h3>
             <ProgressBar
-              bgColor={
-                progress?.fun > 6
-                  ? "#00eb75"
-                  : progress?.fun > 3
-                  ? "#ffc81c"
-                  : "#ff3028"
-              }
+              bgColor={"#00eb75"}
               animateOnRender
               completed={progress.fun}
               maxCompleted={10}
@@ -307,13 +283,7 @@ Click here 👉 `;
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
             <h3>🌐 Scope World wide</h3>
             <ProgressBar
-              bgColor={
-                progress?.saftey > 6
-                  ? "#00eb75"
-                  : progress?.saftey > 3
-                  ? "#ffc81c"
-                  : "#ff3028"
-              }
+              bgColor={"#00eb75"}
               animateOnRender
               completed={progress.saftey}
               maxCompleted={10}

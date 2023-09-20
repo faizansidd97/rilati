@@ -4,9 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { register } from "src/redux/actions/authAction";
 import { Row, Col } from "react-bootstrap";
 import { confidentSkills, myAtar, startWorking } from "./constant";
-import { getIndustries, getSubjects } from "src/redux/actions/userActions";
+import {
+  getIndustries,
+  getSubjects,
+  getUserById,
+  updateUser,
+} from "src/redux/actions/userActions";
 import { useNavigate } from "react-router-dom";
 import bgImage from "../../assets/images/02.webp";
+import Environment from "../../network/baseUrl";
 import "./SignUpModal.scss";
 
 const SignUpModal = ({
@@ -14,25 +20,47 @@ const SignUpModal = ({
   handleOk,
   handleCancel,
   signInOpen,
+  isEdit,
 }: any) => {
   const [leastIndustries, setLeastIndustries] = useState([]);
   const [leastSubject, setLeastSubject] = useState([]);
   const navigate = useNavigate();
   const [form] = Form.useForm();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
+  const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
+  const loginUser = getUser ? JSON.parse(getUser) : null;
+  const id = loginUser?.id;
   useEffect(() => {
     dispatch(getSubjects());
     dispatch(getIndustries());
+    if (isEdit) {
+      dispatch(getUserById(id)).then((res: any) => {
+        form?.setFieldsValue({
+          ...res?.attributes?.details,
+          name: res?.attributes?.name,
+          email: res?.attributes?.email,
+        });
+      });
+    }
   }, [dispatch]);
 
   const callBack = () => {
-    message.success("Account Registered successfully");
-    handleCancel();
-    signInOpen();
-    navigate("/");
+    if (isEdit) {
+      message.success("Account Registered successfully");
+      handleCancel();
+      signInOpen();
+      navigate("/");
+    } else {
+      message.success("Account Updated!!");
+      handleCancel();
+    }
   };
   const onFinish = (values: any) => {
-    dispatch(register(values, callBack));
+    if (isEdit) {
+      dispatch(updateUser(id, values));
+    } else {
+      dispatch(register(values, callBack));
+    }
   };
 
   const { isDark = false } = useSelector((store: any) => store.theme);
@@ -109,7 +137,7 @@ const SignUpModal = ({
           className="signup-image d-flex justify-content-center align-items-center mb-5"
           style={{ backgroundImage: `url(${bgImage})` }}
         >
-          <h2>Create your Profile</h2>
+          <h2>{isEdit ? "Edit you Profile" : "Create your Profile"}</h2>
         </div>
         <div
           className={` ${
@@ -142,7 +170,7 @@ const SignUpModal = ({
             onFinish={onFinish}
           >
             <Row>
-              <Col md={3} xs={12}>
+              <Col md={isEdit ? 6 : 3} xs={12}>
                 <Form.Item
                   name="name"
                   label="Username"
@@ -172,7 +200,7 @@ const SignUpModal = ({
                 </Form.Item>
               </Col>
 
-              <Col md={3} xs={12}>
+              <Col md={isEdit ? 6 : 3} xs={12}>
                 <Form.Item
                   name="email"
                   label="Email"
@@ -186,55 +214,60 @@ const SignUpModal = ({
                 >
                   <Input
                     // prefix={<UserOutlined className="site-form-item-icon" />}
+                    disabled={isEdit}
                     placeholder="Email"
                   />
                 </Form.Item>
               </Col>
-              <Col md={3} xs={12}>
-                <Form.Item
-                  name="password"
-                  label="Password"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your Password!",
-                    },
-                  ]}
-                >
-                  <Input.Password
-                    // prefix={<LockOutlined className="site-form-item-icon" />}
-                    placeholder="Password"
-                  />
-                </Form.Item>
-              </Col>
-              <Col md={3} xs={12}>
-                <Form.Item
-                  name="confirm"
-                  label="Congirm Password"
-                  dependencies={["password"]}
-                  hasFeedback
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please confirm your password!",
-                    },
-                    ({ getFieldValue }) => ({
-                      validator(_, value) {
-                        if (!value || getFieldValue("password") === value) {
-                          return Promise.resolve();
-                        }
-                        return Promise.reject(
-                          new Error(
-                            "The new password that you entered do not match!"
-                          )
-                        );
-                      },
-                    }),
-                  ]}
-                >
-                  <Input.Password placeholder="Confirm Password" />
-                </Form.Item>
-              </Col>
+              {!isEdit && (
+                <>
+                  <Col md={3} xs={12}>
+                    <Form.Item
+                      name="password"
+                      label="Password"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input your Password!",
+                        },
+                      ]}
+                    >
+                      <Input.Password
+                        // prefix={<LockOutlined className="site-form-item-icon" />}
+                        placeholder="Password"
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col md={3} xs={12}>
+                    <Form.Item
+                      name="confirm"
+                      label="Congirm Password"
+                      dependencies={["password"]}
+                      hasFeedback
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please confirm your password!",
+                        },
+                        ({ getFieldValue }) => ({
+                          validator(_, value) {
+                            if (!value || getFieldValue("password") === value) {
+                              return Promise.resolve();
+                            }
+                            return Promise.reject(
+                              new Error(
+                                "The password that you entered do not match!"
+                              )
+                            );
+                          },
+                        }),
+                      ]}
+                    >
+                      <Input.Password placeholder="Confirm Password" />
+                    </Form.Item>
+                  </Col>
+                </>
+              )}
               <Col md={3} xs={12}>
                 <Form.Item
                   name="education_stage"

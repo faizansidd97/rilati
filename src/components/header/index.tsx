@@ -1,17 +1,14 @@
 import { useState } from "react";
-import { Button, Form, Input, MenuProps, Modal, Tooltip, message } from "antd";
+import { Button, Form, Input, MenuProps, Modal, message } from "antd";
 import { Dropdown } from "antd";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import { Link } from "react-router-dom";
-import logo from "../../assets/images/mainLogo.png";
-import "./header.scss";
 import { senMail } from "src/redux/actions/mailActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "antd/es/form/Form";
-import SignUpModal from "../SignUpModal";
-import Environment from "../../network/baseUrl";
-import SignInModal from "../SignInModal";
 import { logoutRequest } from "src/redux/actions/authAction";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import logo from "../../assets/images/mainLogo.png";
+import "./header.scss";
+import Environment from "../../network/baseUrl";
 import AboutUs from "src/views/Website/AboutUs";
 import TermsAndConditions from "src/views/Website/TermsAndConditions";
 import FAQ from "src/views/Website/FAQ's";
@@ -20,9 +17,14 @@ import CustomTooltip from "../CustomTooltip";
 interface HeaderProps {
   setSignUpToggle: Function;
   setSignInToggle: Function;
+  onProfileEdit: Function;
 }
 
-const Header = ({ setSignUpToggle, setSignInToggle }: HeaderProps) => {
+const Header = ({
+  setSignUpToggle,
+  setSignInToggle,
+  onProfileEdit,
+}: HeaderProps) => {
   const dispatch = useDispatch<any>();
   const [form] = useForm();
 
@@ -103,15 +105,23 @@ const Header = ({ setSignUpToggle, setSignInToggle }: HeaderProps) => {
           <div className="mt-3 me-4">
             <h5>Join us</h5>
             {loginUser || isLogin ? (
-              <div
-                className="menu-items mb-3"
-                onClick={() => {
-                  dispatch(logoutRequest());
-                  window.location.reload();
-                }}
-              >
-                <h5>✋ Logout</h5>
-              </div>
+              <>
+                <div
+                  className="menu-items mb-3"
+                  onClick={() => {
+                    dispatch(logoutRequest());
+                    window.location.reload();
+                  }}
+                >
+                  <h5>✋ Logout</h5>
+                </div>
+                <div
+                  className="menu-items mb-3"
+                  onClick={() => onProfileEdit(true)}
+                >
+                  <h5>💁‍♂️ Edit Profile</h5>
+                </div>
+              </>
             ) : (
               <>
                 <div

@@ -15,6 +15,7 @@ import ForgotModal from "src/components/ForgotModal";
 const Home = () => {
   const [signUpToggle, setSignUpToggle] = useState(false);
   const [signInToggle, setSignInToggle] = useState(false);
+  const [isProfileEdit, setIsProfileEdit] = useState(false);
   const [forgotToggle, setForgotToggle] = useState(false);
   const signUpHandler = () => {
     setSignInToggle(false);
@@ -28,12 +29,17 @@ const Home = () => {
     setSignInToggle(false);
     setForgotToggle(true);
   };
+  const onProfileEdit = () => {
+    setIsProfileEdit(true);
+    setSignUpToggle(true);
+  };
 
   return (
     <>
       <Header
         setSignUpToggle={setSignUpToggle}
         setSignInToggle={setSignInToggle}
+        onProfileEdit={onProfileEdit}
       />
       <Layout className="site-layout">
         <Content>
@@ -44,11 +50,19 @@ const Home = () => {
       </Layout>
       <SignUpModal
         isModalOpen={signUpToggle}
-        handleOk={() => setSignUpToggle(false)}
-        handleCancel={() => setSignUpToggle(false)}
+        handleOk={() => {
+          setSignUpToggle(false);
+          setIsProfileEdit(true);
+        }}
+        handleCancel={() => {
+          setSignUpToggle(false);
+          setIsProfileEdit(true);
+        }}
         signInOpen={() => setSignInToggle(true)}
         footer={false}
+        isEdit={isProfileEdit}
       />
+
       <SignInModal
         isModalOpen={signInToggle}
         handleOk={() => setSignInToggle(false)}

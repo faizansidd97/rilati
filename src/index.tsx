@@ -10,9 +10,9 @@ import "antd/dist/reset.css";
 // import "~bootstrap/scss/bootstrap";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <App />,
+  // </React.StrictMode>,
   document.getElementById("root")
 );
 

@@ -55,6 +55,38 @@ export const getUsers = (params?: any) => (dispatch: any) => {
     });
 };
 
+export const updateUser = (id: any, body: any) => (dispatch: any) => {
+  dispatch({ type: USERS_REQUEST });
+  httpService
+    .patch(`/users/${id}`, body)
+    .then((res) => {
+      const { data }: any = res;
+
+      dispatch({ type: USERS_SUCCESS, payload: data });
+    })
+    .catch((err) => {
+      dispatch({ type: USERS_ERROR });
+    });
+};
+export const getUserById = (id: any, params?: any) => (dispatch: any) => {
+  return new Promise((resolve, reject) => {
+    dispatch({ type: USERS_REQUEST });
+    httpService
+      .get(`/users/${id}`, params)
+      .then((res) => {
+        const {
+          data: { data },
+        }: any = res;
+        resolve(data);
+        dispatch({ type: USERS_SUCCESS, payload: data });
+      })
+      .catch((err) => {
+        reject(err);
+        dispatch({ type: USERS_ERROR });
+      });
+  });
+};
+
 export const deleteUsers = (id: any) => (dispatch: any) => {
   return new Promise((resolve, rejects) => {
     dispatch({ type: USERS_DELETE_REQUEST });

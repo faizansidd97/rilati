@@ -57,7 +57,7 @@ const HomeBanner = () => {
               {/* <h1 className="title">🌍 Rilati</h1> */}
               <h1 className="title">Rilati</h1>
               <h1 className="desc">
-                Your career, Your Journey
+                Your Career, Your Journey
                 {/* <br /> Let Rilati guide you */}
               </h1>
               {/* <p className="desc">

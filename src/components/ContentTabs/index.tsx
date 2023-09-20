@@ -310,7 +310,7 @@ const ContentTabs = ({ item }: IContentTabs) => {
                   className="progress"
                   completed={progress.mental_stress}
                   // variant="success"
-                  bgColor="#00eb75"
+                  bgColor="#ffc81c"
                   maxCompleted={10}
                 />
               </div>
@@ -342,7 +342,7 @@ const ContentTabs = ({ item }: IContentTabs) => {
                   className="progress"
                   completed={progress.mental_stress}
                   // variant="success"
-                  bgColor="#00eb75"
+                  bgColor="#ffc81c"
                   maxCompleted={10}
                 />
               </div>
@@ -374,7 +374,7 @@ const ContentTabs = ({ item }: IContentTabs) => {
                   className="progress"
                   completed={progress.physical_stress}
                   // variant="success"
-                  bgColor="#00eb75"
+                  bgColor="#ffc81c"
                   maxCompleted={10}
                 />
               </div>
@@ -422,7 +422,24 @@ const ContentTabs = ({ item }: IContentTabs) => {
                   className="progress"
                   completed={progress.life_risk}
                   // variant="success"
-                  bgColor="#00eb75"
+                  bgColor="#ff3027"
+                  maxCompleted={10}
+                />
+              </div>
+
+              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T13}>
+                    ⚠️ Risk to health
+                  </CustomTooltip>
+                </h3>
+                <ProgressBar
+                  baseBgColor="#ffffff36"
+                  animateOnRender
+                  className="progress"
+                  completed={progress.health?.toString()}
+                  // variant="success"
+                  bgColor="#ff3027"
                   maxCompleted={10}
                 />
               </div>
@@ -438,23 +455,7 @@ const ContentTabs = ({ item }: IContentTabs) => {
                   className="progress"
                   completed={progress.repetitive_tedious?.toString()}
                   // variant="success"
-                  bgColor="#00eb75"
-                  maxCompleted={10}
-                />
-              </div>
-              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
-                <h3>
-                  <CustomTooltip title={TOOLTIP.T13}>
-                    ⚠️ Risk to health
-                  </CustomTooltip>
-                </h3>
-                <ProgressBar
-                  baseBgColor="#ffffff36"
-                  animateOnRender
-                  className="progress"
-                  completed={progress.health?.toString()}
-                  // variant="success"
-                  bgColor="#00eb75"
+                  bgColor="#ffc81c"
                   maxCompleted={10}
                 />
               </div>
