@@ -626,7 +626,7 @@ const SignUpModal = ({
                     className="signup-form-button w-100"
                     loading={loginLoader}
                   >
-                    Sign Up
+                    {isEdit ? "Save Changes" : "Sign Up"}
                   </Button>
                 </Form.Item>
               </Col>

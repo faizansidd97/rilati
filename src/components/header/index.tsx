@@ -13,6 +13,7 @@ import AboutUs from "src/views/Website/AboutUs";
 import TermsAndConditions from "src/views/Website/TermsAndConditions";
 import FAQ from "src/views/Website/FAQ's";
 import CustomTooltip from "../CustomTooltip";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface HeaderProps {
   setSignUpToggle: Function;
@@ -176,6 +177,9 @@ const Header = ({
     setSignInToggle(false);
     setSignUpToggle(true);
   };
+  const onChange = (e: any) => {
+    console.log("onChange", e);
+  };
   return (
     <header className="header">
       <CustomTooltip zIndex={2} autoAdjustOverflow title={text}>
@@ -202,6 +206,12 @@ const Header = ({
           </Form.Item>
           <Form.Item name="flag" hidden>
             <Input.TextArea rows={9} placeholder="Add your notes here" />
+          </Form.Item>
+          <Form.Item name="recapcha">
+            <ReCAPTCHA
+              sitekey="6LeqOlooAAAAAKi5OdcTLb1rRrgOG1u1_OLX2skF"
+              onChange={onChange}
+            />
           </Form.Item>
           <Form.Item>
             <Button

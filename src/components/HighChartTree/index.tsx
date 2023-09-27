@@ -7,7 +7,11 @@ import HighchartsReact from "highcharts-react-official";
 import HighchartsTreeMap from "highcharts/modules/treemap";
 import HighchartsTreeGraph from "highcharts/modules/treegraph";
 import "./HighChartTree.scss";
-import { hightOptionConstant } from "src/constant/Tooltip";
+import {
+  graphData1,
+  graphTemp,
+  hightOptionConstant,
+} from "src/constant/Tooltip";
 
 const HighChartTree = ({ isOracle, onCareerClick }: any) => {
   const [graph, setGraph] = useState([]);
@@ -33,7 +37,7 @@ const HighChartTree = ({ isOracle, onCareerClick }: any) => {
 
   useEffect(() => {
     setGraph(graphData);
-  }, []);
+  }, [graphData]);
 
   const hightOption = {
     title: {
@@ -43,19 +47,21 @@ const HighChartTree = ({ isOracle, onCareerClick }: any) => {
     series: [
       {
         type: "treegraph",
-        data: graphData?.length > 0 ? graphData : [],
+        data: graphTemp?.length > 0 ? graphTemp : [],
         tooltip: {
           pointFormat: "{point.name}",
         },
         marker: {
           symbol: "square",
-          width: "30%",
+          width: "20%",
         },
         borderRadius: 10,
         dataLabels: {
           pointFormat: "{point.name}",
           style: {
             whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
           },
         },
         levels: [
@@ -77,6 +83,13 @@ const HighChartTree = ({ isOracle, onCareerClick }: any) => {
           },
           {
             level: 4,
+            colorVariation: {
+              key: "brightness",
+              to: 0.5,
+            },
+          },
+          {
+            level: 5,
             colorVariation: {
               key: "brightness",
               to: 0.5,
@@ -105,7 +118,7 @@ const HighChartTree = ({ isOracle, onCareerClick }: any) => {
         className="hightchart-div"
         style={{
           margin: "0 auto",
-          maxWidth: "1000px",
+          maxWidth: "90%",
         }}
         id="chart-container"
       >

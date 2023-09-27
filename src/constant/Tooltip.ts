@@ -205,7 +205,1278 @@ export const data = [
     name: "Polynesia",
   },
 ];
+export const graphTemp = [
+  {
+    id: "user-id-19",
+    parent: "",
+    name: "fosyb",
+  },
+  {
+    id: "industry-id-2",
+    parent: "user-id-19",
+    name: "Creative Media & Arts",
+  },
+  {
+    id: "career-id-1335",
+    parent: "industry-id-2",
+    name: "Technical Writers",
+  },
+  {
+    id: "career-id-1377",
+    parent: "industry-id-2",
+    name: "Street Sweeper",
+  },
+  {
+    id: "career-id-1392",
+    parent: "industry-id-2",
+    name: "Sustainability Consultant",
+  },
+  {
+    id: "career-id-1334",
+    parent: "industry-id-2",
+    name: "Environmental Science and Protection Technicians, Including Health",
+  },
+  {
+    id: "career-id-1394",
+    parent: "industry-id-2",
+    name: "Priest",
+  },
+  {
+    id: "see-more-industry-id-2",
+    parent: "industry-id-2",
+    name: "See More",
+  },
+  {
+    id: "see-more-child-industry-id-2",
+    parent: "see-more-industry-id-2",
+    name: "Umpires, Referees, and Other Sports Officials",
+  },
+  {
+    id: "see-more-child-industry-id-2",
+    parent: "see-more-industry-id-2",
+    name: "Word Processors and Typists",
+  },
+  {
+    id: "see-more-child-industry-id-2",
+    parent: "see-more-industry-id-2",
+    name: "Molecular and Cellular Biologists",
+  },
+  {
+    id: "see-more-child-industry-id-2",
+    parent: "see-more-industry-id-2",
+    name: "Craft Artists",
+  },
+  {
+    id: "see-more-child-industry-id-2",
+    parent: "see-more-industry-id-2",
+    name: "Sales Representatives, Wholesale and Manufacturing, Except Technical and Scientific Products",
+  },
+  {
+    id: "industry-id-3",
+    parent: "user-id-19",
+    name: "Defence",
+  },
+  {
+    id: "career-id-1335",
+    parent: "industry-id-3",
+    name: "Technical Writers",
+  },
+  {
+    id: "career-id-1377",
+    parent: "industry-id-3",
+    name: "Street Sweeper",
+  },
+  {
+    id: "career-id-1392",
+    parent: "industry-id-3",
+    name: "Sustainability Consultant",
+  },
+  {
+    id: "career-id-1334",
+    parent: "industry-id-3",
+    name: "Environmental Science and Protection Technicians, Including Health",
+  },
+  {
+    id: "career-id-1394",
+    parent: "industry-id-3",
+    name: "Priest",
+  },
+  {
+    id: "see-more-industry-id-3",
+    parent: "industry-id-3",
+    name: "See More",
+  },
 
+  {
+    id: "see-more-child-industry-id-3",
+    parent: "see-more-industry-id-3",
+    name: "Umpires, Referees, and Other Sports Officials",
+  },
+  {
+    id: "see-more-child-industry-id-3",
+    parent: "see-more-industry-id-3",
+    name: "Word Processors and Typists",
+  },
+  {
+    id: "see-more-child-industry-id-3",
+    parent: "see-more-industry-id-3",
+    name: "Adapted Physical Specialists",
+  },
+  {
+    id: "see-more-child-industry-id-3",
+    parent: "see-more-industry-id-3",
+    name: "Priest",
+  },
+  {
+    id: "see-more-child-industry-id-3",
+    parent: "see-more-industry-id-3",
+    name: "First-Line Supervisors-Managers of Landscaping",
+  },
+  {
+    id: "industry-id-13",
+    parent: "user-id-19",
+    name: "Professional Services",
+  },
+  {
+    id: "career-id-943",
+    parent: "industry-id-13",
+    name: "Reinforcing Iron and Rebar Workers",
+  },
+  {
+    id: "career-id-1001",
+    parent: "industry-id-13",
+    name: "Religious Workers, All Other",
+  },
+  {
+    id: "career-id-2",
+    parent: "industry-id-13",
+    name: "Production Laborers",
+  },
+  {
+    id: "career-id-1049",
+    parent: "industry-id-13",
+    name: "Brickmasons and Blockmasons",
+  },
+  {
+    id: "career-id-1",
+    parent: "industry-id-13",
+    name: "Fishers and Related Fishing Workers",
+  },
+  {
+    id: "see-more-industry-id-13",
+    parent: "industry-id-13",
+    name: "See More",
+  },
+
+  {
+    id: "see-more-child-industry-id-13",
+    parent: "see-more-industry-id-13",
+    name: "Rock Splitters, Quarry",
+  },
+  {
+    id: "see-more-child-industry-id-13",
+    parent: "see-more-industry-id-13",
+    name: "Rotary Drill Operator, Oil and Gas",
+  },
+  {
+    id: "see-more-child-industry-id-13",
+    parent: "see-more-industry-id-13",
+    name: "UI/UX Designer",
+  },
+  {
+    id: "see-more-child-industry-id-13",
+    parent: "see-more-industry-id-13",
+    name: "Anthropology and Archeology Teachers, Postsecondary",
+  },
+  {
+    id: "see-more-child-industry-id-13",
+    parent: "see-more-industry-id-13",
+    name: "Architecture Teachers, Postsecondary",
+  },
+  {
+    id: "industry-id-15",
+    parent: "user-id-19",
+    name: "Retail & Customer Service",
+  },
+  {
+    id: "career-id-16",
+    parent: "industry-id-15",
+    name: "Stevedores, Except Equipment Operators",
+  },
+  {
+    id: "career-id-1389",
+    parent: "industry-id-15",
+    name: "Artificial Intelligence, AI Ethicist",
+  },
+  {
+    id: "career-id-1392",
+    parent: "industry-id-15",
+    name: "Sustainability Consultant",
+  },
+  {
+    id: "career-id-1359",
+    parent: "industry-id-15",
+    name: "Locomotive Engineers",
+  },
+  {
+    id: "career-id-2",
+    parent: "industry-id-15",
+    name: "Production Laborers",
+  },
+  {
+    id: "see-more-industry-id-15",
+    parent: "industry-id-15",
+    name: "See More",
+  },
+  {
+    id: "see-more-child-industry-id-15",
+    parent: "see-more-industry-id-15",
+    name: "Adapted Physical Specialists",
+  },
+  {
+    id: "see-more-child-industry-id-15",
+    parent: "see-more-industry-id-15",
+    name: "Priest",
+  },
+  {
+    id: "see-more-child-industry-id-15",
+    parent: "see-more-industry-id-15",
+    name: "Medical License Specialist ",
+  },
+  {
+    id: "see-more-child-industry-id-15",
+    parent: "see-more-industry-id-15",
+    name: "Nonelectrolytic Plating and Coating Machine Operators and Tenders, Metal and Plastic",
+  },
+  {
+    id: "see-more-child-industry-id-15",
+    parent: "see-more-industry-id-15",
+    name: "First-Line Supervisors-Managers of Landscaping",
+  },
+  {
+    id: "industry-id-19",
+    parent: "user-id-19",
+    name: "Trades & Services",
+  },
+  {
+    id: "career-id-1393",
+    parent: "industry-id-19",
+    name: "UI/UX Designer",
+  },
+  {
+    id: "career-id-1209",
+    parent: "industry-id-19",
+    name: "Anthropology and Archeology Teachers, Postsecondary",
+  },
+  {
+    id: "career-id-424",
+    parent: "industry-id-19",
+    name: "Architecture Teachers, Postsecondary",
+  },
+  {
+    id: "career-id-1364",
+    parent: "industry-id-19",
+    name: "Risk Management Specialists",
+  },
+  {
+    id: "career-id-4",
+    parent: "industry-id-19",
+    name: "School Principal",
+  },
+  {
+    id: "see-more-industry-id-19",
+    parent: "industry-id-19",
+    name: "See More",
+  },
+  {
+    id: "see-more-child-industry-id-19",
+    parent: "see-more-industry-id-19",
+    name: "Computer Support Specialists",
+  },
+  {
+    id: "see-more-child-industry-id-19",
+    parent: "see-more-industry-id-19",
+    name: "Web Administrators",
+  },
+  {
+    id: "see-more-child-industry-id-19",
+    parent: "see-more-industry-id-19",
+    name: "Remote Sensing Scientist and Technologist",
+  },
+  {
+    id: "see-more-child-industry-id-19",
+    parent: "see-more-industry-id-19",
+    name: "Network and Computer Systems Administrator",
+  },
+  {
+    id: "see-more-child-industry-id-19",
+    parent: "see-more-industry-id-19",
+    name: "Information Technology, Project Managers",
+  },
+  {
+    id: "industry-id-1",
+    parent: "user-id-19",
+    name: "Childcare & Early Learning",
+  },
+  {
+    id: "career-id-889",
+    parent: "industry-id-1",
+    name: "Criminal Justice and Law Enforcement Teachers, Postsecondary",
+  },
+  {
+    id: "career-id-715",
+    parent: "industry-id-1",
+    name: "Agricultural Sciences Teachers, Postsecondary",
+  },
+  {
+    id: "career-id-1209",
+    parent: "industry-id-1",
+    name: "Anthropology and Archeology Teachers, Postsecondary",
+  },
+  {
+    id: "career-id-424",
+    parent: "industry-id-1",
+    name: "Architecture Teachers, Postsecondary",
+  },
+  {
+    id: "career-id-453",
+    parent: "industry-id-1",
+    name: "Chemistry Teachers, Postsecondary",
+  },
+  {
+    id: "see-more-industry-id-1",
+    parent: "industry-id-1",
+    name: "See More",
+  },
+
+  {
+    id: "see-more-child-industry-id-1",
+    parent: "see-more-industry-id-1",
+    name: "Recreation and Fitness Studies Teachers, Postsecondary",
+  },
+  {
+    id: "see-more-child-industry-id-1",
+    parent: "see-more-industry-id-1",
+    name: "Home Economics Teachers, Postsecondary",
+  },
+  {
+    id: "see-more-child-industry-id-1",
+    parent: "see-more-industry-id-1",
+    name: "School Assistant Principal",
+  },
+  {
+    id: "see-more-child-industry-id-1",
+    parent: "see-more-industry-id-1",
+    name: "Postsecondary Teachers",
+  },
+  {
+    id: "see-more-child-industry-id-1",
+    parent: "see-more-industry-id-1",
+    name: "Engineering Teacher, Postsecondary",
+  },
+  {
+    id: "industry-id-5",
+    parent: "user-id-19",
+    name: "Food & Beverage Services",
+  },
+  {
+    id: "career-id-16",
+    parent: "industry-id-5",
+    name: "Stevedores, Except Equipment Operators",
+  },
+  {
+    id: "career-id-1389",
+    parent: "industry-id-5",
+    name: "Artificial Intelligence, AI Ethicist",
+  },
+  {
+    id: "career-id-1392",
+    parent: "industry-id-5",
+    name: "Sustainability Consultant",
+  },
+  {
+    id: "career-id-1359",
+    parent: "industry-id-5",
+    name: "Locomotive Engineers",
+  },
+  {
+    id: "career-id-2",
+    parent: "industry-id-5",
+    name: "Production Laborers",
+  },
+  {
+    id: "see-more-industry-id-5",
+    parent: "industry-id-5",
+    name: "See More",
+  },
+
+  {
+    id: "see-more-child-industry-id-5",
+    parent: "see-more-industry-id-5",
+    name: "Adapted Physical Specialists",
+  },
+  {
+    id: "see-more-child-industry-id-5",
+    parent: "see-more-industry-id-5",
+    name: "Priest",
+  },
+  {
+    id: "see-more-child-industry-id-5",
+    parent: "see-more-industry-id-5",
+    name: "Medical License Specialist ",
+  },
+  {
+    id: "see-more-child-industry-id-5",
+    parent: "see-more-industry-id-5",
+    name: "Nonelectrolytic Plating and Coating Machine Operators and Tenders, Metal and Plastic",
+  },
+  {
+    id: "see-more-child-industry-id-5",
+    parent: "see-more-industry-id-5",
+    name: "First-Line Supervisors-Managers of Landscaping",
+  },
+  {
+    id: "industry-id-6",
+    parent: "user-id-19",
+    name: "Government, Community & Emergency Services",
+  },
+  {
+    id: "career-id-16",
+    parent: "industry-id-6",
+    name: "Stevedores, Except Equipment Operators",
+  },
+  {
+    id: "career-id-1389",
+    parent: "industry-id-6",
+    name: "Artificial Intelligence, AI Ethicist",
+  },
+  {
+    id: "career-id-1392",
+    parent: "industry-id-6",
+    name: "Sustainability Consultant",
+  },
+  {
+    id: "career-id-1359",
+    parent: "industry-id-6",
+    name: "Locomotive Engineers",
+  },
+  {
+    id: "career-id-2",
+    parent: "industry-id-6",
+    name: "Production Laborers",
+  },
+  {
+    id: "see-more-industry-id-6",
+    parent: "industry-id-6",
+    name: "See More",
+  },
+
+  {
+    id: "see-more-child-industry-id-6",
+    parent: "see-more-industry-id-6",
+    name: "Adapted Physical Specialists",
+  },
+  {
+    id: "see-more-child-industry-id-6",
+    parent: "see-more-industry-id-6",
+    name: "Priest",
+  },
+  {
+    id: "see-more-child-industry-id-6",
+    parent: "see-more-industry-id-6",
+    name: "Medical License Specialist ",
+  },
+  {
+    id: "see-more-child-industry-id-6",
+    parent: "see-more-industry-id-6",
+    name: "Nonelectrolytic Plating and Coating Machine Operators and Tenders, Metal and Plastic",
+  },
+  {
+    id: "see-more-child-industry-id-6",
+    parent: "see-more-industry-id-6",
+    name: "First-Line Supervisors-Managers of Landscaping",
+  },
+  {
+    id: "industry-id-7",
+    parent: "user-id-19",
+    name: "Healthcare & Social Assistance",
+  },
+  {
+    id: "career-id-16",
+    parent: "industry-id-7",
+    name: "Stevedores, Except Equipment Operators",
+  },
+  {
+    id: "career-id-1389",
+    parent: "industry-id-7",
+    name: "Artificial Intelligence, AI Ethicist",
+  },
+  {
+    id: "career-id-1392",
+    parent: "industry-id-7",
+    name: "Sustainability Consultant",
+  },
+  {
+    id: "career-id-1359",
+    parent: "industry-id-7",
+    name: "Locomotive Engineers",
+  },
+  {
+    id: "career-id-2",
+    parent: "industry-id-7",
+    name: "Production Laborers",
+  },
+  {
+    id: "see-more-industry-id-7",
+    parent: "industry-id-7",
+    name: "See More",
+  },
+
+  {
+    id: "see-more-child-industry-id-7",
+    parent: "see-more-industry-id-7",
+    name: "Adapted Physical Specialists",
+  },
+  {
+    id: "see-more-child-industry-id-7",
+    parent: "see-more-industry-id-7",
+    name: "Priest",
+  },
+  {
+    id: "see-more-child-industry-id-7",
+    parent: "see-more-industry-id-7",
+    name: "Medical License Specialist ",
+  },
+  {
+    id: "see-more-child-industry-id-7",
+    parent: "see-more-industry-id-7",
+    name: "Nonelectrolytic Plating and Coating Machine Operators and Tenders, Metal and Plastic",
+  },
+  {
+    id: "see-more-child-industry-id-7",
+    parent: "see-more-industry-id-7",
+    name: "First-Line Supervisors-Managers of Landscaping",
+  },
+  {
+    id: "industry-id-8",
+    parent: "user-id-19",
+    name: "Hospitality, Travel & Tourism",
+  },
+  {
+    id: "career-id-16",
+    parent: "industry-id-8",
+    name: "Stevedores, Except Equipment Operators",
+  },
+  {
+    id: "career-id-1389",
+    parent: "industry-id-8",
+    name: "Artificial Intelligence, AI Ethicist",
+  },
+  {
+    id: "career-id-1392",
+    parent: "industry-id-8",
+    name: "Sustainability Consultant",
+  },
+  {
+    id: "career-id-1359",
+    parent: "industry-id-8",
+    name: "Locomotive Engineers",
+  },
+  {
+    id: "career-id-2",
+    parent: "industry-id-8",
+    name: "Production Laborers",
+  },
+  {
+    id: "see-more-industry-id-8",
+    parent: "industry-id-8",
+    name: "See More",
+  },
+
+  {
+    id: "see-more-child-industry-id-8",
+    parent: "see-more-industry-id-8",
+    name: "Adapted Physical Specialists",
+  },
+  {
+    id: "see-more-child-industry-id-8",
+    parent: "see-more-industry-id-8",
+    name: "Priest",
+  },
+  {
+    id: "see-more-child-industry-id-8",
+    parent: "see-more-industry-id-8",
+    name: "Medical License Specialist ",
+  },
+  {
+    id: "see-more-child-industry-id-8",
+    parent: "see-more-industry-id-8",
+    name: "Nonelectrolytic Plating and Coating Machine Operators and Tenders, Metal and Plastic",
+  },
+  {
+    id: "see-more-child-industry-id-8",
+    parent: "see-more-industry-id-8",
+    name: "First-Line Supervisors-Managers of Landscaping",
+  },
+  {
+    id: "industry-id-9",
+    parent: "user-id-19",
+    name: "Legal",
+  },
+  {
+    id: "career-id-889",
+    parent: "industry-id-9",
+    name: "Criminal Justice and Law Enforcement Teachers, Postsecondary",
+  },
+  {
+    id: "career-id-1335",
+    parent: "industry-id-9",
+    name: "Technical Writers",
+  },
+  {
+    id: "career-id-1377",
+    parent: "industry-id-9",
+    name: "Street Sweeper",
+  },
+  {
+    id: "career-id-1392",
+    parent: "industry-id-9",
+    name: "Sustainability Consultant",
+  },
+  {
+    id: "career-id-1334",
+    parent: "industry-id-9",
+    name: "Environmental Science and Protection Technicians, Including Health",
+  },
+  {
+    id: "see-more-industry-id-9",
+    parent: "industry-id-9",
+    name: "See More",
+  },
+
+  {
+    id: "see-more-child-industry-id-9",
+    parent: "see-more-industry-id-9",
+    name: "Priest",
+  },
+  {
+    id: "see-more-child-industry-id-9",
+    parent: "see-more-industry-id-9",
+    name: "Umpires, Referees, and Other Sports Officials",
+  },
+  {
+    id: "see-more-child-industry-id-9",
+    parent: "see-more-industry-id-9",
+    name: "Word Processors and Typists",
+  },
+  {
+    id: "see-more-child-industry-id-9",
+    parent: "see-more-industry-id-9",
+    name: "Social Media Influencer",
+  },
+  {
+    id: "see-more-child-industry-id-9",
+    parent: "see-more-industry-id-9",
+    name: "Medical License Specialist ",
+  },
+  {
+    id: "industry-id-12",
+    parent: "user-id-19",
+    name: "Mining, Energy & Resources",
+  },
+  {
+    id: "career-id-943",
+    parent: "industry-id-12",
+    name: "Reinforcing Iron and Rebar Workers",
+  },
+  {
+    id: "career-id-1001",
+    parent: "industry-id-12",
+    name: "Religious Workers, All Other",
+  },
+  {
+    id: "career-id-2",
+    parent: "industry-id-12",
+    name: "Production Laborers",
+  },
+  {
+    id: "career-id-1049",
+    parent: "industry-id-12",
+    name: "Brickmasons and Blockmasons",
+  },
+  {
+    id: "career-id-1",
+    parent: "industry-id-12",
+    name: "Fishers and Related Fishing Workers",
+  },
+  {
+    id: "see-more-industry-id-12",
+    parent: "industry-id-12",
+    name: "See More",
+  },
+
+  {
+    id: "see-more-child-industry-id-12",
+    parent: "see-more-industry-id-12",
+    name: "Rock Splitters, Quarry",
+  },
+  {
+    id: "see-more-child-industry-id-12",
+    parent: "see-more-industry-id-12",
+    name: "Rotary Drill Operator, Oil and Gas",
+  },
+  {
+    id: "see-more-child-industry-id-12",
+    parent: "see-more-industry-id-12",
+    name: "Rail-Track Laying and Maintenance Equipment Operators",
+  },
+  {
+    id: "see-more-child-industry-id-12",
+    parent: "see-more-industry-id-12",
+    name: "Freight, Stock, and Material Movers",
+  },
+  {
+    id: "see-more-child-industry-id-12",
+    parent: "see-more-industry-id-12",
+    name: "Transportation Engineer",
+  },
+  {
+    id: "see-more-child-industry-id-12",
+    parent: "see-more-industry-id-12",
+    name: null,
+  },
+  {
+    id: "industry-id-14",
+    parent: "user-id-19",
+    name: "Real Estate & Property",
+  },
+  {
+    id: "career-id-943",
+    parent: "industry-id-14",
+    name: "Reinforcing Iron and Rebar Workers",
+  },
+  {
+    id: "career-id-1001",
+    parent: "industry-id-14",
+    name: "Religious Workers, All Other",
+  },
+  {
+    id: "career-id-2",
+    parent: "industry-id-14",
+    name: "Production Laborers",
+  },
+  {
+    id: "career-id-1049",
+    parent: "industry-id-14",
+    name: "Brickmasons and Blockmasons",
+  },
+  {
+    id: "career-id-1",
+    parent: "industry-id-14",
+    name: "Fishers and Related Fishing Workers",
+  },
+  {
+    id: "see-more-industry-id-14",
+    parent: "industry-id-14",
+    name: "See More",
+  },
+  {
+    id: "see-more-child-industry-id-14",
+    parent: "see-more-industry-id-14",
+    name: "Technical Writers",
+  },
+  {
+    id: "see-more-child-industry-id-14",
+    parent: "see-more-industry-id-14",
+    name: "Street Sweeper",
+  },
+  {
+    id: "see-more-child-industry-id-14",
+    parent: "see-more-industry-id-14",
+    name: "Sustainability Consultant",
+  },
+  {
+    id: "see-more-child-industry-id-14",
+    parent: "see-more-industry-id-14",
+    name: "Environmental Science and Protection Technicians, Including Health",
+  },
+  {
+    id: "see-more-child-industry-id-14",
+    parent: "see-more-industry-id-14",
+    name: "Priest",
+  },
+  {
+    id: "see-more-child-industry-id-14",
+    parent: "see-more-industry-id-14",
+    name: "Technical Writers",
+  },
+  {
+    id: "see-more-child-industry-id-14",
+    parent: "see-more-industry-id-14",
+    name: "Street Sweeper",
+  },
+  {
+    id: "see-more-child-industry-id-14",
+    parent: "see-more-industry-id-14",
+    name: "Sustainability Consultant",
+  },
+  {
+    id: "see-more-child-industry-id-14",
+    parent: "see-more-industry-id-14",
+    name: "Environmental Science and Protection Technicians, Including Health",
+  },
+  {
+    id: "see-more-child-industry-id-14",
+    parent: "see-more-industry-id-14",
+    name: "Priest",
+  },
+  {
+    id: "industry-id-16",
+    parent: "user-id-19",
+    name: "Science, Technology & Analytics",
+  },
+  {
+    id: "career-id-1393",
+    parent: "industry-id-16",
+    name: "UI/UX Designer",
+  },
+  {
+    id: "career-id-1209",
+    parent: "industry-id-16",
+    name: "Anthropology and Archeology Teachers, Postsecondary",
+  },
+  {
+    id: "career-id-424",
+    parent: "industry-id-16",
+    name: "Architecture Teachers, Postsecondary",
+  },
+  {
+    id: "career-id-1364",
+    parent: "industry-id-16",
+    name: "Risk Management Specialists",
+  },
+  {
+    id: "career-id-4",
+    parent: "industry-id-16",
+    name: "School Principal",
+  },
+  {
+    id: "see-more-industry-id-16",
+    parent: "industry-id-16",
+    name: "See More",
+  },
+
+  {
+    id: "see-more-child-industry-id-16",
+    parent: "see-more-industry-id-16",
+    name: "Computer Support Specialists",
+  },
+  {
+    id: "see-more-child-industry-id-16",
+    parent: "see-more-industry-id-16",
+    name: "Web Administrators",
+  },
+  {
+    id: "see-more-child-industry-id-16",
+    parent: "see-more-industry-id-16",
+    name: "Remote Sensing Scientist and Technologist",
+  },
+  {
+    id: "see-more-child-industry-id-16",
+    parent: "see-more-industry-id-16",
+    name: "Network and Computer Systems Administrator",
+  },
+  {
+    id: "see-more-child-industry-id-16",
+    parent: "see-more-industry-id-16",
+    name: "Information Technology, Project Managers",
+  },
+  {
+    id: "industry-id-17",
+    parent: "user-id-19",
+    name: "Social Media Influencing & Marketing",
+  },
+  {
+    id: "career-id-84",
+    parent: "industry-id-17",
+    name: "Molecular and Cellular Biologists",
+  },
+  {
+    id: "career-id-91",
+    parent: "industry-id-17",
+    name: "Craft Artists",
+  },
+  {
+    id: "career-id-95",
+    parent: "industry-id-17",
+    name: "Sales Representatives, Wholesale and Manufacturing, Except Technical and Scientific Products",
+  },
+  {
+    id: "career-id-104",
+    parent: "industry-id-17",
+    name: "Fire-Prevention and Protection Engineers",
+  },
+  {
+    id: "career-id-105",
+    parent: "industry-id-17",
+    name: "Marking and Identification Printing Machine Setters and Set-Up Operators",
+  },
+  {
+    id: "see-more-industry-id-17",
+    parent: "industry-id-17",
+    name: "See More",
+  },
+  {
+    id: "see-more-child-industry-id-17",
+    parent: "see-more-industry-id-17",
+    name: "Sales Representatives, Mechanical Equipment and Supplies",
+  },
+  {
+    id: "see-more-child-industry-id-17",
+    parent: "see-more-industry-id-17",
+    name: "Mail Machine Operators, Preparation and Handling",
+  },
+  {
+    id: "see-more-child-industry-id-17",
+    parent: "see-more-industry-id-17",
+    name: "Printing Press Operators",
+  },
+  {
+    id: "see-more-child-industry-id-17",
+    parent: "see-more-industry-id-17",
+    name: "Music Arrangers and Orchestrators",
+  },
+  {
+    id: "see-more-child-industry-id-17",
+    parent: "see-more-industry-id-17",
+    name: "Postal Service Clerks",
+  },
+  {
+    id: "see-more-child-industry-id-17",
+    parent: "see-more-industry-id-17",
+    name: "Cartoonists",
+  },
+  { id: "industry-id-18", parent: "user-id-19", name: "Sports & Recreation" },
+  {
+    id: "career-id-73",
+    parent: "industry-id-18",
+    name: "Medical Equipment Repairers",
+  },
+  {
+    id: "career-id-83",
+    parent: "industry-id-18",
+    name: "Radiation Therapists",
+  },
+  {
+    id: "career-id-90",
+    parent: "industry-id-18",
+    name: "Radiologic Technologists",
+  },
+  {
+    id: "career-id-96",
+    parent: "industry-id-18",
+    name: "Informatics Nurse Specialists",
+  },
+  {
+    id: "career-id-98",
+    parent: "industry-id-18",
+    name: "Regulatory Affairs Managers",
+  },
+  {
+    id: "see-more-industry-id-18",
+    parent: "industry-id-18",
+    name: "See More",
+  },
+
+  {
+    id: "see-more-child-industry-id-18",
+    parent: "see-more-industry-id-18",
+    name: "Critical Care Nurses",
+  },
+  {
+    id: "see-more-child-industry-id-18",
+    parent: "see-more-industry-id-18",
+    name: "Slaughterers and Meat Packers",
+  },
+  {
+    id: "see-more-child-industry-id-18",
+    parent: "see-more-industry-id-18",
+    name: "Radiologic Technologists and Technicians",
+  },
+  {
+    id: "see-more-child-industry-id-18",
+    parent: "see-more-industry-id-18",
+    name: "Medical Equipment Preparers",
+  },
+  {
+    id: "see-more-child-industry-id-18",
+    parent: "see-more-industry-id-18",
+    name: "Medical and Clinical Laboratory Technicians",
+  },
+  {
+    id: "industry-id-20",
+    parent: "user-id-19",
+    name: "Agricultural & Horticultural",
+  },
+  {
+    id: "see-more-industry-id-20",
+    parent: "industry-id-20",
+    name: "See More",
+  },
+  {
+    id: "see-more-child-industry-id-20",
+    parent: "see-more-industry-id-20",
+    name: null,
+  },
+  {
+    id: "see-more-child-industry-id-20",
+    parent: "see-more-industry-id-20",
+    name: null,
+  },
+  {
+    id: "industry-id-21",
+    parent: "user-id-19",
+    name: "Animal Care",
+  },
+  {
+    id: "career-id-73",
+    parent: "industry-id-21",
+    name: "Medical Equipment Repairers",
+  },
+  {
+    id: "career-id-83",
+    parent: "industry-id-21",
+    name: "Radiation Therapists",
+  },
+  {
+    id: "career-id-90",
+    parent: "industry-id-21",
+    name: "Radiologic Technologists",
+  },
+  {
+    id: "career-id-96",
+    parent: "industry-id-21",
+    name: "Informatics Nurse Specialists",
+  },
+  {
+    id: "career-id-98",
+    parent: "industry-id-21",
+    name: "Regulatory Affairs Managers",
+  },
+  {
+    id: "see-more-industry-id-21",
+    parent: "industry-id-21",
+    name: "See More",
+  },
+
+  {
+    id: "see-more-child-industry-id-21",
+    parent: "see-more-industry-id-21",
+    name: "Critical Care Nurses",
+  },
+  {
+    id: "see-more-child-industry-id-21",
+    parent: "see-more-industry-id-21",
+    name: "Slaughterers and Meat Packers",
+  },
+  {
+    id: "see-more-child-industry-id-21",
+    parent: "see-more-industry-id-21",
+    name: "Radiologic Technologists and Technicians",
+  },
+  {
+    id: "see-more-child-industry-id-21",
+    parent: "see-more-industry-id-21",
+    name: "Medical Equipment Preparers",
+  },
+  {
+    id: "see-more-child-industry-id-21",
+    parent: "see-more-industry-id-21",
+    name: "Medical and Clinical Laboratory Technicians",
+  },
+  {
+    id: "industry-id-22",
+    parent: "user-id-19",
+    name: "Automotive & Mechanics",
+  },
+  {
+    id: "career-id-16",
+    parent: "industry-id-22",
+    name: "Stevedores, Except Equipment Operators",
+  },
+  {
+    id: "career-id-1389",
+    parent: "industry-id-22",
+    name: "Artificial Intelligence, AI Ethicist",
+  },
+  {
+    id: "career-id-1392",
+    parent: "industry-id-22",
+    name: "Sustainability Consultant",
+  },
+  {
+    id: "career-id-1359",
+    parent: "industry-id-22",
+    name: "Locomotive Engineers",
+  },
+  {
+    id: "career-id-2",
+    parent: "industry-id-22",
+    name: "Production Laborers",
+  },
+  {
+    id: "see-more-industry-id-22",
+    parent: "industry-id-22",
+    name: "See More",
+  },
+
+  {
+    id: "see-more-child-industry-id-22",
+    parent: "see-more-industry-id-22",
+    name: "Adapted Physical Specialists",
+  },
+  {
+    id: "see-more-child-industry-id-22",
+    parent: "see-more-industry-id-22",
+    name: "Priest",
+  },
+  {
+    id: "see-more-child-industry-id-22",
+    parent: "see-more-industry-id-22",
+    name: "Medical License Specialist ",
+  },
+  {
+    id: "see-more-child-industry-id-22",
+    parent: "see-more-industry-id-22",
+    name: "Nonelectrolytic Plating and Coating Machine Operators and Tenders, Metal and Plastic",
+  },
+  {
+    id: "see-more-child-industry-id-22",
+    parent: "see-more-industry-id-22",
+    name: "First-Line Supervisors-Managers of Landscaping",
+  },
+  {
+    id: "industry-id-23",
+    parent: "user-id-19",
+    name: "Banking, Insurance & Finance",
+  },
+  {
+    id: "career-id-1393",
+    parent: "industry-id-23",
+    name: "UI/UX Designer",
+  },
+  {
+    id: "career-id-1209",
+    parent: "industry-id-23",
+    name: "Anthropology and Archeology Teachers, Postsecondary",
+  },
+  {
+    id: "career-id-424",
+    parent: "industry-id-23",
+    name: "Architecture Teachers, Postsecondary",
+  },
+  {
+    id: "career-id-1364",
+    parent: "industry-id-23",
+    name: "Risk Management Specialists",
+  },
+  {
+    id: "career-id-4",
+    parent: "industry-id-23",
+    name: "School Principal",
+  },
+  {
+    id: "see-more-industry-id-23",
+    parent: "industry-id-23",
+    name: "See More",
+  },
+
+  {
+    id: "see-more-child-industry-id-23",
+    parent: "see-more-industry-id-23",
+    name: "Computer Support Specialists",
+  },
+  {
+    id: "see-more-child-industry-id-23",
+    parent: "see-more-industry-id-23",
+    name: "Web Administrators",
+  },
+  {
+    id: "see-more-child-industry-id-23",
+    parent: "see-more-industry-id-23",
+    name: "Remote Sensing Scientist and Technologist",
+  },
+  {
+    id: "see-more-child-industry-id-23",
+    parent: "see-more-industry-id-23",
+    name: "Network and Computer Systems Administrator",
+  },
+  {
+    id: "see-more-child-industry-id-23",
+    parent: "see-more-industry-id-23",
+    name: "Information Technology, Project Managers",
+  },
+  {
+    id: "see-more-child-industry-id-23",
+    parent: "see-more-industry-id-23",
+    name: "Social Media Influencer",
+  },
+  {
+    id: "industry-id-24",
+    parent: "user-id-19",
+    name: "Building, Construction & Engineering",
+  },
+  {
+    id: "career-id-943",
+    parent: "industry-id-24",
+    name: "Reinforcing Iron and Rebar Workers",
+  },
+  {
+    id: "career-id-1001",
+    parent: "industry-id-24",
+    name: "Religious Workers, All Other",
+  },
+  {
+    id: "career-id-2",
+    parent: "industry-id-24",
+    name: "Production Laborers",
+  },
+  {
+    id: "career-id-1049",
+    parent: "industry-id-24",
+    name: "Brickmasons and Blockmasons",
+  },
+  {
+    id: "career-id-1",
+    parent: "industry-id-24",
+    name: "Fishers and Related Fishing Workers",
+  },
+  {
+    id: "see-more-industry-id-24",
+    parent: "industry-id-24",
+    name: "See More",
+  },
+  {
+    id: "see-more-child-industry-id-24",
+    parent: "see-more-industry-id-24",
+    name: "Rock Splitters, Quarry",
+  },
+  {
+    id: "see-more-child-industry-id-24",
+    parent: "see-more-industry-id-24",
+    name: "Rotary Drill Operator, Oil and Gas",
+  },
+  {
+    id: "see-more-child-industry-id-24",
+    parent: "see-more-industry-id-24",
+    name: null,
+  },
+  {
+    id: "see-more-child-industry-id-24",
+    parent: "see-more-industry-id-24",
+    name: null,
+  },
+];
 export const graphData1 = [
   {
     id: "user-id-18",
@@ -540,9 +1811,19 @@ export const graphData1 = [
     name: "Remote Sensing Scientists and Technologists",
   },
   {
-    id: "career-id-1364",
+    id: "see-more-industry-id-13",
     parent: "industry-id-19",
     name: "Risk Management Specialists",
+  },
+  {
+    id: "career-id-454",
+    parent: "see-more-industry-id-13",
+    name: "Economists",
+  },
+  {
+    id: "career-id-455",
+    parent: "see-more-industry-id-13",
+    name: "Economists",
   },
 ];
 export const hightOptionConstant = {
