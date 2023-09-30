@@ -277,7 +277,7 @@
       }
       &__progress {
         .progress {
-          height: 10px;
+          height: 15px;
         }
         margin-bottom: 5px;
         h3 {
@@ -332,7 +332,13 @@
       }
       &__progress {
         .progress {
-          height: 10px;
+          height: 15px;
+          div {
+            height: 15px !important;
+          }
+        }
+        span {
+          font-size: 12px !important;
         }
         margin-bottom: 5px;
         h3 {

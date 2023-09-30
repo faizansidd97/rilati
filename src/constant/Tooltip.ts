@@ -35,6 +35,7 @@ export const TOOLTIP = {
   T34: "Comprehensive Insight: Dive into the details of your selected career. Explore a comprehensive overview covering various aspects of this profession.",
   T35: "Educational Destinations: Explore a list of universities offering programs for your chosen career. Discover educational institutions where you can nurture your aspirations.",
   T36: "Visual Insights: Immerse yourself in video interviews with professionals from your selected career. Hear their wisdom firsthand and gain a deeper understanding of the authentic experiences this path offers.",
+  T37: "Click 'Details' to access a treasure trove of information about this career. From salary expectations to required skills, education, and more, explore all you need to know to chart your path with confidence.",
 };
 
 export const data = [

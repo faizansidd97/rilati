@@ -47,7 +47,7 @@ const HighChartTree = ({ isOracle, onCareerClick }: any) => {
     series: [
       {
         type: "treegraph",
-        data: graphTemp?.length > 0 ? graphTemp : [],
+        data: graphData?.length > 0 ? graphData : [],
         tooltip: {
           pointFormat: "{point.name}",
         },

@@ -207,12 +207,6 @@ const Header = ({
           <Form.Item name="flag" hidden>
             <Input.TextArea rows={9} placeholder="Add your notes here" />
           </Form.Item>
-          <Form.Item name="recapcha">
-            <ReCAPTCHA
-              sitekey="6LeqOlooAAAAAKi5OdcTLb1rRrgOG1u1_OLX2skF"
-              onChange={onChange}
-            />
-          </Form.Item>
           <Form.Item>
             <Button
               loading={loader}

@@ -34,17 +34,18 @@ const careerReducer = (state = initialState, action: any) => {
 
     case CAREER_SUCCESS: {
       return Object.assign({}, state, {
+        loader: false,
         career: [...action.payload?.data],
         // career: [...state?.career, ...action.payload?.data],
         totalPage: action.payload.meta?.lastPage,
         metaData: action.payload.meta,
-        loader: false,
       });
     }
 
     case CAREER_ERROR: {
       return Object.assign({}, state, {
         careerLoader: false,
+        loader: false,
       });
     }
     case CAREER_META_REQUEST: {

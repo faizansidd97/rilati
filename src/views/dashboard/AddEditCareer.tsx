@@ -160,6 +160,8 @@ function AddEditCareer() {
 
     // setImage(value);
   };
+  console.log("loader", loader);
+
   return (
     <div className="overflow-auto">
       <Spin spinning={loader || mediaLoader}>

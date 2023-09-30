@@ -5,7 +5,11 @@ import imageCareer from "../../assets/images/placeholderCareer.jpeg";
 import { IoShareOutline } from "react-icons/io5";
 import { Button, Input, Modal, Tooltip, message } from "antd";
 import { useDispatch } from "react-redux";
-import { careerMeta, likeCareer } from "src/redux/actions/careerAction";
+import {
+  careerMeta,
+  likeCareer,
+  likePostCareer,
+} from "src/redux/actions/careerAction";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useNavigate } from "react-router-dom";
 import {
@@ -116,7 +120,23 @@ Take a look.
 Click here 👉 `;
   const likeHandler = () => {
     if (loginUser) {
-      dispatch(likeCareer({ career_id: item?.id }, callback));
+      dispatch(likePostCareer(item?.id, { count_type: "LIKE_COUNT" })).then(
+        (res: any) => {
+          setLike(!like);
+          // setLikeCount((likeCount: any) => {
+          //   if (like) {
+          //     return likeCount - 1;
+          //   } else {
+          //     return likeCount + 1;
+          //   }
+          // });
+          // if (like) {
+          //   setLikeCount(likeCount - 1);
+          // } else {
+          //   setLikeCount(likeCount + 1);
+          // }
+        }
+      );
     } else {
       setSignUpToggle(true);
     }
@@ -364,7 +384,7 @@ Click here 👉 `;
               }
             }}
             url={shareLink}
-            onSubmitCapture={(e) => console.log("runddddddd", e)}
+            // onSubmitCapture={(e) => console.log("runddddddd", e)}
           >
             <BsFacebook size={32} color="#3b5998" />
           </FacebookShareButton>
@@ -433,22 +453,11 @@ Click here 👉 `;
             I came across this amazing resource that delves deep into a potential career path. It covers everything from salary expectations to required skills and education. I thought you might find it as insightful as I did! 
             Take a look. 
             "
-            className="Demo__some-network__share-button "
+            className="Demo__some-network__share-button"
           >
             <GrMail size={32} />
           </EmailShareButton>
         </div>
-        {/* <div className="d-flex mt-4 align-items-center justify-content-center">
-          <h4 className="m-0 me-3">Share with link</h4>
-          <h5
-            className="m-0 cursor-pointer"
-            color="red"
-            style={{ color: "red" }}
-            onClick={() => handleCopy()}
-          >
-            {shareLink}
-          </h5>
-        </div> */}
       </Modal>
     </div>
   );

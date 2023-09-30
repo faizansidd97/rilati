@@ -73,16 +73,11 @@ export const getCareerById = (id: any, param?: any) => (dispatch: any) => {
 };
 export const postCareer =
   (body: any, callback: Function) => (dispatch: any) => {
-    dispatch({ type: CAREER_REQUEST, payload: body });
+    dispatch({ type: CAREER_REQUEST });
     postCareerApi(body)
       .then((res) => {
-        const {
-          data: { data },
-        }: any = res;
-        console.log("res", res);
-
-        dispatch({ type: CAREER_SUCCESS });
         callback("Career successfully added");
+        dispatch({ type: CAREER_SUCCESS });
       })
       .catch((err) => {
         console.log("err", err);
@@ -117,6 +112,23 @@ export const likeCareer = (body: any, cb?: any) => (dispatch: any) => {
       dispatch({ type: CAREER_LIKE_SUCCESS });
     });
 };
+export const likePostCareer =
+  (id: any, body: any, cb?: any) => (dispatch: any) => {
+    return new Promise((resolve, reject) => {
+      dispatch({ type: CAREER_LIKE_REQUEST });
+      httpService
+        .patch(`/career/update-count/${id}`, body)
+        .then((res) => {
+          dispatch({ type: CAREER_LIKE_SUCCESS });
+          resolve(res);
+        })
+        .catch((err) => {
+          reject();
+          message.error(err?.response?.data?.message);
+          dispatch({ type: CAREER_LIKE_SUCCESS });
+        });
+    });
+  };
 
 export const deleteCareer = (id: any) => (dispatch: any) => {
   return new Promise((resolve, reject) => {

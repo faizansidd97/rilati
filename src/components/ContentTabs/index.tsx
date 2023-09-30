@@ -2,7 +2,7 @@
 import careerImage from "../../assets/images/placeholderCareer.jpeg";
 import { IoShareOutline } from "react-icons/io5";
 import { useEffect } from "react";
-import { Col, Row, Spin, Tabs } from "antd";
+import { Button, Col, Row, Spin, Tabs } from "antd";
 // import { stringLimt } from "src/helper/helper";
 import CareerUniversity from "../CareerUniversity";
 import "./ContentTabs.scss";
@@ -21,8 +21,9 @@ interface IContentTabs {
   index?: number;
   onArrayChange?: any;
   progress?: any;
+  onOracle?: any;
 }
-const ContentTabs = ({ item }: IContentTabs) => {
+const ContentTabs = ({ item, onOracle }: IContentTabs) => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [progress, setProgress] = useState({
@@ -248,7 +249,10 @@ const ContentTabs = ({ item }: IContentTabs) => {
         </div>
         <Row>
           <Col md={10} xs={24}>
-            <h4 className="my-2 my-md-3 text-center"> Details</h4>
+            <h4 className="my-2 my-md-3 text-center">
+              {" "}
+              <CustomTooltip title={TOOLTIP.T37}>Details</CustomTooltip>
+            </h4>
 
             <div className="content-tabs__detail">
               <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
@@ -550,6 +554,11 @@ const ContentTabs = ({ item }: IContentTabs) => {
             </div>
           </Col>
           <Col md={14} xs={24}>
+            <div className="d-flex justify-content-end my-2">
+              <span className="btn btn-primary" onClick={onOracle}>
+                Oracle
+              </span>
+            </div>
             <Tabs items={tabArray} />
           </Col>
         </Row>

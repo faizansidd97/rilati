@@ -1,16 +1,8 @@
 import { useState, useEffect, memo } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { DotChartOutlined } from "@ant-design/icons";
-import { AiFillPlusCircle } from "react-icons/ai";
-import {
-  Dropdown,
-  Input,
-  MenuProps,
-  Modal,
-  Radio,
-  Skeleton,
-  message,
-} from "antd";
+import { AiFillHome, AiFillPlusCircle } from "react-icons/ai";
+import { Dropdown, Input, MenuProps, Modal, Radio, Skeleton } from "antd";
 import { contentData } from "./constant";
 import { useDispatch, useSelector } from "react-redux";
 import { getCareer } from "src/redux/actions/careerAction";
@@ -39,7 +31,6 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
   const disptach = useDispatch<any>();
   const [isVisible, setIsVisible] = useState(false);
   const [isOracle, setIsOracle] = useState(false);
-  const [isSort, setIsSort] = useState(false);
   const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
   const loginUser = getUser ? JSON.parse(getUser) : null;
   const navigate = useNavigate();
@@ -102,7 +93,7 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
       if (
         document.documentElement.scrollHeight -
           document.documentElement.scrollTop -
-          651 <=
+          500 <=
           document.documentElement.clientHeight &&
         totalPage >= inspirationPage
       ) {
@@ -119,13 +110,13 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
         }
         disptach(getInspiration(payload));
       }
-    }, 1000);
+    }, 300);
   } else {
     window.onscroll = debounce((e) => {
       if (
         document.documentElement.scrollHeight -
           document.documentElement.scrollTop -
-          651 <=
+          500 <=
           document.documentElement.clientHeight &&
         totalPage >= page
       ) {
@@ -138,7 +129,7 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
         }
         disptach(getCareer(payload));
       }
-    }, 1000);
+    }, 300);
   }
 
   const onFilterChange = (params: object) => {
@@ -246,6 +237,11 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
       customized view of careers aligned with your goals.
     </span>
   );
+  const onOracle = () => {
+    setIsVisible(false);
+    navigate("/");
+    setIsOracle(true);
+  };
 
   return (
     <Container className="content-card mb-3 px-0 " fluid>
@@ -297,14 +293,22 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
               </div>
             </div>
           </div>
-          <CustomTooltip title={t4}>
-            <Input
-              placeholder="Search or filter"
-              prefix={<AiFillPlusCircle size={25} color="#ff4742" />}
-              className="search-input"
-              onPressEnter={(e: any) => onChange(e.target.value)}
+          <div className="d-flex align-items-center">
+            <AiFillHome
+              onClick={() => onChange("")}
+              className="cursor-pointer"
+              color="#ff0000"
+              size={25}
             />
-          </CustomTooltip>
+            <CustomTooltip title={t4}>
+              <Input
+                placeholder="Search or filter"
+                prefix={<AiFillPlusCircle size={25} color="#ff4742" />}
+                className="search-input"
+                onPressEnter={(e: any) => onChange(e.target.value)}
+              />
+            </CustomTooltip>
+          </div>
           <div className="d-none d-md-block">
             {/* <Dropdown
               menu={{dummy}}
@@ -392,30 +396,31 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
         </Col>
       </Row>
       <ul className="grid ps-0 pb-5 justify-content-center">
-        {!isInspiration
-          ? career?.map((item: any, index: any) => (
-              <li className="item" key={item?.id + Math.random()}>
-                <ContentInnerCards
-                  item={item}
-                  index={index}
-                  image={item?.attributes?.image}
-                  key={item?.id + 100}
-                  loginUser={loginUser}
-                  setSignUpToggle={setSignUpToggle}
-                />
-              </li>
-            ))
-          : inspirations?.map((item: any, index: any) => (
-              <li className="item" key={item?.id}>
-                <InspirationInnerCard
-                  item={item}
-                  index={index}
-                  image={item?.image}
-                  onArrayChange={onArrayChange}
-                  key={item?.id}
-                />
-              </li>
-            ))}
+        {!isInspiration &&
+          career?.map((item: any, index: any) => (
+            <li className="item" key={item?.id + Math.random()}>
+              <ContentInnerCards
+                item={item}
+                index={index}
+                image={item?.attributes?.image}
+                key={item?.id + 100}
+                loginUser={loginUser}
+                setSignUpToggle={setSignUpToggle}
+              />
+            </li>
+          ))}
+        {isInspiration &&
+          inspirations?.map((item: any, index: any) => (
+            <li className="item" key={item?.id + Math.random()}>
+              <InspirationInnerCard
+                item={item}
+                index={index}
+                image={item?.image}
+                onArrayChange={onArrayChange}
+                key={item?.id}
+              />
+            </li>
+          ))}
         {(loader || inspirationsLoader) &&
           [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(
             (index) => (
@@ -436,7 +441,7 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
         width={"80%"}
         zIndex={9}
       >
-        <ContentTabs />
+        <ContentTabs onOracle={onOracle} />
       </Modal>
       <Modal
         open={isOracle}
