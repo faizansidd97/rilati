@@ -593,7 +593,7 @@ const SignUpModal = ({
                 <Form.Item
                   name="newsletter"
                   label="Newsletter"
-                  initialValue={false}
+                  initialValue={true}
                   rules={[
                     {
                       required: true,
@@ -601,7 +601,7 @@ const SignUpModal = ({
                     },
                   ]}
                 >
-                  <Checkbox value={true}>
+                  <Checkbox checked>
                     Send email/newsletter, IF the content matches my profile
                   </Checkbox>
                   {/* <Select

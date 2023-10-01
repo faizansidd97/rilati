@@ -1,0 +1,188 @@
+import { memo, useEffect, useState } from "react";
+// import ContentInnerCards from "../InspirationInnerCard";
+import ContentInnerCards from "../ContentInnerCard";
+import { Radio, Skeleton } from "antd";
+import { getCareer } from "src/redux/actions/careerAction";
+import { useDispatch, useSelector } from "react-redux";
+import debounce from "lodash/debounce";
+import { DotChartOutlined } from "@ant-design/icons";
+import CustomTooltip from "../CustomTooltip";
+
+let page = 1;
+const CareerCards = ({ loginUser, setSignUpToggle, search }: any) => {
+  const disptach = useDispatch<any>();
+  const [career, setCareer]: any = useState([]);
+
+  useEffect(() => {
+    if (loginUser) {
+      disptach(getCareer({ page, take: 20, user_id: loginUser?.id }));
+    } else {
+      disptach(getCareer({ page, take: 20 }));
+    }
+  }, [disptach]);
+  const onFilterChange = (params: object) => {
+    setCareer([]);
+    page = 1;
+    disptach(getCareer({ ...params, page: 1, take: 20 }));
+  };
+
+  const {
+    career: careerData = [],
+    loader = false,
+    totalPage = 0,
+  } = useSelector((store: any) => store.career);
+
+  useEffect(() => {
+    setCareer([...career, ...careerData]);
+  }, [careerData]);
+
+  useEffect(() => {
+    setCareer([]);
+    let payload = {};
+    if (loginUser) {
+      payload = { title: search, page: 1, take: 20, user_id: loginUser?.id };
+    } else {
+      payload = { title: search, page: 1, take: 20 };
+    }
+    disptach(getCareer(payload));
+  }, [search]);
+
+  window.onscroll = debounce((e) => {
+    if (
+      document.documentElement.scrollHeight -
+        document.documentElement.scrollTop -
+        500 <=
+        document.documentElement.clientHeight &&
+      totalPage >= page
+    ) {
+      page++;
+      let payload = {};
+      if (loginUser) {
+        payload = { page, take: 20, user_id: loginUser?.id };
+      } else {
+        payload = { page, take: 20 };
+      }
+      disptach(getCareer(payload));
+    }
+  }, 300);
+  const t6 = (
+    <span>
+      Tailor Your Vision! <br /> Click 'Sort' to arrange careers according to
+      your preferences. Organize by ATAR score, Annual Salary, Cost of course,
+      study duration, and more. Choose your sorting criteria and unlock a
+      customized view of careers aligned with your goals.
+    </span>
+  );
+  return (
+    <div className="career-cards">
+      <div
+        className={`filter-section d-flex align-items-center justify-content-around active`}
+      >
+        <CustomTooltip title={t6}>
+          <h5 className="mx-3 mb-0" style={{ width: "max-content" }}>
+            Sort By
+          </h5>
+        </CustomTooltip>
+
+        <Radio.Group className="w-100 d-flex justify-content-around">
+          {loginUser && (
+            <Radio.Button
+              className="radio-button "
+              onClick={() => {
+                setCareer([]);
+                disptach(getCareer({ page, take: 20, user_id: loginUser?.id }));
+              }}
+              value={0}
+            >
+              Favorite
+            </Radio.Button>
+          )}
+          <Radio.Button
+            className="radio-button "
+            onClick={() => onFilterChange({ atar: "YES" })}
+            value={1}
+          >
+            ATAR
+          </Radio.Button>
+          <Radio.Button
+            className="radio-button "
+            value={2}
+            onClick={() => onFilterChange({ course_cost: "YES" })}
+          >
+            Course Cost
+          </Radio.Button>
+          <Radio.Button
+            value={3}
+            className="radio-button "
+            onClick={() => onFilterChange({ status_in_company: "YES" })}
+          >
+            Status in Company
+          </Radio.Button>
+          <Radio.Button
+            value={4}
+            className="radio-button "
+            onClick={() => onFilterChange({ scope_of_skill: "YES" })}
+          >
+            Scope of Skill
+          </Radio.Button>
+          <Radio.Button
+            value={5}
+            className="radio-button "
+            onClick={() => onFilterChange({ job_help_environment: "YES" })}
+          >
+            Job Help Environment
+          </Radio.Button>
+          <Radio.Button
+            value={6}
+            className="radio-button "
+            onClick={() => onFilterChange({ job_help_people: "YES" })}
+          >
+            Job Help People
+          </Radio.Button>
+          <Radio.Button
+            value={7}
+            className="radio-button "
+            onClick={() => onFilterChange({ work_life_balance: "YES" })}
+          >
+            Work Life Balance
+          </Radio.Button>
+          <Radio.Button
+            value={8}
+            className="radio-button "
+            onClick={() => onFilterChange({ potential: "YES" })}
+          >
+            Potential
+          </Radio.Button>
+        </Radio.Group>
+      </div>
+      <ul className="grid ps-0 pb-5 justify-content-center">
+        {career?.map((item: any, index: any) => (
+          <li className="item" key={item?.id + Math.random()}>
+            <ContentInnerCards
+              key={item?.id + 100}
+              index={index}
+              image={item?.attributes?.image}
+              setSignUpToggle={setSignUpToggle}
+              item={item}
+              loginUser={loginUser}
+            />
+          </li>
+        ))}
+        {loader &&
+          [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(
+            (index) => (
+              <li className="item mb-4" key={index + Math.random()}>
+                <Skeleton.Node active={loader}>
+                  <DotChartOutlined
+                    style={{ fontSize: 100, color: "#bfbfbf" }}
+                  />
+                </Skeleton.Node>
+              </li>
+            )
+          )}
+      </ul>
+    </div>
+  );
+};
+
+export default memo(CareerCards);

@@ -1,21 +1,21 @@
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo, useRef } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { DotChartOutlined } from "@ant-design/icons";
-import { AiFillHome, AiFillPlusCircle } from "react-icons/ai";
-import { Dropdown, Input, MenuProps, Modal, Radio, Skeleton } from "antd";
-import { contentData } from "./constant";
+import { AiFillPlusCircle } from "react-icons/ai";
+import { Input, Modal, Skeleton } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getCareer } from "src/redux/actions/careerAction";
 import { getInspiration } from "src/redux/actions/inspirationsAction";
 import { useNavigate, useParams } from "react-router-dom";
-import ContentInnerCards from "../ContentInnerCard";
 import Environment from "../../network/baseUrl";
 import debounce from "lodash/debounce";
-import InspirationInnerCard from "../InspirationInnerCard";
+
 import ContentTabs from "../ContentTabs";
 import CustomTooltip from "../CustomTooltip";
 import HighChartTree from "../HighChartTree";
 import "./ContentCards.scss";
+import CareerCards from "../CareerCards";
+import InspirationListing from "../InspirationListing";
 
 let page = 1;
 let curretnInspirationPage = 1;
@@ -23,8 +23,8 @@ interface ContentCards {
   setSignUpToggle: Function;
 }
 const ContentCards = ({ setSignUpToggle }: ContentCards) => {
-  const [data, setData] = useState([...contentData]);
-  const [career, setCareer]: any = useState([]);
+  const [search, setSearch] = useState("");
+  const ref = useRef<any>(null);
   const [inspirations, setInspirations]: any = useState([]);
   const [isInspiration, setIsInspiration] = useState(false);
   const { id } = useParams();
@@ -35,13 +35,6 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
   const loginUser = getUser ? JSON.parse(getUser) : null;
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (loginUser) {
-      disptach(getCareer({ page, take: 20, user_id: loginUser?.id }));
-    } else {
-      disptach(getCareer({ page, take: 20 }));
-    }
-  }, [disptach]);
   const onCareerClick = (link: string) => {
     const career = link?.split("-")[2];
     setIsOracle(false);
@@ -51,12 +44,12 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
   for (let index = 0; index < 100; index++) {
     arr.push(index);
   }
-  const onArrayChange = (index: number, item: any) => {
-    const temp = [...data];
-    temp.splice(index, 1);
-    temp.push(item);
-    setData(temp);
-  };
+  // const onArrayChange = (index: number, item: any) => {
+  //   const temp = [...data];
+  //   temp.splice(index, 1);
+  //   temp.push(item);
+  //   setData(temp);
+  // };
   const onChange = (value: any) => {
     page = 1;
 
@@ -64,23 +57,8 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
       setInspirations([]);
       let payload = { search: value, page: 1, take: 20 };
       disptach(getInspiration(payload));
-    } else {
-      let payload = {};
-      setCareer([]);
-      if (loginUser) {
-        payload = { title: value, page: 1, take: 20, user_id: loginUser?.id };
-      } else {
-        payload = { title: value, page: 1, take: 20 };
-      }
-      disptach(getCareer(payload));
     }
   };
-
-  const {
-    career: careerData = [],
-    loader = false,
-    totalPage = 0,
-  } = useSelector((store: any) => store.career);
 
   const {
     inspiration = [],
@@ -95,7 +73,7 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
           document.documentElement.scrollTop -
           500 <=
           document.documentElement.clientHeight &&
-        totalPage >= inspirationPage
+        inspirationPage >= inspirationPage
       ) {
         curretnInspirationPage++;
         let payload = {};
@@ -111,75 +89,15 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
         disptach(getInspiration(payload));
       }
     }, 300);
-  } else {
-    window.onscroll = debounce((e) => {
-      if (
-        document.documentElement.scrollHeight -
-          document.documentElement.scrollTop -
-          500 <=
-          document.documentElement.clientHeight &&
-        totalPage >= page
-      ) {
-        page++;
-        let payload = {};
-        if (loginUser) {
-          payload = { page, take: 20, user_id: loginUser?.id };
-        } else {
-          payload = { page, take: 20 };
-        }
-        disptach(getCareer(payload));
-      }
-    }, 300);
   }
 
-  const onFilterChange = (params: object) => {
-    setCareer([]);
-    page = 1;
-    disptach(getCareer({ ...params, page: 1, take: 20 }));
-  };
-
-  useEffect(() => {
-    setCareer([...career, ...careerData]);
-  }, [careerData]);
   useEffect(() => {
     setInspirations([...inspirations, ...inspiration]);
   }, [inspiration]);
 
-  const items: MenuProps["items"] = [
-    {
-      key: "1",
-      label: (
-        <span onClick={() => onFilterChange({ sort_by: "ASC" })}>
-          Title ACS
-        </span>
-      ),
-    },
-    {
-      key: "2",
-      label: (
-        <span onClick={() => onFilterChange({ sort_by: "DESC" })}>
-          Title DESC
-        </span>
-      ),
-    },
-    {
-      key: "3",
-      label: (
-        <span onClick={() => onFilterChange({ years_needed: "YES" })}>
-          Year Needed
-        </span>
-      ),
-    },
-    {
-      key: "4",
-      label: (
-        <span onClick={() => onFilterChange({ admission_rank: "YES" })}>
-          Admission Rank
-        </span>
-      ),
-    },
-  ];
   const inspirationHandler = () => {
+    ref.current.input.value = "";
+    setSearch("");
     setIsInspiration(true);
     disptach(getInspiration({ page, take: 20 }));
   };
@@ -229,18 +147,17 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
       destined for you.
     </span>
   );
-  const t6 = (
-    <span>
-      Tailor Your Vision! <br /> Click 'Sort' to arrange careers according to
-      your preferences. Organize by ATAR score, Annual Salary, Cost of course,
-      study duration, and more. Choose your sorting criteria and unlock a
-      customized view of careers aligned with your goals.
-    </span>
-  );
+
   const onOracle = () => {
-    setIsVisible(false);
-    navigate("/");
-    setIsOracle(true);
+    if (loginUser) {
+      setIsVisible(false);
+      navigate("/");
+      setIsOracle(true);
+    } else {
+      setIsVisible(false);
+      navigate("/");
+      setSignUpToggle(true);
+    }
   };
 
   return (
@@ -256,7 +173,11 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
                 className={`btn btn-primary me-2 custom ${
                   isInspiration ? "" : "active"
                 }`}
-                onClick={() => setIsInspiration(false)}
+                onClick={() => {
+                  setIsInspiration(false);
+                  ref.current.input.value = "";
+                  setSearch("");
+                }}
               >
                 <CustomTooltip title={t2}>Career</CustomTooltip>
               </Button>
@@ -269,171 +190,52 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
                 <CustomTooltip title={t3}>Inspiration</CustomTooltip>
               </Button>
               <div className="d-md-none d-block">
-                {/* <Dropdown
-                  menu={{ items }}
-                  placement="bottomRight"
-                  className="my-0 my-md-0 d-md-none d-block"
-                > */}
                 <Button
                   className="btn-secondary me-2 d-md-none d-block sort-by"
                   onClick={oracleHandler}
                 >
                   Oracles
                 </Button>
-                {/* </Dropdown> */}
-                <Dropdown
-                  menu={{ items }}
-                  placement="bottomRight"
-                  className="my-0 my-md-0 d-md-none d-block"
-                >
-                  <Button className="btn-secondary d-md-none d-block sort-by">
-                    Sort By
-                  </Button>
-                </Dropdown>
               </div>
             </div>
           </div>
           <div className="d-flex align-items-center">
-            <AiFillHome
-              onClick={() => onChange("")}
-              className="cursor-pointer"
-              color="#ff0000"
-              size={25}
-            />
             <CustomTooltip title={t4}>
               <Input
+                ref={ref}
                 placeholder="Search or filter"
                 prefix={<AiFillPlusCircle size={25} color="#ff4742" />}
                 className="search-input"
-                onPressEnter={(e: any) => onChange(e.target.value)}
+                onPressEnter={(e: any) => setSearch(e.target.value)}
               />
             </CustomTooltip>
           </div>
           <div className="d-none d-md-block">
-            {/* <Dropdown
-              menu={{dummy}}
-              placement="bottomRight"
-              className="my-3 my-md-0 "
-            > */}
-
             <Button
               className="btn-secondary me-2 d-md-none d-block sort-by"
               onClick={oracleHandler}
             >
               <CustomTooltip title={t5}>Oracle </CustomTooltip>
             </Button>
-            {/* </Dropdown> */}
-            {/* <Dropdown
-              menu={{ items }}
-              placement="bottomRight"
-              className="my-3 my-md-0 "
-            > */}
-            <Button
-              className="btn-secondary sort-by"
-              // onClick={() => setIsSort(!isSort)}
-            >
-              Chat
-            </Button>
-            {/* </Dropdown> */}
+
+            <Button className="btn-secondary sort-by">Chat</Button>
           </div>
         </Col>
       </Row>
-      <Row>
-        <Col md={12}>
-          <div
-            className={`filter-section d-flex align-items-center justify-content-around active`}
-          >
-            <CustomTooltip title={t6}>
-              <h5 className="mx-3 mb-0" style={{ width: "max-content" }}>
-                Sort By
-              </h5>
-            </CustomTooltip>
-            <Radio.Group className="w-100 d-flex justify-content-around">
-              {loginUser && (
-                <Radio.Button
-                  className="radio-button "
-                  onClick={() => {
-                    setCareer([]);
-                    disptach(
-                      getCareer({ page, take: 20, user_id: loginUser?.id })
-                    );
-                  }}
-                  value={0}
-                >
-                  Favorite
-                </Radio.Button>
-              )}
-              <Radio.Button
-                className="radio-button "
-                onClick={() => onFilterChange({ sort_by: "ASC" })}
-                value={1}
-              >
-                Title ACS
-              </Radio.Button>
-              <Radio.Button
-                className="radio-button "
-                value={2}
-                onClick={() => onFilterChange({ sort_by: "DESC" })}
-              >
-                Title DESC
-              </Radio.Button>
-              <Radio.Button
-                value={3}
-                className="radio-button "
-                onClick={() => onFilterChange({ years_needed: "YES" })}
-              >
-                Years Needed
-              </Radio.Button>
-              <Radio.Button
-                value={4}
-                className="radio-button "
-                onClick={() => onFilterChange({ admission_rank: "YES" })}
-              >
-                Admission Rank
-              </Radio.Button>
-            </Radio.Group>
-          </div>
-        </Col>
-      </Row>
-      <ul className="grid ps-0 pb-5 justify-content-center">
-        {!isInspiration &&
-          career?.map((item: any, index: any) => (
-            <li className="item" key={item?.id + Math.random()}>
-              <ContentInnerCards
-                item={item}
-                index={index}
-                image={item?.attributes?.image}
-                key={item?.id + 100}
-                loginUser={loginUser}
-                setSignUpToggle={setSignUpToggle}
-              />
-            </li>
-          ))}
-        {isInspiration &&
-          inspirations?.map((item: any, index: any) => (
-            <li className="item" key={item?.id + Math.random()}>
-              <InspirationInnerCard
-                item={item}
-                index={index}
-                image={item?.image}
-                onArrayChange={onArrayChange}
-                key={item?.id}
-              />
-            </li>
-          ))}
-        {(loader || inspirationsLoader) &&
-          [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(
-            (index) => (
-              <li className="item mb-4" key={index + Math.random()}>
-                <Skeleton.Node active={loader || inspirationsLoader}>
-                  <DotChartOutlined
-                    style={{ fontSize: 100, color: "#bfbfbf" }}
-                  />
-                </Skeleton.Node>
-              </li>
-            )
-          )}
-      </ul>
+      {!isInspiration && (
+        <CareerCards
+          loginUser={loginUser}
+          setSignUpToggle={setSignUpToggle}
+          search={search}
+        />
+      )}
+      {isInspiration && (
+        <InspirationListing
+          inspirations={inspirations}
+          search={search}
+          loginUser={loginUser}
+        />
+      )}
       <Modal
         open={isVisible}
         footer={false}

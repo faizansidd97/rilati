@@ -218,6 +218,11 @@ const ContentTabs = ({ item, onOracle }: IContentTabs) => {
         </div>
       ),
     },
+    {
+      label: <span onClick={onOracle}>Oracle</span>,
+      key: "5",
+      children: <div></div>,
+    },
   ];
   return (
     <Spin spinning={loader}>
@@ -554,11 +559,6 @@ const ContentTabs = ({ item, onOracle }: IContentTabs) => {
             </div>
           </Col>
           <Col md={14} xs={24}>
-            <div className="d-flex justify-content-end my-2">
-              <span className="btn btn-primary" onClick={onOracle}>
-                Oracle
-              </span>
-            </div>
             <Tabs items={tabArray} />
           </Col>
         </Row>

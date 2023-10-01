@@ -5,11 +5,7 @@ import imageCareer from "../../assets/images/placeholderCareer.jpeg";
 import { IoShareOutline } from "react-icons/io5";
 import { Button, Input, Modal, Tooltip, message } from "antd";
 import { useDispatch } from "react-redux";
-import {
-  careerMeta,
-  likeCareer,
-  likePostCareer,
-} from "src/redux/actions/careerAction";
+import { careerMeta, likePostCareer } from "src/redux/actions/careerAction";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useNavigate } from "react-router-dom";
 import {
@@ -31,7 +27,7 @@ interface IContentCards {
   loginUser?: any;
   setSignUpToggle: Function;
 }
-let isMounted = false;
+
 const ContentInnerCards = ({
   item,
   index,
@@ -44,6 +40,7 @@ const ContentInnerCards = ({
   const [isVisible, setIsVisible] = useState(false);
   const [like, setLike] = useState(item?.attributes?.userLike);
   const [likeCount, setLikeCount] = useState(item?.attributes?.like_count);
+  const [isComponentMounted, setIsComponentMounted] = useState(true);
   const [shareCount, setShareCount] = useState<number>(
     item?.attributes?.share_count as number
   );
@@ -85,7 +82,7 @@ const ContentInnerCards = ({
   };
   const shareCallback = async () => {
     // setIsVisible(false);
-    if (isMounted) {
+    if (isComponentMounted) {
       setTimeout(() => {
         console.log("Im run");
 
@@ -122,19 +119,23 @@ Click here 👉 `;
     if (loginUser) {
       dispatch(likePostCareer(item?.id, { count_type: "LIKE_COUNT" })).then(
         (res: any) => {
-          setLike(!like);
-          // setLikeCount((likeCount: any) => {
-          //   if (like) {
-          //     return likeCount - 1;
-          //   } else {
-          //     return likeCount + 1;
-          //   }
-          // });
-          // if (like) {
-          //   setLikeCount(likeCount - 1);
-          // } else {
-          //   setLikeCount(likeCount + 1);
-          // }
+          console.log("something");
+          if (isComponentMounted) {
+            console.log("something///////////");
+            setLike(!like);
+            setLikeCount((likeCount: any) => {
+              if (like) {
+                return likeCount - 1;
+              } else {
+                return likeCount + 1;
+              }
+            });
+            if (like) {
+              setLikeCount(likeCount - 1);
+            } else {
+              setLikeCount(likeCount + 1);
+            }
+          }
         }
       );
     } else {
@@ -142,15 +143,12 @@ Click here 👉 `;
     }
   };
   useEffect(() => {
-    const ac = new AbortController();
-    isMounted = true;
+    setIsComponentMounted(true);
 
     // Your asynchronous task here
 
     return () => {
-      ac.abort();
-      isMounted = false;
-      // Cleanup code here (e.g., cancel API requests, clear timers)
+      setIsComponentMounted(false);
     };
   }, []);
 
@@ -372,7 +370,7 @@ Click here 👉 `;
           <FacebookShareButton
             quote={item?.attributes?.title}
             onShareWindowClose={() => {
-              if (isMounted) {
+              if (isComponentMounted) {
                 setShareCount(shareCount + 1);
                 dispatch(
                   careerMeta(

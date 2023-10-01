@@ -6,9 +6,6 @@ import Environment from "../../network/baseUrl";
 import { useSelector } from "react-redux";
 import "./HomeBanner.scss";
 import { useState } from "react";
-import SignUpModal from "../SignUpModal";
-import SignInModal from "../SignInModal";
-import { TOOLTIP } from "src/constant/Tooltip";
 import CustomTooltip from "../CustomTooltip";
 
 const HomeBanner = () => {
