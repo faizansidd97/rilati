@@ -255,7 +255,6 @@ const ContentTabs = ({ item, onOracle }: IContentTabs) => {
         <Row>
           <Col md={10} xs={24}>
             <h4 className="my-2 my-md-3 text-center">
-              {" "}
               <CustomTooltip title={TOOLTIP.T37}>Details</CustomTooltip>
             </h4>
 
@@ -300,7 +299,7 @@ const ContentTabs = ({ item, onOracle }: IContentTabs) => {
                   baseBgColor="#ffffff36"
                   animateOnRender
                   className="progress"
-                  completed={progress.internet}
+                  completed={progress.job_enviroment}
                   // variant="success"
                   bgColor="#00eb75"
                   maxCompleted={10}

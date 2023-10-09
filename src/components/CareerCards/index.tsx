@@ -1,5 +1,4 @@
 import { memo, useEffect, useState } from "react";
-// import ContentInnerCards from "../InspirationInnerCard";
 import ContentInnerCards from "../ContentInnerCard";
 import { Radio, Skeleton } from "antd";
 import { getCareer } from "src/redux/actions/careerAction";
@@ -12,17 +11,19 @@ let page = 1;
 const CareerCards = ({ loginUser, setSignUpToggle, search }: any) => {
   const disptach = useDispatch<any>();
   const [career, setCareer]: any = useState([]);
+  const [careerParams, setCareerParams] = useState({});
 
-  useEffect(() => {
-    if (loginUser) {
-      disptach(getCareer({ page, take: 20, user_id: loginUser?.id }));
-    } else {
-      disptach(getCareer({ page, take: 20 }));
-    }
-  }, [disptach]);
+  // useEffect(() => {
+  //   if (loginUser) {
+  //     disptach(getCareer({ page, take: 20, user_id: loginUser?.id }));
+  //   } else {
+  //     disptach(getCareer({ page, take: 20 }));
+  //   }
+  // }, [disptach]);
   const onFilterChange = (params: object) => {
     setCareer([]);
     page = 1;
+    setCareerParams(params);
     disptach(getCareer({ ...params, page: 1, take: 20 }));
   };
 
@@ -58,9 +59,9 @@ const CareerCards = ({ loginUser, setSignUpToggle, search }: any) => {
       page++;
       let payload = {};
       if (loginUser) {
-        payload = { page, take: 20, user_id: loginUser?.id };
+        payload = { page, take: 20, user_id: loginUser?.id, ...careerParams };
       } else {
-        payload = { page, take: 20 };
+        payload = { page, take: 20, ...careerParams };
       }
       disptach(getCareer(payload));
     }
