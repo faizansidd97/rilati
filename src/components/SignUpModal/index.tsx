@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import bgImage from "../../assets/images/02.webp";
 import Environment from "../../network/baseUrl";
 import "./SignUpModal.scss";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const SignUpModal = ({
   isModalOpen = false,
@@ -166,6 +167,10 @@ const SignUpModal = ({
     });
     setLeastSubject(indust);
   }, [subjects]);
+
+  const onChange = (e: any) => {
+    form.setFieldValue("robot", true);
+  };
   return (
     <Modal
       open={isModalOpen}
@@ -594,6 +599,7 @@ const SignUpModal = ({
                   name="newsletter"
                   label="Newsletter"
                   initialValue={true}
+                  valuePropName="checked"
                   rules={[
                     {
                       required: true,
@@ -601,7 +607,7 @@ const SignUpModal = ({
                     },
                   ]}
                 >
-                  <Checkbox checked>
+                  <Checkbox>
                     Send email/newsletter, IF the content matches my profile
                   </Checkbox>
                   {/* <Select
@@ -615,6 +621,12 @@ const SignUpModal = ({
                       { label: "No, maybe later.", value: false },
                     ]}
                   /> */}
+                </Form.Item>
+                <Form.Item name="robot" rules={[{ required: true }]}>
+                  <ReCAPTCHA
+                    sitekey="6LcAaMMoAAAAACwczd6m3WfhQKCQOVIGgkEaAlXG"
+                    onChange={onChange}
+                  />
                 </Form.Item>
               </Col>
 

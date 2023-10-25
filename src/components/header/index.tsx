@@ -178,7 +178,7 @@ const Header = ({
     setSignUpToggle(true);
   };
   const onChange = (e: any) => {
-    console.log("onChange", e);
+    form.setFieldValue("robot", true);
   };
   return (
     <header className="header">
@@ -206,6 +206,15 @@ const Header = ({
           </Form.Item>
           <Form.Item name="flag" hidden>
             <Input.TextArea rows={9} placeholder="Add your notes here" />
+          </Form.Item>
+          <Form.Item
+            name="robot"
+            rules={[{ required: true, message: "Verification is required" }]}
+          >
+            <ReCAPTCHA
+              sitekey="6LcAaMMoAAAAACwczd6m3WfhQKCQOVIGgkEaAlXG"
+              onChange={onChange}
+            />
           </Form.Item>
           <Form.Item>
             <Button

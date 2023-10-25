@@ -1,12 +1,9 @@
-import { useState, memo, useEffect } from "react";
-
+import { useState, memo } from "react";
 import { AiOutlineHeart, AiFillHeart, AiFillInstagram } from "react-icons/ai";
-import imageCareer from "../../assets/images/placeholderCareer.jpeg";
 import { IoShareOutline } from "react-icons/io5";
 import { Button, Input, Modal, Tooltip, message } from "antd";
 import { useDispatch } from "react-redux";
 import { careerMeta, likePostCareer } from "src/redux/actions/careerAction";
-import ProgressBar from "@ramonak/react-progress-bar";
 import { useNavigate } from "react-router-dom";
 import {
   FacebookShareButton,
@@ -18,77 +15,44 @@ import {
 import { BsFacebook, BsTwitter, BsWhatsapp } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { BiCopy } from "react-icons/bi";
+import ProgressBar from "@ramonak/react-progress-bar";
+import Environment from "../../network/baseUrl";
+import imageCareer from "../../assets/images/placeholderCareer.jpeg";
+import _ from "lodash";
 
 interface IContentCards {
   item: any;
   index: number;
-  image: any;
   onArrayChange?: any;
-  loginUser?: any;
   setSignUpToggle: Function;
 }
 
-const ContentInnerCards = ({
-  item,
-  index,
-  image,
-  loginUser,
-  setSignUpToggle,
-}: IContentCards) => {
+const ContentInnerCards = ({ item, index, setSignUpToggle }: IContentCards) => {
   const dispatch = useDispatch<any>();
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
-  const [like, setLike] = useState(item?.attributes?.userLike);
-  const [likeCount, setLikeCount] = useState(item?.attributes?.like_count);
-  const [isComponentMounted, setIsComponentMounted] = useState(true);
+  const [like, setLike] = useState(_.cloneDeep(item?.attributes?.userLike));
+  const [likeCount, setLikeCount] = useState(
+    _.cloneDeep(item?.attributes?.like_count)
+  );
   const [shareCount, setShareCount] = useState<number>(
     item?.attributes?.share_count as number
   );
+
+  const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
+  const loginUser = getUser ? JSON.parse(getUser) : null;
   const [progress, setProgress] = useState({
     over: 0,
     cost: 0,
-    internet: 0,
     fun: 0,
     saftey: 0,
     status: 0,
-    team: 0,
-    health: 0,
-    precision_work: 0,
-    work_hours: 0,
-    job_enviroment: 0,
-    repetitive_tedious: 0,
-    people_interations: 0,
-    autonomy: 0,
-    life_risk: 0,
-    physical_stress: 0,
-    mental_stress: 0,
-    job_stress: 0,
-    job_satisfaction: 0,
   });
-  const callback = () => {
-    setLike(!like);
-    setLikeCount((likeCount: any) => {
-      if (like) {
-        return likeCount - 1;
-      } else {
-        return likeCount + 1;
-      }
-    });
-    // if (like) {
-    //   setLikeCount(likeCount - 1);
-    // } else {
-    //   setLikeCount(likeCount + 1);
-    // }
-  };
-  const shareCallback = async () => {
-    // setIsVisible(false);
-    if (isComponentMounted) {
-      setTimeout(() => {
-        console.log("Im run");
 
-        setShareCount(shareCount + 1);
-      }, 3000);
-    }
+  const shareCallback = async () => {
+    setTimeout(() => {
+      setShareCount(shareCount + 1);
+    }, 3000);
   };
   const shareLink = `https://rilati.com/career/${item?.id}`;
   const shareWithMessage = `
@@ -107,81 +71,52 @@ const ContentInnerCards = ({
     document.execCommand("copy");
     document.body.removeChild(textArea);
     message.info("Career Copied!");
-    // setCopied(true);
   };
+
   const WhatsappShare = `
 Hey there!
 I came across this amazing resource that delves deep into a potential career path.
 It covers everything from salary expectations to required skills and education. I thought you might find it as insightful as I did! 
 Take a look. 
 Click here 👉 `;
+
+  const liekCallback = () => {
+    setLike(!like);
+    setLikeCount((likeCount: any) => {
+      console.log("likeCount", likeCount, like);
+
+      if (like) {
+        return --likeCount;
+      } else {
+        return ++likeCount;
+      }
+    });
+  };
   const likeHandler = () => {
     if (loginUser) {
-      dispatch(likePostCareer(item?.id, { count_type: "LIKE_COUNT" })).then(
-        (res: any) => {
-          console.log("something");
-          if (isComponentMounted) {
-            console.log("something///////////");
-            setLike(!like);
-            setLikeCount((likeCount: any) => {
-              if (like) {
-                return likeCount - 1;
-              } else {
-                return likeCount + 1;
-              }
-            });
-            if (like) {
-              setLikeCount(likeCount - 1);
-            } else {
-              setLikeCount(likeCount + 1);
-            }
-          }
-        }
+      dispatch(
+        likePostCareer(item?.id, { count_type: "LIKE_COUNT" }, liekCallback)
       );
     } else {
       setSignUpToggle(true);
     }
   };
-  useEffect(() => {
-    setIsComponentMounted(true);
-
-    // Your asynchronous task here
-
-    return () => {
-      setIsComponentMounted(false);
-    };
-  }, []);
-
   return (
     <div
       className="content-card__wrapper d-flex flex-column gap-1 gap-md-3 justify-content-between position-relative"
-      style={{ backgroundImage: `url("${image ? image : imageCareer}")` }}
+      style={{
+        backgroundImage: `url("${
+          item?.attributes?.image ? item?.attributes?.image : imageCareer
+        }")`,
+      }}
       onMouseEnter={() => {
         setProgress({
           ...progress,
           cost: item?.attributes?.admission_rank || 1,
-          internet: item?.attributes?.job_help_people,
           over: item?.attributes?.work_life_balance,
           fun: item?.attributes?.potential,
           saftey: item?.attributes?.scope_of_skill,
           status: item?.attributes?.status_in_company,
-          team: item?.attributes?.team_reliance,
-          health:
-            item?.attributes?.risk_to_health ||
-            Math.floor(Math.random() * 4 + 1),
-          precision_work: item?.attributes?.precision_work,
-          work_hours: item?.attributes?.work_hours,
-          job_enviroment: item?.attributes?.job_help_environment,
-          repetitive_tedious:
-            item?.attributes?.repetitive_tedious ||
-            Math.floor(Math.random() * 3 + 1),
-          people_interations: item?.attributes?.people_interaction,
-          autonomy: item?.attributes?.autonomy,
-          life_risk: item?.attributes?.risk_to_life,
-          physical_stress: item?.attributes?.physical_stress,
-          mental_stress: item?.attributes?.mental_stress,
-          job_stress: item?.attributes?.job_stress,
-          job_satisfaction: item?.attributes?.job_satisfaction,
         });
       }}
       onMouseLeave={() =>
@@ -189,23 +124,9 @@ Click here 👉 `;
           ...progress,
           over: 0,
           cost: 0,
-          internet: 0,
           fun: 0,
           saftey: 0,
           status: 0,
-          team: 0,
-          health: 0,
-          precision_work: 0,
-          work_hours: 0,
-          job_enviroment: 0,
-          repetitive_tedious: 0,
-          people_interations: 0,
-          autonomy: 0,
-          life_risk: 0,
-          physical_stress: 0,
-          mental_stress: 0,
-          job_stress: 0,
-          job_satisfaction: 0,
         })
       }
     >
@@ -229,7 +150,7 @@ Click here 👉 `;
         </div>
       </div>
       <div className="mb-4 back py-3 px-2">
-        <div className="back-header d-flex justify-content-end mb-3">
+        <div className="back-header d-flex justify-content-end mb-md-3 mb-1">
           <span className="me-2 text-white" style={{ fontSize: "16px" }}>
             {likeCount}
           </span>
@@ -261,7 +182,6 @@ Click here 👉 `;
               maxCompleted={100}
               className="progress"
               baseBgColor="#ffffff36"
-              // customLabel="10"
             />
           </div>
           <div className="content-card__wrapper__back__progress d-flex justify-content-between align-items-center">
@@ -370,16 +290,16 @@ Click here 👉 `;
           <FacebookShareButton
             quote={item?.attributes?.title}
             onShareWindowClose={() => {
-              if (isComponentMounted) {
-                setShareCount(shareCount + 1);
-                dispatch(
-                  careerMeta(
-                    item?.id,
-                    { count_type: "SHARE_COUNT" },
-                    shareCallback
-                  )
-                );
-              }
+              // if (isComponentMounted) {
+              setShareCount(shareCount + 1);
+              dispatch(
+                careerMeta(
+                  item?.id,
+                  { count_type: "SHARE_COUNT" },
+                  shareCallback
+                )
+              );
+              // }
             }}
             url={shareLink}
             // onSubmitCapture={(e) => console.log("runddddddd", e)}

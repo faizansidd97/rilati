@@ -18,7 +18,6 @@ interface ContentCards {
 const ContentCards = ({ setSignUpToggle }: ContentCards) => {
   const [search, setSearch] = useState("");
   const ref = useRef<any>(null);
-  const [inspirations, setInspirations]: any = useState([]);
   const [isInspiration, setIsInspiration] = useState(false);
   const { id } = useParams();
   // const disptach = useDispatch<any>();
@@ -39,8 +38,6 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
   }
 
   const inspirationHandler = () => {
-    console.log("ref", ref?.current);
-
     ref.current.input.value = "";
     setSearch("");
     setIsInspiration(true);
@@ -143,7 +140,7 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
               </div>
             </div>
           </div>
-          <div className="d-flex align-items-center">
+          <div className="d-flex align-items-center search-wrapper">
             <CustomTooltip title={t4}>
               <Input
                 ref={ref}
@@ -162,7 +159,7 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
               <CustomTooltip title={t5}>Oracle </CustomTooltip>
             </Button>
 
-            <Button className="btn-secondary sort-by">Chat</Button>
+            <Button className="btn-secondary sort-by">Job</Button>
           </div>
         </Col>
       </Row>
@@ -175,7 +172,7 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
       )}
       {isInspiration && (
         <InspirationListing
-          inspirations={inspirations}
+          // inspirations={inspirations}
           search={search}
           loginUser={loginUser}
         />

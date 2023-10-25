@@ -38,7 +38,7 @@ export const getCareer = (params?: any) => (dispatch: any) => {
 
 export const careerMeta =
   (id: number, body: object, cb: Function) => (dispatch: any) => {
-    dispatch({ type: CAREER_META_REQUEST });
+    // dispatch({ type: CAREER_META_REQUEST });
     httpService
       .patch(`/career/update-count/${id}`, body)
       .then((res) => {
@@ -46,14 +46,13 @@ export const careerMeta =
           data: { data },
         }: any = res;
 
-        dispatch({
-          type: CAREER_META_SUCCESS,
-          payload: { data, meta: res?.data },
-        });
+        // dispatch({
+        //   type: CAREER_META_SUCCESS,
+        // });
         cb();
       })
       .catch((err) => {
-        dispatch({ type: CAREER_META_ERROR });
+        // dispatch({ type: CAREER_META_ERROR });
       });
   };
 
@@ -113,21 +112,23 @@ export const likeCareer = (body: any, cb?: any) => (dispatch: any) => {
     });
 };
 export const likePostCareer =
-  (id: any, body: any, cb?: any) => (dispatch: any) => {
-    return new Promise((resolve, reject) => {
-      dispatch({ type: CAREER_LIKE_REQUEST });
-      httpService
-        .patch(`/career/update-count/${id}`, body)
-        .then((res) => {
-          dispatch({ type: CAREER_LIKE_SUCCESS });
-          resolve(res);
-        })
-        .catch((err) => {
-          reject();
-          message.error(err?.response?.data?.message);
-          dispatch({ type: CAREER_LIKE_SUCCESS });
-        });
-    });
+  (id: any, body: any, cb: Function) => (dispatch: any) => {
+    // return new Promise((resolve, reject) => {
+    // dispatch({ type: CAREER_LIKE_REQUEST });
+    httpService
+      .patch(`/career/update-count/${id}`, body)
+      .then((res) => {
+        // dispatch({ type: CAREER_LIKE_SUCCESS });
+        cb();
+      })
+      .catch((err) => {
+        // reject();
+        console.log("CAREER_LIKE_REQUEST", err);
+
+        message.error(err?.response?.data?.message);
+        // dispatch({ type: CAREER_LIKE_SUCCESS });
+      });
+    // });
   };
 
 export const deleteCareer = (id: any) => (dispatch: any) => {

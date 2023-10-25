@@ -79,13 +79,13 @@ const careerReducer = (state = initialState, action: any) => {
     }
     case CAREER_LIKE_REQUEST: {
       return Object.assign({}, state, {
-        likeLoader: true,
+        // likeLoader: true,
       });
     }
 
     case CAREER_LIKE_SUCCESS: {
       return Object.assign({}, state, {
-        likeLoader: false,
+        // likeLoader: false,
       });
     }
     case DELETE_SUCCESS: {

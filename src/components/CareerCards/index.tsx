@@ -6,13 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import debounce from "lodash/debounce";
 import { DotChartOutlined } from "@ant-design/icons";
 import CustomTooltip from "../CustomTooltip";
+import Environment from "../../network/baseUrl";
 
 let page = 1;
-const CareerCards = ({ loginUser, setSignUpToggle, search }: any) => {
+const CareerCards = ({ setSignUpToggle, search }: any) => {
   const disptach = useDispatch<any>();
   const [career, setCareer]: any = useState([]);
   const [careerParams, setCareerParams] = useState({});
 
+  const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
+  const loginUser = getUser ? JSON.parse(getUser) : null;
   // useEffect(() => {
   //   if (loginUser) {
   //     disptach(getCareer({ page, take: 20, user_id: loginUser?.id }));
@@ -74,18 +77,22 @@ const CareerCards = ({ loginUser, setSignUpToggle, search }: any) => {
       customized view of careers aligned with your goals.
     </span>
   );
+  console.log("I'm run");
   return (
     <div className="career-cards">
       <div
-        className={`filter-section d-flex align-items-center justify-content-around active`}
+        className={`mb-3 mb-md-0 filter-section d-flex align-items-center flex-md-row flex-column justify-content-around active`}
       >
         <CustomTooltip title={t6}>
-          <h5 className="mx-3 mb-0" style={{ width: "max-content" }}>
+          <h5
+            className="mx-3 mb-md-0 mb-3 text-center"
+            style={{ width: "max-content" }}
+          >
             Sort By
           </h5>
         </CustomTooltip>
 
-        <Radio.Group className="w-100 d-flex justify-content-around">
+        <Radio.Group className="w-100 d-flex justify-content-around  flex-wrap">
           {loginUser && (
             <Radio.Button
               className="radio-button "
@@ -105,67 +112,72 @@ const CareerCards = ({ loginUser, setSignUpToggle, search }: any) => {
           >
             ATAR
           </Radio.Button>
-          <Radio.Button
+          {/* <Radio.Button
             className="radio-button "
             value={2}
             onClick={() => onFilterChange({ course_cost: "YES" })}
           >
             Course Cost
-          </Radio.Button>
-          <Radio.Button
+          </Radio.Button> */}
+          {/* <Radio.Button
             value={3}
             className="radio-button "
             onClick={() => onFilterChange({ status_in_company: "YES" })}
           >
             Status in Company
-          </Radio.Button>
-          <Radio.Button
+          </Radio.Button> */}
+          {/* <Radio.Button
             value={4}
             className="radio-button "
             onClick={() => onFilterChange({ scope_of_skill: "YES" })}
           >
             Scope of Skill
-          </Radio.Button>
+          </Radio.Button> */}
           <Radio.Button
             value={5}
             className="radio-button "
             onClick={() => onFilterChange({ job_help_environment: "YES" })}
           >
-            Job Help Environment
+            Job Help The Environment
           </Radio.Button>
           <Radio.Button
             value={6}
             className="radio-button "
             onClick={() => onFilterChange({ job_help_people: "YES" })}
           >
-            Job Help People
+            Job Help The People
           </Radio.Button>
-          <Radio.Button
+          {/* <Radio.Button
+            value={6}
+            className="radio-button "
+            onClick={() => onFilterChange({ job_help_people: "YES" })}
+          >
+            Job Help The People
+          </Radio.Button> */}
+          {/* <Radio.Button
             value={7}
             className="radio-button "
             onClick={() => onFilterChange({ work_life_balance: "YES" })}
           >
             Work Life Balance
-          </Radio.Button>
-          <Radio.Button
+          </Radio.Button> */}
+          {/* <Radio.Button
             value={8}
             className="radio-button "
             onClick={() => onFilterChange({ potential: "YES" })}
           >
             Potential
-          </Radio.Button>
+          </Radio.Button> */}
         </Radio.Group>
       </div>
       <ul className="grid ps-0 pb-5 justify-content-center">
         {career?.map((item: any, index: any) => (
           <li className="item" key={item?.id + Math.random()}>
             <ContentInnerCards
-              key={item?.id + 100}
+              key={item?.id + Math.random()}
               index={index}
-              image={item?.attributes?.image}
               setSignUpToggle={setSignUpToggle}
               item={item}
-              loginUser={loginUser}
             />
           </li>
         ))}

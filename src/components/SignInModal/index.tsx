@@ -5,6 +5,7 @@ import { Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import bgImage from "../../assets/images/02.webp";
 import "./SignInModal.scss";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface SiginProp {
   isModalOpen: any;
@@ -31,6 +32,9 @@ const SignInModal = ({
   };
   const onFinish = (values: any) => {
     dispatch(login(values, callBack));
+  };
+  const onChange = (e: any) => {
+    form.setFieldValue("robot", true);
   };
 
   const { isDark = false } = useSelector((store: any) => store.theme);
@@ -94,6 +98,12 @@ const SignInModal = ({
                   <Input.Password
                     // prefix={<LockOutlined className="site-form-item-icon" />}
                     placeholder="Password"
+                  />
+                </Form.Item>
+                <Form.Item name="robot" rules={[{ required: true }]}>
+                  <ReCAPTCHA
+                    sitekey="6LcAaMMoAAAAACwczd6m3WfhQKCQOVIGgkEaAlXG"
+                    onChange={onChange}
                   />
                 </Form.Item>
               </Col>

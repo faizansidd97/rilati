@@ -2,7 +2,7 @@
 import careerImage from "../../assets/images/placeholderCareer.jpeg";
 import { IoShareOutline } from "react-icons/io5";
 import { useEffect } from "react";
-import { Button, Col, Row, Spin, Tabs } from "antd";
+import { Col, Row, Spin, Tabs } from "antd";
 // import { stringLimt } from "src/helper/helper";
 import CareerUniversity from "../CareerUniversity";
 import "./ContentTabs.scss";
@@ -300,6 +300,22 @@ const ContentTabs = ({ item, onOracle }: IContentTabs) => {
                   animateOnRender
                   className="progress"
                   completed={progress.job_enviroment}
+                  // variant="success"
+                  bgColor="#00eb75"
+                  maxCompleted={10}
+                />
+              </div>
+              <div className="content-tabs__detail__progress d-flex justify-content-between align-items-center">
+                <h3>
+                  <CustomTooltip title={TOOLTIP.T17}>
+                    🧑 Helping People
+                  </CustomTooltip>
+                </h3>
+                <ProgressBar
+                  baseBgColor="#ffffff36"
+                  animateOnRender
+                  className="progress"
+                  completed={progress.internet}
                   // variant="success"
                   bgColor="#00eb75"
                   maxCompleted={10}

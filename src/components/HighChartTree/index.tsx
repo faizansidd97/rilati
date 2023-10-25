@@ -20,7 +20,6 @@ const HighChartTree = ({ isOracle, onCareerClick }: any) => {
     HighchartsTreeMap(Highcharts);
     HighchartsTreeGraph(Highcharts);
   } catch (e) {}
-  console.log("isOracle", graph);
   let isMounted = true;
 
   useEffect(() => {
