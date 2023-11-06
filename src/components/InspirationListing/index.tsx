@@ -6,11 +6,16 @@ import { DotChartOutlined } from "@ant-design/icons";
 import { getInspiration } from "src/redux/actions/inspirationsAction";
 import { debounce } from "lodash";
 import CustomTooltip from "../CustomTooltip";
+import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 
 let curretnInspirationPage = 1;
 const InspirationListing = ({ search, loginUser }: any) => {
   const disptach = useDispatch<any>();
   const [careerParams, setCareerParams] = useState({});
+  const [sortFlags, setSortFlags] = useState({
+    name: false,
+    occupation: false,
+  });
   const [inspirations, setInspirations]: any = useState([]);
 
   const {
@@ -71,38 +76,52 @@ const InspirationListing = ({ search, loginUser }: any) => {
           </h5>
         </CustomTooltip>
         <Radio.Group className="w-100 d-flex justify-content-start gap-3 flex-wrap">
-          <Radio.Button
-            className="radio-button "
-            onClick={() => onFilterChange({ sort_by: "NAME", sort: "DESC" })}
-            value={1}
-          >
-            Name DESC
-          </Radio.Button>
-          <Radio.Button
-            value={5}
-            className="radio-button "
-            onClick={() => onFilterChange({ sort_by: "NAME", sort: "ASC" })}
-          >
-            Name ASC
-          </Radio.Button>
-          <Radio.Button
-            value={6}
-            className="radio-button "
-            onClick={() =>
-              onFilterChange({ sort_by: "OCCUPATION", sort: "DESC" })
-            }
-          >
-            Occupation DESC
-          </Radio.Button>
-          <Radio.Button
-            value={4}
-            className="radio-button "
-            onClick={() =>
-              onFilterChange({ sort_by: "OCCUPATION", sort: "ASC" })
-            }
-          >
-            Occupation ASC
-          </Radio.Button>
+          {!sortFlags?.name ? (
+            <Radio.Button
+              className="radio-button "
+              onClick={() => {
+                setSortFlags({ ...sortFlags, name: true });
+                onFilterChange({ sort_by: "NAME", sort: "DESC" });
+              }}
+              value={1}
+            >
+              Name <AiOutlineArrowUp />
+            </Radio.Button>
+          ) : (
+            <Radio.Button
+              value={1}
+              className="radio-button "
+              onClick={() => {
+                setSortFlags({ ...sortFlags, name: false });
+                onFilterChange({ sort_by: "NAME", sort: "ASC" });
+              }}
+            >
+              Name <AiOutlineArrowDown />
+            </Radio.Button>
+          )}
+          {!sortFlags?.occupation ? (
+            <Radio.Button
+              value={2}
+              className="radio-button "
+              onClick={() => {
+                setSortFlags({ ...sortFlags, occupation: true });
+                onFilterChange({ sort_by: "OCCUPATION", sort: "DESC" });
+              }}
+            >
+              Occupation <AiOutlineArrowUp />
+            </Radio.Button>
+          ) : (
+            <Radio.Button
+              value={2}
+              className="radio-button "
+              onClick={() => {
+                setSortFlags({ ...sortFlags, occupation: false });
+                onFilterChange({ sort_by: "OCCUPATION", sort: "ASC" });
+              }}
+            >
+              Occupation <AiOutlineArrowDown />
+            </Radio.Button>
+          )}
         </Radio.Group>
       </div>
 

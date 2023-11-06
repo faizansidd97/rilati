@@ -48,6 +48,7 @@ const Layout = () => {
           <Route path="users" element={<Users />} />
           <Route path="inspiration" element={<Inspiration />} />
           <Route path="inspiration/:id" element={<AddEditInspiration />} />
+
           {/* <Route path="category/:id" element={<AddEditUni />} /> */}
         </Route>
       ) : (

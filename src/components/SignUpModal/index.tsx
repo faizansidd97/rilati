@@ -389,7 +389,7 @@ const SignUpModal = ({
                   <Select placeholder="Start Working" options={startWorking} />
                 </Form.Item>
               </Col>
-
+              {/* 
               <Col md={12} xs={12}>
                 <Form.Item
                   name="favorite_subject"
@@ -426,7 +426,7 @@ const SignUpModal = ({
                     options={leastSubject}
                   />
                 </Form.Item>
-              </Col>
+              </Col> */}
               <Col md={12} xs={12}>
                 <Form.Item
                   name="industries_interest"
@@ -467,21 +467,8 @@ const SignUpModal = ({
                   />
                 </Form.Item>
               </Col>
-              <Form.Item
-                name="role_id"
-                initialValue={"USER"}
-                rules={
-                  [
-                    // { required: true, message: "Please input your phone!" },
-                  ]
-                }
-                hidden
-              >
-                <Input
-                  // prefix={<UserOutlined className="site-form-item-icon" />}
-                  value="USER"
-                  // placeholder="Phone Number"
-                />
+              <Form.Item name="role_id" initialValue={"USER"} hidden>
+                <Input value="USER" />
               </Form.Item>
               {/* <Form.Item
                 name="phone"
@@ -584,7 +571,7 @@ const SignUpModal = ({
                     })}
                   /> */}
                   <Checkbox.Group
-                    className="least favorite-subject"
+                    className="favorite-subject"
                     options={confidentSkills?.map((items: any) => {
                       return {
                         value: items?.value,

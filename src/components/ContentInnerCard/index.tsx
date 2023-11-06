@@ -41,6 +41,8 @@ const ContentInnerCards = ({ item, index, setSignUpToggle }: IContentCards) => {
 
   const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
   const loginUser = getUser ? JSON.parse(getUser) : null;
+
+  const IS_ADMIN = loginUser?.role?.type === "ADMIN";
   const [progress, setProgress] = useState({
     over: 0,
     cost: 0,
@@ -151,9 +153,11 @@ Click here 👉 `;
       </div>
       <div className="mb-4 back py-3 px-2">
         <div className="back-header d-flex justify-content-end mb-md-3 mb-1">
-          <span className="me-2 text-white" style={{ fontSize: "16px" }}>
-            {likeCount}
-          </span>
+          {IS_ADMIN && (
+            <span className="me-2 text-white" style={{ fontSize: "16px" }}>
+              {likeCount}
+            </span>
+          )}
           {like ? (
             <AiFillHeart
               size={28}
@@ -230,20 +234,37 @@ Click here 👉 `;
             />
           </div>
 
-          <div className="d-flex justify-content-end" style={{ zIndex: 999 }}>
-            <span className="me-2 text-white" style={{ fontSize: "16px" }}>
-              {shareCount}
+          <div
+            className="d-flex justify-content-between"
+            style={{ zIndex: 999 }}
+          >
+            <h3
+              style={{
+                color: "#fff",
+                fontSize: "18px",
+                fontWeight: 600,
+                boxShadow: "0 0 10px #000",
+              }}
+            >
+              Click for more
+            </h3>
+            <span>
+              {IS_ADMIN && (
+                <span className="me-2 text-white" style={{ fontSize: "16px" }}>
+                  {shareCount}
+                </span>
+              )}
+              <Tooltip placement="top" title={"Share link"} color="#ff4742">
+                <IoShareOutline
+                  color="#fff"
+                  size={20}
+                  onClick={(event: any) => {
+                    setIsVisible(true);
+                    event.stopPropagation();
+                  }}
+                />
+              </Tooltip>
             </span>
-            <Tooltip placement="top" title={"Share link"} color="#ff4742">
-              <IoShareOutline
-                color="#fff"
-                size={20}
-                onClick={(event: any) => {
-                  setIsVisible(true);
-                  event.stopPropagation();
-                }}
-              />
-            </Tooltip>
           </div>
         </div>
       </div>

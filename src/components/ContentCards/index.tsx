@@ -135,7 +135,7 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
                   className="btn-secondary me-2 d-md-none d-block sort-by"
                   onClick={oracleHandler}
                 >
-                  Oracles
+                  Oracle
                 </Button>
               </div>
             </div>

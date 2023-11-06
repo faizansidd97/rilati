@@ -40,7 +40,7 @@ const HighChartTree = ({ isOracle, onCareerClick }: any) => {
 
   const hightOption = {
     title: {
-      text: "Careers with matching your profile",
+      text: "Some careers that match your profile",
     },
     type: "tree",
     series: [

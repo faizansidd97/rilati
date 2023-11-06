@@ -138,6 +138,9 @@ function Inspiration() {
             Search
           </Button>
         </div>
+        <Link to={"/dashboard/inspiration/new"} className="btn btn-primary">
+          Add New
+        </Link>
       </div>
       <GridView
         data={inspiration}

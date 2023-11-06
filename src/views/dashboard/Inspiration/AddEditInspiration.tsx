@@ -29,7 +29,6 @@ function AddEditInspiration() {
   }, [disptch]);
 
   const callback = () => {
-    console.log("run");
     navigate("/dashboard/inspiration");
   };
 
