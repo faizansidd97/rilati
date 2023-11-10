@@ -92,10 +92,10 @@ const CareerCards = ({ setSignUpToggle, search }: any) => {
           </h5>
         </CustomTooltip>
 
-        <Radio.Group className="w-100 d-flex justify-content-around  flex-wrap">
+        <Radio.Group className="w-100 d-flex justify-content-start  flex-wrap">
           {loginUser && (
             <Radio.Button
-              className="radio-button "
+              className="radio-button mx-2"
               onClick={() => {
                 setCareer([]);
                 disptach(getCareer({ page, take: 20, user_id: loginUser?.id }));
@@ -106,7 +106,7 @@ const CareerCards = ({ setSignUpToggle, search }: any) => {
             </Radio.Button>
           )}
           <Radio.Button
-            className="radio-button "
+            className="radio-button mx-2"
             onClick={() => onFilterChange({ atar: "YES" })}
             value={1}
           >
@@ -135,14 +135,14 @@ const CareerCards = ({ setSignUpToggle, search }: any) => {
           </Radio.Button> */}
           <Radio.Button
             value={5}
-            className="radio-button "
+            className="radio-button mx-2"
             onClick={() => onFilterChange({ job_help_environment: "YES" })}
           >
             Job Help The Environment
           </Radio.Button>
           <Radio.Button
             value={6}
-            className="radio-button "
+            className="radio-button mx-2"
             onClick={() => onFilterChange({ job_help_people: "YES" })}
           >
             Job Help The People

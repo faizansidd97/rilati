@@ -116,7 +116,7 @@ function Inspiration() {
   ];
 
   const onChange = (value: any) => {
-    disptach(getInspiration({ name: value }));
+    disptach(getInspiration({ search: value }));
   };
 
   const {
