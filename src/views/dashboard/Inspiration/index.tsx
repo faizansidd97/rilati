@@ -40,8 +40,8 @@ function Inspiration() {
         return new Promise((resolve, reject) => {
           disptach(deleteInspiration(id))
             .then((res: any) => {
-              resolve(res);
               disptach(getInspiration({ page: 1, take: 40 }));
+              resolve(res);
             })
             .catch((err: any) => {
               reject(err);
@@ -128,6 +128,7 @@ function Inspiration() {
   const callback = (params: any) => {
     disptach(getInspiration(params));
   };
+  console.log("metaData", metaData);
 
   return (
     <div className="overflow-auto">
@@ -148,8 +149,9 @@ function Inspiration() {
         loading={inspirationsLoader}
         listingCallback={callback}
         pagination={{
-          total: metaData?.totalCount,
-          currentPage: metaData?.currentPage,
+          total: metaData?.meta?.totalCount,
+          currentPage: metaData?.meta?.currentPage,
+          pageSize: 40,
         }}
       />
     </div>

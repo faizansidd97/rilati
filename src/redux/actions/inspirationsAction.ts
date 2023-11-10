@@ -11,7 +11,7 @@ import {
 } from "src/constant/Types";
 import { httpService } from "src/network/axiosAgent";
 
-export const getInspiration = (params?: any) => (dispatch: any) => {
+export const getInspiration = (params?: any, cb?: any) => (dispatch: any) => {
   dispatch({ type: INSPIRATION_REQUEST });
   httpService
     .get(`/inspirational-people`, { params })
@@ -80,15 +80,19 @@ export const updateInspiration =
   };
 
 export const deleteInspiration = (id: any) => (dispatch: any) => {
-  dispatch({ type: INSPIRATION_DELETE_REQUEST });
-  httpService
-    .delete(`/inspirational-people/${id}`)
-    .then((res) => {
-      dispatch({
-        type: INSPIRATION_DELETE_SUCCESS,
+  return new Promise((resolve, reject) => {
+    dispatch({ type: INSPIRATION_DELETE_REQUEST });
+    httpService
+      .delete(`/inspirational-people/${id}`)
+      .then((res) => {
+        dispatch({
+          type: INSPIRATION_DELETE_SUCCESS,
+        });
+        resolve(res);
+      })
+      .catch((err) => {
+        dispatch({ type: INSPIRATION_DELETE_ERROR });
+        reject(err);
       });
-    })
-    .catch((err) => {
-      dispatch({ type: INSPIRATION_DELETE_ERROR });
-    });
+  });
 };
