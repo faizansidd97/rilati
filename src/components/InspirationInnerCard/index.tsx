@@ -98,8 +98,9 @@ const ContentInnerCards = ({ item, index, image }: IContentCards) => {
                   <h6>Education:</h6>
                 </Col>
                 <Col md={10}>
-                  <p className="ms-2">
+                  <p className="ms-2" style={{ whiteSpace: "pre-line" }}>
                     {item?.education
+                      // ?.replace("20", "20\n")
                       ?.replace(". 20", ".\n")
                       ?.replace(". 19", ".\n")}
                   </p>

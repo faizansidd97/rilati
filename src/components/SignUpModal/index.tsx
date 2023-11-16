@@ -434,7 +434,7 @@ const SignUpModal = ({
                   rules={[
                     {
                       required: true,
-                      message: "Please input your least industries interest!",
+                      message: "Please select your least favourite industries!",
                     },
                   ]}
                 >

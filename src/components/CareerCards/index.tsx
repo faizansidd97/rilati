@@ -138,14 +138,14 @@ const CareerCards = ({ setSignUpToggle, search }: any) => {
             className="radio-button mx-2"
             onClick={() => onFilterChange({ job_help_environment: "YES" })}
           >
-            Job Help The Environment
+            Jobs That Help Environment
           </Radio.Button>
           <Radio.Button
             value={6}
             className="radio-button mx-2"
             onClick={() => onFilterChange({ job_help_people: "YES" })}
           >
-            Job Help The People
+            Jobs That Help People
           </Radio.Button>
           {/* <Radio.Button
             value={6}
