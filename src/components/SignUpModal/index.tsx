@@ -32,6 +32,23 @@ const SignUpModal = ({
   const loginUser = getUser ? JSON.parse(getUser) : null;
   const id = loginUser?.id;
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mobileMediaQuery = window.matchMedia("(max-width: 767px)"); // Adjust the breakpoint as needed
+
+    const handleMobileChange = (event: any) => {
+      setIsMobile(event.matches);
+    };
+
+    mobileMediaQuery.addEventListener("change", handleMobileChange);
+    setIsMobile(mobileMediaQuery.matches);
+
+    return () => {
+      mobileMediaQuery.removeEventListener("change", handleMobileChange);
+    };
+  }, []);
+
   useEffect(() => {
     dispatch(getSubjects());
     dispatch(getIndustries());
@@ -177,7 +194,7 @@ const SignUpModal = ({
       onOk={handleOk}
       onCancel={handleCancel}
       footer={false}
-      width={"80%"}
+      width={isMobile ? "95%" : "80%"}
       // zIndex={9999}
     >
       <section className="signup-modal ">

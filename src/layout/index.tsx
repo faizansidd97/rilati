@@ -21,6 +21,9 @@ import FAQ from "src/views/Website/FAQ's";
 import TermsAndConditions from "src/views/Website/TermsAndConditions";
 import Inspiration from "src/views/dashboard/Inspiration";
 import AddEditInspiration from "src/views/dashboard/Inspiration/AddEditInspiration";
+import { useState, useEffect } from "react";
+import CareerDetail from "src/views/Website/Career";
+import ContentTabs from "src/components/ContentTabs";
 
 export const RoutePaths = {
   LOGIN:
@@ -30,6 +33,23 @@ const Layout = () => {
   const { isLogin = false, user = null } = useSelector(
     (storeState: any) => storeState.auth
   );
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mobileMediaQuery = window.matchMedia("(max-width: 767px)"); // Adjust the breakpoint as needed
+
+    const handleMobileChange = (event: any) => {
+      setIsMobile(event.matches);
+    };
+
+    mobileMediaQuery.addEventListener("change", handleMobileChange);
+    setIsMobile(mobileMediaQuery.matches);
+
+    return () => {
+      mobileMediaQuery.removeEventListener("change", handleMobileChange);
+    };
+  }, []);
+
   const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
   const loginUser = getUser ? JSON.parse(getUser) : null;
   const IS_ADMIN = loginUser?.role?.type === "ADMIN";
@@ -55,7 +75,11 @@ const Layout = () => {
         <>
           <Route path="/" element={<WebsiteLayout />}>
             <Route path="" element={<Home />} />
-            <Route path="/career/:id" element={<Home />} />
+            {isMobile ? (
+              <Route path="/career/:id" element={<Home />} />
+            ) : (
+              <Route path="/career/:id" element={<Home />} />
+            )}
             <Route path="about-us" element={<AboutUs />} />
             <Route path="faq" element={<FAQ />} />
             <Route path="terms-conditions" element={<TermsAndConditions />} />

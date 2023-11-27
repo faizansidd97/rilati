@@ -77,7 +77,6 @@ const CareerCards = ({ setSignUpToggle, search }: any) => {
       customized view of careers aligned with your goals.
     </span>
   );
-  console.log("I'm run");
   return (
     <div className="career-cards">
       <div

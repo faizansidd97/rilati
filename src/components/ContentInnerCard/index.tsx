@@ -85,8 +85,6 @@ Click here 👉 `;
   const liekCallback = () => {
     setLike(!like);
     setLikeCount((likeCount: any) => {
-      console.log("likeCount", likeCount, like);
-
       if (like) {
         return --likeCount;
       } else {
@@ -238,14 +236,7 @@ Click here 👉 `;
             className="d-flex justify-content-between"
             style={{ zIndex: 999 }}
           >
-            <h3
-              style={{
-                color: "#fff",
-                fontSize: "18px",
-                fontWeight: 600,
-                boxShadow: "0 0 10px #000",
-              }}
-            >
+            <h3 className="content-card__wrapper__back__click-text">
               Click for more
             </h3>
             <span>

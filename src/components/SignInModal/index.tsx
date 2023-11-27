@@ -1,11 +1,12 @@
+import { useState, useEffect } from "react";
 import { Button, Form, Input, Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "src/redux/actions/authAction";
 import { Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import bgImage from "../../assets/images/02.webp";
-import "./SignInModal.scss";
 import ReCAPTCHA from "react-google-recaptcha";
+import "./SignInModal.scss";
 
 interface SiginProp {
   isModalOpen: any;
@@ -36,6 +37,22 @@ const SignInModal = ({
   const onChange = (e: any) => {
     form.setFieldValue("robot", true);
   };
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mobileMediaQuery = window.matchMedia("(max-width: 767px)"); // Adjust the breakpoint as needed
+
+    const handleMobileChange = (event: any) => {
+      setIsMobile(event.matches);
+    };
+
+    mobileMediaQuery.addEventListener("change", handleMobileChange);
+    setIsMobile(mobileMediaQuery.matches);
+
+    return () => {
+      mobileMediaQuery.removeEventListener("change", handleMobileChange);
+    };
+  }, []);
 
   const { isDark = false } = useSelector((store: any) => store.theme);
 
@@ -45,7 +62,7 @@ const SignInModal = ({
       onOk={handleOk}
       onCancel={handleCancel}
       footer={false}
-      width={"50%"}
+      width={isMobile ? "90%" : "50%"}
     >
       <section className="signup-modal ">
         <div

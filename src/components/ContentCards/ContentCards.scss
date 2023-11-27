@@ -151,7 +151,12 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-
+      &__click-text {
+        color: #fff;
+        font-size: 18px;
+        font-weight: 600;
+        box-shadow: "0 0 10px #000";
+      }
       &__progress {
         margin-bottom: 15px;
         h3 {
@@ -396,6 +401,9 @@
 @media (max-width: 500px) {
   .grid .item {
     .content-card__wrapper__back {
+      &__click-text {
+        font-size: 12px;
+      }
       &__progress {
         h3 {
           font-size: 8px;
@@ -407,7 +415,7 @@
 @media (max-width: 400px) {
   .grid .item {
     width: calc(50% - 14px);
-    height: calc(58vw - 14px - 28px);
+    height: calc(58vw - 14px - 2px);
   }
 }
 @media (max-width: 345px) {
@@ -417,7 +425,7 @@
 }
 @media (max-width: 360px) {
   .grid .item {
-    height: 227px !important;
+    height: 250px !important;
   }
 }
 

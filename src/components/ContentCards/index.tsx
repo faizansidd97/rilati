@@ -27,6 +27,23 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
   const loginUser = getUser ? JSON.parse(getUser) : null;
   const navigate = useNavigate();
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mobileMediaQuery = window.matchMedia("(max-width: 767px)"); // Adjust the breakpoint as needed
+
+    const handleMobileChange = (event: any) => {
+      setIsMobile(event.matches);
+    };
+
+    mobileMediaQuery.addEventListener("change", handleMobileChange);
+    setIsMobile(mobileMediaQuery.matches);
+
+    return () => {
+      mobileMediaQuery.removeEventListener("change", handleMobileChange);
+    };
+  }, []);
+
   const onCareerClick = (link: string) => {
     const career = link?.split("-")[2];
     setIsOracle(false);
@@ -50,11 +67,13 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
     }
   };
   useEffect(() => {
+    // if (!isMobile) {
     if (id) {
       setIsVisible(true);
     } else {
       setIsVisible(false);
     }
+    // }
   }, [id]);
   const t2 = (
     <span>
@@ -108,7 +127,7 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
           md={12}
           className="d-flex align-items-center  flex-wrap justify-content-end justify-content-md-between my-3"
         >
-          <div className="button-wrapper d-flex align-items-center flex-wrap flex-md-row ">
+          <div className="button-wrapper d-flex justify-content-center align-items-center flex-wrap flex-md-row ">
             <div className="d-md-block d-flex justify-content-between ">
               <Button
                 className={`btn btn-primary me-2 custom ${
@@ -181,7 +200,7 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
         open={isVisible}
         footer={false}
         onCancel={() => navigate(`/`)}
-        width={"80%"}
+        width={isMobile ? "95%" : "80%"}
         zIndex={9}
       >
         <ContentTabs onOracle={onOracle} />
@@ -190,7 +209,7 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
         open={isOracle}
         footer={false}
         onCancel={() => setIsOracle(false)}
-        width={"90%"}
+        width={isMobile ? "95%" : "80%"}
         zIndex={9}
       >
         <HighChartTree isOracle={isOracle} onCareerClick={onCareerClick} />

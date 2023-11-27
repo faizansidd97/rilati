@@ -62,7 +62,7 @@ const Header = ({
     {
       key: "1",
       label: (
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between flex-column flex-md-row">
           <div className="mt-3 me-4">
             <h5>Contact us</h5>
             <div
