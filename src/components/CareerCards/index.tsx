@@ -7,12 +7,17 @@ import debounce from "lodash/debounce";
 import { DotChartOutlined } from "@ant-design/icons";
 import CustomTooltip from "../CustomTooltip";
 import Environment from "../../network/baseUrl";
+import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 
 let page = 1;
 const CareerCards = ({ setSignUpToggle, search }: any) => {
   const disptach = useDispatch<any>();
   const [career, setCareer]: any = useState([]);
-  const [careerParams, setCareerParams] = useState({});
+  const [careerParams, setCareerParams] = useState({
+    atar: "ASC",
+    job_help_environment: "ASC",
+    job_help_people: "ASC",
+  });
 
   const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
   const loginUser = getUser ? JSON.parse(getUser) : null;
@@ -23,10 +28,14 @@ const CareerCards = ({ setSignUpToggle, search }: any) => {
   //     disptach(getCareer({ page, take: 20 }));
   //   }
   // }, [disptach]);
-  const onFilterChange = (params: object) => {
+  console.log("careerParams", careerParams);
+
+  const onFilterChange = (params: any) => {
     setCareer([]);
     page = 1;
-    setCareerParams(params);
+
+    setCareerParams({ ...params });
+
     disptach(getCareer({ ...params, page: 1, take: 20 }));
   };
 
@@ -77,6 +86,8 @@ const CareerCards = ({ setSignUpToggle, search }: any) => {
       customized view of careers aligned with your goals.
     </span>
   );
+  console.log(careerParams);
+
   return (
     <div className="career-cards">
       <div
@@ -106,67 +117,54 @@ const CareerCards = ({ setSignUpToggle, search }: any) => {
           )}
           <Radio.Button
             className="radio-button mx-2"
-            onClick={() => onFilterChange({ atar: "YES" })}
+            onClick={() =>
+              onFilterChange({
+                atar: careerParams?.atar === "ASC" ? "DESC" : "ASC",
+              })
+            }
             value={1}
           >
             ATAR
+            {careerParams?.atar === "ASC" ? (
+              <AiOutlineArrowDown />
+            ) : (
+              <AiOutlineArrowUp />
+            )}
           </Radio.Button>
-          {/* <Radio.Button
-            className="radio-button "
-            value={2}
-            onClick={() => onFilterChange({ course_cost: "YES" })}
-          >
-            Course Cost
-          </Radio.Button> */}
-          {/* <Radio.Button
-            value={3}
-            className="radio-button "
-            onClick={() => onFilterChange({ status_in_company: "YES" })}
-          >
-            Status in Company
-          </Radio.Button> */}
-          {/* <Radio.Button
-            value={4}
-            className="radio-button "
-            onClick={() => onFilterChange({ scope_of_skill: "YES" })}
-          >
-            Scope of Skill
-          </Radio.Button> */}
           <Radio.Button
             value={5}
             className="radio-button mx-2"
-            onClick={() => onFilterChange({ job_help_environment: "YES" })}
+            onClick={() =>
+              onFilterChange({
+                job_help_environment:
+                  careerParams?.job_help_environment === "ASC" ? "DESC" : "ASC",
+              })
+            }
           >
             Jobs That Help Environment
+            {careerParams?.job_help_environment === "ASC" ? (
+              <AiOutlineArrowDown />
+            ) : (
+              <AiOutlineArrowUp />
+            )}
           </Radio.Button>
           <Radio.Button
             value={6}
             className="radio-button mx-2"
-            onClick={() => onFilterChange({ job_help_people: "YES" })}
+            onClick={() =>
+              onFilterChange({
+                job_help_people:
+                  careerParams?.job_help_people === "ASC" ? "DESC" : "ASC",
+              })
+            }
           >
             Jobs That Help People
+            {careerParams?.job_help_people === "ASC" ? (
+              <AiOutlineArrowDown />
+            ) : (
+              <AiOutlineArrowUp />
+            )}
           </Radio.Button>
-          {/* <Radio.Button
-            value={6}
-            className="radio-button "
-            onClick={() => onFilterChange({ job_help_people: "YES" })}
-          >
-            Job Help The People
-          </Radio.Button> */}
-          {/* <Radio.Button
-            value={7}
-            className="radio-button "
-            onClick={() => onFilterChange({ work_life_balance: "YES" })}
-          >
-            Work Life Balance
-          </Radio.Button> */}
-          {/* <Radio.Button
-            value={8}
-            className="radio-button "
-            onClick={() => onFilterChange({ potential: "YES" })}
-          >
-            Potential
-          </Radio.Button> */}
         </Radio.Group>
       </div>
       <ul className="grid ps-0 pb-5 justify-content-center">

@@ -157,10 +157,7 @@ function AddEditCareer() {
   ];
   const handleChange = (value: any) => {
     console.log({ value });
-
-    // setImage(value);
   };
-  console.log("loader", loader);
 
   return (
     <div className="overflow-auto">

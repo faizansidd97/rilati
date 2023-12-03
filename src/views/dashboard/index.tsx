@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Input, Modal, Space } from "antd";
+import { Button, Input, Modal, Radio, Select, Space } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import GridView from "src/components/GridView/GridView";
@@ -8,6 +8,8 @@ import { deleteCareer, getCareer } from "src/redux/actions/careerAction";
 import { stringLimt } from "src/helper/helper";
 import { Link } from "react-router-dom";
 import "./dashboard.scss";
+import { getCategory } from "src/redux/actions/categoryAction";
+import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 
 interface DataType {
   key: React.Key;
@@ -18,10 +20,17 @@ interface DataType {
 
 function Dashboard() {
   const [search, setSearch] = useState("");
+  const [categoryId, setCategoryId] = useState();
+  const [careerParams, setCareerParams] = useState({
+    atar: "ASC",
+    job_help_environment: "ASC",
+    job_help_people: "ASC",
+  });
   const disptch = useDispatch<any>();
 
   useEffect(() => {
     disptch(getCareer());
+    disptch(getCategory(1, 1000, "", "CAREER"));
   }, [disptch]);
 
   const { confirm } = Modal;
@@ -111,22 +120,110 @@ function Dashboard() {
     loader = false,
     metaData = {},
   } = useSelector((store: any) => store.career);
-
+  const { category = [], loader: catLoader = false } = useSelector(
+    (store: any) => store.category
+  );
   const callback = (params: any) => {
-    disptch(getCareer(params));
+    disptch(getCareer({ ...params, categoryId: categoryId }));
+  };
+  const handleChange = (value: any) => {
+    setCategoryId(value);
+    disptch(getCareer({ categoryId: value }));
+    // setImage(value);
+  };
+  const onFilterChange = (params: any) => {
+    setCareerParams({ ...params });
+
+    disptch(getCareer({ ...params, page: 1, take: 20 }));
   };
   return (
     <div className="overflow-auto">
       <div className="d-flex justify-content-between align-items-center mb-3">
+        <div className="d-flex">
+          <Select
+            size={"middle"}
+            placeholder="Please select type"
+            // defaultValue={["a10", "c12"]}
+            loading={catLoader}
+            allowClear
+            onChange={handleChange}
+            style={{
+              width: "100%",
+            }}
+            className="me-3"
+            options={
+              category?.length > 0
+                ? category?.map((item: any) => {
+                    return { label: item?.attributes?.name, value: item?.id };
+                  })
+                : []
+            }
+          />
+        </div>
         <div className="d-flex">
           <Input onChange={(e) => setSearch(e.target.value)} />
           <Button className="mx-3" onClick={() => onChange(search)}>
             Search
           </Button>
         </div>
+
         <Link className="btn btn-primary" to={"/dashboard/career/new"}>
           Add new
         </Link>
+      </div>
+      <div className="d-flex">
+        <Radio.Group className="w-100 d-flex justify-content-start  flex-wrap">
+          <Radio.Button
+            className="radio-button mx-2"
+            onClick={() =>
+              onFilterChange({
+                atar: careerParams?.atar === "ASC" ? "DESC" : "ASC",
+              })
+            }
+            value={1}
+          >
+            ATAR
+            {careerParams?.atar === "ASC" ? (
+              <AiOutlineArrowDown />
+            ) : (
+              <AiOutlineArrowUp />
+            )}
+          </Radio.Button>
+          <Radio.Button
+            value={5}
+            className="radio-button mx-2"
+            onClick={() =>
+              onFilterChange({
+                job_help_environment:
+                  careerParams?.job_help_environment === "ASC" ? "DESC" : "ASC",
+              })
+            }
+          >
+            Jobs That Help Environment
+            {careerParams?.job_help_environment === "ASC" ? (
+              <AiOutlineArrowDown />
+            ) : (
+              <AiOutlineArrowUp />
+            )}
+          </Radio.Button>
+          <Radio.Button
+            value={6}
+            className="radio-button mx-2"
+            onClick={() =>
+              onFilterChange({
+                job_help_people:
+                  careerParams?.job_help_people === "ASC" ? "DESC" : "ASC",
+              })
+            }
+          >
+            Jobs That Help People
+            {careerParams?.job_help_people === "ASC" ? (
+              <AiOutlineArrowDown />
+            ) : (
+              <AiOutlineArrowUp />
+            )}
+          </Radio.Button>
+        </Radio.Group>
       </div>
       <GridView
         data={career}

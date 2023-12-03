@@ -25,7 +25,7 @@ const ImageUpload = ({ onChange, imageURL }: any) => {
       setFileList([
         {
           uid: "-1",
-          name: "image.png",
+          name: "Career Image",
           status: "done",
           url: imageURL,
         },
