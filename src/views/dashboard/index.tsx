@@ -21,10 +21,16 @@ interface DataType {
 function Dashboard() {
   const [search, setSearch] = useState("");
   const [categoryId, setCategoryId] = useState();
+  const [activeRadio, setActiveRadio] = useState(0);
   const [careerParams, setCareerParams] = useState({
     atar: "ASC",
     job_help_environment: "ASC",
     job_help_people: "ASC",
+  });
+  const [pagination, setPagination] = useState({
+    currentPage: 1,
+    pageSize: 10,
+    total: 10,
   });
   const disptch = useDispatch<any>();
 
@@ -124,17 +130,31 @@ function Dashboard() {
     (store: any) => store.category
   );
   const callback = (params: any) => {
-    disptch(getCareer({ ...params, categoryId: categoryId }));
+    setPagination({ ...params });
+    disptch(getCareer({ ...params, ...careerParams, categoryId: categoryId }));
   };
   const handleChange = (value: any) => {
     setCategoryId(value);
     disptch(getCareer({ categoryId: value }));
-    // setImage(value);
   };
   const onFilterChange = (params: any) => {
     setCareerParams({ ...params });
 
     disptch(getCareer({ ...params, page: 1, take: 20 }));
+  };
+  const clearFilterHandler = () => {
+    setCareerParams({
+      atar: "",
+      job_help_environment: "",
+      job_help_people: "",
+    });
+    setActiveRadio(0);
+    setPagination({
+      currentPage: 1,
+      pageSize: 10,
+      total: 10,
+    });
+    disptch(getCareer({ page: 1, take: 20 }));
   };
   return (
     <div className="overflow-auto">
@@ -171,15 +191,19 @@ function Dashboard() {
           Add new
         </Link>
       </div>
-      <div className="d-flex">
-        <Radio.Group className="w-100 d-flex justify-content-start  flex-wrap">
+      <div className="d-flex align-items-center mb-3">
+        <Radio.Group
+          className="d-flex justify-content-start flex-wrap"
+          value={Number(activeRadio)}
+        >
           <Radio.Button
             className="radio-button mx-2"
-            onClick={() =>
+            onClick={(e: any) => {
               onFilterChange({
                 atar: careerParams?.atar === "ASC" ? "DESC" : "ASC",
-              })
-            }
+              });
+              setActiveRadio(e?.target?.value);
+            }}
             value={1}
           >
             ATAR
@@ -192,12 +216,13 @@ function Dashboard() {
           <Radio.Button
             value={5}
             className="radio-button mx-2"
-            onClick={() =>
+            onClick={(e: any) => {
               onFilterChange({
                 job_help_environment:
                   careerParams?.job_help_environment === "ASC" ? "DESC" : "ASC",
-              })
-            }
+              });
+              setActiveRadio(e?.target?.value);
+            }}
           >
             Jobs That Help Environment
             {careerParams?.job_help_environment === "ASC" ? (
@@ -209,12 +234,14 @@ function Dashboard() {
           <Radio.Button
             value={6}
             className="radio-button mx-2"
-            onClick={() =>
+            onClick={(e: any) => {
               onFilterChange({
                 job_help_people:
                   careerParams?.job_help_people === "ASC" ? "DESC" : "ASC",
-              })
-            }
+              });
+
+              setActiveRadio(e?.target?.value);
+            }}
           >
             Jobs That Help People
             {careerParams?.job_help_people === "ASC" ? (
@@ -224,6 +251,7 @@ function Dashboard() {
             )}
           </Radio.Button>
         </Radio.Group>
+        <Button className="btn-close" onClick={clearFilterHandler}></Button>
       </div>
       <GridView
         data={career}
