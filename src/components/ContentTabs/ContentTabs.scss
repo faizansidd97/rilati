@@ -71,6 +71,9 @@
 
 @media (max-width: 768px) {
   .content-tabs {
+    .ant-tabs-nav-wrap {
+      justify-content: left;
+    }
     &__header {
       h3 {
         font-size: 25px;
@@ -83,7 +86,12 @@
       padding: 5px;
 
       &__progress {
+        flex-direction: column;
         margin: 20px 0px;
+        .progress {
+          margin-top: 10px;
+          width: 100%;
+        }
       }
     }
   }

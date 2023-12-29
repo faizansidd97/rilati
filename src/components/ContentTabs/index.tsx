@@ -252,7 +252,7 @@ const ContentTabs = ({ item, onOracle }: IContentTabs) => {
           {stringLimt(careerById?.attributes?.job_description, 400)}
         </p> */}
         </div>
-        <Row>
+        <Row className="flex-column-reverse flex-md-row">
           <Col md={10} xs={24}>
             <h4 className="my-2 my-md-3 text-center">
               <CustomTooltip title={TOOLTIP.T37}>Details</CustomTooltip>

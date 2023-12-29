@@ -21,13 +21,7 @@ const CareerCards = ({ setSignUpToggle, search }: any) => {
 
   const getUser = localStorage.getItem(Environment.LOCAL_STORAGE_USER_KEY);
   const loginUser = getUser ? JSON.parse(getUser) : null;
-  // useEffect(() => {
-  //   if (loginUser) {
-  //     disptach(getCareer({ page, take: 20, user_id: loginUser?.id }));
-  //   } else {
-  //     disptach(getCareer({ page, take: 20 }));
-  //   }
-  // }, [disptach]);
+
   console.log("careerParams", careerParams);
 
   const onFilterChange = (params: any) => {
@@ -86,8 +80,6 @@ const CareerCards = ({ setSignUpToggle, search }: any) => {
       customized view of careers aligned with your goals.
     </span>
   );
-  console.log(careerParams);
-
   return (
     <div className="career-cards">
       <div
@@ -102,7 +94,7 @@ const CareerCards = ({ setSignUpToggle, search }: any) => {
           </h5>
         </CustomTooltip>
 
-        <Radio.Group className="w-100 d-flex justify-content-start  flex-wrap">
+        <Radio.Group className="w-100 d-flex justify-content-start  flex-wrap gap-2">
           {loginUser && (
             <Radio.Button
               className="radio-button mx-2"

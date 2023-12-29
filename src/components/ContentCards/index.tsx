@@ -128,7 +128,7 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
           className="d-flex align-items-center  flex-wrap justify-content-end justify-content-md-between my-3"
         >
           <div className="button-wrapper d-flex justify-content-center align-items-center flex-wrap flex-md-row ">
-            <div className="d-md-block d-flex justify-content-between ">
+            <div className="d-md-block d-flex justify-content-center flex-wrap">
               <Button
                 className={`btn btn-primary me-2 custom ${
                   isInspiration ? "" : "active"
@@ -149,13 +149,16 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
               >
                 <CustomTooltip title={t3}>Inspiration</CustomTooltip>
               </Button>
-              <div className="d-md-none d-block">
+              <div className="d-md-none d-block mb-3">
                 <Button
                   className="btn-secondary me-2 d-md-none d-block sort-by"
                   onClick={oracleHandler}
                 >
                   Oracle
                 </Button>
+              </div>
+              <div className="d-md-none d-block mb-3">
+                <Button className="btn-secondary sort-by">Job</Button>
               </div>
             </div>
           </div>
