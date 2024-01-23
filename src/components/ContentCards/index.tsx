@@ -158,7 +158,10 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
                 </Button>
               </div>
               <div className="d-md-none d-block mb-3">
-                <Button className="btn-secondary sort-by">Job</Button>
+                <Button className="btn-secondary sort-by">Internship</Button>
+              </div>
+              <div className="d-md-none d-block mb-3">
+                <Button className="btn-secondary sort-by">Scholarship</Button>
               </div>
             </div>
           </div>
@@ -181,7 +184,8 @@ const ContentCards = ({ setSignUpToggle }: ContentCards) => {
               <CustomTooltip title={t5}>Oracle </CustomTooltip>
             </Button>
 
-            <Button className="btn-secondary sort-by">Job</Button>
+            <Button className="btn-secondary sort-by">Internship</Button>
+            <Button className="btn-secondary sort-by">Scholarship</Button>
           </div>
         </Col>
       </Row>
